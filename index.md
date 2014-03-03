@@ -18,7 +18,7 @@ What's This?
 
 **Gura** is an **iterator-oriented** programming language
 that focuses on iterators with improved functions for calculation and data processing.
-It would give you a new possibility to write more elegant codes than ever,
+It gives you a new possibility to write more elegant codes than ever,
 but with a familiar appearance.
 
 Take a look at a simple example.

@@ -87,7 +87,8 @@ An attribute `:iter` causes a more interesting result. Take a look at the code b
     }
 
 In this case, repeating process is not executed when the `repeat` function is evaluated.
-`x` is an *iterator* that generates values of 0, 2, 4, 6, 8.
+`x` is an *iterator* that generates values of 0, 2, 4, 6 and 8,
+and these values are only available when the iterator is actually evaluated.
 
 Using this technique, you can create complicated iterators in a way that looks like an ordinary loop.
 You'll see more practical usage of this feature in [this](../articles/Script-to-Generate-Prime-Numbers.html).

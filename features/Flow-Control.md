@@ -82,4 +82,4 @@ As these are also implemented as functions, you can see more special features wi
          i * 2
     }
 
-You can see more practical usage of this feature in [this](../articles/Script-to-Generate-Prime Numbers).
+You can see more practical usage of this feature in [this](../articles/Script-to-Generate-Prime-Numbers.html).

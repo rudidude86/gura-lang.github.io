@@ -43,17 +43,20 @@ it will return `nil`.
 
 Here are some simple codes that use typical repeat controls.
 
+Sample code of `for`:
+
     for (fruit in ['orange', 'apple', 'grape']) {
         println(fruit)
     }
 
+Sample code of `repeat`:
 
 
     repeat (10) {
         println('hello world')
     }
 
-
+Sample code of `while`:
 
     n = 0
     while (n < 10) {

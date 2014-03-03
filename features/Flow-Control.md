@@ -7,7 +7,7 @@ title: Flow Control
 Flow Control
 ------------
 
-Like other programming language, Gura also provides flow-control mechanism that you've been familiar with.
+Like other programming languages, Gura also provides flow-control mechanism that you've already been familiar with.
 For instance, conditional branch can be described like below.
 
     if (x < 0) {
@@ -17,6 +17,8 @@ For instance, conditional branch can be described like below.
     } else {
         println('x is equal to zero')
     }
+
+
 
 - `for`
 - `repeat`

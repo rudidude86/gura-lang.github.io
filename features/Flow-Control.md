@@ -52,19 +52,19 @@ Sample code of `for`:
 Sample code of `repeat`:
 
 
-    repeat (10) {
+    repeat (5) {
         println('hello world')
     }
 
 Sample code of `while`:
 
     n = 0
-    while (n < 10) {
+    while (n < 5) {
         println(n)
         n += 1
     }
 
-You can specify a block parameter that takes a number of repeating index as following:
+You can specify a block parameter as following that takes a number of repeating count starting from zero:
 
     repeat (10) {|i|
         println('hello world ', i)
@@ -72,14 +72,22 @@ You can specify a block parameter that takes a number of repeating index as foll
 
 As these are also implemented as functions, you can see more special features with them.
 
-    x = repeat (10):list {|i|
+Appending an attribute `:list` causes the repeating process to generate a list
+that contains evaluated result of each loop as its elements.
+In the following example, `x` will be a list of `[0, 2, 4, 6, 8]`.
+
+    x = repeat (5):list {|i|
          i * 2
     }
 
-
+An attribute `:iter` causes a more interesting result. Take a look at the code below:
 
     x = repeat (10):iter {|i|
          i * 2
     }
 
-You can see more practical usage of this feature in [this](../articles/Script-to-Generate-Prime-Numbers.html).
+In this case, repeating process is not executed when the `repeat` function is evaluated.
+`x` is an *iterator* that generates values of 0, 2, 4, 6, 8.
+
+Using this technique, you can create complicated iterators in a way that looks like an ordinary loop.
+You'll see more practical usage of this feature in [this](../articles/Script-to-Generate-Prime-Numbers.html).

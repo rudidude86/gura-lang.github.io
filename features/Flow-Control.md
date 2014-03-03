@@ -47,9 +47,13 @@ Here are some simple codes that use typical repeat controls.
         println(fruit)
     }
 
+
+
     repeat (10) {
         println('hello world')
     }
+
+
 
     n = 0
     while (n < 10) {
@@ -68,6 +72,7 @@ As these are also implemented as functions, you can see more special features wi
     x = repeat (10):list {|i|
          i * 2
     }
+
 
 
     x = repeat (10):iter {|i|

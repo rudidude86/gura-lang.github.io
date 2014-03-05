@@ -20,7 +20,7 @@ that you've already been familiar with. See the code below:
         println('x is equal to zero')
     }
 
-Although appearance is very similar with that of other languages, there's a big problem.
+Although appearance is very similar with that of other languages, there's a big difference.
 In Gura, `if` is NOT a statement but a function, which means that `if` has a return value.
 
 Consider the following code:
@@ -80,15 +80,27 @@ In the following example, `x` will be a list of `[0, 2, 4, 6, 8]`.
          i * 2
     }
 
-An attribute `:iter` causes a more interesting result. Take a look at the code below:
+An attribute `:iter` would have a more interesting result. Take a look at the code below:
 
-    x = repeat (10):iter {|i|
+    x = repeat (5):iter {|i|
          i * 2
     }
 
 In this case, repeating process is not executed when the `repeat` function is evaluated.
 `x` is an *iterator* that generates values of 0, 2, 4, 6 and 8,
 and these values are only available when the iterator is actually evaluated.
+
+The following code shows how to get the value after evaluating the iterator using Implicit Mapping:
+
+    println(x)
+
+Following code evaluates `x` step by step to confirm that it actually works as an iterator.
+
+    println(x.next())
+    println(x.next())
+    println(x.next())
+    println(x.next())
+    println(x.next())
 
 Using this technique, you can create complicated iterators in a way that looks like an ordinary loop.
 You'll see more practical usage of this feature in [this](../articles/Script-to-Generate-Prime-Numbers.html).

@@ -48,4 +48,11 @@ Before the creation of a new script language, I made the following guidelines:
   In fact, as the new language uses a pair of curly brackets to embrace a block,
   an overwhole look of the code may be like one in C or Java.
 
+* __Be Practical__
 
+  Any programming languages are expected to solve problems that actually exist around us.
+  For such purposes, capability of reading/writing files and handling text data is still quite important.
+  But, these days, having such functions is far from enough
+  because various data types and interaces like Internet, image data and graphical interfaces
+  become common, which must be handled by many programs.
+  To be a practical language, the new one should be shipped with these features as standard.

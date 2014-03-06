@@ -75,14 +75,12 @@ _I've decided to publish documents in English that I'm currently writing,
 which is far from complete and being updated day by day.
 I hope this will inspire me to carry out the tough work for me :-)_
 
-<table>
-<tr><td span="2"><a href="documents/Introduction.html">Introduction</a></td></tr>
-<tr><td>Chapter 1</td><td><a href="documents/Launch-Program.html">Launch Program</a></td></tr>
-<tr><td>Chapter 2</td><td><a href="documents/Elements.html">Elements</a></td></tr>
-<tr><td>Chapter 3</td><td><a href="documents/Class.html">Class</a></td></tr>
-<tr><td>Chapter 4</td><td><a href="documents/Operator.html">Operator</a></td></tr>
-<tr><td>Chapter 5</td><td><a href="documents/Function.html">Function</a></td></tr>
-<tr><td>Chapter 6</td><td><a href="documents/Flow-Control.html">Flow-Control</a></td></tr>
-</table>
+[Introduction](documents/Introduction.html)  
+__Chapter.1__ Launch Program  
+__Chapter.2__ Elements  
+__Chapter.3__ Class  
+__Chapter.4__ Operator  
+__Chapter.5__ Function  
+__Chapter.6__ Flow Control  
 
 Any opinions and suggestions are welcome via [E-mail](mailto:ypsitau@nifty.com).

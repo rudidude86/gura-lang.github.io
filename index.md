@@ -76,6 +76,11 @@ which is far from complete and being updated day by day.
 I hope this will inspire me to carry out the tough work for me :-)_
 
 - [Introduction](documents/Introduction.html)
-
+- Launch the Program
+- Elements
+- Class
+- Operator
+- Function
+- Flow Control
 
 Any opinions and suggestions are welcome via [E-mail](mailto:ypsitau@nifty.com).

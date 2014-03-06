@@ -84,5 +84,15 @@ __Chapter.3__ Class
 __Chapter.4__ Operator  
 __Chapter.5__ Function  
 __Chapter.6__ Flow Control  
+__Chapter.7__ Implicit Mapping  
+__Chapter.8__ Member Mapping  
+__Chapter.9__ User Class  
+__Chapter.10__ Module  
+__Chapter.11__ List and Iterator  
+__Chapter.12__ Mathematical Functions  
+__Chapter.13__ Path  
+__Chapter.14__ Stream  
+__Chapter.15__ Image  
+__Chapter.16__ Template Engine  
 
 Any opinions and suggestions are welcome via [E-mail](mailto:ypsitau@nifty.com).

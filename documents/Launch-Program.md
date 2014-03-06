@@ -13,7 +13,7 @@ For Windows, there are two types of program files to launch Gura interpreter:
 `gura.exe` and `guraw.exe`. `guraw.exe` doesn't show command prompt window
 and you can use it to run a script with graphical user interface.
 
-For Linux, an executable binary `gura` is the program.
+For Linux, an executable binary `gura` is the interpreter program.
 
 
 ### Interrupt Mode

@@ -72,7 +72,7 @@ Sorry! Only Japanese version is available so far.
 ### English Version
 
 *I've decided to publish documents in English that I'm currently writing.
-I hope this will boost my will to carry out the tough work for me :-) *
+I hope this will inspire me to carry out the tough work :-) *
 
 - [Introduction](documents/Introduction.html)
 

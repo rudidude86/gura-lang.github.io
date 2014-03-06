@@ -63,6 +63,8 @@ Articles
 Documents
 ---------
 
+### Japanese Version
+
 Sorry! Only Japanese version is available so far.
 
 - ![pdf-icon](images/pdf.png) Gura Language Manual ([Japanese](https://github.com/gura-lang/gura-doc/blob/master/gura-lang-j.pdf?raw=true))

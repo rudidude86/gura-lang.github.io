@@ -60,11 +60,21 @@ Articles
 - [Comparison between Java 8 and Gura](articles/Comparison-between-Java8-and-Gura.html)
 - [Script to Generate Prime Numbers](articles/Script-to-Generate-Prime-Numbers.html)
 
-Documentation
--------------
+Documents
+---------
+
+Sorry! Only Japanese version is available so far.
 
 - ![pdf-icon](images/pdf.png) Gura Language Manual ([Japanese](https://github.com/gura-lang/gura-doc/blob/master/gura-lang-j.pdf?raw=true))
 - ![pdf-icon](images/pdf.png) Gura Library Reference ([Japanese](https://github.com/gura-lang/gura-doc/blob/master/gura-lib-j.pdf?raw=true))
 - ![pdf-icon](images/pdf.png) Gura Developer's Manual ([Japanese](https://github.com/gura-lang/gura-doc/blob/master/gura-dev-j.pdf?raw=true))
+
+### English Version
+
+*I've decided to publish documents in English that I'm currently writing.
+I hope this will boost my will to carry out the tough work for me :-) *
+
+- [Introduction](documents/Introduction.html)
+
 
 Any opinions and suggestions are welcome via [E-mail](mailto:ypsitau@nifty.com).

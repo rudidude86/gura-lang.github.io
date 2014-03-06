@@ -37,9 +37,9 @@ when it could be applied to all the operators as well as many of the functions t
 The idea of Implicit Mapping is so simple, but it's actually a paradigm shift.
 I've decided to create a new script language from scratch.
 
-Before the creation of a new script language, I made the following guidelines:
+Before the creation of a new script language, I made the guidelines below:
 
-* __Inherit a Familiar Syntax__
+* __Inherit Familiar Syntax__
 
   I don't think it's a good idea to bother creating an original syntax
   as long as it has same effects as that in exsting languages.
@@ -56,3 +56,22 @@ Before the creation of a new script language, I made the following guidelines:
   because various data types and interaces like Internet, image data and graphical interfaces
   become common, which must be handled by many programs.
   To be a practical language, the new one should be shipped with these features as standard.
+
+Following these guidelines, I've developed a script language Gura
+that comes with functions and methods that are aware of Implicit Mapping policy,
+and registered its first release in SourceForge.JP on March 15, 2011.
+
+I found it amazing to develop a new programming language
+since creating a language doesn't instantly mean that the creater is an expert programmer of it.
+This may be similar to a situation that you try to come up with an idea of a new game:
+even if you make its rule, you have to actually play it to know tricks and tactics
+so that you get a victory on the rule.
+I also had to create and try a lot of scripts for myself to know how to make programs of Gura.
+Throughout the process, I've learned that Gura's various features like Implicit Mapping
+are really practical in actual programming fields.
+
+As one user, I can recommend this script language for you.
+
+--------
+Yutaka Saito
+March 6th, 2014

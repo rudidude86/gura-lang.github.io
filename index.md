@@ -78,7 +78,7 @@ which is far from complete and being updated day by day.
 I hope this will inspire me to carry out the tough work for me :-)_
 
 [Introduction](documents/Introduction.html)  
-__Chapter.1__ Launch Program  
+__Chapter.1__ [Launch Program](documents/Launch-Program.html)  
 __Chapter.2__ Elements  
 __Chapter.3__ Class  
 __Chapter.4__ Operator  

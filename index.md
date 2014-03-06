@@ -71,8 +71,9 @@ Sorry! Only Japanese version is available so far.
 
 ### English Version
 
-*I've decided to publish documents in English that I'm currently writing.
-I hope this will inspire me to carry out the tough work :-) *
+*I've decided to publish documents in English that I'm currently writing,
+which is far from complete but being updated day by day.
+I hope this will inspire me to carry out the tough work for me :-) *
 
 - [Introduction](documents/Introduction.html)
 

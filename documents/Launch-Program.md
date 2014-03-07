@@ -94,7 +94,8 @@ Available encoding names are described in Chapter.X.
 ### Composite File
 
 It often happens that an application consists of multiple script files and
-other resources such as image files. Consider the case below:
+other resources such as image files.
+Consider that a certain application has following files:
 
     foo.gura
     utils.gura

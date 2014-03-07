@@ -83,15 +83,15 @@ I hope the publication will inspire me to carry out this tough work :-)_
 4. Class
 5. Operator
 6. Function
-7, Flow Control
-8, Implicit Mapping
+7. Flow Control
+8. Implicit Mapping
 9. Member Mapping
-10, User Class
+10. User Class
 11. Module
 12. List and Iterator
 13. Mathematical Functions
 14. Path
-15, Stream
+15. Stream
 16. Image
 17. Template Engine
 

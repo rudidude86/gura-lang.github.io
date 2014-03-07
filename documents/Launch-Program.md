@@ -16,10 +16,10 @@ and you can use it to run a script with graphical user interface.
 For Linux, an executable binary `gura` is the interpreter program.
 
 
-### Interrupt Mode
+### Interactive Mode
 
 When you run `gura.exe` or `gura` with no script file specified in the argument,
-it will enter an interrupt mode that waits for user inputs.
+it will enter an interactive mode that waits for user inputs.
 
     Gura x.x.x [xxxxxxxxxx, xxx xx xxxx] Copyright (C) 2011-2014 ypsitau
     >>> 
@@ -90,6 +90,67 @@ This is good to make Emacs determine what character encoding it should choose.
 
 Available encoding names are described in Chapter.X.
 
-### Composite Script File
+
+### Composite File
+
+It often happens that an application consists of multiple script files and
+other resources such as image files. Consider the case below:
+
+    foo.gura
+    utils.gura
+    message.txt
+    image.png
+
+`foo.gura` is the main script that imports `utils.gura`
+and reads files `message.txt` and `image.png`.
+
+It could be bothersome to treat these files separately
+especially when you try to distribute them.
+
+For such a case, Gura has a feature to run a ZIP archive file containing scripts and any other files.
+Such a file is called Composite File and can be created by ordinary archive
+commands like following:
+
+    $ 7z a foo.gurc foo.gura utils.gura message.txt image.png
+
+Then you can run it as following:
+
+    $ gura foo.gurc
+
+A Composite File should have a suffix `.gurc` or `.gurcw`
+where `.gurc` is for command-line scripts and `.gurcw` for ones with GUI.
+These suffixes are also associated with `gura.exe` and `guraw.exe` respectively
+in Windows environment.
+
+You can also use a Gura module to create a Composite File.
+Below is a Gura script to create a Composite File `foo.gurc`.
+
+    import(gurcbuild)
+    gurcbuild.build(['foo.gura', 'utils.gura', 'message.txt', 'image.png'])
+
+This script is more useful than using other archiving tools to create a Composite File
+because the script will embed shebang comment at top of the file
+and put executable attribute to it so that the created one can run
+independently under Linux environment.
 
 
+### Command Line Options
+
+Available command line options are listed below:
+
+<table>
+<tr><th>Option</th><th>Explanation</th></tr>
+<tr><td><code>-h</code></td><td>Prints a help message.</td></tr>
+<tr><td><code>-t</code></td><td>Runs a specified script file and then enters interactive mode.</td></tr>
+<tr><td><code>-i module[, ...]</code></td><td>Imports modules in the same way as
+  calling <code>import</code> in a script.
+  You can specify more than one module names for this option by separating them with comma.
+  Or, you can also specify the option in multiple times to import several modules.</td></tr>
+<tr><td><code>-I dir</code></td><td>Specifies a directory in which modules are searched.
+  You can specify the option in multiple times to add several directories for module search.</td></tr>
+<tr><td><code>-c cmd</code></td><td>Runs <code>cmd</code> as a Gura script.</td></tr>
+<tr><td><code>-T template</code></td><td>Runs template engine to evaluate the specified template file.</td></tr>
+<tr><td><code>-C dir</code></td><td>Changes the current directory before running scripts.</td></tr>
+<tr><td><code>-d encoding</code></td><td>Specifies character encoding that the parser uses to read scripts.</td></tr>
+<tr><td><code>-v</code></td><td>Prints a version number.</td></tr>
+</table>

@@ -123,6 +123,6 @@ Can an iterator refer to a variable that may be destroyed at the end of a functi
 
 Actually, it's OK. An iterator created by a repeating function owns an environment
 in which the function has been called.
-In the above example, the reference to `n` is held in the returned iterator.
+In the above example, the variable `n` is owned by the returned iterator.
 
 You'll see more practical usage of this feature in [this](../articles/Script-to-Generate-Prime-Numbers.html).

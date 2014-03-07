@@ -4,8 +4,8 @@ lang: en
 title: GUI Programming with wxWidgets
 ---
 
-GUI Programming with wxWidgets
-------------------------------
+{{ page.title }}
+----------------
 
 Gura's `wx` module uses libraries of [wxWidgets](https://www.wxwidgets.org/) 3.0.0.
 

@@ -4,8 +4,8 @@ lang: en
 title: Graphic Image Handling
 ---
 
-Graphic Image Handling
-----------------------
+{{ page.title }}
+----------------
 
 ### Image Instance
 

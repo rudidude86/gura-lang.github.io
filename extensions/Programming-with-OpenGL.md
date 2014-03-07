@@ -4,8 +4,8 @@ lang: en
 title: Programming with OpenGL
 ---
 
-Programming with OpenGL
------------------------
+{{ page.title }}
+----------------
 
 ### Sample Script
 

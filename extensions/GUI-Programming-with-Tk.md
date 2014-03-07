@@ -4,8 +4,8 @@ lang: en
 title: GUI Programming with Tk
 ---
 
-GUI Programming with Tk
------------------------
+{{ page.title }}
+----------------
 
 Gura provides modules named `tcl` and `tk` that use [Tcl/Tk](http://www.tcl.tk/) library for GUI programming.
 

@@ -4,8 +4,8 @@ lang: en
 title: Programming with Cairo
 ---
 
-Programming with Cairo
-----------------------
+{{ page.title }}
+----------------
 
 ### Simple Example
 

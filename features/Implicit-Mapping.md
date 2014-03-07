@@ -4,7 +4,7 @@ lang: en
 title: Implicit Mapping
 ---
 
-Implicit Mapping
+{{ page.title }}
 ----------------
 
 ### Basic Idea

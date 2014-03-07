@@ -4,8 +4,8 @@ lang: en
 title: HTTP Server
 ---
 
-HTTP Server
------------
+{{ page.title }}
+----------------
 
 ### Simple Example
 

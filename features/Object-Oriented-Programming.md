@@ -4,8 +4,8 @@ lang: en
 title: Object Oriented Programming
 ---
 
-Object Oriented Programming
----------------------------
+{{ page.title }}
+----------------
 
 Gura provides class mechanism for object oriented programming.
 Take a look at a simple example below.

@@ -4,8 +4,8 @@ lang: en
 title: HTTP Access
 ---
 
-HTTP Access
------------
+{{ page.title }}
+----------------
 
 ### Downlad Files via HTTP
 

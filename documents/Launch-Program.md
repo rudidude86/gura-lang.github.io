@@ -4,8 +4,8 @@ lang: en
 title: Launch Program
 ---
 
-Launch Program
---------------
+{{ page.title }}
+----------------
 
 ### Program Files
 

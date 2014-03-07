@@ -4,8 +4,8 @@ lang: en
 title: Introduction
 ---
 
-Introduction
-------------
+{{ page.title }}
+----------------
 
 We often see a process that applies some operation or transformation
 on multiple data stored in lists and then put the results into another list.

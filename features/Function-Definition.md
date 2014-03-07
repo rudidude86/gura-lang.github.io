@@ -4,8 +4,8 @@ lang: en
 title: Function Definition
 ---
 
-Function Definition
--------------------
+{{ page.title }}
+----------------
 
 ### Simple Definition
 

@@ -4,8 +4,8 @@ lang: en
 title: Flow Control
 ---
 
-Flow Control
-------------
+{{ page.title }}
+----------------
 
 ### Conditional Branch
 

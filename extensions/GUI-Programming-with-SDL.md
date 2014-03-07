@@ -4,8 +4,8 @@ lang: en
 title: GUI Programming with SDL
 ---
 
-GUI Programming with SDL
-------------------------
+{{ page.title }}
+----------------
 
 Gura provides a module named `sdl` that uses [SDL](http://www.libsdl.org/) library.
 

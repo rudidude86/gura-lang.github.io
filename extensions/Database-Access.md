@@ -4,8 +4,8 @@ lang: en
 title: Database Access
 ---
 
-Database Access
----------------
+{{ page.title }}
+----------------
 
 ### SQLite3 Database Operation
 

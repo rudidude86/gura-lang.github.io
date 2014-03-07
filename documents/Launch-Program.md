@@ -62,10 +62,10 @@ If you want to use shebang, be careful to save the script file
 with each line ended with LF code.
 This is to avoid an error caused by specifications of shell programs, not of Gura.
 
-If a sciript file contains non-ASCII characters like Japanese and Chinese,
+If a script file contains non-ASCII characters like Japanese and Chinese,
 you should save in in UTF-8 character code, which is a default code set for Gura interpreter.
-When you need to save the file in other character codes, there are two ways to handle it.
 
+When you need to save the file in other character codes, there are two ways to handle it.
 One is to specify `-d` option in command line as following.
 
     $ gura -d shift_jis foo.gura
@@ -87,6 +87,8 @@ This is good to make Emacs determine what character encoding it should choose.
 
     #!/usr/bin/env gura
     # -*- coding: shift_jis -*-
+
+Available encoding names are described in Chapter.X.
 
 ### Composite Script File
 

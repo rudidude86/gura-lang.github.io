@@ -83,7 +83,7 @@ It can be detected when it appears at the first or second line of a script
 and is described as a single-line comment.
 
 The following format is acceptable too.
-This is good to make Emacs determine what character encoding it should choose.
+This is good to make Emacs determine what character encoding it should choose in editing.
 
     #!/usr/bin/env gura
     # -*- coding: shift_jis -*-

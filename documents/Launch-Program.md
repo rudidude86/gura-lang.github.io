@@ -102,7 +102,7 @@ Consider that a certain application has following files:
     message.txt
     image.png
 
-`foo.gura` is the main script that imports `utils.gura`
+`foo.gura` is a main script that imports `utils.gura`
 and reads files `message.txt` and `image.png`.
 
 It could be bothersome to treat these files separately
@@ -122,6 +122,8 @@ A Composite File should have a suffix `.gurc` or `.gurcw`
 where `.gurc` is for command-line scripts and `.gurcw` for ones with GUI.
 These suffixes are also associated with `gura.exe` and `guraw.exe` respectively
 in Windows environment.
+A file stored at top of an archive file is recognized as a main script.
+The interpreter reads that file when given with a Composite File.
 
 You can also use a Gura module to create a Composite File.
 Below is a Gura script to create a Composite File `foo.gurc`.
@@ -142,9 +144,9 @@ Available command line options are listed below:
 <table>
 <tr><th>Option</th><th>Explanation</th></tr>
 <tr><td><code>-h</code></td><td>Prints a help message.</td></tr>
-<tr><td><code>-t</code></td><td>Runs a specified script file and then enters interactive mode.</td></tr>
+<tr><td><code>-t</code></td><td>Runs a script file specified and then enters interactive mode.</td></tr>
 <tr><td><code>-i module[, ...]</code></td><td>Imports modules in the same way as
-  calling <code>import</code> in a script.
+  calling <code>import</code> function in a script.
   You can specify more than one module names for this option by separating them with comma.
   Or, you can also specify the option in multiple times to import several modules.</td></tr>
 <tr><td><code>-I dir</code></td><td>Specifies a directory in which modules are searched.

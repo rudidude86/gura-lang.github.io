@@ -77,22 +77,22 @@ _I've decided to publish documents in English that I'm currently writing,
 which is far from complete and being updated day by day.
 I hope the publication will inspire me to carry out this tough work :-)_
 
-[Introduction](documents/Introduction.html)  
-__Chapter.1__ [Launch Program](documents/Launch-Program.html)  
-__Chapter.2__ Elements  
-__Chapter.3__ Class  
-__Chapter.4__ Operator  
-__Chapter.5__ Function  
-__Chapter.6__ Flow Control  
-__Chapter.7__ Implicit Mapping  
-__Chapter.8__ Member Mapping  
-__Chapter.9__ User Class  
-__Chapter.10__ Module  
-__Chapter.11__ List and Iterator  
-__Chapter.12__ Mathematical Functions  
-__Chapter.13__ Path  
-__Chapter.14__ Stream  
-__Chapter.15__ Image  
-__Chapter.16__ Template Engine  
+1. [Introduction](documents/Introduction.html)
+2. [Launch Program](documents/Launch-Program.html)
+3. [Syntax](documents/Syntax.html)
+4. Class
+5. Operator
+6. Function
+7, Flow Control
+8, Implicit Mapping
+9. Member Mapping
+10, User Class
+11. Module
+12. List and Iterator
+13. Mathematical Functions
+14. Path
+15, Stream
+16. Image
+17. Template Engine
 
 Any opinions and suggestions are welcome via [E-mail](mailto:ypsitau@nifty.com).

@@ -30,14 +30,14 @@ I calls this feature **Implicit Mapping** since it *implicitly* does mapping pro
 
 In order to make this idea come true,
 I considered extending an existing script language to be capable of
-repeating evaluation of a function under a very limited condition.
+repeating evaluation for a limited number of functions.
 
-But I found out Implicit Mapping could allow much elegant programming
-when it could be applied to all the operators as well as many of the functions the language provides.
+But I found out Implicit Mapping would allow much elegant programming
+when it's applied to all the operators as well as many of the functions the language provides.
 The idea of Implicit Mapping is so simple, but it's actually a paradigm shift.
-I've decided to create a new script language from scratch.
+I've decided to create a new language that has this feature as its core.
 
-Before the creation of a new script language, I made the guidelines below:
+Before the creation of a new language, I made the guidelines below:
 
 * __Inherit Familiar Syntax__
 

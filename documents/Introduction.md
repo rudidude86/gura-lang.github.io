@@ -37,7 +37,7 @@ when it's applied to all the operators as well as many of the functions the lang
 The idea of Implicit Mapping is so simple, but it's actually a paradigm shift.
 I've decided to create a new language that has this feature as its core.
 
-Before the creation of a new language, I made the guidelines below:
+Before the creation of a new language, I made guidelines below:
 
 * __Inherit Familiar Syntax__
 
@@ -51,15 +51,15 @@ Before the creation of a new language, I made the guidelines below:
 * __Be Practical__
 
   Any programming languages are expected to solve problems that actually exist around us.
-  For such purposes, capability of reading/writing files and handling text data is still quite important.
-  But, these days, having such functions is far from enough
-  because various data types and interaces like Internet, image data and graphical interfaces
-  become common, which must be handled by many programs.
-  To be a practical language, the new one should be shipped with these features as standard.
+  For such purposes, capabilities of reading/writing files and processing text data are still important.
+  However, these days, having such functions is far from enough
+  because various technologies like Internet, graphic image files, database and GUI become so common
+  that most users of computer expect any programs to be capable of handling them.
+  To be practical, the new language should be shipped with these capabilities as standard.
 
 Following these guidelines, I've developed a script language Gura
 that comes with functions and methods that are aware of Implicit Mapping policy,
-and registered its first release in SourceForge.JP on March 15, 2011.
+and published its first version on March 15, 2011.
 
 I found it amazing to develop a new programming language
 since creating a language doesn't instantly mean that the creater is an expert programmer of it.
@@ -73,6 +73,5 @@ are really practical in actual programming fields.
 As one user, I can recommend this script language for you.
 
 --------
-Yutaka Saito
-
+Yutaka Saito  
 March 6th, 2014

@@ -13,18 +13,18 @@ real number
 
 integer number
 
-0b
-0
-0x
+    0b01010101
+    01234567
+    0x7feaa00
 
+Two suffix symbols are registered in suffix manager.
 
+<table>
+<tr><th>Suffix Symbol<th><th>Notes</th></tr>
+<tr><td><code>j</code></td><td><code>complex</code></td></tr>
+<tr><td><code>r</code></td><td><code>rational</code></td></tr>
+</table>
 
-    1234
-
-suffix
-
-j
-r
 
 ### String Literal
 
@@ -85,8 +85,8 @@ These codes are equivalent to an expression `'\nABCD\nEFGH\nIJKL\n'`,
 which contains a line-feed character at the beginning.
 If you want to eliminate the first line-feed,
 you need to begin the string body right after the starting quotations
-or put a back slash at the position followed by a line feed
-since a back slash placed at end of a line results in an elimination of the following line feed.
+or put a back slash at that position followed by a line feed
+since a back slash placed at end of a line results in an elimination of the tailing line feed.
 
     '''ABCD
     EFGH
@@ -99,14 +99,14 @@ since a back slash placed at end of a line results in an elimination of the foll
     IJKL
     '''
 
-Both of them have a same result `'ABCD\nEFGH\nIJKL\n'`.
+Both of the examples above have the same result `'ABCD\nEFGH\nIJKL\n'`.
 
 You can also specify `r` prefix for the multi-lined string
 so that it can contain back slash characters without escaping.
-In this case, you cannot use the second format shown above
+In this case, you cannot use the second example shown above
 because a back slash doesn't work to eliminate a line feed.
 For such a case, a prefix `R` is useful,
-which elimates a line feed that appears right after the starting quotations.
+which eliminates a line feed that appears right after the starting quotation.
 
     R'''
     ABCD
@@ -116,7 +116,7 @@ which elimates a line feed that appears right after the starting quotations.
 
 This is parsed as `'ABCD\nEFGH\nIJKL\n'`.
 
-The prefix `R` also 
+The prefix `R` also removes indentation characters that appear at each line.
 
     if (flag) {
         print(R'''
@@ -126,8 +126,16 @@ The prefix `R` also
         ''')
     }
 
-prefixed by `b`
+Assuming that there are four spaces before the expression `print(R'''`,
+the parser would remove four spaces at top of each line within the multi-lined string.
+This feature helps you describe multi-lined strings in indentation blocks
+without disarranging the appearance.
 
+A string literal prefixed by `b` would be treated
+as a sequence of binary data instead of character code.
+
+A string literal can also be appended by a suffix symbol
+that has been registered in suffix manager.
 There's no built-in suffix for string literals.
 
 

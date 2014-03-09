@@ -164,11 +164,13 @@ A string literal prefixed by `b` would be treated
 as a sequence of binary data instead of character code.
 
 A string literal can also be appended by a suffix symbol
-that has been registered in suffix manager.
+that has been registered in Suffix Manager.
 There's no built-in suffix for string literals.
 
 
 ### Identifier
+
+An identifier is used as a name of variable, type name, symbol and function.
 
 An identifier starts with a UTF-8 leading byte or one of following characters:
 
@@ -183,24 +185,61 @@ and is followed by UTF-8 leading or trailing byte or characters shown below:
     _ $ @
     0 1 2 3 4 5 6 7 8 9
 
+Here are some valid identifiers:
+
+    foo
+    test_result
+    $foo
+    @bar@
+    test_1_var
+
+
+### Operator
+
+There are two types of operators: unary operator and binary operator.
+
+A unary operator takes one value
+and is categorized in two types depending on where the value is specified.
+
+Following are prefixed unary operators that takes a value after them.
+
+    + - ~ !
+
+An example code comes like `+foo`.
+
+Follwing are suffixed unary operators that takes a value before them.
+
+    ? ..
+
+An example code comes like `foo?`.
+
+A binary operator takes two values specified on both sides of them.
+Here's a list of binary operators:
+
+    + - * / % ** == != > < >= <= <=> in & | ^ << >> || && .. =>
+
+An example code comes like `foo + bar`.
+
+
 ### Group
 
-    []
-    ()
+
+    [ ... ]
+
+* list
+* indexer
+
+    ( ... )
+
+* iterator
+* argument list
 
 ### Block
 
     {}
 
-### Operator
-
-unary operator
-
-    + - ~ ! .. ?
-
-binary operator
-
-    + - * / % ** == != > < >= <= <=> in & | ^ << >> || && .. =>
+* block expression
+* function block
 
 ### Attribute
 
@@ -208,8 +247,30 @@ binary operator
 
 ### Member Selector
 
-    ., ::, :*, :&
+    . :: :* :&
 
 ### Comment
 
-    //, #, /*..*/
+There are two types of comments: line comment and block comment.
+
+A line comment begins with `#` or `//` and lasts until end of the line.
+
+    # this is a comment
+    
+    // and this is too
+    
+    x = 10 // comment after script code
+
+A block comment begins with `/*` and ends with `*/`.
+It can contain multiple lines and even other block comments nested
+as long as pairs of the comment markers are matched.
+
+Following are valid examples of block comment.
+
+    /* block comment */
+    
+    /*
+    block comment
+    */
+    
+    /* /* /* nested comment */ */ */

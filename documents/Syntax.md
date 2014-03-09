@@ -20,7 +20,7 @@ integer number
 Two suffix symbols are registered in suffix manager.
 
 <table>
-<tr><th>Suffix Symbol<th><th>Notes</th></tr>
+<tr><th>Suffix Symbol</th><th>Notes</th></tr>
 <tr><td><code>j</code></td><td><code>complex</code></td></tr>
 <tr><td><code>r</code></td><td><code>rational</code></td></tr>
 </table>

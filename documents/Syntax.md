@@ -13,7 +13,8 @@ A decimal number is the most common number literal.
 
     0 1234 999999
 
-A floating-point number that sometimes comes with an exponential expression is also acceptable.
+A floating-point number that sometimes comes
+with an exponential expression is also acceptable.
 
     3.14  10.  .001  1e100  3.14e-10  0e0
 
@@ -41,14 +42,14 @@ Two suffix symbols are available as standard.
 <table>
 <tr><th>Suffix Symbol</th><th>Function</th></tr>
 <tr><td><code>j</code></td><td>Converts into <code>complex</code> type.
-<code>3j</code> is equivalent with <code>complex(0, 3)</code></td></tr>
+An expression <code>3j</code> is equivalent with <code>complex(0, 3)</code></td></tr>
 <tr><td><code>r</code></td><td>Converts into <code>rational</code> type.
-<code>3r</code> is equivalent with <code>rational(0, 3)</code></td></tr>
+An expression <code>3r</code> is equivalent with <code>rational(0, 3)</code></td></tr>
 </table>
 
 Importing modules may add other suffix symbols.
 For instance, importing a module named `gmp`, which calculates numbers in arbitrary precision,
-would add a suffix `L` that represents such numbers.
+would add a suffix `L` that represents numbers that may consist of many digits.
 
 You can also add your own suffix symbols by using Suffix Manager
 that is responsible for managing suffix symbols and their associated functions.
@@ -193,11 +194,13 @@ and is followed by UTF-8 leading or trailing byte or characters shown below:
 
 ### Operator
 
-
 unary operator
+
+    + - ~ ! .. ?
+
 binary operator
 
-    +, -, *, /
+    + - * / % ** == != > < >= <= <=> in & | ^ << >> || && .. =>
 
 ### Attribute
 

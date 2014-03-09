@@ -9,21 +9,49 @@ title: Syntax
 
 ### Number Literal
 
-real number
+A decimal number is the most common number literal.
 
-integer number
+    0 1234 999999
+
+A floating-point number that sometimes comes with an exponential expression is also acceptable.
+
+    3.14  10.  .001  1e100  3.14e-10  0e0
+
+A sequence of characters that starts with `0b` or `0B` and contains `0` or `1`
+represents a binary number.
 
     0b01010101
-    01234567
-    0x7feaa00
 
-Two suffix symbols are registered in suffix manager.
+A sequence of characters that starts with `0` and contains digit characters between `0` and `7`
+represents a octal number.
+
+    01234567
+
+A sequence of characters that starts with `0x` or `0X` and contains digit characters and
+alphabet characters between `a` and `f` or between `A` and `F`
+represents a hexadecimal number.
+
+    0x7feaa00
+    0x7FEAA00
+
+A suffix symbol can be appended after a number literal
+to convert it into other types rather than `number`.
+Two suffix symbols are available as standard.
 
 <table>
-<tr><th>Suffix Symbol</th><th>Notes</th></tr>
-<tr><td><code>j</code></td><td><code>complex</code></td></tr>
-<tr><td><code>r</code></td><td><code>rational</code></td></tr>
+<tr><th>Suffix Symbol</th><th>Function</th></tr>
+<tr><td><code>j</code></td><td>Converts into <code>complex</code> type.
+<code>3j</code> is equivalent with <code>complex(0, 3)</code></td></tr>
+<tr><td><code>r</code></td><td>Converts into <code>rational</code> type.
+<code>3r</code> is equivalent with <code>rational(0, 3)</code></td></tr>
 </table>
+
+Importing modules may add other suffix symbols.
+For instance, importing a module named `gmp`, which calculates numbers in arbitrary precision,
+would add a suffix `L` that represents such numbers.
+
+You can also add your own suffix symbols by using Suffix Manager
+that is responsible for managing suffix symbols and their associated functions.
 
 
 ### String Literal

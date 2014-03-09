@@ -24,7 +24,7 @@ it will enter an interactive mode that waits for user inputs.
     Gura x.x.x [xxxxxxxxxx, xxx xx xxxx] Copyright (C) 2011-2014 ypsitau
     >>> 
 
-When you input Gura's script followed by an enter key after a prompt `>>>`,
+When you input a script followed by an enter key after a prompt `>>>`,
 it will evaluate the script and show its result.
 
     >>> 3 + 4
@@ -37,11 +37,11 @@ To quit the interpreter, enter `Ctrl+C` from keyboard or execute a script `sys.e
 
 ### Run Script File
 
-You can run Gura script file by specifying it as an argument for Gura interpreter program.
+You can run a script file by specifying it as an argument for Gura interpreter program.
 
     $ gura hello.gura
 
-Gura script file should have a suffix `.gura` or `.guraw`,
+A Gura script file should have a suffix `.gura` or `.guraw`,
 where `.gura` is for command-line scripts and `.guraw` for ones with GUI.
 In Windows environment, the suffix `.gura` is associated with the program `gura.exe`
 and `.guraw` with `guraw.exe`.
@@ -63,7 +63,7 @@ with each line ended with LF code.
 This is to avoid an error caused by specifications of shell programs, not of Gura.
 
 If a script file contains non-ASCII characters like Japanese and Chinese,
-you should save in in UTF-8 character code, which is a default code set for Gura interpreter.
+you should save in in UTF-8 character code, which is a default code set for the interpreter.
 
 When you need to save the file in other character codes, there are two ways to parse it properly.
 One is to specify `-d` option in command line as following.
@@ -108,25 +108,28 @@ and reads files `message.txt` and `image.png`.
 It could be bothersome to treat these files separately
 especially when you try to distribute them.
 
-For such a case, Gura has a feature to run a ZIP archive file containing scripts and any other files.
-Such a file is called Composite File and can be created by ordinary archive
+For such a case, Gura has a feature that can run a ZIP archive file
+containing scripts and any other files.
+Such a file is called Composite File and can be created by ordinary archiving
 commands like following:
 
-    $ 7z a foo.gurc foo.gura utils.gura message.txt image.png
+    $ zip foo.zip foo.gura utils.gura message.txt image.png
+    $ mv foo.zip foo.gurc
 
 Then you can run it as following:
 
     $ gura foo.gurc
 
-A Composite File should have a suffix `.gurc` or `.gurcw`
+A Composite File must a suffix `.gurc` or `.gurcw`
 where `.gurc` is for command-line scripts and `.gurcw` for ones with GUI.
 These suffixes are also associated with `gura.exe` and `guraw.exe` respectively
 in Windows environment.
-A file stored at top of an archive file is recognized as a main script.
-The interpreter reads that file when given with a Composite File.
+A script file that has the same name with that of the Composite File except for their suffix part
+is recognized as a main script.
+The interpreter reads that file at first when given with the Composite File.
 
 You can also use a Gura module to create a Composite File.
-Below is a Gura script to create a Composite File `foo.gurc`.
+Below is a script to create a Composite File `foo.gurc`.
 
     import(gurcbuild)
     gurcbuild.build(['foo.gura', 'utils.gura', 'message.txt', 'image.png'])

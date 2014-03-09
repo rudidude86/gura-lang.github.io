@@ -42,9 +42,9 @@ Two suffix symbols are available as standard.
 <table>
 <tr><th>Suffix Symbol</th><th>Function</th></tr>
 <tr><td><code>j</code></td><td>Converts into <code>complex</code> type.
-An expression <code>3j</code> is equivalent with <code>complex(0, 3)</code></td></tr>
+An expression <code>3j</code> is equivalent with <code>complex(0, 3)</code>.</td></tr>
 <tr><td><code>r</code></td><td>Converts into <code>rational</code> type.
-An expression <code>3r</code> is equivalent with <code>rational(0, 3)</code></td></tr>
+An expression <code>3r</code> is equivalent with <code>rational(0, 3)</code>.</td></tr>
 </table>
 
 Importing modules may add other suffix symbols.

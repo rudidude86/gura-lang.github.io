@@ -28,10 +28,10 @@ r
 
 ### String Literal
 
-A string literal is a group of characters surrounded by a pair of single quotations
-or double quotations.
-Double quotations can be included in a string literal surrounded by single quotations,
-while single quotations can be contained within double quotations.
+A string literal is a sequence of characters surrounded
+by a pair of single or double quotations.
+A string surrounded by single quotations can contain double quotation characters in its body
+while a string with double quotations can have single quotation characters inside.
 
     'Hello "World"'
     "Hello 'World'"

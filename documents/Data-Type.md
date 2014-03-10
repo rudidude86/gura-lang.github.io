@@ -7,30 +7,59 @@ title: Data Type
 {{ page.title }}
 ----------------
 
-### `boolean`
+### Nil Type
 
+A value of nil type is used to indicate an invalid result or status.
+It is often used as a returned value of a function when it fails its expected work.
+A variable `nil` has a value of nil type.
 
+### Boolean Type
 
-### `complex`
+Boolean values are used to determine whether something is a true or a false.
+Variables named `true` and `false` are assigned with a true value and a false value respectively.
 
-### `number`
+In a conditional part of functions such as `if` and in logical calculations,
+`false` and `nil` are determined as a false state while other values are treated as a true state.
+Note that a zero value is recognized as a true, not a false.
 
-### `rational`
+### Complex Type
 
-### `string`
+A number literal suffixed by `j` created a value of complex type.
 
-### `string`
+### Number Type
 
-### `binary`
+A number literal without any suffix creates a value of number type.
 
-### `dict`
+### Rational Type
 
-### `function`
+A number literal suffixed by `r` created a value of complex type.
 
-### `iterator`
+### String Type
 
-### `list`
+A string literal without any suffix creates a value of string type.
 
-### `matrix`
+### Symbol Type
 
+    `foo
 
+### Binary Type
+
+    b''
+
+### Dictionary Type
+
+    %{}
+
+### Function Type
+
+### Iterator Type
+
+    ()
+
+### List Type
+
+    []
+
+### Matrix Type
+
+    @@{}

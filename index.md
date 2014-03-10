@@ -80,7 +80,7 @@ I hope the publication will inspire me to carry on this tough work :-)_
 1. [Introduction](documents/Introduction.html)
 2. [Launch Program](documents/Launch-Program.html)
 3. [Syntax](documents/Syntax.html)
-4. Data Type
+4. [Data Type](documents/Data-Type.html)
 5. Operator
 6. Function
 7. Flow Control

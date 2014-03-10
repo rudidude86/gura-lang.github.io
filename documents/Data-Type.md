@@ -15,10 +15,10 @@ A variable `nil` has a value of nil type.
 
 ### Boolean Type
 
-Boolean values are used to determine whether something is a true or a false.
+Boolean values are used to determine whether something is in a true or a false state.
 Variables named `true` and `false` are assigned with a true value and a false value respectively.
 
-In a conditional part of functions such as `if` and in logical calculations,
+In a conditional part of functions such as `if` and in a logical calculation,
 `false` and `nil` are determined as a false state while other values are treated as a true state.
 Note that a zero value is recognized as a true, not a false.
 

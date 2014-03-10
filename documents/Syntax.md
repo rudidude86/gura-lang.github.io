@@ -227,7 +227,7 @@ An example code comes like `foo + bar`.
 Multiple elements can be grouped by surronding them with a pair of brackets.
 There are three types of brackets as listed below.
 
-* __Square bracket__ `[a, b, c]`
+* __Square bracket__: `[a, b, c]`
   
   When it appears right after an element that has a value after evaluation,
   it works as an indexer that allows indexing access in the preceding value.
@@ -235,7 +235,7 @@ There are three types of brackets as listed below.
   Otherwise, it forms a list of elements
   that is set to create a `list` instance after evaluation.
 
-* __Parentheses__ `(a, b, c)`
+* __Parentheses__: `(a, b, c)`
 
   When it appears right after an element that has a value after evaluation,
   it's used as an argument list to evaluate the preceding value as a callable.
@@ -243,7 +243,7 @@ There are three types of brackets as listed below.
   Otherwise, it forms a list of elements
   that is set to create an `iterator` instance after evaluation.
 
-* __Curly bracket__ `{a, b, c}`
+* __Curly bracket__: `{a, b, c}`
   
   It forms a list of expressions called Block.
   In general, a Block is used to provide a function its procedual part.
@@ -274,22 +274,22 @@ Below are available Member Selectors.
 Member Selector `x.y` takes a reference to the container on the left side
 and a variable symbol on the right side.
 
-Others are for what is called Member Mapping and take a list of an iterator on the left side.
+Others are for what is called Member Mapping and take a list or an iterator on the left side.
 
 
 ### Comment
 
 There are two types of comments: line comment and block comment.
 
-A line comment begins with `#` or `//` and lasts until end of the line.
+A line comment begins with a marker `#` or `//` and lasts until end of the line.
 
     # this is a comment
     
     // and this is too
     
-    x = 10 // comment after script code
+    x = 10 // comment after code
 
-A block comment begins with `/*` and ends with `*/`.
+A block comment begins with a marker `/*` and ends with `*/`.
 It can contain multiple lines and even other block comments nested
 as long as pairs of the comment markers are matched.
 

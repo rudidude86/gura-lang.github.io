@@ -229,7 +229,7 @@ There are three types of brackets as listed below.
 
 * __Square bracket__: `[a, b, c]`
   
-  When it appears right after an element that has a value after evaluation,
+  When it appears right after an element that has a value as a result of evaluation,
   it works as an indexer that allows indexing access in the preceding value.
   
   Otherwise, it forms a list of elements
@@ -237,7 +237,7 @@ There are three types of brackets as listed below.
 
 * __Parentheses__: `(a, b, c)`
 
-  When it appears right after an element that has a value after evaluation,
+  When it appears right after an element that has a value as a result of evaluation,
   it's used as an argument list to evaluate the preceding value as a callable.
   
   Otherwise, it forms a list of elements
@@ -246,7 +246,8 @@ There are three types of brackets as listed below.
 * __Curly bracket__: `{a, b, c}`
   
   It forms a list of expressions called Block.
-  In general, a Block is used to provide a function its procedual part.
+  In general, a Block is used as a body for function assignment
+  and provides a procedual part in calling a function.
 
 
 ### Attribute

@@ -26,13 +26,19 @@ Note that a zero value is recognized as a true, not a false.
 
 A number literal suffixed by `j` created a value of complex type.
 
+    3.14j  1000j  1e3j
+
 ### Number Type
 
 A number literal without any suffix creates a value of number type.
 
+    3.14  1000  1e3
+
 ### Rational Type
 
 A number literal suffixed by `r` created a value of complex type.
+
+    3r  123r
 
 ### String Type
 

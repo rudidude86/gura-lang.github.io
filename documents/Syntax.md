@@ -7,6 +7,32 @@ title: Syntax
 {{ page.title }}
 ----------------
 
+### Symbol
+
+A symbol is used as a name of variable, function, type name, attribute and suffix.
+
+A symbol starts with a UTF-8 leading byte or one of following characters:
+
+    a b c d e f g h i j k l m n o p q r s t u v w x y z
+    A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+    _ $ @
+
+and is followed by UTF-8 leading or trailing byte or characters shown below:
+
+    a b c d e f g h i j k l m n o p q r s t u v w x y z
+    A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+    _ $ @
+    0 1 2 3 4 5 6 7 8 9
+
+Here are some valid symbols:
+
+    foo
+    test_result
+    $foo
+    @bar@
+    test_1_var
+
+
 ### Number Literal
 
 A decimal number is the most common number literal.
@@ -168,32 +194,6 @@ that has been registered in Suffix Manager.
 There's no built-in suffix for string literals.
 
 
-### Identifier
-
-An identifier is used as a name of variable, type name, symbol and function.
-
-An identifier starts with a UTF-8 leading byte or one of following characters:
-
-    a b c d e f g h i j k l m n o p q r s t u v w x y z
-    A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
-    _ $ @
-
-and is followed by UTF-8 leading or trailing byte or characters shown below:
-
-    a b c d e f g h i j k l m n o p q r s t u v w x y z
-    A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
-    _ $ @
-    0 1 2 3 4 5 6 7 8 9
-
-Here are some valid identifiers:
-
-    foo
-    test_result
-    $foo
-    @bar@
-    test_1_var
-
-
 ### Operator
 
 There are two types of operators: unary operator and binary operator.
@@ -203,51 +203,79 @@ and is categorized in two types depending on where the value is specified.
 
 Following are prefixed unary operators that takes a value after them.
 
-    + - ~ !
+    +  -  ~  !
 
 An example code comes like `+foo`.
 
 Follwing are suffixed unary operators that takes a value before them.
 
-    ? ..
+    ?  ..
 
 An example code comes like `foo?`.
 
 A binary operator takes two values specified on both sides of them.
 Here's a list of binary operators:
 
-    + - * / % ** == != > < >= <= <=> in & | ^ << >> || && .. =>
+    +  -  *  /  %  **  ==  !=  >  <  >=  <=  <=>
+    in  &  |  ^  <<  >>  ||  &&  ..  =>
 
 An example code comes like `foo + bar`.
 
 
 ### Group
 
+Multiple elements can be grouped by surronding them with a pair of brackets.
+There are three types of brackets as listed below.
 
-    [ ... ]
+* __Square bracket__ `[a, b, c]`
+  
+  When it appears right after an element that has a value after evaluation,
+  it works as an indexer that allows indexing access in the preceding value.
+  
+  Otherwise, it forms a list of elements
+  that is set to create a `list` instance after evaluation.
 
-* list
-* indexer
+* __Parentheses__ `(a, b, c)`
 
-    ( ... )
+  When it appears right after an element that has a value after evaluation,
+  it's used as an argument list to evaluate the preceding value as a callable.
+  
+  Otherwise, it forms a list of elements
+  that is set to create an `iterator` instance after evaluation.
 
-* iterator
-* argument list
+* __Curly bracket__ `{a, b, c}`
+  
+  It forms a list of expressions called Block.
+  In general, a Block is used to provide a function its procedual part.
 
-### Block
-
-    {}
-
-* block expression
-* function block
 
 ### Attribute
 
-    :foo, :bar
+A symbol preceded by a colon is called Attribute.
+
+    :foo  :bar
+
+Attributes appear after a variable symbol or an argument list for a callable.
+They are used to customize the evaluation result of variables and the behavior of functions.
+
+More than one attributes can be appended by simply concatenating them like below.
+
+    func():foo:bar
+
 
 ### Member Selector
 
-    . :: :* :&
+A Member Selector is responsible for accessing variables
+in a container like instance, class and module.
+Below are available Member Selectors.
+
+    x.y  x::y  x:*y  x:&y
+
+Member Selector `x.y` takes a reference to the container on the left side
+and a variable symbol on the right side.
+
+Others are for what is called Member Mapping and take a list of an iterator on the left side.
+
 
 ### Comment
 

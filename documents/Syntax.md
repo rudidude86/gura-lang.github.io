@@ -247,7 +247,7 @@ There are three types of brackets as listed below.
   
   It forms a list of expressions called Block.
   In general, a Block is used as a body for function assignment
-  and provides a procedual part in calling a function.
+  or provides a procedual part in calling a function.
 
 
 ### Attribute
@@ -257,7 +257,8 @@ A symbol preceded by a colon is called Attribute.
     :foo  :bar
 
 Attributes appear after a variable symbol or an argument list for a callable.
-They are used to customize the evaluation result of variables and the behavior of functions.
+They are used to customize the evaluation result of variables
+and the behavior of functions.
 
 More than one attributes can be appended by simply concatenating them like below.
 

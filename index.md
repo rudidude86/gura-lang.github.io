@@ -80,15 +80,15 @@ I hope the publication will inspire me to carry on this tough work :-)_
 1. [Introduction](documents/Introduction.html)
 2. [Launch Program](documents/Launch-Program.html)
 3. [Syntax](documents/Syntax.html)
-4. Class
+4. Data Type
 5. Operator
 6. Function
 7. Flow Control
-8. Implicit Mapping
-9. Member Mapping
-10. User Class
-11. Module
-12. List and Iterator
+8. List and Iterator
+9. Class
+10. Implicit Mapping
+11. Member Mapping
+12. Module
 13. Mathematical Functions
 14. Path
 15. Stream

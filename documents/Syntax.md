@@ -205,13 +205,13 @@ Following are prefixed unary operators that takes a value after them.
 
     +  -  ~  !
 
-An example code comes like `+foo`.
+An example code of a prefixed unary operator comes like `+x`.
 
 Follwing are suffixed unary operators that takes a value before them.
 
     ?  ..
 
-An example code comes like `foo?`.
+An example code of a suffixed unary operator comes like `x?`.
 
 A binary operator takes two values specified on both sides of them.
 Here's a list of binary operators:
@@ -219,7 +219,7 @@ Here's a list of binary operators:
     +  -  *  /  %  **  ==  !=  >  <  >=  <=  <=>
     in  &  |  ^  <<  >>  ||  &&  ..  =>
 
-An example code comes like `foo + bar`.
+An example code of a binary operator comes like `x + y`.
 
 
 ### Group

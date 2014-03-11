@@ -21,7 +21,8 @@ those terms have almost the same meaning within a context in many cases.
 
 ### List of Data Types
 
-Below is a list of some Data Types that often appear in documents.
+Below is a list of some Data Types that often appear in documents,
+which also shows one of the typical ways to instantiate values of each type.
 
 * `nil`
 

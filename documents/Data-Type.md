@@ -37,7 +37,7 @@ Below is a list of some Data Types that often appear in documents.
   with a true value and a false value respectively.
 
   In a conditional part of `if` function and in a logical calculation,
-  only `false` and `nil` are determined as a false state
+  `false` and `nil` only are determined as a false state
   while other values are treated as a true state.
   Note that a zero value of `number` type is recognized as a true, not a false.
 
@@ -85,10 +85,18 @@ Below is a list of some Data Types that often appear in documents.
 
 * `iterator`
 
+  If elements are surrounced by a pair of parentheses,
+  it would create a value of `iterator` type.
+  Any type of values are stored in it as elements.
+
         (3, 1, 4, 1, 5, 9)
         ('hello', 'world', 3, 4, 5)
 
 * `list`
+
+  If elements are surrounced by a pair of square brackets,
+  it would create a value of `list` type.
+  Any type of values are stored in it as elements.
 
         [3, 1, 4, 1, 5, 9]
         ['hello', 'world', 3, 4, 5]

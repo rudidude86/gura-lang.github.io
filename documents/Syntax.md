@@ -7,11 +7,11 @@ title: Syntax
 {{ page.title }}
 ----------------
 
-### Symbol
+### Identifier
 
-A symbol is used as a name of variable, function, type name, attribute and suffix.
+An identifier is used as a name of variable, function, symbol, type name, attribute and suffix.
 
-A symbol starts with a UTF-8 leading byte or one of following characters:
+An identifier starts with a UTF-8 leading byte or one of following characters:
 
     a b c d e f g h i j k l m n o p q r s t u v w x y z
     A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
@@ -24,7 +24,7 @@ and is followed by UTF-8 leading or trailing byte or characters shown below:
     _ $ @
     0 1 2 3 4 5 6 7 8 9
 
-Here are some valid symbols:
+Here are some valid indentifiers:
 
     foo
     test_result
@@ -61,24 +61,24 @@ represents a hexadecimal number.
     0x7feaa00
     0x7FEAA00
 
-A suffix symbol can be appended after a number literal
+A suffix identifier can be appended after a number literal
 to convert it into other types rather than `number`.
-Two suffix symbols are available as standard.
+Two suffix identifiers are available as standard.
 
 <table>
-<tr><th>Suffix Symbol</th><th>Function</th></tr>
+<tr><th>Suffix Identifier</th><th>Function</th></tr>
 <tr><td><code>j</code></td><td>Converts into <code>complex</code> type.
 An expression <code>3j</code> is equivalent with <code>complex(0, 3)</code>.</td></tr>
 <tr><td><code>r</code></td><td>Converts into <code>rational</code> type.
 An expression <code>3r</code> is equivalent with <code>rational(0, 3)</code>.</td></tr>
 </table>
 
-Importing modules may add other suffix symbols.
+Importing modules may add other suffix identifiers.
 For instance, importing a module named `gmp`, which calculates numbers in arbitrary precision,
 would add a suffix `L` that represents numbers that may consist of many digits.
 
-You can also add your own suffix symbols by using Suffix Manager
-that is responsible for managing suffix symbols and their associated functions.
+You can also add your own suffix identifiers by using Suffix Manager
+that is responsible for managing suffix identifiers and their associated functions.
 
 
 ### String Literal
@@ -189,7 +189,7 @@ without disarranging the appearance.
 A string literal prefixed by `b` would be treated
 as a sequence of binary data instead of character code.
 
-A string literal can also be appended by a suffix symbol
+A string literal can also be appended by a suffix identifier
 that has been registered in Suffix Manager.
 There's no built-in suffix for string literals.
 
@@ -252,11 +252,11 @@ There are three types of brackets as listed below.
 
 ### Attribute
 
-A symbol preceded by a colon is called Attribute.
+An identifier preceded by a colon is called Attribute.
 
     :foo  :bar
 
-Attributes appear after a variable symbol or an argument list for a callable.
+Attributes appear after a variable identifier or an argument list for a callable.
 They are used to customize the evaluation result of variables
 and the behavior of functions.
 
@@ -274,9 +274,28 @@ Below are available Member Selectors.
     x.y  x::y  x:*y  x:&y
 
 Member Selector `x.y` takes a reference to the container on the left side
-and a variable symbol on the right side.
+and a variable identifier on the right side.
 
 Others are for what is called Member Mapping and take a list or an iterator on the left side.
+
+
+### Symbol and Expression
+
+An identifier preceded by a back quote is called a Symbol
+and creates an instance of `symbol` data type.
+
+    `foo  `bar
+
+Each Symbol has a unique number that is assigned at parsing phase,
+which enables quick identification between Symbols.
+
+Any other elements that has a back quote appended ahead is called an Expression
+and creates an instance of `expr` data type.
+
+    `(a + b)  `func()
+
+As an Expression can hold any code without any evaluation,
+it can be used to pass a procedure itself in argument list of function calls.
 
 
 ### Comment

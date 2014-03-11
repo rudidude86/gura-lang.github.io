@@ -144,19 +144,18 @@ independently under Linux environment.
 
 Available command line options are listed below:
 
-<table>
-<tr><th>Option</th><th>Explanation</th></tr>
-<tr><td><code>-h</code></td><td>Prints a help message.</td></tr>
-<tr><td><code>-t</code></td><td>Runs a script file specified and then enters interactive mode.</td></tr>
-<tr><td><code>-i module[, ...]</code></td><td>Imports modules in the same way as
-  calling <code>import</code> function in a script.
-  You can specify more than one module names for this option by separating them with comma.
-  Or, you can also specify the option in multiple times to import several modules.</td></tr>
-<tr><td><code>-I dir</code></td><td>Specifies a directory in which modules are searched.
-  You can specify the option in multiple times to add several directories for module search.</td></tr>
-<tr><td><code>-c cmd</code></td><td>Runs <code>cmd</code> as a Gura script.</td></tr>
-<tr><td><code>-T template</code></td><td>Runs template engine to evaluate the specified template file.</td></tr>
-<tr><td><code>-C dir</code></td><td>Changes the current directory before running scripts.</td></tr>
-<tr><td><code>-d encoding</code></td><td>Specifies character encoding that the parser uses to read scripts.</td></tr>
-<tr><td><code>-v</code></td><td>Prints a version number.</td></tr>
-</table>
+Option             | Explanation
+-------------------|------------------------------------------------------------
+`-h`               | Prints a help message.
+`-t`               | Runs a script file specified and then enters interactive mode.
+`-i module[, ...]` | Imports modules in the same way as
+                   | calling <code>import</code> function in a script.
+                   | You can specify more than one module names for this option by separating them with comma.
+                   | Or, you can also specify the option in multiple times to import several modules.
+`-I dir`           | Specifies a directory in which modules are searched.
+                   | You can specify the option in multiple times to add several directories for module search.
+`-c cmd`           | Runs `cmd` as a Gura script.
+`-T template`      | Runs template engine to evaluate the specified template file.
+`-C dir`           | Changes the current directory before running scripts.
+`-d encoding`      | Specifies character encoding that the parser uses to read scripts.
+`-v`               | Prints a version number.

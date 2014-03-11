@@ -7,10 +7,6 @@ title: Top
 Latest News
 -----------
 
-Date   | Event
--------|--------
-2014-02-25 | v0.4.2
-
 <table>
 <tr><td>2014-02-25</td><td><a href="Download.html">Gura v0.4.2</a> was released.</td></tr>
 <tr><td>2014-02-14</td><td>Gura v0.4.1 was released.</td></tr>

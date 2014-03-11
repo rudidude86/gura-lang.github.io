@@ -7,65 +7,88 @@ title: Data Type
 {{ page.title }}
 ----------------
 
-### Nil Type
+### About Data Type
 
-A value of nil type is used to indicate an invalid result or status.
-It is often used as a returned value of a function when it fails its expected work.
-A variable `nil` has a value of nil type.
+Each Data Type is assigned with a type name,
+which often appears in argument list of function call.
 
-### Boolean Type
+Name spaces for Data Type is completely isolated
+from those for other resources like variable.
 
-Boolean values are used to determine whether something is in a true or a false state.
-Variables named `true` and `false` are assigned with a true value and a false value respectively.
+As each Data Type has a one-to-one relationship with a Class,
+those terms have almost the same meaning within a context in many cases.
 
-In a conditional part of functions such as `if` and in a logical calculation,
-`false` and `nil` are determined as a false state while other values are treated as a true state.
-Note that a zero value is recognized as a true, not a false.
 
-### Complex Type
+### List of Data Types
 
-A number literal suffixed by `j` created a value of complex type.
+Below is a list of some Data Types that often appear in documents.
 
-    3.14j  1000j  1e3j
+* `nil` Type
 
-### Number Type
+  A value of `nil` type is used to indicate an invalid result or status.
+  It is often used as a returned value of a function when it fails its expected work.
+  A variable `nil` has a value of nil type.
 
-A number literal without any suffix creates a value of number type.
+* `boolean` Type
 
-    3.14  1000  1e3
+  Values of `boolean` type are used to determine
+  whether something is in a true or a false state.
+  Variables named `true` and `false` are assigned
+  with a true value and a false value respectively.
 
-### Rational Type
+  In a conditional part of `if` function and in a logical calculation,
+  only `false` and `nil` are determined as a false state
+  while other values are treated as a true state.
+  Note that a zero value of `number` type is recognized as a true, not a false.
 
-A number literal suffixed by `r` created a value of complex type.
+* `complex` Type
 
-    3r  123r
+  A number literal suffixed by `j` creates a value of `complex` type
+  that represents complex numbers.
 
-### String Type
+        3.14j  1000j  1e3j
 
-A string literal without any suffix creates a value of string type.
+* `number` Type
 
-### Symbol Type
+  A number literal without any suffix creates a value of `number` type.
 
-    `foo
+        3.14  1000  1e3  0xaabb
 
-### Binary Type
+* `rational` Type
 
-    b''
+  A number literal suffixed by `r` created a value of `rational` type
+  that represents rational numbers.
 
-### Dictionary Type
+        3r  123r
 
-    %{}
+* `string` Type
 
-### Function Type
+  A string literal without any suffix creates a value of `string` type.
 
-### Iterator Type
+        'hello world'
+        
+        R'''
+        message text
+        '''
 
-    ()
+* `symbol` Type
 
-### List Type
+  An identifier preceded by a back quote creates a value of `symbol` type.
 
-    []
+        `foo  `bar
 
-### Matrix Type
+* `binary` Type
 
-    @@{}
+  A string literal preceded by `b` creates a value of `binary` type.
+  
+        b'\x00\x01\0x02\0x03'
+
+* `iterator` Type
+
+        (3, 1, 4, 1, 5, 9)
+        ('hello', 'world', 3, 4, 5)
+
+* `list` Type
+
+        [3, 1, 4, 1, 5, 9]
+        ['hello', 'world', 3, 4, 5]

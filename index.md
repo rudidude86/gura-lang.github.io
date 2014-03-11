@@ -7,6 +7,7 @@ title: Top
 Latest News
 -----------
 
+Date   | Event
 -------|--------
 2014-02-25 | v0.4.2
 

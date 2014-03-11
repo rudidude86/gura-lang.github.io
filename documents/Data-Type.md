@@ -23,13 +23,13 @@ those terms have almost the same meaning within a context in many cases.
 
 Below is a list of some Data Types that often appear in documents.
 
-* `nil` Type
+* `nil`
 
   A value of `nil` type is used to indicate an invalid result or status.
   It is often used as a returned value of a function when it fails its expected work.
   A variable `nil` has a value of nil type.
 
-* `boolean` Type
+* `boolean`
 
   Values of `boolean` type are used to determine
   whether something is in a true or a false state.
@@ -41,27 +41,27 @@ Below is a list of some Data Types that often appear in documents.
   while other values are treated as a true state.
   Note that a zero value of `number` type is recognized as a true, not a false.
 
-* `complex` Type
+* `complex`
 
   A number literal suffixed by `j` creates a value of `complex` type
   that represents complex numbers.
 
         3.14j  1000j  1e3j
 
-* `number` Type
+* `number`
 
   A number literal without any suffix creates a value of `number` type.
 
         3.14  1000  1e3  0xaabb
 
-* `rational` Type
+* `rational`
 
   A number literal suffixed by `r` created a value of `rational` type
   that represents rational numbers.
 
         3r  123r
 
-* `string` Type
+* `string`
 
   A string literal without any suffix creates a value of `string` type.
 
@@ -71,24 +71,24 @@ Below is a list of some Data Types that often appear in documents.
         message text
         '''
 
-* `symbol` Type
+* `symbol`
 
   An identifier preceded by a back quote creates a value of `symbol` type.
 
         `foo  `bar
 
-* `binary` Type
+* `binary`
 
   A string literal preceded by `b` creates a value of `binary` type.
   
         b'\x00\x01\0x02\0x03'
 
-* `iterator` Type
+* `iterator`
 
         (3, 1, 4, 1, 5, 9)
         ('hello', 'world', 3, 4, 5)
 
-* `list` Type
+* `list`
 
         [3, 1, 4, 1, 5, 9]
         ['hello', 'world', 3, 4, 5]

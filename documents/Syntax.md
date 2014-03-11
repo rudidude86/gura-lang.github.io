@@ -249,6 +249,16 @@ There are three types of brackets as listed below.
   In general, a Block is used as a body for function assignment
   or provides a procedual part in calling a function.
 
+Elements in a group can be separated by a comma character or a line feed.
+The following two codes have the same result.
+
+    [1, 2, 3, 4]
+    
+    [1
+    2
+    3
+    4
+    ]
 
 ### Attribute
 

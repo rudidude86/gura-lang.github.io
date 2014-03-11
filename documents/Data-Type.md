@@ -85,16 +85,23 @@ Below is a list of some Data Types that often appear in documents.
 
 * `iterator`
 
-  If elements are surrounced by a pair of parentheses,
+  If one or more elements are surrounced by a pair of parentheses,
   it would create a value of `iterator` type.
   Any type of values are stored in it as elements.
 
         (3, 1, 4, 1, 5, 9)
         ('hello', 'world', 3, 4, 5)
 
+  To create an iterator that contains only one element,
+  be sure to put a comma afther the element like following:
+
+        (3,)
+
+  An expression `(3)` is recognized as an ordinary `3`.
+
 * `list`
 
-  If elements are surrounced by a pair of square brackets,
+  If one or more elements are surrounced by a pair of square brackets,
   it would create a value of `list` type.
   Any type of values are stored in it as elements.
 

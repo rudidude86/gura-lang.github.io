@@ -115,6 +115,6 @@ Below is a list of some Data Types that often appear in documents.
 * `dict`
 
   `dict` is a dictionary that contains key-value pairs as its elements
-  where key is a value of `number`, `string` or `symbol`.
-  
-  
+  where key is one of `number`, `string` or `symbol` and value is of any type.
+
+        %{`key1 => 'value 1', `key2 => 'value 2', `key3 => 'value 3'}

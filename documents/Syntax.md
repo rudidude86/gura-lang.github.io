@@ -305,7 +305,7 @@ and creates an instance of `expr` data type.
     `(a + b)  `func()
 
 As an Expression can hold any code without any evaluation,
-it can be used to pass a procedure itself in argument list of function calls.
+it can be used to pass a procedure itself to a function as one of the arguments.
 
 
 ### Comment

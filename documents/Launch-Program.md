@@ -148,14 +148,14 @@ Option             | Explanation
 -------------------|------------------------------------------------------------
 `-h`               | Prints a help message.
 `-t`               | Runs a script file specified and then enters interactive mode.
-`-i module[, ...]` | Imports modules in the same way as
-                   | calling <code>import</code> function in a script.
+`-i` *module*[`,` ..] | Imports modules in the same way as
+                   | calling `import` function in a script.
                    | You can specify more than one module names for this option by separating them with comma.
                    | Or, you can also specify the option in multiple times to import several modules.
-`-I dir`           | Specifies a directory in which modules are searched.
+`-I` *dir*         | Specifies a directory in which modules are searched.
                    | You can specify the option in multiple times to add several directories for module search.
-`-c cmd`           | Runs `cmd` as a Gura script.
-`-T template`      | Runs template engine to evaluate the specified template file.
-`-C dir`           | Changes the current directory before running scripts.
-`-d encoding`      | Specifies character encoding that the parser uses to read scripts.
+`-c` *cmd*         | Runs *cmd* as a Gura script.
+`-T` *template*    | Runs template engine to evaluate the specified template file.
+`-C` *dir*         | Changes the current directory before running scripts.
+`-d` *encoding*    | Specifies character encoding that the parser uses to read scripts.
 `-v`               | Prints a version number.

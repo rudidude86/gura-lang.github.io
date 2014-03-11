@@ -29,12 +29,16 @@ Below is a list of some Data Types that often appear in documents.
   It is often used as a returned value of a function when it fails its expected work.
   A variable `nil` has a value of nil type.
 
+        nil
+
 * `boolean`
 
   Values of `boolean` type are used to determine
   whether something is in a true or a false state.
   Variables named `true` and `false` are assigned
   with a true value and a false value respectively.
+
+        true  false
 
   In a conditional part of `if` function and in a logical calculation,
   `false` and `nil` only are determined as a false state
@@ -107,3 +111,10 @@ Below is a list of some Data Types that often appear in documents.
 
         [3, 1, 4, 1, 5, 9]
         ['hello', 'world', 3, 4, 5]
+
+* `dict`
+
+  `dict` is a dictionary that contains key-value pairs as its elements
+  where key is a value of `number`, `string` or `symbol`.
+  
+  

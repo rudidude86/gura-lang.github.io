@@ -7,6 +7,9 @@ title: Top
 Latest News
 -----------
 
+-------|--------
+2014-02-25 | v0.4.2
+
 <table>
 <tr><td>2014-02-25</td><td><a href="Download.html">Gura v0.4.2</a> was released.</td></tr>
 <tr><td>2014-02-14</td><td>Gura v0.4.1 was released.</td></tr>
@@ -85,14 +88,15 @@ I hope the publication will inspire me to carry on this tough work :-)_
 6. Function
 7. Flow Control
 8. List and Iterator
-9. Class
-10. Implicit Mapping
-11. Member Mapping
-12. Module
-13. Mathematical Functions
-14. Path
-15. Stream
-16. Image
-17. Template Engine
+9. Dictionary
+10. Class
+11. Implicit Mapping
+12. Member Mapping
+13. Module
+14. Mathematical Functions
+15. Path
+16. Stream
+17. Image
+18. Template Engine
 
 Any opinions and suggestions are welcome via [E-mail](mailto:ypsitau@nifty.com).

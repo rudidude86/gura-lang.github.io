@@ -149,9 +149,9 @@ Option             | Explanation
 `-h`               | Prints a help message.
 `-t`               | Runs a script file specified and then enters interactive mode.
 `-i` *module*[`,` ..] | Imports modules in the same way as
-                   | calling `import` function in a script.
-                   | You can specify more than one module names for this option by separating them with comma.
-                   | Or, you can also specify the option in multiple times to import several modules.
+                   calling `import` function in a script.
+                   You can specify more than one module names for this option by separating them with comma.
+                   Or, you can also specify the option in multiple times to import several modules.
 `-I` *dir*         | Specifies a directory in which modules are searched.
                    | You can specify the option in multiple times to add several directories for module search.
 `-c` *cmd*         | Runs *cmd* as a Gura script.

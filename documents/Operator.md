@@ -67,6 +67,29 @@ Operator **`x + y`** returns an added result of `x` and `y`.
 <table>
 <tr><th>Operation</th><th>Result Data Type</th></tr>
 <tr><td><code>number + number</code></td><td><code>number</code></td></tr>
+<tr><td><code>number + complex</code></td><td><code>number</code></td></tr>
+<tr><td><code>number + rational</code></td><td><code>number</code></td></tr>
+<tr><td><code>complex + number</code></td><td><code>complex</code></td></tr>
 <tr><td><code>complex + complex</code></td><td><code>complex</code></td></tr>
+<tr><td><code>complex + rational</code></td><td>(error)</td></tr>
+<tr><td><code>rational + number</code></td><td><code>rational</code></td></tr>
+<tr><td><code>rational + complex</code></td><td><code>(error)</code></td></tr>
 <tr><td><code>rational + rational</code></td><td><code>rational</code></td></tr>
+<tr><td><code>matrix + matrix</code></td><td><code>matrix</code></td></tr>
+<tr><td><code>datetime + timedelta</code></td><td><code>datetime</code></td></tr>
+<tr><td><code>timedelta + datetime</code></td><td><code>datetime</code></td></tr>
+<tr><td><code>timedelta + timedelta</code></td><td><code>timedelta</code></td></tr>
+</table>
+
+If `x` and `y` are of `string` or `binary` type,
+operation `x + y` returns concatenated result of `x` and `y`.
+
+<table>
+<tr><th>Operation</th><th>Result Data Type</th><th>Note</th></tr>
+<tr><td><code>string + string</code></td><td><code>string</code></td></tr>
+<tr><td><code>binary + binary</code></td><td><code>binary</code></td></tr>
+<tr><td><code>string + binary</code></td><td><code>binary</code></td></tr>
+<tr><td><code>binary + string</code></td><td><code>binary</code></td></tr>
+<tr><td><code>string + any</code></td><td><code>string</code></td><td>`any` will be converted to `string`</td></tr>
+<tr><td><code>any + string</code></td><td><code>string</code></td><td>`any` will be converted to `string`</td></tr>
 </table>

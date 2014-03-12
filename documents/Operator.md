@@ -4,7 +4,6 @@ lang: en
 title: Operator
 ---
 
-{{ page.title }}
-----------------
+# {{ page.title }}
 
 

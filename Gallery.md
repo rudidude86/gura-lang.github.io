@@ -4,9 +4,10 @@ lang: en
 title: Gallery
 ---
 
-<h2>Gallery</h2>
+# {{ page.title }}
 
-<h3>OpenGL Demo</h3>
+
+## OpenGL Demo
 
 <table>
 <tr>
@@ -23,7 +24,8 @@ title: Gallery
 </tr>
 </table>
 
-<h3>Tk Demo</h3>
+
+## Tk Demo
 
 <table>
 <tr>
@@ -42,7 +44,8 @@ title: Gallery
 </tr>
 </table>
 
-<h3>Cairo Demo</h3>
+
+## Cairo Demo
 
 <table>
 <tr>
@@ -58,7 +61,8 @@ title: Gallery
 </tr>
 </table>
 
-<h3>SDL Demo</h3>
+
+## SDL Demo
 
 <table>
 <tr>

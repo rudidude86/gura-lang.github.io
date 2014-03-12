@@ -4,8 +4,7 @@ lang: en
 title: Script to Generate Prime Numbers
 ---
 
-Script to Generate Prime Numbers
---------------------------------
+# {{ page.title }}
 
 Gura's `for` function can return an iterator for the repeat process instead of executing the loop immediately.
 Following is an example to make an iterator that generates prime numbers.

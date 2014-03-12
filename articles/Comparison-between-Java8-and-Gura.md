@@ -4,15 +4,14 @@ lang: en
 title: Comparison between Java8 and Gura
 ---
 
-Comparison between Java8 and Gura
----------------------------------
+# {{ page.title }}
 
 I've learned that Java 8, Java's new version, has come with features like
 filter() and map() methods that can handle collections more effectively.
 I tried writing Gura code equivalent to some Java programs with these functions
 to see how simple the Gura code can be than Java's ones.
 
-### Case 1
+## Case 1
 
 Assume that `Student` is a class that has methods named `getGradYear()` and `getScore()`,
 which return a graduation year and an exam score respectively.
@@ -30,7 +29,8 @@ who graduate in the year 2012, codes of Java and Gura come as following.
 
     students.filter(students:*getGradYear() == 2012):*getScore().max()
 
-### Case 2
+
+## Case 2
 
 Assume that `Star` is a class that has member variable named `distance`.
 

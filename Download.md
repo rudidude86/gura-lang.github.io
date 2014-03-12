@@ -6,10 +6,10 @@ title: Download
 {% assign gura_version = '0.4.2' %}
 {% assign gura_download_id = '60652' %}
 
-Download
---------
+# {{ page.title }}
 
-### Packages
+
+## Packages
 
 <table>
 <tr>
@@ -34,13 +34,14 @@ Download
 -->
 </table>
 
-### Install into Windows
+
+## Install into Windows
 
 Just launch the installer
 [gura-{{ gura_version }}-win32.msi](http://sourceforge.jp/projects/gura/downloads/{{ gura_download_id }}/gura-{{ gura_version }}-win32.msi/),
 which will install necessary files and register file extensions `.gura`, `.guraw`, `.gurc` and `.gurcw` as executable ones.
 
-### Install into Linux
+## Install into Linux
 
 In default configuration, Ubuntu and Fedora do not include C++ compilers and readline library.
 Install them as follows before building Gura.

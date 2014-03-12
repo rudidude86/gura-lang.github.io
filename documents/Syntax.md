@@ -220,7 +220,7 @@ Here's a list of binary operators:
 
 An example code of a binary operator comes like `x + y`.
 
-See section **Operator** for more detail.
+See section [Operator](Operator.md) for more detail.
 
 
 ## Group

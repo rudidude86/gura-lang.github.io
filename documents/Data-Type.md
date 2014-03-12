@@ -87,7 +87,7 @@ which also shows one of the typical ways to instantiate values of each type.
 
   An expression `(3)` is recognized as an ordinary value of number `3`.
 
-  See chapter **List and Iterator** for more detail.
+  See chapter [List and Iterator](List-and-Iterator.html) for more detail.
 
 * `list`
 
@@ -99,7 +99,7 @@ which also shows one of the typical ways to instantiate values of each type.
         
         ['hello', 'world', 3, 4, 5]
 
-  See chapter **List and Iterator** for more detail.
+  See chapter [List and Iterator](List-and-Iterator.html) for more detail.
 
 * `dict`
 
@@ -112,7 +112,7 @@ which also shows one of the typical ways to instantiate values of each type.
             `symbol3 => 'value 3'
         }
 
-  See chapter **Dictionary** for more detail.
+  See chapter [Dictionary](Dictionary.html) for more detail.
 
 * `complex`
 
@@ -121,7 +121,7 @@ which also shows one of the typical ways to instantiate values of each type.
 
         3.14j  1000j  1e3j
 
-  See chapter **Mathematic Functions** for more detail.
+  See chapter [Mathematic Functions](Mathematic-Functions.html) for more detail.
 
 * `rational`
 
@@ -130,7 +130,7 @@ which also shows one of the typical ways to instantiate values of each type.
 
         3r  123r
 
-  See chapter **Mathematic Functions** for more detail.
+  See chapter [Mathematic Functions](Mathematic-Functions.html) for more detail.
 
 * `binary`
 

@@ -10,9 +10,9 @@ title: Operator
 
 There are three types of Operators.
 
-* A **Prefixed Unary Operator** takes an input value specified after it.
-* A **Suffixed Unary Operator** takes an input value specified before it.
-* A **Binary Operator** takes two input values specified on both sides of them.
+* **Prefixed Unary Operator** takes an input value specified after it.
+* **Suffixed Unary Operator** takes an input value specified before it.
+* **Binary Operator** takes two input values specified on both sides of them.
 
 Users can define Operator's function through `operator` class.
 

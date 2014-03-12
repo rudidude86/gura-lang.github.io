@@ -198,19 +198,19 @@ There's no built-in suffix for string literals.
 An Operator takes one or two values as its inputs and returns a calculation result.
 It's categorized in the following types:
 
-* A **Prefixed Unary Operator** takes an input value specified after it.
+* **Prefixed Unary Operator** takes an input value specified after it.
 
         +  -  ~  !
 
   An example code of a Prefixed Unary Operator comes like `+x`.
 
-* A **Suffixed Unary Operator** takes an input value specified before it.
+* **Suffixed Unary Operator** takes an input value specified before it.
 
         ?  ..
 
   An example code of a Suffixed Unary Operator comes like `x?`.
 
-* A **Binary Operator** takes two input values specified on both sides of them.
+* **Binary Operator** takes two input values specified on both sides of them.
 
         +  -  *  /  %  **  ==  !=  >  <  >=  <=  <=>
         in  &  |  ^  <<  >>  ||  &&  ..  =>

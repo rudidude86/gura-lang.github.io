@@ -6,9 +6,10 @@ title: Operator
 
 # {{ page.title }}
 
+Operation of <code>+x</code>:
+
 <table>
-<caption>`+x`</caption>
-<tr><th>Operation</th><th>Result</th><th>Explanation</th></tr>
-<tr><td><code>+number</code></td><td><code>number</code></td><td></td></tr>
+<tr><th>Operation</th><th>Result</th></tr>
+<tr><td><code>+number</code></td><td><code>number</code></td></tr>
 </table>
 

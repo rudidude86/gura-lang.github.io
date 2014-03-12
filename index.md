@@ -4,8 +4,7 @@ lang: en
 title: Top
 ---
 
-Latest News
------------
+# Latest News
 
 <table>
 <tr><td>2014-02-25</td><td><a href="Download.html">Gura v0.4.2</a> was released.</td></tr>
@@ -13,8 +12,8 @@ Latest News
 <tr><td>2014-02-06</td><td>Gura v0.4.0 was released.</td></tr>
 </table>
 
-What's This?
-------------
+
+# What's This?
 
 **Gura** is an **iterator-oriented** programming language
 that focuses on iterators with improved functions for calculation and data processing.
@@ -31,8 +30,8 @@ But a new feature called [Implicit Mapping](features/ImplicitMapping.html) is wo
 which automatically repeats evaluation of `printf` function
 after it's given with iterators, `1..` and `readlines('foo.txt')`, as its arguments.
 
-Language Features
------------------
+
+# Language Features
 
 - [Flow Control](features/Flow-Control.html)
 - [Function Definition](features/Function-Definition.html)
@@ -40,8 +39,8 @@ Language Features
 - [Implicit Mapping](features/Implicit-Mapping.html)
 - [Member Mapping](features/Member-Mapping.html)
 
-Extensions
-----------
+
+# Extensions
 
 - [Graphic Image Handling](extensions/Graphic-Image-Handling.html)
 - [GUI Programming with wxWidgets](extensions/GUI-Programming-with-wxWidgets.html)
@@ -54,16 +53,16 @@ Extensions
 - [Database Access](extensions/Database-Access.html)
 - [Create Your Own Binary Module](extensions/Create-Your-Own-Binary-Module.html)
 
-Articles
---------
+
+# Articles
 
 - [Comparison between Java 8 and Gura](articles/Comparison-between-Java8-and-Gura.html)
 - [Script to Generate Prime Numbers](articles/Script-to-Generate-Prime-Numbers.html)
 
-Documents
----------
 
-### Japanese Version
+# Documents
+
+## Japanese Version
 
 Sorry! Only Japanese version is available so far.
 
@@ -71,7 +70,7 @@ Sorry! Only Japanese version is available so far.
 - ![pdf-icon](images/pdf.png) Gura Library Reference ([Japanese](https://github.com/gura-lang/gura-doc/blob/master/gura-lib-j.pdf?raw=true))
 - ![pdf-icon](images/pdf.png) Gura Developer's Manual ([Japanese](https://github.com/gura-lang/gura-doc/blob/master/gura-dev-j.pdf?raw=true))
 
-### English Version
+## English Version
 
 _I've decided to publish documents in English that I'm currently writing,
 which is far from complete and being updated day by day.

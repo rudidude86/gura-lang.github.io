@@ -38,3 +38,20 @@ after evaluating it as a boolean value.
 <tr><th>Operation</th><th>Result Data Type</th></tr>
 <tr><td><code>!any</code></td><td><code>boolean</code></td></tr>
 </table>
+
+Operator **`x..`** returns an infinite iterator
+that starts from `x` and is increased by one.
+
+<table>
+<tr><th>Operation</th><th>Result Data Type</th></tr>
+<tr><td><code>number..</code></td><td><code>iterator</code></td></tr>
+</table>
+
+Operator **`x?`** returns `false` if `x` is `false` or `nil`, and `true` otherwise.
+This operator is not affected by Implicit Mapping
+and returns `true` if `x` is of `list` or `iterator` type.
+
+<table>
+<tr><th>Operation</th><th>Result Data Type</th></tr>
+<tr><td><code>any?</code></td><td><code>boolean</code></td></tr>
+</table>

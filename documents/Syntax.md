@@ -195,30 +195,27 @@ There's no built-in suffix for string literals.
 
 ## Operator
 
-There are two types of operators: unary operator and binary operator.
+An Operator takes one or two values as its inputs and returns a calculation result.
+It's categorized in the following types:
 
-A unary operator takes one value
-and is categorized in two types depending on where the value is specified.
+* A **Prefixed Unary Operator** takes an input value specified after it.
 
-Following are prefixed unary operators that takes a value after them.
+        +  -  ~  !
 
-    +  -  ~  !
+  An example code of a Prefixed Unary Operator comes like `+x`.
 
-An example code of a prefixed unary operator comes like `+x`.
+* A **Suffixed Unary Operator** takes an input value specified before it.
 
-Follwing are suffixed unary operators that takes a value before them.
+        ?  ..
 
-    ?  ..
+  An example code of a Suffixed Unary Operator comes like `x?`.
 
-An example code of a suffixed unary operator comes like `x?`.
+* A **Binary Operator** takes two input values specified on both sides of them.
 
-A binary operator takes two values specified on both sides of them.
-Here's a list of binary operators:
+        +  -  *  /  %  **  ==  !=  >  <  >=  <=  <=>
+        in  &  |  ^  <<  >>  ||  &&  ..  =>
 
-    +  -  *  /  %  **  ==  !=  >  <  >=  <=  <=>
-    in  &  |  ^  <<  >>  ||  &&  ..  =>
-
-An example code of a binary operator comes like `x + y`.
+  An example code of a Binary Operator comes like `x + y`.
 
 See section [Operator](Operator.md) for more detail.
 

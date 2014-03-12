@@ -6,7 +6,20 @@ title: Operator
 
 # {{ page.title }}
 
+## About Operator
+
+There are three types of Operators.
+
+* A **Prefixed Unary Operator** takes an input value specified after it.
+* A **Suffixed Unary Operator** takes an input value specified before it.
+* A **Binary Operator** takes two input values specified on both sides of them.
+
+Users can define Operator's function through `operator` class.
+
+
 ## Standard Operators
+
+This section describes about operators that are predefined.
 
 Operation `+x` returns the value of `x` itself.
 
@@ -179,8 +192,22 @@ Operation `x ** y` returns a powered result of `x` and `y`.
 <tr><td><code>complex ** complex</code></td><td><code>complex</code></td></tr>
 </table>
 
+Operation `x == y` returns `true` when `x` equals to `y`, and `false` otherwise.
+
+Operation `x < y` returns `true` when `x` is less than `y`, and `false` otherwise.
+
+Operation `x > y` returns `true` when `x` is greater than `y`, and `false` otherwise.
+
+Operation `x <= y` returns `true` when `x` is less than or equal to `y`, and `false` otherwise.
+
+Operation `x >= y` returns `true` when `x` is greater than or equal to `y`, and `false` otherwise.
+
+Operation `x <=> y` returns `0` when `x` is equal to `y`,
+`-1` when `x` is less than `y` and `1` when `x` is greater than `y`.
+
 
 
 ## User-defined Operator
 
-operator manager
+You can define Operators' functions through `operator` class.
+

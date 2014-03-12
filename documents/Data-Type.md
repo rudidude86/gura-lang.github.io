@@ -9,11 +9,13 @@ title: Data Type
 
 ### About Data Type
 
+A value has a corresponding Data Type that manages its behavior and properties.
+
 Each Data Type is assigned with a type name,
-which often appears in argument list of function call.
+which usually appears in argument list of function call.
 
 Name spaces for Data Type is completely isolated
-from those for other resources like variable.
+from those for other names like variable and function.
 
 As each Data Type has a one-to-one relationship with a Class,
 those terms have almost the same meaning within a context in many cases.
@@ -41,34 +43,21 @@ which also shows one of the typical ways to instantiate values of each type.
 
         true  false
 
-  In a conditional part of `if` function and in a logical calculation,
+  In a conditional part of `if` function along with other relevant functions
+  and in a logical calculation,
   `false` and `nil` only are determined as a false state
   while other values are treated as a true state.
   Note that a zero value of `number` type is recognized as a true, not a false.
 
-* `complex`
-
-  A number literal suffixed by `j` creates a value of `complex` type
-  that represents complex numbers.
-
-        3.14j  1000j  1e3j
-
 * `number`
 
-  A number literal without any suffix creates a value of `number` type.
+  A number literal without any suffix instantiates a value of `number` type.
 
         3.14  1000  1e3  0xaabb
 
-* `rational`
-
-  A number literal suffixed by `r` created a value of `rational` type
-  that represents rational numbers.
-
-        3r  123r
-
 * `string`
 
-  A string literal without any suffix creates a value of `string` type.
+  A string literal without any suffix instantiates a value of `string` type.
 
         'hello world'
         
@@ -78,23 +67,18 @@ which also shows one of the typical ways to instantiate values of each type.
 
 * `symbol`
 
-  An identifier preceded by a back quote creates a value of `symbol` type.
+  An identifier preceded by a back quote instantiates a value of `symbol` type.
 
         `foo  `bar
-
-* `binary`
-
-  A string literal preceded by `b` creates a value of `binary` type.
-  
-        b'\x00\x01\0x02\0x03'
 
 * `iterator`
 
   If one or more elements are surrounced by a pair of parentheses,
-  it would create a value of `iterator` type.
-  Any type of values are stored in it as elements.
+  it would instantiate a value of `iterator` type.
+  Any type of value can be an element of iterators.
 
         (3, 1, 4, 1, 5, 9)
+        
         ('hello', 'world', 3, 4, 5)
 
   To create an iterator that contains only one element,
@@ -102,16 +86,21 @@ which also shows one of the typical ways to instantiate values of each type.
 
         (3,)
 
-  An expression `(3)` is recognized as an ordinary `3`.
+  An expression `(3)` is recognized as an ordinary value of number `3`.
+
+  See chapter **List and Iterator** for more detail.
 
 * `list`
 
   If one or more elements are surrounced by a pair of square brackets,
-  it would create a value of `list` type.
-  Any type of values are stored in it as elements.
+  it would instantiate a value of `list` type.
+  Any type of value can be an element of lists.
 
         [3, 1, 4, 1, 5, 9]
+        
         ['hello', 'world', 3, 4, 5]
+
+  See chapter **List and Iterator** for more detail.
 
 * `dict`
 
@@ -119,3 +108,25 @@ which also shows one of the typical ways to instantiate values of each type.
   where key is one of `number`, `string` or `symbol` and value is of any type.
 
         %{`key1 => 'value 1', `key2 => 'value 2', `key3 => 'value 3'}
+
+  See chapter **Dictionary** for more detail.
+
+* `complex`
+
+  A number literal suffixed by `j` instantiates a value of `complex` type
+  that represents complex numbers.
+
+        3.14j  1000j  1e3j
+
+* `rational`
+
+  A number literal suffixed by `r` instantiated a value of `rational` type
+  that represents rational numbers.
+
+        3r  123r
+
+* `binary`
+
+  A string literal preceded by `b` instantiates a value of `binary` type.
+  
+        b'\x00\x01\0x02\0x03'

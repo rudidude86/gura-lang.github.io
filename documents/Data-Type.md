@@ -42,7 +42,7 @@ which also shows one of the typical ways to instantiate values of each type.
 
         true  false
 
-  In a conditional part of `if` function along with other relevant functions
+  In a function like `if` having arguments to check true/false condition
   and in a logical calculation,
   `false` and `nil` only are determined as a false state
   while other values are treated as a true state.

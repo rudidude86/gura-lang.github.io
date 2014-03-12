@@ -217,7 +217,7 @@ It's categorized in the following types:
 
   An example code of a Binary Operator comes like `x + y`.
 
-See section [Operator](Operator.md) for more detail.
+See section [Operator](Operator.html) for more detail.
 
 
 ## Group

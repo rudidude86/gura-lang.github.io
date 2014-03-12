@@ -6,6 +6,8 @@ title: Operator
 
 # {{ page.title }}
 
+## Standard Operators
+
 Operation **`+x`** returns the value of `x` itself.
 
 <table>
@@ -113,3 +115,7 @@ Operation **`x - y`** returns a subtracted result of `x` and `y`.
 <tr><td><code>timedelta - timedelta</code></td><td><code>timedelta</code></td></tr>
 </table>
 
+
+## User-defined Operator
+
+operator manager

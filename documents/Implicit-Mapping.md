@@ -4,8 +4,7 @@ lang: en
 title: Implicit Mapping
 ---
 
-{{ page.title }}
-----------------
+# {{ page.title }}
 
     scholar # scholar ... scholar
     scholar # list ... list

@@ -4,10 +4,9 @@ lang: en
 title: Data Type
 ---
 
-{{ page.title }}
-----------------
+# {{ page.title }}
 
-### About Data Type
+# About Data Type
 
 A value has a corresponding Data Type that manages its behavior and properties.
 
@@ -21,7 +20,7 @@ As each Data Type has a one-to-one relationship with a corresponding Class,
 those terms have almost the same meaning within documents in many cases.
 
 
-### List of Data Types
+## List of Data Types
 
 Below is a list of some Data Types that often appear in documents,
 which also shows one of the typical ways to instantiate values of each type.

@@ -4,16 +4,15 @@ lang: en
 title: Mathematic Functions
 ---
 
-{{ page.title }}
-----------------
+# {{ page.title }}
 
-### Complex Number
-
-
-
-### Rational Number
+## Complex Number
 
 
 
-### Big Number
+## Rational Number
+
+
+
+## Big Number
 

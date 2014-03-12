@@ -6,7 +6,7 @@ title: Operator
 
 # {{ page.title }}
 
-Operator **`+x`** returns the value of `x` itself.
+Operation **`+x`** returns the value of `x` itself.
 
 <table>
 <tr><th>Operation</th><th>Result Data Type</th></tr>
@@ -16,7 +16,7 @@ Operator **`+x`** returns the value of `x` itself.
 </table>
 
 
-Operator **`-x`** returns a negaive value of `x`.
+Operation **`-x`** returns a negaive value of `x`.
 
 <table>
 <tr><th>Operation</th><th>Result Data Type</th></tr>
@@ -26,7 +26,7 @@ Operator **`-x`** returns a negaive value of `x`.
 </table>
 
 
-Operator **`~x`** returns a bit-inverted value of `x`.
+Operation **`~x`** returns a bit-inverted value of `x`.
 
 <table>
 <tr><th>Operation</th><th>Result Data Type</th></tr>
@@ -34,7 +34,7 @@ Operator **`~x`** returns a bit-inverted value of `x`.
 </table>
 
 
-Operator **`!x`** returns a logically inverted value of `x`
+Operation **`!x`** returns a logically inverted value of `x`
 after evaluating it as a boolean value.
 
 <table>
@@ -43,7 +43,7 @@ after evaluating it as a boolean value.
 </table>
 
 
-Operator **`x..`** returns an infinite iterator
+Operation **`x..`** returns an infinite iterator
 that starts from `x` and is increased by one.
 
 <table>
@@ -52,7 +52,7 @@ that starts from `x` and is increased by one.
 </table>
 
 
-Operator **`x?`** returns `false` if `x` is `false` or `nil`, and `true` otherwise.
+Operation **`x?`** returns `false` if `x` is `false` or `nil`, and `true` otherwise.
 This operator is not affected by Implicit Mapping
 and returns `true` if `x` is of `list` or `iterator` type.
 
@@ -62,7 +62,7 @@ and returns `true` if `x` is of `list` or `iterator` type.
 </table>
 
 
-Operator **`x + y`** returns an added result of `x` and `y`.
+Operation **`x + y`** returns an added result of `x` and `y`.
 
 <table>
 <tr><th>Operation</th><th>Result Data Type</th></tr>
@@ -94,7 +94,7 @@ operation `x + y` returns concatenated result of `x` and `y`.
 <tr><td><code>any + string</code></td><td><code>string</code> (`any` will be converted to `string` before concatenation)</td></tr>
 </table>
 
-Operator **`x - y`** returns an subtracted result of `x` and `y`.
+Operation **`x - y`** returns an subtracted result of `x` and `y`.
 
 <table>
 <tr><th>Operation</th><th>Result Data Type</th></tr>

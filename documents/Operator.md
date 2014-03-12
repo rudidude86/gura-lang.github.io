@@ -8,7 +8,7 @@ title: Operator
 
 ## Standard Operators
 
-Operation **`+x`** returns the value of `x` itself.
+Operation `+x` returns the value of `x` itself.
 
 <table>
 <tr><th>Operation</th><th>Result Data Type</th></tr>
@@ -18,7 +18,7 @@ Operation **`+x`** returns the value of `x` itself.
 </table>
 
 
-Operation **`-x`** returns a negaive value of `x`.
+Operation `-x` returns a negaive value of `x`.
 
 <table>
 <tr><th>Operation</th><th>Result Data Type</th></tr>
@@ -28,7 +28,7 @@ Operation **`-x`** returns a negaive value of `x`.
 </table>
 
 
-Operation **`~x`** returns a bit-inverted value of `x`.
+Operation `~x` returns a bit-inverted value of `x`.
 
 <table>
 <tr><th>Operation</th><th>Result Data Type</th></tr>
@@ -36,7 +36,7 @@ Operation **`~x`** returns a bit-inverted value of `x`.
 </table>
 
 
-Operation **`!x`** returns a logically inverted value of `x`
+Operation `!x` returns a logically inverted value of `x`
 after evaluating it as a boolean value.
 
 <table>
@@ -45,7 +45,7 @@ after evaluating it as a boolean value.
 </table>
 
 
-Operation **`x..`** returns an infinite iterator
+Operation `x..` returns an infinite iterator
 that starts from `x` and is increased by one.
 
 <table>
@@ -54,7 +54,7 @@ that starts from `x` and is increased by one.
 </table>
 
 
-Operation **`x?`** returns `false` if `x` is `false` or `nil`, and `true` otherwise.
+Operation `x?` returns `false` if `x` is `false` or `nil`, and `true` otherwise.
 This operator is not affected by Implicit Mapping
 and returns `true` if `x` is of `list` or `iterator` type.
 
@@ -64,13 +64,13 @@ and returns `true` if `x` is of `list` or `iterator` type.
 </table>
 
 
-Operation **`x + y`** returns an added result of `x` and `y`.
+Operation `x + y` returns an added result of `x` and `y`.
 
 <table>
 <tr><th>Operation</th><th>Result Data Type</th></tr>
 <tr><td><code>number + number</code></td><td><code>number</code></td></tr>
-<tr><td><code>number + complex</code></td><td><code>number</code></td></tr>
-<tr><td><code>number + rational</code></td><td><code>number</code></td></tr>
+<tr><td><code>number + complex</code></td><td><code>complex</code></td></tr>
+<tr><td><code>number + rational</code></td><td><code>rational</code></td></tr>
 <tr><td><code>complex + number</code></td><td><code>complex</code></td></tr>
 <tr><td><code>complex + complex</code></td><td><code>complex</code></td></tr>
 <tr><td><code>complex + rational</code></td><td>(error)</td></tr>
@@ -96,13 +96,13 @@ operation `x + y` returns concatenated result of `x` and `y`.
 <tr><td><code>any + string</code></td><td><code>string</code> (`any` will be converted to `string` before concatenation)</td></tr>
 </table>
 
-Operation **`x - y`** returns a subtracted result of `x` and `y`.
+Operation `x - y` returns a subtracted result of `x` and `y`.
 
 <table>
 <tr><th>Operation</th><th>Result Data Type</th></tr>
 <tr><td><code>number - number</code></td><td><code>number</code></td></tr>
-<tr><td><code>number - complex</code></td><td><code>number</code></td></tr>
-<tr><td><code>number - rational</code></td><td><code>number</code></td></tr>
+<tr><td><code>number - complex</code></td><td><code>complex</code></td></tr>
+<tr><td><code>number - rational</code></td><td><code>rational</code></td></tr>
 <tr><td><code>complex - number</code></td><td><code>complex</code></td></tr>
 <tr><td><code>complex - complex</code></td><td><code>complex</code></td></tr>
 <tr><td><code>complex - rational</code></td><td>(error)</td></tr>
@@ -114,6 +114,71 @@ Operation **`x - y`** returns a subtracted result of `x` and `y`.
 <tr><td><code>datetime - datetime</code></td><td><code>timedelta</code></td></tr>
 <tr><td><code>timedelta - timedelta</code></td><td><code>timedelta</code></td></tr>
 </table>
+
+Operation `x * y` returns a multiplied result of `x` and `y`.
+
+<table>
+<tr><th>Operation</th><th>Result Data Type</th></tr>
+<tr><td><code>number * number</code></td><td><code>number</code></td></tr>
+<tr><td><code>number * complex</code></td><td><code>complex</code></td></tr>
+<tr><td><code>number * rational</code></td><td><code>rational</code></td></tr>
+<tr><td><code>complex * number</code></td><td><code>complex</code></td></tr>
+<tr><td><code>complex * complex</code></td><td><code>complex</code></td></tr>
+<tr><td><code>complex * rational</code></td><td>(error)</td></tr>
+<tr><td><code>rational * number</code></td><td><code>rational</code></td></tr>
+<tr><td><code>rational * complex</code></td><td>(error)</code></td></tr>
+<tr><td><code>rational * rational</code></td><td><code>rational</code></td></tr>
+<tr><td><code>matrix * matrix</code></td><td><code>matrix</code></td></tr>
+<tr><td><code>matrix * list</code></td><td><code>list</code></td></tr>
+<tr><td><code>list * matrix</code></td><td><code>list</code></td></tr>
+<tr><td><code>timedelta * number</code></td><td><code>timedelta</code></td></tr>
+<tr><td><code>number * timedelta</code></td><td><code>timedelta</code></td></tr>
+</table>
+
+Applying `*` operator between `string`/`binary` and `number`
+will join the `string`/`binary` for `number` times.
+
+<table>
+<tr><th>Operation</th><th>Result Data Type</th></tr>
+<tr><td><code>string * number</code></td><td><code>string</code></td></tr>
+<tr><td><code>number * string</code></td><td><code>string</code></td></tr>
+<tr><td><code>binary * number</code></td><td><code>binary</code></td></tr>
+<tr><td><code>number * binary</code></td><td><code>binary</code></td></tr>
+</table>
+
+Operation `x / y` returns a divided result of `x` and `y`.
+
+<table>
+<tr><th>Operation</th><th>Result Data Type</th></tr>
+<tr><td><code>number / number</code></td><td><code>number</code></td></tr>
+<tr><td><code>number / complex</code></td><td><code>complex</code></td></tr>
+<tr><td><code>number / rational</code></td><td><code>rational</code></td></tr>
+<tr><td><code>complex / number</code></td><td><code>complex</code></td></tr>
+<tr><td><code>complex / complex</code></td><td><code>complex</code></td></tr>
+<tr><td><code>complex / rational</code></td><td>(error)</td></tr>
+<tr><td><code>rational / number</code></td><td><code>rational</code></td></tr>
+<tr><td><code>rational / complex</code></td><td>(error)</code></td></tr>
+<tr><td><code>rational / rational</code></td><td><code>rational</code></td></tr>
+<tr><td><code>matrix / matrix</code></td><td><code>matrix</code></td></tr>
+</table>
+
+Operation `x % y` returns a remainder after dividing `x` by `y`.
+
+<table>
+<tr><th>Operation</th><th>Result Data Type</th></tr>
+<tr><td><code>number % number</code></td><td><code>number</code></td></tr>
+</table>
+
+Operation `x ** y` returns a powered result of `x` and `y`.
+
+<table>
+<tr><th>Operation</th><th>Result Data Type</th></tr>
+<tr><td><code>number ** number</code></td><td><code>number</code></td></tr>
+<tr><td><code>number ** complex</code></td><td><code>complex</code></td></tr>
+<tr><td><code>complex ** number</code></td><td><code>complex</code></td></tr>
+<tr><td><code>complex ** complex</code></td><td><code>complex</code></td></tr>
+</table>
+
 
 
 ## User-defined Operator

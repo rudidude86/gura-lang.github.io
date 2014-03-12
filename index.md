@@ -81,7 +81,7 @@ I hope the publication will inspire me to carry on this tough work :-)_
 2. [Launch Program](documents/Launch-Program.html)
 3. [Syntax](documents/Syntax.html)
 4. [Data Type](documents/Data-Type.html)
-5. Operator
+5. [Operator](documents/Operator.html)
 6. Function
 7. Flow Control
 8. List and Iterator
@@ -90,7 +90,7 @@ I hope the publication will inspire me to carry on this tough work :-)_
 11. Implicit Mapping
 12. Member Mapping
 13. Module
-14. Mathematical Functions
+14. Mathematic Functions
 15. Path
 16. Stream
 17. Image

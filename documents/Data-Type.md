@@ -14,11 +14,11 @@ A value has a corresponding Data Type that manages its behavior and properties.
 Each Data Type is assigned with a type name,
 which usually appears in argument list of function call.
 
-Name spaces for Data Type is completely isolated
-from those for other names like variable and function.
+Name spaces for Data Type are completely isolated
+from those for variable and function names.
 
-As each Data Type has a one-to-one relationship with a Class,
-those terms have almost the same meaning within a context in many cases.
+As each Data Type has a one-to-one relationship with a corresponding Class,
+those terms have almost the same meaning within documents in many cases.
 
 
 ### List of Data Types
@@ -105,25 +105,33 @@ which also shows one of the typical ways to instantiate values of each type.
 * `dict`
 
   `dict` is a dictionary that contains key-value pairs as its elements
-  where key is one of `number`, `string` or `symbol` and value is of any type.
+  where a key is one of `number`, `string` or `symbol` and a value is of any type.
 
-        %{`key1 => 'value 1', `key2 => 'value 2', `key3 => 'value 3'}
+        %{
+            `symbol1 => 'value 1'
+            `symbol2 => 'value 2'
+            `symbol3 => 'value 3'
+        }
 
   See chapter **Dictionary** for more detail.
 
 * `complex`
 
   A number literal suffixed by `j` instantiates a value of `complex` type
-  that represents complex numbers.
+  that represents a complex number.
 
         3.14j  1000j  1e3j
 
+  See chapter **Mathematic Functions** for more detail.
+
 * `rational`
 
-  A number literal suffixed by `r` instantiated a value of `rational` type
-  that represents rational numbers.
+  A number literal suffixed by `r` instantiates a value of `rational` type
+  that represents a rational number.
 
         3r  123r
+
+  See chapter **Mathematic Functions** for more detail.
 
 * `binary`
 

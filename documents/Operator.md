@@ -94,7 +94,7 @@ operation `x + y` returns concatenated result of `x` and `y`.
 <tr><td><code>any + string</code></td><td><code>string</code> (`any` will be converted to `string` before concatenation)</td></tr>
 </table>
 
-Operation **`x - y`** returns an subtracted result of `x` and `y`.
+Operation **`x - y`** returns a subtracted result of `x` and `y`.
 
 <table>
 <tr><th>Operation</th><th>Result Data Type</th></tr>

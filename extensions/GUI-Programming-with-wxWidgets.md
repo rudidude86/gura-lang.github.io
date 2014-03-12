@@ -4,12 +4,12 @@ lang: en
 title: GUI Programming with wxWidgets
 ---
 
-{{ page.title }}
-----------------
+# {{ page.title }}
 
 Gura's `wx` module uses libraries of [wxWidgets](https://www.wxwidgets.org/) 3.0.0.
 
-### Simple Example
+
+## Simple Example
 
 The code below is the simplest example that shows an empty window.
 
@@ -46,7 +46,7 @@ An application class is realized by calling `wx.IMPLEMENT_APP`,
 which runs a main loop in it.
 
 
-### Event Handling
+## Event Handling
 
 There are several ways to address event handling.
 The first one is to call `wx.Window#Bind` method to the control instance like below.
@@ -116,7 +116,8 @@ and also the second argument of `window#Bind` method.
 The identifier is necessary because the parent window must determine
 what control has issued the event.
 
-### Layout Management
+
+## Layout Management
 
 You can use classes derived from `wx.Sizer` to arrange controls' size and position.
 
@@ -153,7 +154,8 @@ And then, you can put each control under the sizer's management by calling `wx.S
 The method takes a `wx.SizerFlags` instance as its second argument,
 with which you can specify how the control's size is arranged.
 
-### More Sample Scripts
+
+## More Sample Scripts
 
 You can find sample scripts using wxWidgets on
 [GitHub repository](https://github.com/gura-lang/gura/tree/master/sample/wx/).

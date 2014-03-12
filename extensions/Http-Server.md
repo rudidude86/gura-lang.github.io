@@ -4,10 +4,9 @@ lang: en
 title: HTTP Server
 ---
 
-{{ page.title }}
-----------------
+# {{ page.title }}
 
-### Simple Example
+## Simple Example
 
     import(http)
     
@@ -28,7 +27,8 @@ title: HTTP Server
             'Content-Type'  => 'text/html')
     }
 
-### Server with Database
+
+## Server with Database
 
 The following example works as a HTTP server, which generates a graph
 that shows values in SQLite3 database

@@ -4,10 +4,9 @@ lang: en
 title: Programming with Cairo
 ---
 
-{{ page.title }}
-----------------
+# {{ page.title }}
 
-### Simple Example
+## Simple Example
 
 Here is a simple example using Cairo.
 
@@ -27,7 +26,8 @@ Here is a simple example using Cairo.
     }
     img.show()
 
-### Render in Exisiting Image
+
+## Render in Exisiting Image
 
 The following is an example that performs reading a JPEG file,
 drawing something on it with Cairo APIs and writing it out as a JPEG file.
@@ -50,7 +50,8 @@ drawing something on it with Cairo APIs and writing it out as a JPEG file.
     }
     img.write('result.jpg')
 
-### Output Animation GIF File Combining Multiple Image Files
+
+## Output Animation GIF File Combining Multiple Image Files
 
 The following example will output an animation GIF file that combines
 several images from PNG files together.
@@ -82,7 +83,8 @@ images created by Cairo APIs.
     }
     gifobj.write('anim2.gif')
 
-### More Sample Scripts
+
+## More Sample Scripts
 
 You can find sample scripts using Cairo on
 [GitHub repository](https://github.com/gura-lang/gura/tree/master/sample/cairo/).

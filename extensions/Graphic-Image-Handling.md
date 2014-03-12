@@ -4,10 +4,9 @@ lang: en
 title: Graphic Image Handling
 ---
 
-{{ page.title }}
-----------------
+# {{ page.title }}
 
-### Image Instance
+## Image Instance
 
 An instance of `image` class contains image data and provides functions
 such as reading/writing image files, resizing and rotating.

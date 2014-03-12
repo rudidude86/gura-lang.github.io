@@ -4,8 +4,7 @@ lang: en
 title: Create Your Own Binary Module
 ---
 
-{{ page.title }}
-----------------
+# {{ page.title }}
 
 Gura has a mechanism to support users who create binary modules.
 This document shows how to create an original binary module hoge.

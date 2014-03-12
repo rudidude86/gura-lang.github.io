@@ -4,10 +4,9 @@ lang: en
 title: Implicit Mapping
 ---
 
-{{ page.title }}
-----------------
+# {{ page.title }}
 
-### Basic Idea
+## Basic Idea
 
 Here, consider a process to draw a mathematical graph of y = x<sup>2</sup>.
 Let us do it by calculating values of y-coordinate for x between -5 and 5 stepped by one
@@ -48,7 +47,8 @@ any care about repeating process.
 
 The implementation of Implicit-mapping has started at this inspiration.
 
-### Case Study
+
+## Case Study
 
 The followings are examples of applying Implicit-mapping to operators.
 

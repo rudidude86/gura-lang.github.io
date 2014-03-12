@@ -4,8 +4,7 @@ lang: en
 title: GUI Programming with SDL
 ---
 
-{{ page.title }}
-----------------
+# {{ page.title }}
 
 Gura provides a module named `sdl` that uses [SDL](http://www.libsdl.org/) library.
 
@@ -13,7 +12,8 @@ SDL, Simple DirectMedia Layer, is a cross-platform development library
 designed to provide low level access to audio, keyboard, mouse, joystick,
 and graphics hardware via OpenGL and Direct3D.
 
-### Simple Example
+
+## Simple Example
 
 The following script only shows a blank window by using SDL.
 
@@ -34,7 +34,8 @@ Unlike other GUI platform, SDL requires you to implement an event handling loop 
 The function `sdl.WaitEvent` would wait until some events come in
 and returns an instance of `sdl.Event` class that contains event type and related information.
 
-### More Sample Scripts
+
+## More Sample Scripts
 
 You can find sample scripts using SDL on
 [GitHub repository](https://github.com/gura-lang/gura/tree/master/sample/sdl/).

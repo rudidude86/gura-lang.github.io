@@ -4,10 +4,9 @@ lang: en
 title: Flow Control
 ---
 
-{{ page.title }}
-----------------
+# {{ page.title }}
 
-### Conditional Branch
+## Conditional Branch
 
 Like other programming languages, Gura also provides conditional branch control
 that you've already been familiar with. See the code below:
@@ -39,7 +38,8 @@ with a value of last-evaluated result of `if`, `elsif` or `else`.
 When `if` has no following `else` and its condition is not evaluated as `true`,
 it will return `nil`.
 
-### Repeat Control
+
+## Repeat Control
 
 Here are some simple codes that use typical repeat controls.
 

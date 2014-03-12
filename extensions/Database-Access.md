@@ -4,10 +4,9 @@ lang: en
 title: Database Access
 ---
 
-{{ page.title }}
-----------------
+# {{ page.title }}
 
-### SQLite3 Database Operation
+## SQLite3 Database Operation
 
 The following code careates SQLite3 database and registers contents in a CSV file.
 

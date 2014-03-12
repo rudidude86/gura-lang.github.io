@@ -4,10 +4,9 @@ lang: en
 title: Programming with OpenGL
 ---
 
-{{ page.title }}
-----------------
+# {{ page.title }}
 
-### Sample Script
+## Sample Script
 
 Gura supports APIs of OpenGL 1.1.
 
@@ -69,7 +68,8 @@ Execution result.
 
 ![gl-cube](../images/gl-cube.png)
 
-### More Sample Scripts
+
+## More Sample Scripts
 
 You can find sample scripts using OpenGL on
 [GitHub repository](https://github.com/gura-lang/gura/tree/master/sample/opengl/),

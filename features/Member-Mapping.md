@@ -4,8 +4,7 @@ lang: en
 title: Member Mapping
 ---
 
-{{ page.title }}
-----------------
+# {{ page.title }}
 
 You might have faced cases that you have multiple instances of the same class
 and you want to execute a same method on them or refer to member variables in them.

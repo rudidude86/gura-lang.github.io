@@ -4,10 +4,9 @@ lang: en
 title: Function Definition
 ---
 
-{{ page.title }}
-----------------
+# {{ page.title }}
 
-### Simple Definition
+## Simple Definition
 
 In Gura, function can be defined in the same way with variable assignment
 except that the assignee should be described in a function form.
@@ -38,7 +37,8 @@ they have to be described in a block.
         println('hello, ', name)
     }
 
-### Arguments
+
+## Arguments
 
 You can specify optional arguments, default values and variable-length arguments
 for function declarations.
@@ -76,7 +76,7 @@ keywords and values that have not matched the argument list.
     g2(2, 3, c => 4, d => 5)             # 2, 3, %{c => 4, d => 5}
 
 
-### Block Expression
+## Block Expression
 
 You can declare functions that has a block expression.
 This mechanism is used in variety of ways such as implementation of statements like `if` and `while`,
@@ -147,7 +147,7 @@ of the function.
     printf('n = %d\n', n) # n = 5
 
 
-### Quoted Value
+## Quoted Value
 
 In normal case, when you specify expressions in the argument list of function call,
 their evaluation results are passed to a function.

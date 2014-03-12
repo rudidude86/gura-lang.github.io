@@ -4,10 +4,9 @@ lang: en
 title: HTTP Access
 ---
 
-{{ page.title }}
-----------------
+# {{ page.title }}
 
-### Downlad Files via HTTP
+## Downlad Files via HTTP
 
 You can download files via HTTP protocol using a generic stream-copy function copy.
 Below is the example.
@@ -22,7 +21,8 @@ using http.addproxy like follows.
     http.addproxy('xx.xx.xx.xx', 8080, 'username', 'password')
     copy('http://sourceforge.jp/', 'sf.html')
 
-### Read CSV File via HTTP
+
+## Read CSV File via HTTP
 
 The following example reads a CSV file in the SVN repository via HTTP protocol
 and prints contents of it.

@@ -4,12 +4,12 @@ lang: en
 title: GUI Programming with Tk
 ---
 
-{{ page.title }}
-----------------
+# {{ page.title }}
 
 Gura provides modules named `tcl` and `tk` that use [Tcl/Tk](http://www.tcl.tk/) library for GUI programming.
 
-### Simple Example
+
+## Simple Example
 
 The following example creates a window that has one Button widget.
 
@@ -26,7 +26,7 @@ The following example creates a window that has one Button widget.
     tk.mainloop()
 
 
-### Sample Script
+## Sample Script
 
 The code below is a drawing program. I have ported it from a sample in
 [TkDocs](http://www.tkdocs.com/).
@@ -65,7 +65,8 @@ Sample result.
 
 ![tk-demo](../images/tk-demo.png)
 
-### More Sample Scripts
+
+## More Sample Scripts
 
 You can find sample scripts using Tk on
 [GitHub repository](https://github.com/gura-lang/gura/tree/master/sample/tk/).

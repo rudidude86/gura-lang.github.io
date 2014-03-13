@@ -21,7 +21,7 @@ It gives you a new possibility to write more elegant codes than ever,
 but with a familiar appearance.
 
 Take a look at a simple example.
-The following code prints content of a text file with line numbers.
+The following code prints content of a text file along with line numbers.
 
     printf('%d %s', 1.., readlines('foo.txt'))
 

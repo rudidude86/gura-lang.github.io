@@ -194,17 +194,98 @@ Operation `x ** y` returns a powered result of `x` and `y`.
 
 Operation `x == y` returns `true` when `x` equals to `y`, and `false` otherwise.
 
+<table>
+<tr><th>Operation</th><th>Result Data Type</th></tr>
+<tr><td><code>any == any</code></td><td><code>boolean</code></td></tr>
+</table>
+
 Operation `x < y` returns `true` when `x` is less than `y`, and `false` otherwise.
+
+<table>
+<tr><th>Operation</th><th>Result Data Type</th></tr>
+<tr><td><code>any < any</code></td><td><code>boolean</code></td></tr>
+</table>
 
 Operation `x > y` returns `true` when `x` is greater than `y`, and `false` otherwise.
 
+<table>
+<tr><th>Operation</th><th>Result Data Type</th></tr>
+<tr><td><code>any > any</code></td><td><code>boolean</code></td></tr>
+</table>
+
 Operation `x <= y` returns `true` when `x` is less than or equal to `y`, and `false` otherwise.
 
+<table>
+<tr><th>Operation</th><th>Result Data Type</th></tr>
+<tr><td><code>any <= any</code></td><td><code>boolean</code></td></tr>
+</table>
+
 Operation `x >= y` returns `true` when `x` is greater than or equal to `y`, and `false` otherwise.
+
+<table>
+<tr><th>Operation</th><th>Result Data Type</th></tr>
+<tr><td><code>any >= any</code></td><td><code>boolean</code></td></tr>
+</table>
 
 Operation `x <=> y` returns `0` when `x` is equal to `y`,
 `-1` when `x` is less than `y` and `1` when `x` is greater than `y`.
 
+<table>
+<tr><th>Operation</th><th>Result Data Type</th></tr>
+<tr><td><code>any <=> any</code></td><td><code>number</code></td></tr>
+</table>
+
+Operation `x in y` checks if `x` is contained in `y`.
+
+When Operator `in` takes a value of any type other than `list` and `iterator` at its left,
+it will check if the value is contained in the container specified at its right.
+If the right value is not of `list` or `iterator`,
+it would act in the same way as Operator `==`.
+
+<table>
+<tr><th>Operation</th><th>Result Data Type</th></tr>
+<tr><td><code>any in list</code></td><td><code>boolean</code></td></tr>
+<tr><td><code>any in iterator</code></td><td><code>boolean</code></td></tr>
+<tr><td><code>any in any</code></td><td><code>boolean</code></td></tr>
+</table>
+
+When Operator `in` takes a value of `list` or `iterator` type at its left,
+it will check if each value of the container's element is contained in the container
+specified at its right,
+and return a list of `boolean` indicating the result of each containing check.
+
+<table>
+<tr><th>Operation</th><th>Result Data Type</th></tr>
+<tr><td><code>list in list</code></td><td><code>list</code></td></tr>
+<tr><td><code>list in iterator</code></td><td><code>list</code></td></tr>
+<tr><td><code>list in any</code></td><td><code>list</code></td></tr>
+<tr><td><code>iterator in list</code></td><td><code>list</code></td></tr>
+<tr><td><code>iterator in iterator</code></td><td><code>list</code></td></tr>
+<tr><td><code>iterator in any</code></td><td><code>list</code></td></tr>
+</table>
+
+
+Operation `x & y` returns an AND calculation result of `x` and `y`.
+
+Operation `x | y` returns an OR calculation result of `x` and `y`.
+
+Operation `x ^ y` returns a XOR calculation result of `x` and `y`.
+
+
+Operation `x << y` returns a value of `x` shifted left by `y` bits.
+
+Operation `x >> y` returns a value of `x` shifted right by `y` bits.
+
+
+Operation `x || y`
+
+
+Operation `x && y`
+
+
+Operation `x .. y`
+
+Operation `x => y`
 
 
 ## User-defined Operator

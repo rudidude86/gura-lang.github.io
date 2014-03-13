@@ -49,7 +49,7 @@ represents a binary number.
     0b01010101
 
 A sequence of characters that starts with `0` and contains digit characters between `0` and `7`
-represents a octal number.
+represents an octal number.
 
     01234567
 
@@ -69,7 +69,7 @@ Two suffix identifiers are available as standard.
 <tr><td><code>j</code></td><td>Converts into <code>complex</code> type.
 An expression <code>3j</code> is equivalent with <code>complex(0, 3)</code>.</td></tr>
 <tr><td><code>r</code></td><td>Converts into <code>rational</code> type.
-An expression <code>3r</code> is equivalent with <code>rational(0, 3)</code>.</td></tr>
+An expression <code>3r</code> is equivalent with <code>rational(3, 0)</code>.</td></tr>
 </table>
 
 Importing modules may add other suffix identifiers.
@@ -182,7 +182,7 @@ The prefix `R` also removes indentation characters that appear at each line.
 
 Assuming that there are four spaces before the expression `print(R'''`,
 the parser would remove four spaces at top of each line within the multi-lined string.
-This feature helps you describe multi-lined strings in indentation blocks
+This feature helps you describe multi-lined strings in indented blocks
 without disarranging the appearance.
 
 A string literal prefixed by `b` would be treated

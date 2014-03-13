@@ -14,7 +14,7 @@ There are three types of Operators.
 * **Suffixed Unary Operator** takes an input value specified before it.
 * **Binary Operator** takes two input values specified on both sides of them.
 
-Users can define Operator's function through `operator` class.
+Users can assign their own functions to Operators through `operator` instance.
 
 ## Precedence
 
@@ -24,18 +24,18 @@ Users can define Operator's function through `operator` class.
             | `||`
             | `&&`
             | `in`
-            | `<  >  <=  >=  <=> ==  !=`
+            | `<   >   <=   >=   <=>   ==   !=`
             | `..`
             | `|`
             | `^`
             | `&`
-            | `<<  >>`
-            | `+  -`
-            | `*  /  %`
+            | `<<   >>`
+            | `+   -`
+            | `*   /   %`
  Higher     | `**`
 
 
-## Calculating Operators
+## Calculation Operators
 
 Basically, Operators are used for mathematical and logical calculation.
 This subsection explains such functions of operators.
@@ -422,28 +422,48 @@ that starts from `x` and is increased by one until `y`.
 
 ## Other Operators
 
-**Operation `string % any`** returns a string of formatting result.
+**Operation `string % any`** returns a result formatted
+by the string containing specifiers of `printf` format.
+The value of `any` must be a list if more than one argument are necessary.
+
+    'Name: %s, Age: %d' % [name, age]
+
+The code above has the same result as the following.
+
+    format('Name: %s, Age: %d', name, age)
 
 **Operation `function * any`** applies the function on `any`.
 
 **Operation `stream << any`** outputs `any` to the `stream`.
 
+    sys.stdout << 'Hello World\n'
 
-## User-defined Operator
 
-You can define Operators' functions through `operator` class.
-The example below assings `string - string` operation.
+## User-assigned Operator
+
+You can assign your own functions to operators through `operator` instance.
+The example below assings `string - string` operation by using `operator#assign()` method.
 
     op = operator(`-)
     op.assign(`string, `string) {|x, y|
         x.replace(y, '')
     }
 
-After this definition, a code:
+After this assignment, the following code results in `'Hello, world'`.
 
     'Hello, 1234world' - '1234'
 
-results in `'Hello, world'`.
+If you want to assign a function of a unary operator,
+specify one argument in `operator#assign()` method like below.
+
+    op = operator(`-)
+    op.assign(`string) {|x|
+        x.each().reverse().join()
+    }
+
+Then, the code below has a result `'987654321'`.
+
+    -'123456789'
 
 You can use `operator#entries()` method to get all of the functions registered in the operator.
 

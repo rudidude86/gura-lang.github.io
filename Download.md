@@ -41,6 +41,11 @@ Just launch the installer
 [gura-{{ gura_version }}-win32.msi](http://sourceforge.jp/projects/gura/downloads/{{ gura_download_id }}/gura-{{ gura_version }}-win32.msi/),
 which will install necessary files and register file extensions `.gura`, `.guraw`, `.gurc` and `.gurcw` as executable ones.
 
+If you don't want to modify registry, you can just expand ZIP file
+[gura-{{ gura_version }}-win32.zip](http://sourceforge.jp/projects/gura/downloads/{{ gura_download_id }}/gura-{{ gura_version }}-win32.zip/)
+in some directory. Then modify PATH environment so that it includes `gura\bin-x86` directory.
+
+
 ## Install into Linux
 
 In default configuration, Ubuntu and Fedora do not include C++ compilers and readline library.

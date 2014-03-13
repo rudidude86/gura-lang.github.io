@@ -16,32 +16,57 @@ There are three types of Operators.
 
 Users can define Operator's function through `operator` class.
 
+## Precedence
 
-## Standard Operators
+ Precedence | Operators
+------------|---------------------------------------------------
+ Lower      | `=>`
+            | `||`
+            | `&&`
+            | `in`
+            | `<  >  <=  >=  <=> ==  !=`
+            | `..`
+            | `|`
+            | `^`
+            | `&`
+            | `<<  >>`
+            | `+  -`
+            | `*  /  %`
+ Higher     | `**`
 
-This section describes about operators that are predefined.
 
-Operation `+x` returns the value of `x` itself.
+## Calculating Operators
+
+Basically, Operators are used for mathematical and logical calculation.
+This subsection explains such functions of operators.
+
+### Prefixed Unary Operators
+
+**Operation `+x`** returns the value of `x` itself.
 
 <table>
 <tr><th>Operation</th><th>Result Data Type</th></tr>
 <tr><td><code>+number</code></td><td><code>number</code></td></tr>
 <tr><td><code>+complex</code></td><td><code>complex</code></td></tr>
+<tr><td><code>+rational</code></td><td><code>rational</code></td></tr>
 <tr><td><code>+matrix</code></td><td><code>matrix</code></td></tr>
+<tr><td><code>+timedelta</code></td><td><code>timedelta</code></td></tr>
 </table>
 
 
-Operation `-x` returns a negaive value of `x`.
+**Operation `-x`** returns a negaive value of `x`.
 
 <table>
 <tr><th>Operation</th><th>Result Data Type</th></tr>
 <tr><td><code>-number</code></td><td><code>number</code></td></tr>
 <tr><td><code>-complex</code></td><td><code>complex</code></td></tr>
+<tr><td><code>-rational</code></td><td><code>rational</code></td></tr>
 <tr><td><code>-matrix</code></td><td><code>matrix</code></td></tr>
+<tr><td><code>-timedelta</code></td><td><code>timedelta</code></td></tr>
 </table>
 
 
-Operation `~x` returns a bit-inverted value of `x`.
+**Operation `~x`** returns a bit-inverted value of `x`.
 
 <table>
 <tr><th>Operation</th><th>Result Data Type</th></tr>
@@ -49,7 +74,7 @@ Operation `~x` returns a bit-inverted value of `x`.
 </table>
 
 
-Operation `!x` returns a logically inverted value of `x`
+**Operation `!x`** returns a logically inverted value of `x`
 after evaluating it as a boolean value.
 
 <table>
@@ -57,8 +82,9 @@ after evaluating it as a boolean value.
 <tr><td><code>!any</code></td><td><code>boolean</code></td></tr>
 </table>
 
+### Suffixed Unary Operators
 
-Operation `x..` returns an infinite iterator
+**Operation `x..`** returns an infinite iterator
 that starts from `x` and is increased by one.
 
 <table>
@@ -67,7 +93,7 @@ that starts from `x` and is increased by one.
 </table>
 
 
-Operation `x?` returns `false` if `x` is `false` or `nil`, and `true` otherwise.
+**Operation `x?`** returns `false` if `x` is `false` or `nil`, and `true` otherwise.
 This operator is not affected by Implicit Mapping
 and returns `true` if `x` is of `list` or `iterator` type.
 
@@ -77,7 +103,9 @@ and returns `true` if `x` is of `list` or `iterator` type.
 </table>
 
 
-Operation `x + y` returns an added result of `x` and `y`.
+### Binary Operators
+
+**Operation `x + y`** returns an added result of `x` and `y`.
 
 <table>
 <tr><th>Operation</th><th>Result Data Type</th></tr>
@@ -97,7 +125,7 @@ Operation `x + y` returns an added result of `x` and `y`.
 </table>
 
 If `x` and `y` are of `string` or `binary` type,
-operation `x + y` returns concatenated result of `x` and `y`.
+Operation `x + y` returns concatenated result of `x` and `y`.
 
 <table>
 <tr><th>Operation</th><th>Result Data Type</th></tr>
@@ -109,7 +137,8 @@ operation `x + y` returns concatenated result of `x` and `y`.
 <tr><td><code>any + string</code></td><td><code>string</code> (`any` will be converted to `string` before concatenation)</td></tr>
 </table>
 
-Operation `x - y` returns a subtracted result of `x` and `y`.
+
+**Operation `x - y`** returns a subtracted result of `x` and `y`.
 
 <table>
 <tr><th>Operation</th><th>Result Data Type</th></tr>
@@ -128,7 +157,8 @@ Operation `x - y` returns a subtracted result of `x` and `y`.
 <tr><td><code>timedelta - timedelta</code></td><td><code>timedelta</code></td></tr>
 </table>
 
-Operation `x * y` returns a multiplied result of `x` and `y`.
+
+**Operation `x * y`** returns a multiplied result of `x` and `y`.
 
 <table>
 <tr><th>Operation</th><th>Result Data Type</th></tr>
@@ -159,7 +189,8 @@ will join the `string`/`binary` for `number` times.
 <tr><td><code>number * binary</code></td><td><code>binary</code></td></tr>
 </table>
 
-Operation `x / y` returns a divided result of `x` and `y`.
+
+**Operation `x / y`** returns a divided result of `x` and `y`.
 
 <table>
 <tr><th>Operation</th><th>Result Data Type</th></tr>
@@ -175,14 +206,16 @@ Operation `x / y` returns a divided result of `x` and `y`.
 <tr><td><code>matrix / matrix</code></td><td><code>matrix</code></td></tr>
 </table>
 
-Operation `x % y` returns a remainder after dividing `x` by `y`.
+
+**Operation `x % y`** returns a remainder after dividing `x` by `y`.
 
 <table>
 <tr><th>Operation</th><th>Result Data Type</th></tr>
 <tr><td><code>number % number</code></td><td><code>number</code></td></tr>
 </table>
 
-Operation `x ** y` returns a powered result of `x` and `y`.
+
+**Operation `x ** y`** returns a powered result of `x` and `y`.
 
 <table>
 <tr><th>Operation</th><th>Result Data Type</th></tr>
@@ -192,42 +225,48 @@ Operation `x ** y` returns a powered result of `x` and `y`.
 <tr><td><code>complex ** complex</code></td><td><code>complex</code></td></tr>
 </table>
 
-Operation `x == y` returns `true` when `x` equals to `y`, and `false` otherwise.
+
+**Operation `x == y`** returns `true` when `x` equals to `y`, and `false` otherwise.
 
 <table>
 <tr><th>Operation</th><th>Result Data Type</th></tr>
 <tr><td><code>any == any</code></td><td><code>boolean</code></td></tr>
 </table>
 
-Operation `x < y` returns `true` when `x` is less than `y`, and `false` otherwise.
+
+**Operation `x < y`** returns `true` when `x` is less than `y`, and `false` otherwise.
 
 <table>
 <tr><th>Operation</th><th>Result Data Type</th></tr>
 <tr><td><code>any < any</code></td><td><code>boolean</code></td></tr>
 </table>
 
-Operation `x > y` returns `true` when `x` is greater than `y`, and `false` otherwise.
+
+**Operation `x > y`** returns `true` when `x` is greater than `y`, and `false` otherwise.
 
 <table>
 <tr><th>Operation</th><th>Result Data Type</th></tr>
 <tr><td><code>any > any</code></td><td><code>boolean</code></td></tr>
 </table>
 
-Operation `x <= y` returns `true` when `x` is less than or equal to `y`, and `false` otherwise.
+
+**Operation `x <= y`** returns `true` when `x` is less than or equal to `y`, and `false` otherwise.
 
 <table>
 <tr><th>Operation</th><th>Result Data Type</th></tr>
 <tr><td><code>any <= any</code></td><td><code>boolean</code></td></tr>
 </table>
 
-Operation `x >= y` returns `true` when `x` is greater than or equal to `y`, and `false` otherwise.
+
+**Operation `x >= y`** returns `true` when `x` is greater than or equal to `y`, and `false` otherwise.
 
 <table>
 <tr><th>Operation</th><th>Result Data Type</th></tr>
 <tr><td><code>any >= any</code></td><td><code>boolean</code></td></tr>
 </table>
 
-Operation `x <=> y` returns `0` when `x` is equal to `y`,
+
+**Operation `x <=> y`** returns `0` when `x` is equal to `y`,
 `-1` when `x` is less than `y` and `1` when `x` is greater than `y`.
 
 <table>
@@ -235,7 +274,8 @@ Operation `x <=> y` returns `0` when `x` is equal to `y`,
 <tr><td><code>any <=> any</code></td><td><code>number</code></td></tr>
 </table>
 
-Operation `x in y` checks if `x` is contained in `y`.
+
+**Operation `x in y`** checks if `x` is contained in `y`.
 
 When Operator `in` takes a value of any type other than `list` and `iterator` at its left,
 it will check if the value is contained in the container specified at its right.
@@ -265,30 +305,153 @@ and return a list of `boolean` indicating the result of each containing check.
 </table>
 
 
-Operation `x & y` returns an AND calculation result of `x` and `y`.
+**Operation `x & y`** returns an AND calculation result of `x` and `y`.
 
-Operation `x | y` returns an OR calculation result of `x` and `y`.
+* If `x` and `y` are of `number` type, it calculates bitwise AND between them.
+* If `x` and `y` are of `boolean` type, it calculates logical AND between them.
+* If either `x` or `y` is `nil, it returns `nil.
 
-Operation `x ^ y` returns a XOR calculation result of `x` and `y`.
-
-
-Operation `x << y` returns a value of `x` shifted left by `y` bits.
-
-Operation `x >> y` returns a value of `x` shifted right by `y` bits.
-
-
-Operation `x || y`
-
-
-Operation `x && y`
+<table>
+<tr><th>Operation</th><th>Result Data Type</th></tr>
+<tr><td><code>number & number</code></td><td><code>number</code></td></tr>
+<tr><td><code>boolean & boolean</code></td><td><code>number</code></td></tr>
+<tr><td><code>nil & any</code></td><td><code>nil</code></td></tr>
+<tr><td><code>any & nil</code></td><td><code>nil</code></td></tr>
+</table>
 
 
-Operation `x .. y`
+**Operation `x | y`** returns an OR calculation result of `x` and `y`.
 
-Operation `x => y`
+* If `x` and `y` are of `number` type, it calculates bitwise OR between them.
+* If `x` and `y` are of `boolean` type, it calculates logical OR between them.
+* If either `x` or `y` is `nil, it returns one of their values that is not `nil.
+
+<table>
+<tr><th>Operation</th><th>Result Data Type</th></tr>
+<tr><td><code>number & number</code></td><td><code>number</code></td></tr>
+<tr><td><code>boolean & boolean</code></td><td><code>number</code></td></tr>
+<tr><td><code>nil & any</code></td><td><code>nil</code></td></tr>
+<tr><td><code>any & nil</code></td><td><code>nil</code></td></tr>
+</table>
+
+
+**Operation `x ^ y`** returns a XOR calculation result of `x` and `y`.
+
+* If `x` and `y` are of `number` type, it calculates bitwise OR between them.
+* If `x` and `y` are of `boolean` type, it calculates logical OR between them.
+
+<table>
+<tr><th>Operation</th><th>Result Data Type</th></tr>
+<tr><td><code>number & number</code></td><td><code>number</code></td></tr>
+<tr><td><code>boolean & boolean</code></td><td><code>number</code></td></tr>
+</table>
+
+
+**Operation `x << y`** returns a value of `x` shifted left by `y` bits.
+
+<table>
+<tr><th>Operation</th><th>Result Data Type</th></tr>
+<tr><td><code>number << number</code></td><td><code>number</code></td></tr>
+</table>
+
+
+**Operation `x >> y`** returns a value of `x` shifted right by `y` bits.
+
+<table>
+<tr><th>Operation</th><th>Result Data Type</th></tr>
+<tr><td><code>number >> number</code></td><td><code>number</code></td></tr>
+</table>
+
+
+**Operation `x && y`** returns a conditional AND result of `x` and `y`.
+
+* If `x` is not of `list` nor `iterator` type,
+  it would return the value of `x` when `x` is determined as `false`,
+  and return the value of `y` otherwise.
+  It won't evaluate `y` when `x` comes out to be in `false` state.
+* If `x` is of `list` type, it applies the above operation on each value of the list's elements and
+  returns a list containing the results.
+* If `x` is of `iterator` type, it returns an iterator that is to apply the above operation
+  on each value of the iterator's elements.
+
+<table>
+<tr><th>Operation</th><th>Result Data Type</th></tr>
+<tr><td><code>any && any</code></td><td><code>any</code></td></tr>
+<tr><td><code>list && any</code></td><td><code>list</code></td></tr>
+<tr><td><code>iterator && any</code></td><td><code>iterator</code></td></tr>
+</table>
+
+
+**Operation `x || y`** returns a conditional OR result of `x` and `y`.
+
+* If `x` is not of `list` nor `iterator` type,
+  it would return the value of `x` when `x` is determined as `true`,
+  and return the value of `y` otherwise.
+  It won't evaluate `y` when `x` comes out to be in `true` state.
+* If `x` is of `list` type, it applies the above operation on each value of the list's elements and
+  returns a list containing the results.
+* If `x` is of `iterator` type, it returns an iterator that is to apply the above operation
+  on each value of the iterator's elements.
+
+<table>
+<tr><th>Operation</th><th>Result Data Type</th></tr>
+<tr><td><code>any || any</code></td><td><code>any</code></td></tr>
+<tr><td><code>list || any</code></td><td><code>list</code></td></tr>
+<tr><td><code>iterator || any</code></td><td><code>iterator</code></td></tr>
+</table>
+
+
+**Operation `x..y`** creates an iterator that returns `number` value
+that starts from `x` and is increased by one until `y`.
+
+<table>
+<tr><th>Operation</th><th>Result Data Type</th></tr>
+<tr><td><code>number..number</code></td><td><code>iterator</code></td></tr>
+</table>
+
+
+**Operation `x => y`** returns a list `[x, y]`.
+
+<table>
+<tr><th>Operation</th><th>Result Data Type</th></tr>
+<tr><td><code>number => any</code></td><td><code>list</code></td></tr>
+<tr><td><code>string => any</code></td><td><code>list</code></td></tr>
+<tr><td><code>symbol => any</code></td><td><code>list</code></td></tr>
+</table>
+
+
+## Other Operators
+
+**Operation `string % any`** returns a string of formatting result.
+
+**Operation `function * any`** applies the function on `any`.
+
+**Operation `stream << any`** outputs `any` to the `stream`.
 
 
 ## User-defined Operator
 
 You can define Operators' functions through `operator` class.
+The example below assings `string - string` operation.
 
+    op = operator(`-)
+    op.assign(`string, `string) {|x, y|
+        x.replace(y, '')
+    }
+
+After this definition, a code:
+
+    'Hello, 1234world' - '1234'
+
+results in `'Hello, world'`.
+
+You can use `operator#entries()` method to get all of the functions registered in the operator.
+
+    op = operator(`-)
+    println(op.entries())
+
+The method returns entries registered as binary operators.
+Specifying a symbol ``unary` as its argument would return a list of unary operators.
+
+    op = operator(`-)
+    println(op.entries(`unary))

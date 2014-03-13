@@ -33,6 +33,9 @@ which also shows one of the typical ways to instantiate values of each type.
 
         nil
 
+  Since `nil is the only instance of `nil type,
+  the term `nil can both mean the name of the value and its type.
+
 * `boolean`
 
   Values of `boolean` type are used to determine
@@ -69,6 +72,12 @@ which also shows one of the typical ways to instantiate values of each type.
   An identifier preceded by a back quote instantiates a value of `symbol` type.
 
         `foo  `bar
+
+* `expr`
+
+  Any expression preceded by a back quote instantiates a value of `expr` type.
+
+        `(x + y)  `func(x)  `{ println('hello'), x += 1 }
 
 * `iterator`
 

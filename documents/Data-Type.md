@@ -2,11 +2,12 @@
 layout: page
 lang: en
 title: Data Type
+chapter: 3
 ---
 
-# {{ page.title }}
+# {{ page.chapter }}. {{ page.title }}
 
-## About Data Type
+## {{ page.chapter }}.1. About Data Type
 
 A value has a corresponding Data Type that manages its behavior and properties.
 
@@ -20,7 +21,7 @@ As each Data Type has a one-to-one relationship with a corresponding Class,
 those terms have almost the same meaning within documents in many cases.
 
 
-## Familiar Data Types
+## {{ page.chapter }}.2. Familiar Data Types
 
 Below is a list of some Data Types that often appear in documents,
 which also shows one of the typical ways to instantiate values of each type.

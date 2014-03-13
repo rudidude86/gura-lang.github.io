@@ -2,11 +2,12 @@
 layout: page
 lang: en
 title: Operator
+chapter: 4
 ---
 
-# {{ page.title }}
+# {{ page.chapter }}. {{ page.title }}
 
-## About Operator
+## {{ page.chapter }}.1. About Operator
 
 There are three types of Operators.
 
@@ -16,7 +17,7 @@ There are three types of Operators.
 
 Users can assign their own functions to Operators through `operator` instance.
 
-## Precedence
+## {{ page.chapter }}.2. Precedence
 
  Precedence | Operators
 ------------|---------------------------------------------------
@@ -35,12 +36,12 @@ Users can assign their own functions to Operators through `operator` instance.
  Higher     | `**`
 
 
-## Calculation Operators
+## {{ page.chapter }}.3. Calculation Operators
 
 Basically, Operators are used for mathematical and logical calculation.
 This subsection explains such functions of operators.
 
-### Prefixed Unary Operators
+### {{ page.chapter }}.3.1 Prefixed Unary Operators
 
 **Operation `+x`** returns the value of `x` itself.
 
@@ -82,7 +83,7 @@ after evaluating it as a boolean value.
 <tr><td><code>!any</code></td><td><code>boolean</code></td></tr>
 </table>
 
-### Suffixed Unary Operators
+### {{ page.chapter }}.3.2 Suffixed Unary Operators
 
 **Operation `x..`** returns an infinite iterator
 that starts from `x` and is increased by one.
@@ -103,7 +104,7 @@ and returns `true` if `x` is of `list` or `iterator` type.
 </table>
 
 
-### Binary Operators
+### {{ page.chapter }}.3.3. Binary Operators
 
 **Operation `x + y`** returns an added result of `x` and `y`.
 
@@ -420,7 +421,7 @@ that starts from `x` and is increased by one until `y`.
 </table>
 
 
-## Other Operators
+## {{ page.chapter }}.4. Other Operators
 
 **Operation `string % any`** returns a result formatted
 by the string containing specifiers of `printf` format.
@@ -439,7 +440,7 @@ The code above has the same result as the following.
     sys.stdout << 'Hello World\n'
 
 
-## Assignment Operators
+## {{ page.chapter }}.5. Assignment Operators
 
 Operation `x = y` assigns the value of `y` to `x`.
 
@@ -461,7 +462,7 @@ The expression of `x` may be one of symbol, list, indexer, caller or member sele
 </table>
 
 
-## Operator Overload
+## {{ page.chapter }}.6. Operator Overload
 
 You can assign your own functions to operators through `operator` instance.
 The example below assings `string - string` operation by using `operator#assign()` method.

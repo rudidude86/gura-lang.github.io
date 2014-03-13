@@ -76,23 +76,23 @@ _I've decided to publish documents in English that I'm currently writing,
 which is far from complete and being updated day by day.
 I hope the publication will inspire me to carry on this tough work :-)_
 
-1. [Introduction](documents/Introduction.html)
-2. [Launch Program](documents/Launch-Program.html)
-3. [Syntax](documents/Syntax.html)
-4. [Data Type](documents/Data-Type.html)
-5. [Operator](documents/Operator.html)
-6. Function
-7. Flow Control
-8. List and Iterator
-9. Dictionary
-10. Class
-11. Implicit Mapping
-12. Member Mapping
-13. Module
-14. Mathematic Functions
-15. Path
-16. Stream
-17. Image
-18. Template Engine
+<div><a href="documents/Introduction.html">Introduction</a></div>
+<div>1. <a href="documents/Launch-Program.html">Launch Program</a></div>
+<div>2. <a href="documents/Syntax.html">Syntax</a></div>
+<div>3. <a href="documents/Data-Type.html">Data Type</a></div>
+<div>4. <a href="documents/Operator.html">Operator</a></div>
+<div>5. Function</div>
+<div>6. Flow Control</div>
+<div>7. List and Iterator</div>
+<div>8. Dictionary</div>
+<div>9. Class</div>
+<div>10. Implicit Mapping</div>
+<div>11. Member Mapping</div>
+<div>12. Module</div>
+<div>13. Mathematic Functions</div>
+<div>14. Path</div>
+<div>15. Stream</div>
+<div>16. Image</div>
+<div>17. Template Engine</div>
 
 Any opinions and suggestions are welcome via [E-mail](mailto:ypsitau@nifty.com).

@@ -2,11 +2,12 @@
 layout: page
 lang: en
 title: Syntax
+chapter: 2
 ---
 
-# {{ page.title }}
+# {{ page.chapter }}. {{ page.title }}
 
-## Identifier
+## {{ page.chapter }}.1. Identifier
 
 An identifier is used as a name of variable, function, symbol, type name, attribute and suffix.
 
@@ -32,7 +33,7 @@ Here are some valid indentifiers:
     test_1_var
 
 
-## Number Literal
+## {{ page.chapter }}.2. Number Literal
 
 A decimal number is the most common number literal.
 
@@ -80,7 +81,7 @@ You can also add your own suffix identifiers by using Suffix Manager
 that is responsible for managing suffix identifiers and their associated functions.
 
 
-## String Literal
+## {{ page.chapter }}.3. String Literal
 
 A string literal is a sequence of characters surrounded
 by a pair of single or double quotations.
@@ -193,7 +194,7 @@ that has been registered in Suffix Manager.
 There's no built-in suffix for string literals.
 
 
-## Operator
+## {{ page.chapter }}.4. Operator
 
 An Operator takes one or two values as its inputs and returns a calculation result.
 It's categorized in the following types:
@@ -220,7 +221,7 @@ It's categorized in the following types:
 See section [Operator](Operator.html) for more detail.
 
 
-## Group
+## {{ page.chapter }}.5. Group
 
 Multiple elements can be grouped by surronding them with a pair of brackets.
 There are three types of brackets as listed below.
@@ -269,7 +270,7 @@ The following two codes have the same result.
     ]
 
 
-## Attribute
+## {{ page.chapter }}.6. Attribute
 
 An identifier preceded by a colon is called Attribute.
 
@@ -284,7 +285,7 @@ More than one attributes can be appended by simply concatenating them like below
     func():foo:bar
 
 
-## Member Selector
+## {{ page.chapter }}.7. Member Selector
 
 A Member Selector is responsible for accessing variables
 in a container like instance, class and module.
@@ -298,7 +299,7 @@ and a variable identifier on the right side.
 Others are for what is called Member Mapping and take a list or an iterator on the left side.
 
 
-## Symbol and Expression
+## {{ page.chapter }}.8. Symbol and Expression
 
 An identifier preceded by a back quote is called a Symbol
 and creates an instance of `symbol` data type.
@@ -317,7 +318,7 @@ As an Expression can hold any code without any evaluation,
 it can be used to pass a procedure itself to a function as one of the arguments.
 
 
-## Comment
+## {{ page.chapter }}.9. Comment
 
 There are two types of comments: line comment and block comment.
 

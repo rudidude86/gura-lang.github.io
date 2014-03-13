@@ -229,23 +229,33 @@ There are three types of brackets as listed below.
   
   When it appears right after an element that has a value as a result of evaluation,
   it works as an indexer that allows indexing access in the preceding value.
-  
+
+        x[3]  foo['key']
+
   Otherwise, it forms a list of elements
   that is set to create a `list` instance after evaluation.
+
+        [1, 2, 3, 4]
 
 * __Parentheses__: `(a, b, c)`
 
   When it appears right after an element that has a value as a result of evaluation,
   it's used as an argument list to evaluate the preceding value as a callable.
-  
+
+        f(1, 2, 3)
+
   Otherwise, it forms a list of elements
   that is set to create an `iterator` instance after evaluation.
+
+        (1, 2, 3, 4)
 
 * __Curly bracket__: `{a, b, c}`
   
   It forms a list of expressions called Block.
   In general, a Block is used as a body for function assignment
   or provides a procedual part in calling a function.
+
+       f() = { println('hello') }
 
 Elements in a group can be separated by a comma character or a line feed.
 The following two codes have the same result.

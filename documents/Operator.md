@@ -439,7 +439,29 @@ The code above has the same result as the following.
     sys.stdout << 'Hello World\n'
 
 
-## User-assigned Operator
+## Assignment Operators
+
+Operation `x = y` assigns the value of `y` to `x`.
+
+The expression of `x` may be one of symbol, list, indexer, caller or member selector.
+
+<table>
+<tr><th>Assignment Form</th><th>Equivalent Code</th></tr>
+<tr><td><code>x += y</code></td><td><code>x = x + y</code></td></tr>
+<tr><td><code>x -= y</code></td><td><code>x = x - y</code></td></tr>
+<tr><td><code>x *= y</code></td><td><code>x = x * y</code></td></tr>
+<tr><td><code>x /= y</code></td><td><code>x = x / y</code></td></tr>
+<tr><td><code>x %= y</code></td><td><code>x = x % y</code></td></tr>
+<tr><td><code>x **= y</code></td><td><code>x = x ** y</code></td></tr>
+<tr><td><code>x &= y</code></td><td><code>x = x & y</code></td></tr>
+<tr><td><code>x |= y</code></td><td><code>x = x | y</code></td></tr>
+<tr><td><code>x ^= y</code></td><td><code>x = x ^ y</code></td></tr>
+<tr><td><code>x <<= y</code></td><td><code>x = x << y</code></td></tr>
+<tr><td><code>x >>= y</code></td><td><code>x = x >> y</code></td></tr>
+</table>
+
+
+## Operator Overload
 
 You can assign your own functions to operators through `operator` instance.
 The example below assings `string - string` operation by using `operator#assign()` method.
@@ -464,6 +486,8 @@ specify one argument in `operator#assign()` method like below.
 Then, the code below has a result `'987654321'`.
 
     -'123456789'
+
+You can also override existing operators.
 
 You can use `operator#entries()` method to get all of the functions registered in the operator.
 

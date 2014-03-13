@@ -62,7 +62,7 @@ after it's given with iterators, `1..` and `readlines('foo.txt')`, as its argume
 
 # Documents
 
-## Japanese Version
+## Japanese
 
 Sorry! Only Japanese version is available so far.
 
@@ -70,7 +70,7 @@ Sorry! Only Japanese version is available so far.
 - ![pdf-icon](images/pdf.png) Gura Library Reference ([Japanese](https://github.com/gura-lang/gura-doc/blob/master/gura-lib-j.pdf?raw=true))
 - ![pdf-icon](images/pdf.png) Gura Developer's Manual ([Japanese](https://github.com/gura-lang/gura-doc/blob/master/gura-dev-j.pdf?raw=true))
 
-## English Version
+## English
 
 _I've decided to publish documents in English that I'm currently writing,
 which is far from complete and being updated day by day.

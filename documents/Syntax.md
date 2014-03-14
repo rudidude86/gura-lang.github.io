@@ -9,7 +9,7 @@ chapter: 2
 
 ## {{ page.chapter }}.1. Elements
 
-This section explains about syntax elements in a script.
+This section explains about syntax elements in the script.
 
 ### {{ page.chapter }}.1.1. Identifier
 
@@ -398,18 +398,17 @@ Expression `BinaryOp`
 
 Expression `Assign`
 
-Expression `Member`
-
-A Member Selector is responsible for accessing variables
-in a container like instance, class and module.
-Below are available Member Selectors.
+Expression `Member` is responsible for accessing variables
+in a property owner like instance, class and module.
+Below are available Member accessors.
 
     x.y  x::y  x:*y  x:&y
 
-Member Selector `x.y` takes a reference to the container on the left side
+Member accessor `x.y` takes a reference to a property owner on the left side
 and a variable identifier on the right side.
 
-Others are for what is called Member Mapping and take a list or an iterator on the left side.
+Others are for what is called Member Mapping and take a list or an iterator on the left side,
+each of which elements is a reference to a property owner.
 
 
 ### {{ page.chapter }}.2.5. Container

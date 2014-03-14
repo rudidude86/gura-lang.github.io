@@ -15,15 +15,30 @@ There are three types of Operators.
 * **Suffixed Unary Operator** takes an input value specified before it.
 * **Binary Operator** takes two input values specified on both sides of them.
 
-Users can assign their own functions to Operators through `operator` instance.
+An Operator has a table of procedures that are indexed by Data Types of given values,
+one Data Type indexing for Unary Operators and two Data Types for Binary Operators.
+For instance, operator `+` has a procedure to calculate between values of `number` and `number`
+and also a procecure beween values of `string` and `string`.
+These procedures are isolated each other
+as long as combination of the given Data Types is different.
+
+Users can overload operators' procedures through `operator` instance.
+If combination of Data Types of the overloading procedure
+is the same as that of existing one,
+it would override the registered procedure.
+Otherwise, it would add a new procedure to the operator.
+
 
 ## {{ page.chapter }}.2. Precedence
+
+The following table shows operators' precedence order from the lowest to the highest.
 
  Precedence | Operators
 ------------|---------------------------------------------------
  Lower      | `=>`
             | `||`
             | `&&`
+            | `!`
             | `in`
             | `<   >   <=   >=   <=>   ==   !=`
             | `..`
@@ -32,7 +47,8 @@ Users can assign their own functions to Operators through `operator` instance.
             | `&`
             | `<<   >>`
             | `+   -`
-            | `*   /   %`
+            | `*   /   %  ?`
+            | `~`
  Higher     | `**`
 
 
@@ -40,6 +56,7 @@ Users can assign their own functions to Operators through `operator` instance.
 
 Basically, Operators are used for mathematical and logical calculation.
 This subsection explains such functions of operators.
+
 
 ### {{ page.chapter }}.3.1 Prefixed Unary Operators
 

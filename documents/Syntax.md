@@ -7,7 +7,11 @@ chapter: 2
 
 # {{ page.chapter }}. {{ page.title }}
 
-## {{ page.chapter }}.1. Identifier
+## {{ page.chapter }}.1. Elements
+
+
+
+### {{ page.chapter }}.1.1. Identifier
 
 An identifier is used as a name of variable, function, symbol, type name, attribute and suffix.
 
@@ -33,7 +37,7 @@ Here are some valid indentifiers:
     test_1_var
 
 
-## {{ page.chapter }}.2. Number Literal
+### {{ page.chapter }}.1.2. Number Literal
 
 A decimal number is the most common number literal.
 
@@ -81,7 +85,7 @@ You can also add your own suffix identifiers by using Suffix Manager
 that is responsible for managing suffix identifiers and their associated functions.
 
 
-## {{ page.chapter }}.3. String Literal
+### {{ page.chapter }}.1.3. String Literal
 
 A string literal is a sequence of characters surrounded
 by a pair of single or double quotations.
@@ -194,7 +198,7 @@ that has been registered in Suffix Manager.
 There's no built-in suffix for string literals.
 
 
-## {{ page.chapter }}.4. Operator
+### {{ page.chapter }}.1.4. Operator
 
 An Operator takes one or two values as its inputs and returns a calculation result.
 It's categorized in the following types:
@@ -221,7 +225,7 @@ It's categorized in the following types:
 See section [Operator](Operator.html) for more detail.
 
 
-## {{ page.chapter }}.5. Group
+### {{ page.chapter }}.1.5. Container
 
 Multiple elements can be grouped by surronding them with a pair of brackets.
 There are three types of brackets as listed below.
@@ -258,7 +262,13 @@ There are three types of brackets as listed below.
 
        f() = { println('hello') }
 
-Elements in a group can be separated by a comma character or a line feed.
+* __Vertical Bar__: `|a, b, c|`
+
+  This only appears right after opening bracket of Block and is called Block Parameter.
+  
+        repeat (3) {|i| println(i)}
+
+Elements in a container can be separated by a comma character or a line feed.
 The following two codes have the same result.
 
     [1, 2, 3, 4]
@@ -270,7 +280,7 @@ The following two codes have the same result.
     ]
 
 
-## {{ page.chapter }}.6. Attribute
+### {{ page.chapter }}.1.6. Attribute
 
 An identifier preceded by a colon is called Attribute.
 
@@ -285,7 +295,7 @@ More than one attributes can be appended by simply concatenating them like below
     func():foo:bar
 
 
-## {{ page.chapter }}.7. Member Selector
+### {{ page.chapter }}.1.7. Member Selector
 
 A Member Selector is responsible for accessing variables
 in a container like instance, class and module.
@@ -299,7 +309,7 @@ and a variable identifier on the right side.
 Others are for what is called Member Mapping and take a list or an iterator on the left side.
 
 
-## {{ page.chapter }}.8. Symbol and Expression
+### {{ page.chapter }}.1.8. Symbol and Expression
 
 An identifier preceded by a back quote is called a Symbol
 and creates an instance of `symbol` data type.
@@ -318,7 +328,7 @@ As an Expression can hold any code without any evaluation,
 it can be used to pass a procedure itself to a function as one of the arguments.
 
 
-## {{ page.chapter }}.9. Comment
+### {{ page.chapter }}.1.9. Comment
 
 There are two types of comments: line comment and block comment.
 
@@ -343,3 +353,73 @@ Following are valid examples of block comment.
     */
     
     /* /* /* nested comment */ */ */
+
+
+## {{ page.chapter }}.2. Expression
+
+
+### {{ page.chapter }}.2.1. Hierarchy
+
+The following figure shows a hierarchy of all the expression.
+
+    Expr <-+- Value
+           +- Symbol
+           +- Suffixed
+           +- Unary <-----+- UnaryOp
+           |              `- Quote
+           +- Binary <----+- BinaryOp
+           |              +- Assign
+           |              `- Member
+           +- Container <-+- Root
+           |              +- Block
+           |              +- Lister
+           |              `- Iterer
+           `- Compound <--+- Indexer
+                          `- Caller
+
+
+### {{ page.chapter }}.2.2. Simple Expression
+
+Expression `Value` holds a value of `number`, `string` or `binary` type.
+Those types of value are described in string literal, number literal
+and b-prefixed string literal in a script respectively.
+
+Expression `Symbol`
+
+    identifier:attribute:attribute:[attribute,attribute]
+
+Expression `Suffixed` has a string and an identifier indicating the suffix.
+
+
+### {{ page.chapter }}.2.3. Unary
+
+Expression `UnaryOp`
+
+Expression `Quote`
+
+
+### {{ page.chapter }}.2.4. Binary
+
+Expression `BinaryOp`
+
+Expression `Assign`
+
+Expression `Member`
+
+
+### {{ page.chapter }}.2.5. Container
+
+Expression `Root`
+
+Expression `Block`
+
+Expression `Lister`
+
+Expression `Iterer`
+
+
+### {{ page.chapter }}.2.6. Compound
+
+Expression `Indexer`
+
+Expression `Caller`

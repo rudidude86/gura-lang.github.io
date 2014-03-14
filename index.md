@@ -95,4 +95,7 @@ I hope the publication will inspire me to carry on this tough work :-)_
 <div>16. Image</div>
 <div>17. Template Engine</div>
 
+
+# Contacts
+
 Any opinions and suggestions are welcome via [E-mail](mailto:ypsitau@nifty.com).

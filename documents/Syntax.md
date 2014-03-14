@@ -11,11 +11,11 @@ chapter: 2
 
 This section explains about syntax elements in the script.
 
-### {{ page.chapter }}.1.1. Identifier
+### {{ page.chapter }}.1.1. Symbol
 
-An identifier is used as a name of variable, function, symbol, type name, attribute and suffix.
+A symbol is used as a name of variable, function, symbol, type name, attribute and suffix.
 
-An identifier starts with a UTF-8 leading byte or one of following characters:
+A symbol starts with a UTF-8 leading byte or one of following characters:
 
     a b c d e f g h i j k l m n o p q r s t u v w x y z
     A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
@@ -65,24 +65,24 @@ represents a hexadecimal number.
     0x7feaa00
     0x7FEAA00
 
-A suffix identifier can be appended after a number literal
+A suffix symbol can be appended after a number literal
 to convert it into other types rather than `number`.
-Two suffix identifiers are available as standard.
+Two suffix symbols are available as standard.
 
 <table>
-<tr><th>Suffix Identifier</th><th>Function</th></tr>
+<tr><th>Suffix Symbol</th><th>Function</th></tr>
 <tr><td><code>j</code></td><td>Converts into <code>complex</code> type.
 An expression <code>3j</code> is equivalent with <code>complex(0, 3)</code>.</td></tr>
 <tr><td><code>r</code></td><td>Converts into <code>rational</code> type.
 An expression <code>3r</code> is equivalent with <code>rational(3, 0)</code>.</td></tr>
 </table>
 
-Importing modules may add other suffix identifiers.
+Importing modules may add other suffix symbols.
 For instance, importing a module named `gmp`, which calculates numbers in arbitrary precision,
 would add a suffix `L` that represents numbers that may consist of many digits.
 
-You can also add your own suffix identifiers by using Suffix Manager
-that is responsible for managing suffix identifiers and their associated functions.
+You can also add your own suffix symbols by using Suffix Manager
+that is responsible for managing suffix symbols and their associated functions.
 
 
 ### {{ page.chapter }}.1.3. String Literal
@@ -193,7 +193,7 @@ without disarranging the appearance.
 A string literal prefixed by `b` would be treated
 as a sequence of binary data instead of character code.
 
-A string literal can also be appended by a suffix identifier
+A string literal can also be appended by a suffix symbol
 that has been registered in Suffix Manager.
 There's no built-in suffix for string literals.
 
@@ -282,7 +282,7 @@ The following two codes have the same result.
 
 ### {{ page.chapter }}.1.6. Attribute
 
-An identifier preceded by a colon is called Attribute.
+A symbol preceded by a colon is called Attribute.
 
     :foo  :bar
 
@@ -297,13 +297,12 @@ More than one attributes can be appended by simply concatenating them like below
 
 ### {{ page.chapter }}.1.7. Symbol and Expression
 
-An identifier preceded by a back quote is called a Symbol
-and creates an instance of `symbol` data type.
+A symbol preceded by a back quote creates an instance of `symbol` data type.
 
     `foo  `bar
 
-Each Symbol has a unique number that is assigned at parsing phase,
-which enables quick identification between Symbols.
+Each values of `symbol` data type has a unique number that is assigned at parsing phase,
+which enables quick identification between them.
 
 Any other elements that has a back quote appended ahead is called an Expression
 and creates an instance of `expr` data type.
@@ -355,7 +354,7 @@ But, if necessary, you can refer to them through instances of `expr` class.
 The following figure shows a hierarchy of all the expression.
 
     Expr <-+- Value
-           +- Symbol
+           +- Identifier
            +- Suffixed
            +- Unary <-----+- UnaryOp
            |              `- Quote
@@ -376,9 +375,9 @@ Expression `Value` holds a value of `number`, `string` or `binary` type.
 Those types of value are described with string literal, number literal
 and b-prefixed string literal in a script respectively.
 
-Expression `Symbol`
+Expression `Identifier`
 
-    identifier:attribute:attribute:[attribute,attribute]
+    symbol:attribute:attribute:[attribute,attribute]
 
 Expression `Suffixed` has a suffix indentifier and a preceding literal or string or number.
 

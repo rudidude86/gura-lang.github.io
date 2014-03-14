@@ -375,9 +375,13 @@ Expression `Value` holds a value of `number`, `string` or `binary` type.
 Those types of value are described with string literal, number literal
 and b-prefixed string literal in a script respectively.
 
-Expression `Identifier`
+    3.141
+    'hello'
+    b'\x00\x01\x02\0x03'
 
-    symbol:attribute:attribute:[attribute,attribute]
+Expression `Identifier` consists of a symbol and zero or more attributes trailing it.
+
+    foo:attr1:attr2
 
 Expression `Suffixed` has a suffix symbol and a preceding literal or string or number.
 
@@ -386,16 +390,28 @@ Expression `Suffixed` has a suffix symbol and a preceding literal or string or n
 
 ### {{ page.chapter }}.2.3. Unary
 
-Expression `UnaryOp`
+Expression `UnaryOp` consists of a unary operator
+and a child expression on which the operator is applied.
 
-Expression `Quote`
+    -foo
 
+Expression `Quote` consts of a back quotation
+and a child expression that is to be quoted by it.
+
+    `foo
 
 ### {{ page.chapter }}.2.4. Binary
 
-Expression `BinaryOp`
+Expression `BinaryOp` consists of a binary operator
+and two child expressions on which the operator is applied.
 
-Expression `Assign`
+    x + y
+
+Expression `Assign` consists of an equal symbol,
+an expression on the left side that is a target of the assignment
+and an expression on the right side that is an assignment source.
+
+    x = y
 
 Expression `Member` is responsible for accessing variables
 in a property owner like instance, class and module.

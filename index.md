@@ -76,6 +76,7 @@ _I've decided to publish documents in English that I'm currently writing,
 which is far from complete and being updated day by day.
 I hope the publication will inspire me to carry on this tough work :-)_
 
+<p>
 <div><a href="documents/Introduction.html">Introduction</a></div>
 <div>1. <a href="documents/Launch-Program.html">Launch Program</a></div>
 <div>2. <a href="documents/Syntax.html">Syntax</a></div>
@@ -94,7 +95,7 @@ I hope the publication will inspire me to carry on this tough work :-)_
 <div>15. Stream</div>
 <div>16. Image</div>
 <div>17. Template Engine</div>
-
+</p>
 
 # Contacts
 

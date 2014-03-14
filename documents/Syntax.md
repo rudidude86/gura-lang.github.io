@@ -9,7 +9,7 @@ chapter: 2
 
 ## {{ page.chapter }}.1. Elements
 
-
+This section explains about syntax elements in a script.
 
 ### {{ page.chapter }}.1.1. Identifier
 
@@ -295,21 +295,7 @@ More than one attributes can be appended by simply concatenating them like below
     func():foo:bar
 
 
-### {{ page.chapter }}.1.7. Member Selector
-
-A Member Selector is responsible for accessing variables
-in a container like instance, class and module.
-Below are available Member Selectors.
-
-    x.y  x::y  x:*y  x:&y
-
-Member Selector `x.y` takes a reference to the container on the left side
-and a variable identifier on the right side.
-
-Others are for what is called Member Mapping and take a list or an iterator on the left side.
-
-
-### {{ page.chapter }}.1.8. Symbol and Expression
+### {{ page.chapter }}.1.7. Symbol and Expression
 
 An identifier preceded by a back quote is called a Symbol
 and creates an instance of `symbol` data type.
@@ -328,7 +314,7 @@ As an Expression can hold any code without any evaluation,
 it can be used to pass a procedure itself to a function as one of the arguments.
 
 
-### {{ page.chapter }}.1.9. Comment
+### {{ page.chapter }}.1.8. Comment
 
 There are two types of comments: line comment and block comment.
 
@@ -357,6 +343,12 @@ Following are valid examples of block comment.
 
 ## {{ page.chapter }}.2. Expression
 
+Expressions are factors that construct a script.
+
+In many cases, you don't need to be aware of them
+since they're invisible from usual programs.
+But, if necessary, you can refer to them through instances of `expr` class.
+
 
 ### {{ page.chapter }}.2.1. Hierarchy
 
@@ -381,15 +373,17 @@ The following figure shows a hierarchy of all the expression.
 ### {{ page.chapter }}.2.2. Simple Expression
 
 Expression `Value` holds a value of `number`, `string` or `binary` type.
-Those types of value are described in string literal, number literal
+Those types of value are described with string literal, number literal
 and b-prefixed string literal in a script respectively.
 
 Expression `Symbol`
 
     identifier:attribute:attribute:[attribute,attribute]
 
-Expression `Suffixed` has a string and an identifier indicating the suffix.
+Expression `Suffixed` has a suffix indentifier and a preceding literal or string or number.
 
+    123.45foo
+    'hello world'foo
 
 ### {{ page.chapter }}.2.3. Unary
 
@@ -405,6 +399,17 @@ Expression `BinaryOp`
 Expression `Assign`
 
 Expression `Member`
+
+A Member Selector is responsible for accessing variables
+in a container like instance, class and module.
+Below are available Member Selectors.
+
+    x.y  x::y  x:*y  x:&y
+
+Member Selector `x.y` takes a reference to the container on the left side
+and a variable identifier on the right side.
+
+Others are for what is called Member Mapping and take a list or an iterator on the left side.
 
 
 ### {{ page.chapter }}.2.5. Container

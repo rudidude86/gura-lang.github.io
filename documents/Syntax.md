@@ -28,7 +28,7 @@ and is followed by UTF-8 leading or trailing byte or characters shown below:
     _ $ @
     0 1 2 3 4 5 6 7 8 9
 
-Here are some valid indentifiers:
+Here are some valid symbols:
 
     foo
     test_result
@@ -379,7 +379,7 @@ Expression `Identifier`
 
     symbol:attribute:attribute:[attribute,attribute]
 
-Expression `Suffixed` has a suffix indentifier and a preceding literal or string or number.
+Expression `Suffixed` has a suffix symbol and a preceding literal or string or number.
 
     123.45foo
     'hello world'foo

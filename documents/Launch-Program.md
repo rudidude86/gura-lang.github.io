@@ -7,6 +7,7 @@ chapter: 1
 
 # {{ page.chapter }}. {{ page.title }}
 
+
 ## {{ page.chapter }}.1. Program Files
 
 For Windows, there are two types of program files to launch Gura interpreter:
@@ -139,6 +140,7 @@ because the script will embed shebang comment at top of the file
 and put executable attribute to it so that the created one can run
 independently under Linux environment.
 
+
 ## {{ page.chapter }}.5. Command Line Options
 
 Available command line options are listed below:
@@ -159,3 +161,21 @@ Available command line options are listed below:
 <tr><td><code>-d encoding</code></td><td>Specifies character encoding that the parser uses to read scripts.</td></tr>
 <tr><td><code>-v</code></td><td>Prints a version number.</td></tr>
 </table>
+
+
+## {{ page.chapter }}.6. Working Directory
+
+When the interpret is launched, it creates a working directory if it's not exist.
+
+The directory name comes like below where gura_version is Gura's version.
+
+For Windows:
+
+    %LOCALAPPDATA%\Gura\gura_version
+
+For Linux:
+
+    $HOME/.gura/gura_version
+
+A variable `sys.localdir` points to the directory,
+which can be used to store working files of Gura applications.

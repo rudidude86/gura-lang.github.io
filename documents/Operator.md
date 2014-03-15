@@ -461,7 +461,20 @@ The code above has the same result as the following.
 
 Operation `x = y` assigns the value of `y` to `x`.
 
-The expression of `x` may be one of symbol, list, indexer, caller or member selector.
+The expression of `x` may be one of `Identifer`, `Lister`, `Indexer`, `Caller` and `Member`.
+
+Identifier
+
+Lister
+
+Indexer
+
+Caller
+
+Member
+
+
+An Assignment operator can be combined with one of several other operators.
 
 <table>
 <tr><th>Assignment Form</th><th>Equivalent Code</th></tr>

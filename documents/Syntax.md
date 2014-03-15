@@ -225,7 +225,7 @@ It's categorized in the following types:
 See section [Operator](Operator.html) for more detail.
 
 
-### {{ page.chapter }}.1.5. Container
+### {{ page.chapter }}.1.5. Collector
 
 Multiple elements can be grouped by surronding them with a pair of brackets.
 There are three types of brackets as listed below.
@@ -268,7 +268,7 @@ There are three types of brackets as listed below.
   
         repeat (3) {|i| println(i)}
 
-Elements in a container can be separated by a comma character or a line feed.
+Elements in a collector can be separated by a comma character or a line feed.
 The following two codes have the same result.
 
     [1, 2, 3, 4]
@@ -361,84 +361,90 @@ The following figure shows a hierarchy of all the expression.
            +- Binary <----+- BinaryOp
            |              +- Assign
            |              `- Member
-           +- Container <-+- Root
+           +- Collector <-+- Lister
+           |              +- Iterer
            |              +- Block
-           |              +- Lister
-           |              `- Iterer
+           |              `- Root
            `- Compound <--+- Indexer
                           `- Caller
 
 
 ### {{ page.chapter }}.2.2. Simple Expression
 
-Expression `Value` holds a value of `number`, `string` or `binary` type.
-Those types of value are described with string literal, number literal
-and b-prefixed string literal in a script respectively.
+* A `Value` expression holds a value of `number`, `string` or `binary` type.
+  Those types of value are described with string literal, number literal
+  and b-prefixed string literal in a script respectively.
 
-    3.141
-    'hello'
-    b'\x00\x01\x02\0x03'
+        3.141
+        'hello'
+        b'\x00\x01\x02\0x03'
 
-Expression `Identifier` consists of a symbol and zero or more attributes trailing it.
+* An `Identifier` expression consists of a symbol and zero or more attributes trailing it.
 
-    foo:attr1:attr2
+        foo:attr1:attr2
 
-Expression `Suffixed` has a suffix symbol and a preceding literal or string or number.
+* A `Suffixed` expression has a suffix symbol and a preceding literal or string or number.
 
-    123.45foo
-    'hello world'foo
+        123.45foo
+        'hello world'foo
 
 ### {{ page.chapter }}.2.3. Unary
 
-Expression `UnaryOp` consists of a unary operator
-and a child expression on which the operator is applied.
+* A `UnaryOp` expression consists of a unary operator
+  and a child expression on which the operator is applied.
 
-    -foo
+        -foo
 
-Expression `Quote` consts of a back quotation
-and a child expression that is to be quoted by it.
+* A `Quote` expression consists of a back quotation
+  and a child expression that is to be quoted by it.
 
-    `foo
+        `foo
 
 ### {{ page.chapter }}.2.4. Binary
 
-Expression `BinaryOp` consists of a binary operator
-and two child expressions on which the operator is applied.
+* A `BinaryOp` expression consists of a binary operator
+  and two child expressions on which the operator is applied.
 
-    x + y
+        x + y
 
-Expression `Assign` consists of an equal symbol,
-an expression on the left side that is a target of the assignment
-and an expression on the right side that is an assignment source.
+* An `Assign` expression consists of an equal symbol,
+  an expression on the left side that is a target of the assignment
+  and an expression on the right side that is an assignment source.
+  Elements that can be specified on the left are
+  `Identifer`, `Lister`, `Indexer`, `Caller` and `Member`.
 
-    x = y
+        x = y
 
-Expression `Member` is responsible for accessing variables
-in a property owner like instance, class and module.
-Below are available Member accessors.
+* A `Member` expression is responsible for accessing variables
+  in a property owner like instance, class and module.
+  Below are available Member accessors.
 
-    x.y  x::y  x:*y  x:&y
+        x.y  x::y  x:*y  x:&y
 
-Member accessor `x.y` takes a reference to a property owner on the left side
-and a variable identifier on the right side.
+  Member accessor `x.y` takes a reference to a property owner on the left side
+  and a variable identifier on the right side.
 
-Others are for what is called Member Mapping and take a list or an iterator on the left side,
-each of which elements is a reference to a property owner.
+  Others are for what is called Member Mapping and take a list or an iterator on the left side,
+  each of which elements is a reference to a property owner.
 
 
-### {{ page.chapter }}.2.5. Container
+### {{ page.chapter }}.2.5. Collector
 
-Expression `Root`
+* A `Lister` expression is a series of element expressions embraced by a pair of square brackets.
 
-Expression `Block`
+* An `Iterer` expression is a series of element expressions embraced by a pair of parentheses.
 
-Expression `Lister`
+* A `Block` expression is a series of element expressions embraced by a pair of square curly brackets.
 
-Expression `Iterer`
+* A `Root` expression represents a series of element expressions that appear in the top sequence.
 
 
 ### {{ page.chapter }}.2.6. Compound
 
-Expression `Indexer`
+* An `Indexer` expression consists of a head element
+  and a series of element expressions embraced by a pair of square brackets.
 
-Expression `Caller`
+* A `Caller` expression consists of a head element,
+  a series of element expressions embraced by a pair of parentheses
+  and a block expression.
+

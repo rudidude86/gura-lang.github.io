@@ -36,6 +36,12 @@ Here are some valid symbols:
     @bar@
     test_1_var
 
+Special symbols:
+
+    %
+    
+    +  *  ?  -
+
 
 ### {{ page.chapter }}.1.2. Number Literal
 

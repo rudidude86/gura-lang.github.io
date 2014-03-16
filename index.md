@@ -82,7 +82,7 @@ I hope the publication will inspire me to carry on this tough work :-)_
 <div>2. <a href="documents/Syntax.html">Syntax</a></div>
 <div>3. <a href="documents/Data-Type.html">Data Type</a></div>
 <div>4. <a href="documents/Operator.html">Operator</a></div>
-<div>5. Function</div>
+<div>5. <a href="documents/Interpreter.html">Interpreter</a></div>
 <div>6. Flow Control</div>
 <div>7. List and Iterator</div>
 <div>8. Dictionary</div>

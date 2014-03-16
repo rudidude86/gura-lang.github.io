@@ -457,42 +457,7 @@ The code above has the same result as the following.
     sys.stdout << 'Hello World\n'
 
 
-## {{ page.chapter }}.5. Assignment Operators
-
-Operation `x = y` assigns the value of `y` to `x`.
-
-The expression of `x` may be one of `Identifer`, `Lister`, `Indexer`, `Caller` and `Member`.
-
-Identifier
-
-Lister
-
-Indexer
-
-Caller
-
-Member
-
-
-An Assignment operator can be combined with one of several other operators.
-
-<table>
-<tr><th>Assignment Form</th><th>Equivalent Code</th></tr>
-<tr><td><code>x += y</code></td><td><code>x = x + y</code></td></tr>
-<tr><td><code>x -= y</code></td><td><code>x = x - y</code></td></tr>
-<tr><td><code>x *= y</code></td><td><code>x = x * y</code></td></tr>
-<tr><td><code>x /= y</code></td><td><code>x = x / y</code></td></tr>
-<tr><td><code>x %= y</code></td><td><code>x = x % y</code></td></tr>
-<tr><td><code>x **= y</code></td><td><code>x = x ** y</code></td></tr>
-<tr><td><code>x &= y</code></td><td><code>x = x & y</code></td></tr>
-<tr><td><code>x |= y</code></td><td><code>x = x | y</code></td></tr>
-<tr><td><code>x ^= y</code></td><td><code>x = x ^ y</code></td></tr>
-<tr><td><code>x <<= y</code></td><td><code>x = x << y</code></td></tr>
-<tr><td><code>x >>= y</code></td><td><code>x = x >> y</code></td></tr>
-</table>
-
-
-## {{ page.chapter }}.6. Operator Overload
+## {{ page.chapter }}.5. Operator Overload
 
 You can assign your own functions to operators through `operator` instance.
 The example below assings `string - string` operation by using `operator#assign()` method.

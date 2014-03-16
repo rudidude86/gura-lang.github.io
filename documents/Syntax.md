@@ -394,7 +394,7 @@ The following figure shows a hierarchy of all the expression.
         123.45foo
         'hello world'foo
 
-### {{ page.chapter }}.2.3. Unary
+### {{ page.chapter }}.2.3. Unary Expression
 
 * A `UnaryOp` expression consists of a unary operator
   and a child expression on which the operator is applied.
@@ -406,7 +406,7 @@ The following figure shows a hierarchy of all the expression.
 
         `foo
 
-### {{ page.chapter }}.2.4. Binary
+### {{ page.chapter }}.2.4. Binary Expression
 
 * A `BinaryOp` expression consists of a binary operator
   and two child expressions on which the operator is applied.
@@ -434,7 +434,7 @@ The following figure shows a hierarchy of all the expression.
   each of which elements is a reference to a property owner.
 
 
-### {{ page.chapter }}.2.5. Collector
+### {{ page.chapter }}.2.5. Collector Expression
 
 * A `Lister` expression is a series of element expressions embraced by a pair of square brackets.
 
@@ -445,7 +445,7 @@ The following figure shows a hierarchy of all the expression.
 * A `Root` expression represents a series of element expressions that appear in the top sequence.
 
 
-### {{ page.chapter }}.2.6. Compound
+### {{ page.chapter }}.2.6. Compound Expression
 
 * An `Indexer` expression consists of a head element
   and a series of element expressions embraced by a pair of square brackets.

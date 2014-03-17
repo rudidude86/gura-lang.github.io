@@ -2,7 +2,7 @@
 layout: page
 lang: en
 title: Interpreter
-chapter: 5
+chapter: 6
 ---
 
 # {{ page.chapter }}. {{ page.title }}
@@ -11,6 +11,7 @@ chapter: 5
 
 The interpreter works with expressions and has two stages **evaluation** and **assignment**.
 
+It looks up variables in Environment and applies changes on Environment as well.
 
 ## {{ page.chapter }}.2. Evaluation Stage
 

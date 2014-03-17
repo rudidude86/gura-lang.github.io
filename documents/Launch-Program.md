@@ -64,7 +64,7 @@ with each line ended with LF code.
 This is to avoid an error caused by specifications of shell programs, not of Gura.
 
 If a script file contains non-ASCII characters like Japanese and Chinese,
-you should save in in UTF-8 character code, which is a default code set for the interpreter.
+you should save it in UTF-8 character code, which is a default code set for the interpreter.
 
 When you need to save the file in other character codes, there are two ways to parse it properly.
 One is to specify `-d` option in command line as following.
@@ -81,13 +81,14 @@ at top of the script but after shebang if exists.
 A magic comment has a format like `coding: XXXXXX`
 where `XXXXXX` indicates what encoding the parser is to use.
 It can be detected when it appears at the first or second line of a script
-and is described as a single-line comment.
+and is described as a line comment that begins with `#` or `//`.
 
 The following format is acceptable too.
-This is good to make Emacs determine what character encoding it should choose in editing.
 
     #!/usr/bin/env gura
     # -*- coding: shift_jis -*-
+
+This is good to make Emacs determine what character encoding it should choose for editing.
 
 Available encoding names are described in Chapter.X.
 
@@ -96,14 +97,14 @@ Available encoding names are described in Chapter.X.
 
 It often happens that an application consists of multiple script files and
 other resources such as image files.
-Consider that a certain application has following files:
+Consider an application that has following files:
 
     foo.gura
     utils.gura
     message.txt
     image.png
 
-`foo.gura` is a main script that imports `utils.gura`
+assuming `foo.gura` is a main script that imports `utils.gura`
 and reads files `message.txt` and `image.png`.
 
 It could be bothersome to treat these files separately

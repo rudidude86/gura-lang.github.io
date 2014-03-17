@@ -24,7 +24,7 @@ while Assignment stage only does when `Assign` expression is executed.
           +---------------+
           |  Expressions  |
           +---------------+
-                  | supply
+                  | control
                   V
     +----------------------------+     look-up     +---------------+
     |              evaluation <--|-----------------|               |
@@ -44,25 +44,51 @@ while Assignment stage only does when `Assign` expression is executed.
 
 * A `UnaryOp` expression
 
+  unary operator
+
 * A `Quote` expression
 
 * A `BinaryOp` expression
+
+  binary operator
 
 * Execution of an `Assign` expression triggers Assignment Stage. See the next section.
 
 * A `Member` expression
 
+  Class, Module and Object
+
 * A `Lister` expression
+
+        [1, 2, 3]
 
 * An `Iterer` expression
 
+        (1, 2, 3)
+
 * A `Block` expression
+
+
 
 * A `Root` expression
 
 * An `Indexer` expression
 
+        x[2]
+        
+        x[1, 2, 3]
+        
+        x['foo']
+
 * A `Caller` expression
+
+        f(x)
+
+        f(a, b, c, d)
+
+        f(a, b):foo:bar
+
+        f {}
 
 
 ## {{ page.chapter }}.3. Assignment Stage
@@ -71,17 +97,61 @@ Operation `x = y` assigns the value of `y` to `x`.
 
 The expression of `x` may be one of `Identifer`, `Lister`, `Member`, `Indexer` and `Caller`.
 
-* An `Identifier` expression
+* An assignment for an `Identifier` expression
 
-* A `Lister` expression
+        a = 3
+
+  If a type name is specified as the `Identifier`'s  attribute,
+  the source value will be casted to the type before assignment.
+
+        a:number = '3'
+
+* When the assignment destionation is a `Lister` expression,
+  assignment operation is applied to each expression described as its element.
+  Elements in the `Lister` must be `Identifier` expressions.
+  
+  If assignment source is a scholar, that value is assigned to each element.
+
+        [a, b, c] = 3          // a = 3, b = 3, c = 3
+
+  If assignment source is a list, each value in the list is assigned to each element.
+
+        [a, b, c] = [1, 2, 3]  // a = 1, b = 2, c = 3
+
+  It would be the same with an iterator.
+
+        [a, b, c] = (1, 2, 3)  // a = 1, b = 2, c = 3
+
+  If the assignment source has more elements than the destination requires,
+  remaining elements are simply ignored.
+  If the source has insufficient number of elements, it would occur an error.
+
+        [a, b, c] = [1, 2, 3, 4, 5]  // a = 1, b = 2, c = 3
+        [a, b, c] = [1, 2]           // error!
 
 * A `Member` expression
 
+  Class, Module and Object
+
+        obj.var1 = 3
+        obj.f(x) = { }
+
 * An `Indexer` expression
+
+        x[n] = 3
+        
+        x[0, 2, 5] = 3
+
+        x[0, 2, 5] = [1, 2, 3]
+        
 
 * A `Caller` expression
 
+        f(x) = x
+        
+        f(x) = { }
 
+Assignments for other expressions than what are described above are invalid and occurs an error.
 
 
 ### {{ page.chapter }}.3.6. Operator before Assignment

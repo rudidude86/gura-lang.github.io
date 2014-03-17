@@ -377,7 +377,7 @@ The following figure shows a hierarchy of all the expression.
 
 ### {{ page.chapter }}.2.2. Simple Expression
 
-* A `Value` expression holds a value of `number`, `string` or `binary` type.
+* A `Value` expression holds a value of `number`, `string`, `binary` type.
   Those types of value are described with string literal, number literal
   and b-prefixed string literal in a script respectively.
 

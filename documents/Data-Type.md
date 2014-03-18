@@ -34,14 +34,12 @@ Most Data Types except for what are picked up as Primitive Data Types above
 belong to this.
 
 
-## {{ page.chapter }}.2. Frequently Used Data Types
+## {{ page.chapter }}.2. Primitive Data Types
 
-Below is a list of some Data Types that often appear in documents,
+Below is a list of Primitve Data Types,
 which also shows one of the typical ways to instantiate values of each type.
 
 * `nil`
-
-  This is a Primitive Data Type.
 
   A value of `nil` type is used to indicate an invalid result or status.
   It is often used as a returned value of a function when it fails its expected work.
@@ -54,8 +52,6 @@ which also shows one of the typical ways to instantiate values of each type.
 
 * `boolean`
 
-  This is a Primitive Data Type.
- 
   Values of `boolean` type are used to determine
   whether something is in a true or a false state.
   Variables named `true` and `false` are assigned
@@ -69,17 +65,31 @@ which also shows one of the typical ways to instantiate values of each type.
   while other values are treated as a true state.
   Note that a zero value of `number` type is recognized as a true, not a false.
 
-* `number`
+* `complex`
 
-  This is a Primitive Data Type.
+  A number literal suffixed by `j` instantiates a value of `complex` type
+  that represents a complex number.
+
+        3.14j  1000j  1e3j
+
+  See chapter [Mathematic Functions](Mathematic-Functions.html) for more detail.
+
+* `number`
 
   A number literal without any suffix instantiates a value of `number` type.
 
         3.14  1000  1e3  0xaabb
 
-* `string`
+* `rational`
 
-  This is a Primitive Data Type.
+  A number literal suffixed by `r` instantiates a value of `rational` type
+  that represents a rational number.
+
+        3r  123r
+
+  See chapter [Mathematic Functions](Mathematic-Functions.html) for more detail.
+
+* `string`
 
   A string literal without any suffix instantiates a value of `string` type.
 
@@ -91,23 +101,27 @@ which also shows one of the typical ways to instantiate values of each type.
 
 * `symbol`
 
-  This is a Primitive Data Type.
-
   An identifier preceded by a back quote instantiates a value of `symbol` type.
 
         `foo  `bar
 
-* `expr`
 
-  This is an Object Data Type.
+## {{ page.chapter }}.3. Object Data Types Frequently Used
 
-  Any expression preceded by a back quote instantiates a value of `expr` type.
 
-        `(x + y)  `func(x)  `{ println('hello'), x += 1 }
+## {{ page.chapter }}.3.1. List and Iterator
+
+* `list`
+
+  If one or more elements are surrounced by a pair of square brackets,
+  it would instantiate a value of `list` type.
+  Any type of value can be an element of lists.
+
+        [3, 1, 4, 1, 5, 9]
+        
+        ['hello', 'world', 3, 4, 5]
 
 * `iterator`
-
-  This is an Object Data Type.
 
   If one or more elements are surrounced by a pair of parentheses,
   it would instantiate a value of `iterator` type.
@@ -124,25 +138,10 @@ which also shows one of the typical ways to instantiate values of each type.
 
   An expression `(3)` is recognized as an ordinary value of number `3`.
 
-  See chapter [List and Iterator](List-and-Iterator.html) for more detail.
 
-* `list`
-
-  This is an Object Data Type.
-
-  If one or more elements are surrounced by a pair of square brackets,
-  it would instantiate a value of `list` type.
-  Any type of value can be an element of lists.
-
-        [3, 1, 4, 1, 5, 9]
-        
-        ['hello', 'world', 3, 4, 5]
-
-  See chapter [List and Iterator](List-and-Iterator.html) for more detail.
+## {{ page.chapter }}.3.2. Dictionary
 
 * `dict`
-
-  This is an Object Data Type.
 
   `dict` is a dictionary that contains key-value pairs as its elements
   where a key is one of `number`, `string` or `symbol` and a value is of any type.
@@ -153,33 +152,20 @@ which also shows one of the typical ways to instantiate values of each type.
             `symbol3 => 'value 3'
         }
 
-  See chapter [Dictionary](Dictionary.html) for more detail.
 
-* `complex`
+## {{ page.chapter }}.3.3. Expression
 
-  This is a Primitive Data Type.
 
-  A number literal suffixed by `j` instantiates a value of `complex` type
-  that represents a complex number.
+* `expr`
 
-        3.14j  1000j  1e3j
+  Any expression preceded by a back quote instantiates a value of `expr` type.
 
-  See chapter [Mathematic Functions](Mathematic-Functions.html) for more detail.
+        `(x + y)  `func(x)  `{ println('hello'), x += 1 }
 
-* `rational`
 
-  This is a Primitive Data Type.
-
-  A number literal suffixed by `r` instantiates a value of `rational` type
-  that represents a rational number.
-
-        3r  123r
-
-  See chapter [Mathematic Functions](Mathematic-Functions.html) for more detail.
+## {{ page.chapter }}.3.4. Binary
 
 * `binary`
-
-  This is an Object Data Type.
 
   A string literal preceded by `b` instantiates a value of `binary` type.
   

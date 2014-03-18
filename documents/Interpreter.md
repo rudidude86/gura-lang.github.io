@@ -35,22 +35,34 @@ while Assignment stage only does when `Assign` expression is executed.
 
 ## {{ page.chapter }}.2. Evaluation Stage
 
+This section explains how each Expression acts in the Interpreter's evaulation stage.
+
 * Evaluation result of a `Value` expression will be the value it owns in itself.
 
-* An `Identifier` expression will look up an Environment and return the result value.
+* An `Identifier` expression will look up a variable whose name matches the expression's symbol
+  in an Environment and return the result value.
+  If no variable is found, it occurs an error.
 
 * A `Suffixed` expression will look up an entry in Suffix Manager
- that matches its suffix symbol and execute the entry with its body string.
+  that matches its suffix symbol and execute the entry with its body string.
 
-* A `UnaryOp` expression
-
-  unary operator
+* A `UnaryOp` expression evaluates the child expression it owns,
+  and then evaluate the value with its associated unary operator.
 
 * A `Quote` expression
 
-* A `BinaryOp` expression
+* A `BinaryOp` expression evaluates both of the two child expressions it owns,
+  and then evaluate the value with its associated Binary Operator.
+  
+  Binary Operator `&&` and `||` are exceptional.
+  
+  With operator `&&`, it first evaluates the child expression on the left.
+  If the value is determined as **false**, that value is the result.
+  Otherwise, it then evaluates the child expression on the right and returns the result.
 
-  binary operator
+  With operator `||`, it first evaluates the child expression on the left.
+  If the value is determined as **true**, that value is the result.
+  Otherwise, it then evaluates the child expression on the right and returns the result.
 
 * Execution of an `Assign` expression triggers Assignment Stage. See the next section.
 
@@ -80,7 +92,7 @@ while Assignment stage only does when `Assign` expression is executed.
         
         x['foo']
 
-* A `Caller` expression
+* A `Caller` expression evaluates expressions listed as its arguments.
 
         f(x)
 
@@ -90,6 +102,7 @@ while Assignment stage only does when `Assign` expression is executed.
 
         f {}
 
+  If the argument is declared as Quoted, it doesn't evaluates its argument.
 
 ## {{ page.chapter }}.3. Assignment Stage
 

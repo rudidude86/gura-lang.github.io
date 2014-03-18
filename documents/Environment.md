@@ -12,6 +12,14 @@ maps associating symbols and values and maps associating symbols and value types
 
 Module, Class, and Object are all inherited from Environment.
 
+scope problems
+
+    x = 0
+    if (true) {
+        x = 3
+    }
+    println(x)
+
 ## {{ page.chapter }}.1. Frame
 
 Frame contains:
@@ -45,7 +53,7 @@ In a function call, the Interpreter creates a new Environment with cloned frames
 and pushes a new frame of `local` type.
 
     +-------------------+
-    |       local       |
+    |      local        |
     +-------------------+
     |       root        |
     +-------------------+
@@ -54,9 +62,35 @@ When a block is evaluated, the Interpreter creates a new Environment with cloned
 and pushes a frame of `block` type.
 
     +-------------------+
-    |       block       |
+    |      block        |
     +-------------------+
     |       root        |
     +-------------------+
 
 
+
+    +-------------------+
+    |      block        |
+    +-------------------+
+    |      local        |
+    +-------------------+
+    |      local        |
+    +-------------------+
+    |       root        |
+    +-------------------+
+
+
+    +-------------------+
+    |      class        |
+    +-------------------+
+    |       root        |
+    +-------------------+
+
+
+    +-------------------+
+    |      object       |
+    +-------------------+
+    |      class        |
+    +-------------------+
+    |       root        |
+    +-------------------+

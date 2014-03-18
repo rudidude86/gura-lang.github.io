@@ -166,17 +166,17 @@ Available command line options are listed below:
 
 ## {{ page.chapter }}.6. Working Directory
 
-When the interpret is launched, it creates a working directory if it's not exist.
+When the interpret is launched, it creates a working directory if it's not exist,
+which Gura applications can use to store working files.
 
-The directory name comes like below where gura_version is Gura's version.
+The directory name comes like below where GURA_VERSION is the Gura's version.
 
 For Windows:
 
-    %LOCALAPPDATA%\Gura\gura_version
+    %LOCALAPPDATA%\Gura\GURA_VERSION
 
 For Linux:
 
-    $HOME/.gura/gura_version
+    $HOME/.gura/GURA_VERSION
 
-A variable `sys.localdir` points to the directory,
-which can be used to store working files of Gura applications.
+A variable `sys.localdir` points to the directory.

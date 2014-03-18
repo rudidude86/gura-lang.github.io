@@ -26,12 +26,12 @@ h1 {
 
 h2 {
   color:#393939;
-  margin-top:2em;
+  margin-top:1em;
 }
 
 h3, h4, h5, h6 {
   color:#494949;
-  margin-top:2em;
+  margin-top:1em;
 }
 
 a {
@@ -173,9 +173,25 @@ header ul a strong {
 }
 
 section {
-  width:700px;
+  width:1000px;
   float:right;
   padding-bottom:50px;
+}
+
+#box-left {
+  width:380px;
+  float:left;
+  margin-right:20px;
+}
+
+#box-right {
+  width:380px;
+  float:left;
+}
+
+#box-bottom {
+  width:100%;
+  clear:left;
 }
 
 small {

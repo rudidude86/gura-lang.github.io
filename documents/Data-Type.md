@@ -187,7 +187,7 @@ A pair can also be described as a list containing a key and a value.
         [`symbol3, 'value 3']
     }
 
-You can also describe keys and values alternatively in one-dimentional format.
+You can also describe keys and values alternately in one-dimentional format.
 
     %{
         `symbol1, 'value 1'

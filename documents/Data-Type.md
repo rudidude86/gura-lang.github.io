@@ -109,64 +109,101 @@ which also shows one of the typical ways to instantiate values of each type.
 ## {{ page.chapter }}.3. Object Data Types Frequently Used
 
 
-## {{ page.chapter }}.3.1. List and Iterator
+## {{ page.chapter }}.3.1. List
 
-* `list`
+If one or more elements are surrounced by a pair of square brackets,
+it would instantiate a value of `list` type.
+Any type of value can be an element of lists.
 
-  If one or more elements are surrounced by a pair of square brackets,
-  it would instantiate a value of `list` type.
-  Any type of value can be an element of lists.
-
-        [3, 1, 4, 1, 5, 9]
-        
-        ['hello', 'world', 3, 4, 5]
-
-* `iterator`
-
-  If one or more elements are surrounced by a pair of parentheses,
-  it would instantiate a value of `iterator` type.
-  Any type of value can be an element of iterators.
-
-        (3, 1, 4, 1, 5, 9)
-        
-        ('hello', 'world', 3, 4, 5)
-
-  To create an iterator that contains only one element,
-  be sure to put a comma afther the element like following:
-
-        (3,)
-
-  An expression `(3)` is recognized as an ordinary value of number `3`.
+    [3, 1, 4, 1, 5, 9]
+    ['hello', 'world', 3, 4, 5]
 
 
-## {{ page.chapter }}.3.2. Dictionary
-
-* `dict`
-
-  `dict` is a dictionary that contains key-value pairs as its elements
-  where a key is one of `number`, `string` or `symbol` and a value is of any type.
-
-        %{
-            `symbol1 => 'value 1'
-            `symbol2 => 'value 2'
-            `symbol3 => 'value 3'
-        }
 
 
-## {{ page.chapter }}.3.3. Expression
+## {{ page.chapter }}.3.2. Iterator
+
+If one or more elements are surrounced by a pair of parentheses,
+it would instantiate a value of `iterator` type.
+Any type of value can be an element of iterators.
+
+    (3, 1, 4, 1, 5, 9)
+    ('hello', 'world', 3, 4, 5)
+
+To create an iterator that contains only one element,
+be sure to put a comma afther the element like following:
+
+    (3,)
+
+An expression `(3)` is recognized as an ordinary value of number `3`.
+
+Operator `..` creates an iterator that generates a sequence of numbers.
+An expression `x..y` creates an iterator that generates a sequence
+starting from `x` and being increased by one until `y`.
+
+    1..10
+
+An expression `x..` creates an iterator that generates a sequence
+starting from `x` and being increased by one indefinitely.
+
+    1..
+
+Lists and iterators are convertible to each other.
+For instance, a list can be converted to an iterator by using `list#each` method like following.
+
+    [3, 1, 4, 1, 5, 9].each()
+
+An iterator can be converted to an list by surrounding it with square brackets.
+
+    [1..10]
+
+In many cases, an iterator is generated as a value returned from a function,
+which represents a series of multiple results.
+The most commonly used function may be `readlines`,
+which creates an iterator that reads a stream and returns strings splitted by line.
 
 
-* `expr`
+## {{ page.chapter }}.3.3. Dictionary
 
-  Any expression preceded by a back quote instantiates a value of `expr` type.
+`dict` is a dictionary that contains key-value pairs as its elements
+where a key is one of `number`, `string` or `symbol` and a value is of any type.
 
-        `(x + y)  `func(x)  `{ println('hello'), x += 1 }
+You can create a dictionary by surrounding key-value pairs by `%{` and `}`.
+
+There are several ways to describe the pairs.
+The most recommended way is to use `=>` operator between each key and value like following.
+
+    %{
+        `symbol1 => 'value 1'
+        `symbol2 => 'value 2'
+        `symbol3 => 'value 3'
+    }
+
+A pair can also be described as a list containing a key and a value.
+
+    %{
+        [`symbol1, 'value 1']
+        [`symbol2, 'value 2']
+        [`symbol3, 'value 3']
+    }
+
+You can also describe keys and values alternatively in one-dimentional format.
+
+    %{
+        `symbol1, 'value 1'
+        `symbol2, 'value 2'
+        `symbol3, 'value 3'
+    }
+
+## {{ page.chapter }}.3.4. Expression
+
+Any expression preceded by a back quote instantiates a value of `expr` type.
+
+    `(x + y)  `func(x)  `{ println('hello'), x += 1 }
 
 
-## {{ page.chapter }}.3.4. Binary
+## {{ page.chapter }}.3.5. Binary
 
-* `binary`
+A string literal preceded by `b` instantiates a value of `binary` type.
 
-  A string literal preceded by `b` instantiates a value of `binary` type.
-  
-        b'\x00\x01\0x02\0x03'
+    b'\x00\x01\0x02\0x03'

@@ -442,9 +442,11 @@ The following figure shows a hierarchy of all the expression.
         |- operator: operator |         |                |
         +---------------------+         +----------------+
 
-  Examples:
+  Consider the following expression:
 
         -foo
+
+  It has an operator `-` and owns an Identifer expression as its child.
 
 * A `Quote` expression consists of a back quotation
   and a child expression that is to be quoted by it.
@@ -457,9 +459,11 @@ The following figure shows a hierarchy of all the expression.
         |                     |         |                |
         +---------------------+         +----------------+
 
-  Examples:
+  Consider the following expression:
 
-        `foo
+        `12345
+
+  It owns an Value expression with a number value.
 
 ### {{ page.chapter }}.2.4. Binary Expression
 
@@ -480,9 +484,12 @@ The following figure shows a hierarchy of all the expression.
                                             |                |
                                             +----------------+
 
-  Examples:
+  Consider the following expression:
 
         x + y
+
+  It has an operator `+` and owns an Identifer expression `x` as its left
+  and also an Identifier expression `y` as its right.
 
 * An `Assign` expression consists of an equal symbol,
   an expression on the left side that is a target of the assignment
@@ -504,9 +511,12 @@ The following figure shows a hierarchy of all the expression.
                                             |                |
                                             +----------------+
 
-  Examples:
+  Consider the following expression:
 
         x = y
+
+  It owns an Identifer expression `x` as its left
+  and also an Identifier expression `y` as its right.
 
 * A `Member` expression is responsible for accessing variables
   in a property owner like instance, class and module.
@@ -526,14 +536,26 @@ The following figure shows a hierarchy of all the expression.
                                             |                |
                                             +----------------+
 
-  Examples:
+  Consider the following expression:
 
-        x.y  x::y  x:*y  x:&y
+        x.y
 
-  Member accessor `x.y` takes a reference to a property owner on the left side
-  and a variable identifier on the right side.
+  It has a `normal` mode and owns an Identifer expression `x` as its left
+  and also an Identifier expression `y` as its right.
 
-  Others are for what is called Member Mapping and take a list or an iterator on the left side,
+  A Member expression may take one of the following modes.
+
+  Expression | Mode
+  -----------|-------------------
+  `x.y`      | `normal`
+  `x::y`     | `map-to-list`
+  `x:*y`     | `map-to-iterator`
+  `x:&y`     | `map-along`
+
+  Mode `normal` takes a reference to a property owner as its left's result value.
+
+  Others are for what is called Member Mapping
+  and take a list or an iterator as its left's result value,
   each of which elements is a reference to a property owner.
 
 
@@ -549,6 +571,11 @@ The following figure shows a hierarchy of all the expression.
         |                     |         * |                |
         +---------------------+           +----------------+
 
+  Consider the following expression:
+
+        [x, y, z]
+
+  It contains three Identifier expressions `x`, `y` and `z` as its elements.
 
 * An `Iterer` expression is a series of element expressions embraced by a pair of parentheses.
 
@@ -560,6 +587,12 @@ The following figure shows a hierarchy of all the expression.
         |                     |         * |                |
         +---------------------+           +----------------+
 
+  Consider the following expression:
+
+        (x, y, z)
+
+  It contains three Identifier expressions `x`, `y` and `z` as its elements.
+
 * A `Block` expression is a series of element expressions embraced by a pair of square curly brackets.
 
   Class diagram is:
@@ -569,6 +602,12 @@ The following figure shows a hierarchy of all the expression.
         |---------------------*-----------+----------------|
         |                     |         * |                |
         +---------------------+           +----------------+
+
+  Consider the following expression:
+
+        {x, y, z}
+
+  It contains three Identifier expressions `x`, `y` and `z` as its elements.
 
 * A `Root` expression represents a series of element expressions that appear in the top sequence.
 
@@ -580,39 +619,79 @@ The following figure shows a hierarchy of all the expression.
         |                     |         * |                |
         +---------------------+           +----------------+
 
+  Consider the following expression:
+
+        x, y, z
+
+  It contains three Identifier expressions `x`, `y` and `z` as its elements.
+
 ### {{ page.chapter }}.2.6. Compound Expression
 
-* An `Indexer` expression consists of a head element
-  and a series of element expressions embraced by a pair of square brackets.
+* An `Indexer` expression consists of a car element
+  and a series of expressions that represent indices.
 
   Class diagram is:
 
-                                            +----------------+
-                                        car |      Expr      |
-                                   +--------+----------------|
-        +---------------------+    |        |                |
-        |       Indexer       *----+        +----------------+
+                                               +----------------+
+                                           car |      Expr      |
+                                   +-----------+----------------|
+        +---------------------+    |           |                |
+        |       Indexer       *----+           +----------------+
         |---------------------|
-        |                     *----+        +----------------+
-        +---------------------+    |    cdr |      Expr      |
-                                   +--------+----------------|
-                                          * |                |
-                                            +----------------+
+        |                     *----+           +----------------+
+        +---------------------+    |   indices |      Expr      |
+                                   +-----------+----------------|
+                                             * |                |
+                                               +----------------+
 
-* A `Caller` expression consists of a head element,
-  a series of element expressions embraced by a pair of parentheses
-  and a block expression.
+  Consider the following expression:
+
+        a[x, y, z]
+
+  It owns an Identifier expression `a` as its car element
+  and three Identifier expressions `x`, `y` and `z` as its indices.
+
+* A `Caller` expression consists of a car element
+  and a series of expressions that represent arguments.
+  It may optionally own a Block expression if a block is specified
+  and may own a Caller expression as its trailer
+  if that is described in a leader-trailer syntax.
 
   Class diagram is:
 
-                                                   +----------------+
-                                               car |      Expr      |
-                                          +--------+----------------|
-        +----------------------------+    |        |                |
-        |       Caller               *----+        +----------------+
-        |----------------------------|
-        |- symbol: symbol            *----+        +----------------+
-        |- attrs: set of symbol      |    |    cdr |      Expr      |
-        |- attrsOpt: set of symbol   |    +--------+----------------|
-        |- attrFront: list of symbol |           * |                |
-        +----------------------------+             +----------------+
+                                                      +----------------+
+        +----------------------------+            car |      Expr      |
+        |          Caller            |    +-----------+----------------|
+        |----------------------------|    |           |                |
+        |- symbol: symbol            *----+           +----------------+
+        |- attrs: set of symbol      |
+        |- attrsOpt: set of symbol   *----+           +----------------+
+        |- attrFront: list of symbol |    | arguments |      Expr      |
+        +--------*--------------*----+    +-----------+----------------|
+                 |              |                   * |                |
+                 |              +----+                +----------------+
+           block | 0..1      trailer | 0..1
+        +--------+-------+  +--------+-------+
+        |      Block     |  |     Caller     |
+        +----------------|  +----------------|
+        |                |  |                |
+        +----------------+  +----------------+
+
+  Consider the following expression:
+
+        a(x, y, z)
+
+  It owns an Identifier expression `a` as its car element
+  and three Identifier expressions `x`, `y` and `z` as its arguments.
+  
+  Consider the following expression:
+  
+        a(x, y, z) {xx, yy, zz}
+  
+  It owns a Block expression as its block element.
+  
+  Consider the following expression:
+  
+        a(x, y, z) b(h, i, j)
+  
+  It owns a Caller expression as its trailer element.

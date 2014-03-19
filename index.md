@@ -64,6 +64,12 @@ after it's given with iterators, `1..` and `readlines('foo.txt')`, as its argume
 <div><a href="articles/Script-to-Generate-Prime-Numbers.html">Script to Generate Prime Numbers</a></div>
 </p>
 
+<h1>Sample Code</h1>
+
+<p>Sample codes of Gura are stored in
+<a href="https://github.com/gura-lang/gura/tree/master/sample">Repository</a>.
+</p>
+
 <h1>Contacts</h1>
 
 <p>Any opinions and suggestions are welcome via <a href-"mailto:ypsitau@nifty.com">E-mail</a>.</p>

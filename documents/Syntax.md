@@ -378,8 +378,19 @@ The following figure shows a hierarchy of all the expression.
 ### {{ page.chapter }}.2.2. Simple Expression
 
 * A `Value` expression holds a value of `number`, `string`, `binary` type.
+  
+  Class diagram is:
+
+        +----------------------------------+
+        |              Value               |
+        |----------------------------------|
+        |- value: number, string or binary |
+        +----------------------------------+
+
   Those types of value are described with string literal, number literal
   and b-prefixed string literal in a script respectively.
+
+  Examples:
 
         3.141
         'hello'
@@ -387,9 +398,33 @@ The following figure shows a hierarchy of all the expression.
 
 * An `Identifier` expression consists of a symbol and zero or more attributes trailing it.
 
+  Class diagram is:
+
+        +----------------------------+
+        |          Identifier        |
+        |----------------------------|
+        |- symbol: symbol            |
+        |- attrs: set of symbol      |
+        |- attrsOpt: set of symbol   |
+        |- attrFront: list of symbol |
+        +----------------------------+
+
+  Examples:
+
         foo:attr1:attr2
 
-* A `Suffixed` expression has a suffix symbol and a preceding literal or string or number.
+* A `Suffixed` expression has a suffix symbol and a preceding literal of string or number.
+
+  Class diagram is:
+
+        +---------------------+
+        |      Suffixed       |
+        |---------------------|
+        |- body: string       |
+        |- suffix: symbol     |
+        +---------------------+
+
+  Examples:
 
         123.45foo
         'hello world'foo
@@ -399,10 +434,30 @@ The following figure shows a hierarchy of all the expression.
 * A `UnaryOp` expression consists of a unary operator
   and a child expression on which the operator is applied.
 
+  Class diagram is:
+
+        +---------------------+         +----------------+
+        |       UnaryOp       |   child |      Expr      |
+        |---------------------*---------+----------------|
+        |- operator: operator |         |                |
+        +---------------------+         +----------------+
+
+  Examples:
+
         -foo
 
 * A `Quote` expression consists of a back quotation
   and a child expression that is to be quoted by it.
+
+  Class diagram is:
+
+        +---------------------+         +----------------+
+        |        Quote        |   child |      Expr      |
+        |---------------------*---------+----------------|
+        |                     |         |                |
+        +---------------------+         +----------------+
+
+  Examples:
 
         `foo
 
@@ -410,6 +465,22 @@ The following figure shows a hierarchy of all the expression.
 
 * A `BinaryOp` expression consists of a binary operator
   and two child expressions on which the operator is applied.
+
+  Class diagram is:
+
+                                            +----------------+
+                                      left  |      Expr      |
+                                   +--------+----------------|
+        +---------------------+    |        |                |
+        |       BinaryOp      *----+        +----------------+
+        |---------------------|
+        |- operator: operator *----+        +----------------+
+        +---------------------+    |  right |      Expr      |
+                                   +--------+----------------|
+                                            |                |
+                                            +----------------+
+
+  Examples:
 
         x + y
 
@@ -419,11 +490,43 @@ The following figure shows a hierarchy of all the expression.
   Elements that can be specified on the left are
   `Identifer`, `Lister`, `Indexer`, `Caller` and `Member`.
 
+  Class diagram is:
+
+                                            +----------------+
+                                      left  |      Expr      |
+                                   +--------+----------------|
+        +---------------------+    |        |                |
+        |       Assign        *----+        +----------------+
+        |---------------------|
+        |- operator: operator *----+        +----------------+
+        +---------------------+    |  right |      Expr      |
+                                   +--------+----------------|
+                                            |                |
+                                            +----------------+
+
+  Examples:
+
         x = y
 
 * A `Member` expression is responsible for accessing variables
   in a property owner like instance, class and module.
   Below are available Member accessors.
+
+  Class diagram is:
+
+                                            +----------------+
+                                      left  |      Expr      |
+                                   +--------+----------------|
+        +---------------------+    |        |                |
+        |       Member        *----+        +----------------+
+        |---------------------|
+        |- mode: mode         *----+        +----------------+
+        +---------------------+    |  right |      Expr      |
+                                   +--------+----------------|
+                                            |                |
+                                            +----------------+
+
+  Examples:
 
         x.y  x::y  x:*y  x:&y
 
@@ -438,19 +541,78 @@ The following figure shows a hierarchy of all the expression.
 
 * A `Lister` expression is a series of element expressions embraced by a pair of square brackets.
 
+  Class diagram is:
+
+        +---------------------+           +----------------+
+        |        Lister       |  elements |      Expr      |
+        |---------------------*-----------+----------------|
+        |                     |         * |                |
+        +---------------------+           +----------------+
+
+
 * An `Iterer` expression is a series of element expressions embraced by a pair of parentheses.
+
+  Class diagram is:
+
+        +---------------------+           +----------------+
+        |        Iterer       |  elements |      Expr      |
+        |---------------------*-----------+----------------|
+        |                     |         * |                |
+        +---------------------+           +----------------+
 
 * A `Block` expression is a series of element expressions embraced by a pair of square curly brackets.
 
+  Class diagram is:
+
+        +---------------------+           +----------------+
+        |        Block        |  elements |      Expr      |
+        |---------------------*-----------+----------------|
+        |                     |         * |                |
+        +---------------------+           +----------------+
+
 * A `Root` expression represents a series of element expressions that appear in the top sequence.
 
+  Class diagram is:
+
+        +---------------------+           +----------------+
+        |        Root         |  elements |      Expr      |
+        |---------------------*-----------+----------------|
+        |                     |         * |                |
+        +---------------------+           +----------------+
 
 ### {{ page.chapter }}.2.6. Compound Expression
 
 * An `Indexer` expression consists of a head element
   and a series of element expressions embraced by a pair of square brackets.
 
+  Class diagram is:
+
+                                            +----------------+
+                                        car |      Expr      |
+                                   +--------+----------------|
+        +---------------------+    |        |                |
+        |       Indexer       *----+        +----------------+
+        |---------------------|
+        |                     *----+        +----------------+
+        +---------------------+    |    cdr |      Expr      |
+                                   +--------+----------------|
+                                          * |                |
+                                            +----------------+
+
 * A `Caller` expression consists of a head element,
   a series of element expressions embraced by a pair of parentheses
   and a block expression.
 
+  Class diagram is:
+
+                                                   +----------------+
+                                               car |      Expr      |
+                                          +--------+----------------|
+        +----------------------------+    |        |                |
+        |       Caller               *----+        +----------------+
+        |----------------------------|
+        |- symbol: symbol            *----+        +----------------+
+        |- attrs: set of symbol      |    |    cdr |      Expr      |
+        |- attrsOpt: set of symbol   |    +--------+----------------|
+        |- attrFront: list of symbol |           * |                |
+        +----------------------------+             +----------------+

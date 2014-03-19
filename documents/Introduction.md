@@ -29,7 +29,7 @@ I calls this feature **Implicit Mapping** since it *implicitly* does mapping pro
 
 In order to make this idea come true,
 I considered extending an existing script language to be capable of
-repeating evaluation for a limited number of functions.
+repeating evaluation just with limited number of functions.
 
 But I found out Implicit Mapping would allow much elegant programming
 when it's applied to all the operators as well as many of the functions the language provides.
@@ -41,11 +41,11 @@ Before the creation of a new language, I made guidelines below:
 * __Inherit Familiar Syntax__
 
   I don't think it's a good idea to bother creating an original syntax
-  as long as it has same effects as that in exsting languages.
+  if it has same effects as that of existing languages.
   I decided to follow other popular languages as much as possible
-  when I need to make syntax or name variables and functions.
+  when I need to make syntax and name variables and functions.
   In fact, as the new language uses a pair of curly brackets to embrace a block,
-  an overwhole look of the code may be like one in C or Java.
+  an overwhole appearance of the code may look like one in C or Java.
 
 * __Be Practical__
 

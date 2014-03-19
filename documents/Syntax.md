@@ -463,7 +463,7 @@ The following figure shows a hierarchy of all the expression.
 
         `12345
 
-  It owns an Value expression with a number value.
+  It owns an Value expression with a number value as its child.
 
 ### {{ page.chapter }}.2.4. Binary Expression
 

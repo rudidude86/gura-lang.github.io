@@ -22,7 +22,7 @@ While a program is running, the interpreter reads the expressions
 and executes them along with Environment status.
 Section {{ page.chapter }}.3 explains
 about what tokens compose each expression
-and about relationship with other expressions.
+and about relationship between expressions using class diagrams.
 
 
 ## {{ page.chapter }}.2. Token
@@ -262,7 +262,7 @@ There are three types of brackets as listed below.
 
         [1, 2, 3, 4]
 
-* __Parentheses__: `(a, b, c)`
+* __Parenthesis__: `(a, b, c)`
 
   When it appears right after an expression that has a value as a result of evaluation,
   it's used as an argument list to evaluate the preceding value as a callable.
@@ -287,6 +287,12 @@ There are three types of brackets as listed below.
   This only appears right after opening bracket of Block and is called Block Parameter.
   
         repeat (3) {|i| println(i)}
+
+  If an element contains an operator `|` in it,
+  it must be embraced by parentheses to avoid the parser
+  from mistaking the operator as Block Parameter's terminater.
+
+        |(a | b), c, d|
 
 Expressions within brackets can be separated by a comma character or a line feed.
 The following two codes have the same result.
@@ -422,7 +428,7 @@ Class diagram is:
     |- attrsOpt: set of symbol   |
     +----------------------------+
 
-Consider the following expression:
+Consider the following expressions:
 
 * `foo`
 
@@ -448,7 +454,7 @@ Class diagram is:
 
 Even with a number literal, the body element is stored as a string.
 
-Consider the following expression:
+Consider the following expressions:
 
 * `123.45foo`
 
@@ -751,7 +757,7 @@ and may own a Caller expression as its trailer
 if that is described in a leader-trailer syntax.
 
 As with an `Identifier` expression, a `Caller` expression can also have attributes.
-They can be described just after a closing parentheses of an argument list.
+They can be described just after a closing parenthesis of an argument list.
 
 Class diagram is:
 
@@ -773,7 +779,7 @@ Class diagram is:
     |                |  |                |
     +----------------+  +----------------+
 
-Consider the following expression:
+Consider the following expressions:
 
 * `a(x, y, z)`
   
@@ -792,12 +798,12 @@ Consider the following expression:
   and three Identifier expressions `x`, `y` and `z` as its arguments.
   It also owns a Block expression as its block element.
 
-If more than two callers are described in the same line,
+If two or more callers are described in the same line,
 they have a leader-trailer relationship each other,
 in which the preceding caller is dubbed a leader and following one a trailer.
 A caller that acts as a leader is the owner of its trailing caller.
 
-Consider the following expression:
+Consider the following expressions:
 
 * `a() b()`
 
@@ -831,4 +837,4 @@ If car's instance is of `function` type
 the expression calls the function with specified arguments.
 
 If the `Caller` expression is specified as a target in Interpreter's assignment stage,
-it always creates `function` instance and assigns it in a specific environment.
+it always creates `function` instance and assigns it in a specific Environment.

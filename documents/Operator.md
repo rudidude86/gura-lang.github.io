@@ -7,7 +7,7 @@ chapter: 4
 
 # {{ page.chapter }}. {{ page.title }}
 
-## {{ page.chapter }}.1. About Operator
+## {{ page.chapter }}.1. Overview
 
 There are three types of Operators.
 

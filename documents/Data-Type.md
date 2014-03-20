@@ -7,7 +7,7 @@ chapter: 3
 
 # {{ page.chapter }}. {{ page.title }}
 
-## {{ page.chapter }}.1. About Data Type
+## {{ page.chapter }}.1. Overview
 
 A value has a corresponding Data Type that defines its behavior and properties.
 

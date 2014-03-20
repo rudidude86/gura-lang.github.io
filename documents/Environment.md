@@ -7,6 +7,8 @@ chapter: 5
 
 # {{ page.chapter }}. {{ page.title }}
 
+## {{ page.chapter }}.1. Overview
+
 Environment is a container to store
 maps associating symbols and values and maps associating symbols and value types.
 
@@ -20,7 +22,7 @@ scope problems
     }
     println(x)
 
-## {{ page.chapter }}.1. Frame
+## {{ page.chapter }}.2. Frame
 
 Frame contains:
 

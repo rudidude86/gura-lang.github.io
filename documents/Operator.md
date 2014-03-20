@@ -5,7 +5,7 @@ title: Operator
 chapter: 4
 ---
 
-# {{ page.chapter }}. {{ page.title }}
+# Chapter {{ page.chapter }}. {{ page.title }}
 
 ## {{ page.chapter }}.1. Overview
 

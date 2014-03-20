@@ -2,9 +2,10 @@
 layout: page
 lang: en
 title: Mathematic Functions
+chapter: 12
 ---
 
-# {{ page.title }}
+# Chapter {{ page.chapter }}. {{ page.title }}
 
 ## Complex Number
 

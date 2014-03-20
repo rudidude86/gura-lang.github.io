@@ -2,9 +2,10 @@
 layout: page
 lang: en
 title: Implicit Mapping
+chapter: 9
 ---
 
-# {{ page.title }}
+# Chapter {{ page.chapter }}. {{ page.title }}
 
     scholar # scholar ... scholar
     scholar # list ... list

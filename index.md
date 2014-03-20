@@ -101,22 +101,22 @@ I hope the publication will inspire me to carry on this tough work :-)</em>
 
 <p>
 <div><a href="documents/Introduction.html">Introduction</a></div>
-<div>1. <a href="documents/Launch-Program.html">Launch Program</a></div>
-<div>2. <a href="documents/Syntax.html">Syntax</a></div>
-<div>3. <a href="documents/Data-Type.html">Data Type</a></div>
-<div>4. <a href="documents/Operator.html">Operator</a></div>
-<div>5. <a href="documents/Environment.html">Environment</a></div>
-<div>6. <a href="documents/Interpreter.html">Interpreter</a></div>
-<div>7. Flow Control</div>
-<div>8. Class</div>
-<div>9. Implicit Mapping</div>
-<div>10. Member Mapping</div>
-<div>11. Module</div>
-<div>12. Mathematic Functions</div>
-<div>13. Path</div>
-<div>14. Stream</div>
-<div>15. Image</div>
-<div>16. Template Engine</div>
+<div>Chapter 1. <a href="documents/Launch-Program.html">Launch Program</a></div>
+<div>Chapter 2. <a href="documents/Syntax.html">Syntax</a></div>
+<div>Chapter 3. <a href="documents/Data-Type.html">Data Type</a></div>
+<div>Chapter 4. <a href="documents/Operator.html">Operator</a></div>
+<div>Chapter 5. <a href="documents/Environment.html">Environment</a></div>
+<div>Chapter 6. <a href="documents/Interpreter.html">Interpreter</a></div>
+<div>Chapter 7. Flow Control</div>
+<div>Chapter 8. Class</div>
+<div>Chapter 9. Implicit Mapping</div>
+<div>Chapter 10. Member Mapping</div>
+<div>Chapter 11. Module</div>
+<div>Chapter 12. Mathematic Functions</div>
+<div>Chapter 13. Path</div>
+<div>Chapter 14. Stream</div>
+<div>Chapter 15. Image</div>
+<div>Chapter 16. Template Engine</div>
 </p>
 
 </div>

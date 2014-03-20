@@ -724,6 +724,23 @@ Consider the following expression:
   It owns an Identifier expression `a` as its car element
   and three Identifier expressions `x`, `y` and `z` as its indices.
 
+How an `Indexer` expression behaves in Interpreter's evaluation and assignment stage
+depends on what instance the car element returns.
+
+If car's instance is of `list` type:
+
+* **Evaluation:** the expression seeks the list's content at specified positions by indices.
+* **Assignment:** modifies or adds the list's content at specified positions by indices.
+
+In these cases, indices values are expected to be of `number` type.
+
+If car's instance is of `dict` type:
+
+* **Evaluation:** the expression seeks the dictionary's content using indices as the keys.
+* **Assignment:** modifies or adds the dictionary's values associated with specified keys by indices.
+
+In these cases, indices values are expected to be of `number`, `string` or `symbol` type.
+
 
 ### {{ page.chapter }}.3.15. Caller
 
@@ -776,17 +793,25 @@ Consider the following expression:
   It also owns a Block expression as its block element.
 
 If more than two callers are described in the same line,
-they have a leader-trailer relationship each other.
+they have a leader-trailer relationship each other,
+in which the preceding caller is dubbed a leader and following one a trailer.
+A caller that acts as a leader is the owner of its trailing caller.
+
 Consider the following expression:
 
 * `a() b()`
 
-  It owns a Caller expression as its trailer element.
+  The Caller expression `a()` owns a Caller expression of `b()` as its trailer.
 
-The parser determines if a following Caller is a trailer
-by checking whether top of the following Caller is described in the same line
+* `a() b() c()`
+
+  The Caller expression `a()` owns a Caller expression of `b()` as its trailer,
+  and the Caller expression `b()` owns the Caller expression `c()` as well.
+
+The parser determines whether a following Caller is a trailer
+by checking if top of the following Caller is described in the same line
 as a closing parenthesis of the preceding one.
-It means that the example below validly forms leader-trailer format.
+It means that the example below is a valid leader-trailer form.
 
     a(
     ) b(
@@ -798,3 +823,12 @@ as top of the following one like below.
     a() {
     } b(
     )
+
+How a `Caller` expression behaves in Interpreter's evaluation stage
+depends on what instance the car element returns.
+
+If car's instance is of `function` type
+the expression calls the function with specified arguments.
+
+In Interpreter's assignment stage,
+the expression always creates `function` instance and assigns it to a specific environment.

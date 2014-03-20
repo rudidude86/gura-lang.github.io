@@ -830,5 +830,5 @@ depends on what instance the car element returns.
 If car's instance is of `function` type
 the expression calls the function with specified arguments.
 
-In Interpreter's assignment stage,
-the expression always creates `function` instance and assigns it to a specific environment.
+If the expression is specified as a target in Interpreter's assignment stage,
+the expression always creates `function` instance and assigns it in a specific environment.

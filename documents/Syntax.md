@@ -288,7 +288,7 @@ There are three types of brackets as listed below.
   
         repeat (3) {|i| println(i)}
 
-Expressions in a collector can be separated by a comma character or a line feed.
+Expressions within brackets can be separated by a comma character or a line feed.
 The following two codes have the same result.
 
     [1, 2, 3, 4]
@@ -300,22 +300,7 @@ The following two codes have the same result.
     ]
 
 
-### {{ page.chapter }}.2.6. Attribute
-
-A symbol preceded by a colon is called Attribute.
-
-    :foo  :bar
-
-Attributes appear after a variable identifier or an argument list for a callable.
-They are used to customize the evaluation result of variables
-and the behavior of functions.
-
-More than one attributes can be appended by simply concatenating them like below.
-
-    func():foo:bar
-
-
-### {{ page.chapter }}.2.7. Back Quote
+### {{ page.chapter }}.2.6. Back Quote
 
 A symbol preceded by a back quote creates an instance of `symbol` data type.
 
@@ -332,7 +317,7 @@ As an `expr` instance can hold any code without any evaluation,
 it can be used to pass a procedure itself to a function as one of the arguments.
 
 
-### {{ page.chapter }}.2.8. Comment
+### {{ page.chapter }}.2.7. Comment
 
 There are two types of comments: line comment and block comment.
 
@@ -362,9 +347,9 @@ Following are valid examples of block comment.
 ## {{ page.chapter }}.3. Expression
 
 
-### {{ page.chapter }}.3.1. Hierarchy
+### {{ page.chapter }}.3.1. Class Diagram of Expression
 
-The following figure shows a hierarchy of all the expression.
+The following figure shows a hierarchy of expressions.
 
     Expr <-+- Value
            +- Identifier
@@ -380,6 +365,12 @@ The following figure shows a hierarchy of all the expression.
            |              `- Root
            `- Compound <--+- Indexer
                           `- Caller
+
+All the expressions are derived from `Expr` that is an abstract expression.
+
+Other abstract expressions, Unary, Binary, Collector and Compound,
+don't appear in the actual code either,
+but just provide common functions for their derivations.
 
 
 ### {{ page.chapter }}.3.2. Value
@@ -397,16 +388,28 @@ Class diagram is:
 Those types of value are described with string literal, number literal
 and b-prefixed string literal in a script respectively.
 
-Examples:
+Consider the following expressions:
 
-    3.141
-    'hello'
-    b'\x00\x01\x02\0x03'
+* `3.141`
+
+  It has a value of `number` type.
+
+* `'hello'`
+
+  It has a value of `string` type.
+
+* `b'\x00\x01\x02\0x03'`
+
+  It has a value of `binary` type.
 
 
 ### {{ page.chapter }}.3.3. Identifier
 
-An `Identifier` expression consists of a symbol and zero or more attributes trailing it.
+An `Identifier` expression consists of a symbol and zero or more attributes trailing after it.
+
+An `Identifer` expression can also contain attributes,
+where an attribute is a symbol preceded by a colon character.
+One or more attributes can be described after a symbol of the `Identifier`.
 
 Class diagram is:
 
@@ -415,13 +418,19 @@ Class diagram is:
     |----------------------------|
     |- symbol: symbol            |
     |- attrs: set of symbol      |
-    |- attrsOpt: set of symbol   |
     |- attrFront: list of symbol |
+    |- attrsOpt: set of symbol   |
     +----------------------------+
 
-Examples:
+Consider the following expression:
 
-    foo:attr1:attr2
+* `foo`
+
+  It has a symbol `foo`. Other elements are all blank.
+
+* `foo:attr1:attr2`
+
+  It has a symbol `foo` and has symbols `attr1` and `attr2` as its attrs element.
 
 
 ### {{ page.chapter }}.3.4. Suffixed
@@ -437,10 +446,17 @@ Class diagram is:
     |- suffix: symbol     |
     +---------------------+
 
-Examples:
+Even with a number literal, the body element is stored as a string.
 
-    123.45foo
-    'hello world'foo
+Consider the following expression:
+
+* `123.45foo`
+
+  It has a string `'123.45'` as its body and a symbol `foo` as its suffix.
+
+* `'hello world'foo`
+
+  It has a string `'hello world'` as its body and a symbol `foo` as its suffix.
 
 
 ### {{ page.chapter }}.3.5. UnaryOp
@@ -458,9 +474,9 @@ Class diagram is:
 
 Consider the following expression:
 
-    -foo
+* `-foo`
 
-It has an operator `-` and owns an Identifer expression as its child.
+  It has an operator `-` and owns an Identifer expression as its child.
 
 
 ### {{ page.chapter }}.3.6. Quote
@@ -478,9 +494,9 @@ Class diagram is:
 
 Consider the following expression:
 
-    `12345
+* ``12345`
 
-It owns an Value expression with a number value as its child.
+  It owns an Value expression with a number value as its child.
 
 
 ### {{ page.chapter }}.3.7. BinaryOp
@@ -504,10 +520,10 @@ Class diagram is:
 
 Consider the following expression:
 
-    x + y
+* `x + y`
 
-It has an operator `+` and owns an Identifer expression `x` as its left
-and also an Identifier expression `y` as its right.
+  It has an operator `+` and owns an Identifer expression `x` as its left
+  and also an Identifier expression `y` as its right.
 
 
 ### {{ page.chapter }}.3.8. Assign
@@ -515,7 +531,7 @@ and also an Identifier expression `y` as its right.
 An `Assign` expression consists of an equal symbol,
 an expression on the left side that is a target of the assignment
 and an expression on the right side that is an assignment source.
-Expresionss that can be specified on the left are
+An expresion that can be specified on the left is one of
 `Identifer`, `Lister`, `Indexer`, `Caller` and `Member`.
 
 Class diagram is:
@@ -532,13 +548,22 @@ Class diagram is:
                                         |                |
                                         +----------------+
 
-Consider the following expression:
+The `Assign` expression also has an operator that is to be applied before assignment.
+For a normal assignment, that is set to invalid operator.
 
-    x = y
+Consider the following expressions:
 
-It owns an Identifer expression `x` as its left
-and also an Identifier expression `y` as its right.
+* `x = y`
 
+  It owns an Identifer expression `x` as its left
+  and also an Identifier expression `y` as its right.
+  The operator is set to invalid.
+
+* `x += y`
+
+  It owns an Identifer expression `x` as its left
+  and also an Identifier expression `y` as its right.
+  It also has an operator `+`.
 
 ### {{ page.chapter }}.3.9. Member
 
@@ -562,10 +587,10 @@ Class diagram is:
 
 Consider the following expression:
 
-    x.y
+* `x.y`
 
-It has a `normal` mode and owns an Identifer expression `x` as its left
-and also an Identifier expression `y` as its right.
+  It has a `normal` mode and owns an Identifer expression `x` as its left
+  and also an Identifier expression `y` as its right.
 
 A Member expression may take one of the following modes.
 
@@ -597,9 +622,9 @@ Class diagram is:
 
 Consider the following expression:
 
-    [x, y, z]
+* `[x, y, z]`
 
-It contains three Identifier expressions `x`, `y` and `z` as its elements.
+  It contains three Identifier expressions `x`, `y` and `z` as its elements.
 
 
 ### {{ page.chapter }}.3.11. Iterer
@@ -616,9 +641,9 @@ Class diagram is:
 
 Consider the following expression:
 
-    (x, y, z)
+* `(x, y, z)`
 
-It contains three Identifier expressions `x`, `y` and `z` as its elements.
+  It contains three Identifier expressions `x`, `y` and `z` as its elements.
 
 
 ### {{ page.chapter }}.3.12. Block
@@ -644,15 +669,14 @@ embraced by a pair of vertical bars right after block's opening curly bracket.
 
 Consider the following expression:
 
-    {x, y, z}
+* `{x, y, z}`
 
-It contains three Identifier expressions `x`, `y` and `z` as its elements.
+  It contains three Identifier expressions `x`, `y` and `z` as its elements.
 
-Consider the following expression:
+* `{|a, b, c| x, y, z}`
 
-    {|a, b, c| x, y, z}
-
-It also owns Identifier expressions `a`, `b` and `c` as its block-parameters.
+  It contains three Identifier expressions `x`, `y` and `z` as its elements.
+  It also owns Identifier expressions `a`, `b` and `c` as its block-parameters.
 
 
 ### {{ page.chapter }}.3.13. Root
@@ -669,9 +693,9 @@ Class diagram is:
 
 Consider the following expression:
 
-    x, y, z
+* `x, y, z`
 
-It contains three Identifier expressions `x`, `y` and `z` as its elements.
+  It contains three Identifier expressions `x`, `y` and `z` as its elements.
 
 
 ### {{ page.chapter }}.3.14. Indexer
@@ -695,10 +719,10 @@ Class diagram is:
 
 Consider the following expression:
 
-    a[x, y, z]
+* `a[x, y, z]`
 
-It owns an Identifier expression `a` as its car element
-and three Identifier expressions `x`, `y` and `z` as its indices.
+  It owns an Identifier expression `a` as its car element
+  and three Identifier expressions `x`, `y` and `z` as its indices.
 
 
 ### {{ page.chapter }}.3.15. Caller
@@ -709,6 +733,9 @@ It may optionally own a Block expression if a block is specified
 and may own a Caller expression as its trailer
 if that is described in a leader-trailer syntax.
 
+As with an `Identifier` expression, a `Caller` expression can also have attributes.
+They can be described just after a closing parentheses of an argument list.
+
 Class diagram is:
 
                                                   +----------------+
@@ -717,8 +744,8 @@ Class diagram is:
     |----------------------------|    |           |                |
     |- symbol: symbol            *----+           +----------------+
     |- attrs: set of symbol      |
-    |- attrsOpt: set of symbol   *----+           +----------------+
-    |- attrFront: list of symbol |    | arguments |      Expr      |
+    |- attrFront: list of symbol *----+           +----------------+
+    |- attrsOpt: set of symbol   |    | arguments |      Expr      |
     +--------*--------------*----+    +-----------+----------------|
              |              |                   * |                |
              |              +----+                +----------------+
@@ -731,19 +758,43 @@ Class diagram is:
 
 Consider the following expression:
 
-    a(x, y, z)
-
-It owns an Identifier expression `a` as its car element
-and three Identifier expressions `x`, `y` and `z` as its arguments.
+* `a(x, y, z)`
   
+  It owns an Identifier expression `a` as its car element
+  and three Identifier expressions `x`, `y` and `z` as its arguments.
+  Its block and trailer elements are both invalid.
+
+* `a()`
+  
+  It owns an Identifier expression `a` as its car element.
+  Its arguments is blank.
+
+* `a(x, y, z) {xx, yy, zz}`
+
+  It owns an Identifier expression `a` as its car element
+  and three Identifier expressions `x`, `y` and `z` as its arguments.
+  It also owns a Block expression as its block element.
+
+If more than two callers are described in the same line,
+they have a leader-trailer relationship each other.
 Consider the following expression:
 
-    a(x, y, z) {xx, yy, zz}
+* `a() b()`
 
-It owns a Block expression as its block element.
+  It owns a Caller expression as its trailer element.
 
-Consider the following expression:
+The parser determines if a following Caller is a trailer
+by checking whether top of the following Caller is described in the same line
+as a closing parenthesis of the preceding one.
+It means that the example below validly forms leader-trailer format.
 
-    a(x, y, z) b(h, i, j)
+    a(
+    ) b(
+    )
 
-It owns a Caller expression as its trailer element.
+If the preceding Caller has a block, the closing curly bracket must be in the same line
+as top of the following one like below.
+
+    a() {
+    } b(
+    )

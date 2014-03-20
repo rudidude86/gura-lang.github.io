@@ -104,7 +104,7 @@ Consider an application that has following files:
     message.txt
     image.png
 
-assuming `foo.gura` is a main script that imports `utils.gura`
+Assume that `foo.gura` is a main script that imports `utils.gura`
 and reads files `message.txt` and `image.png`.
 
 It could be bothersome to treat these files separately

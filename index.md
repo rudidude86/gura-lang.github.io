@@ -94,7 +94,7 @@ Sorry! Only Japanese version is available so far.
   onClick="_gaq.push(['_trackEvent','download','click','gura-lib-j.pdf']);">Japanese</a>)</div>
 <div><img src="images/pdf.png" alt="pdf-icon" /> Gura Developer's Manual
 (<a href="https://github.com/gura-lang/gura-doc/blob/master/gura-dev-j.pdf?raw=true"
-  onClick="_gaq.push(['_trackEvent','download','click','gura-dev-j.pdf']);">>Japanese</a>)</div>
+  onClick="_gaq.push(['_trackEvent','download','click','gura-dev-j.pdf']);">Japanese</a>)</div>
 </p>
 
 <h2>English</h2>

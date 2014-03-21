@@ -231,12 +231,19 @@ it always creates `function` instance and assigns it in a specific Environment.
 
 ### {{ page.chapter }}.3.1. Overview
 
-Operation `x = y` assigns the value of `y` to `x`.
+In an operation `X = Y`, the target expression `X` may be
+one of `Identifer`, `Lister`, `Member`, `Indexer` and `Caller`.
 
-The expression of `x` may be one of `Identifer`, `Lister`, `Member`, `Indexer` and `Caller`.
+If the target expression is `Identifier`, `Lister` or `Member`,
+the source expression is evaluated at first before the result is assigned to the target.
+
+If the target expression is `Caller`,
+the source expression itself is assigned to the target without any evaluation.
 
 
 ### {{ page.chapter }}.3.2. Assignment for Identifier
+
+
 
 An assignment for an `Identifier` expression
 

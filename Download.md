@@ -14,16 +14,19 @@ title: Download
 <table>
 <tr>
 <td>Windows Installer</td>
-<td><a href="https://sourceforge.jp/projects/gura/downloads/{{ gura_download_id }}/gura-{{ gura_version }}-win32.msi/" class="link">gura-{{ gura_version }}-win32.msi</a></td>
+<td><a href="https://sourceforge.jp/projects/gura/downloads/{{ gura_download_id }}/gura-{{ gura_version }}-win32.msi/" class="link"
+  onClick="_gaq.push(['_trackEvent','download','click','gura-{{ gura_version }}-win32.msi']);">gura-{{ gura_version }}-win32.msi</a></td>
 </tr>
 <tr>
 <tr>
 <td>Windows Binary</td>
-<td><a href="https://sourceforge.jp/projects/gura/downloads/{{ gura_download_id }}/gura-{{ gura_version }}-win32.zip/" class="link">gura-{{ gura_version }}-win32.zip</a></td>
+<td><a href="https://sourceforge.jp/projects/gura/downloads/{{ gura_download_id }}/gura-{{ gura_version }}-win32.zip/" class="link"
+  onClick="_gaq.push(['_trackEvent','download','click','gura-{{ gura_version }}-win32.zip']);">gura-{{ gura_version }}-win32.zip</a></td>
 </tr>
 <tr>
 <td>Sorce Package</td>
-<td><a href="https://sourceforge.jp/projects/gura/downloads/{{ gura_download_id }}/gura-{{ gura_version }}-src.tar.gz/" class="link">gura-{{ gura_version }}-src.tar.gz</a></td>
+<td><a href="https://sourceforge.jp/projects/gura/downloads/{{ gura_download_id }}/gura-{{ gura_version }}-src.tar.gz/" class="link"
+  onClick="_gaq.push(['_trackEvent','download','click','gura-{{ gura_version }}-src.tar.gz']);">gura-{{ gura_version }}-src.tar.gz</a></td>
 </tr>
 <!--
 <tr>

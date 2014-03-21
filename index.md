@@ -68,7 +68,7 @@ after it's given with iterators, `1..` and `readlines('foo.txt')`, as its argume
 
 <p>Sample codes of Gura are stored in
 <a href="https://github.com/gura-lang/gura/tree/master/sample"
- onClick="_gaq.push(['_trackEvent','download','click','Repository-sample']);">Repository</a>.
+ onClick="_gaq.push(['_trackEvent','repository','click','sample']);">Repository</a>.
 </p>
 
 <h1>Contacts</h1>
@@ -88,13 +88,13 @@ Sorry! Only Japanese version is available so far.
 <p>
 <div><img src="images/pdf.png" alt="pdf-icon" /> Gura Language Manual
 (<a href="https://github.com/gura-lang/gura-doc/blob/master/gura-lang-j.pdf?raw=true"
-  onClick="_gaq.push(['_trackEvent','download','click','gura-lang-j.pdf']);">Japanese</a>)</div>
+  onClick="_gaq.push(['_trackEvent','document','click','gura-lang-j.pdf']);">Japanese</a>)</div>
 <div><img src="images/pdf.png" alt="pdf-icon" /> Gura Library Reference
 (<a href="https://github.com/gura-lang/gura-doc/blob/master/gura-lib-j.pdf?raw=true"
-  onClick="_gaq.push(['_trackEvent','download','click','gura-lib-j.pdf']);">Japanese</a>)</div>
+  onClick="_gaq.push(['_trackEvent','document','click','gura-lib-j.pdf']);">Japanese</a>)</div>
 <div><img src="images/pdf.png" alt="pdf-icon" /> Gura Developer's Manual
 (<a href="https://github.com/gura-lang/gura-doc/blob/master/gura-dev-j.pdf?raw=true"
-  onClick="_gaq.push(['_trackEvent','download','click','gura-dev-j.pdf']);">Japanese</a>)</div>
+  onClick="_gaq.push(['_trackEvent','document','click','gura-dev-j.pdf']);">Japanese</a>)</div>
 </p>
 
 <h2>English</h2>

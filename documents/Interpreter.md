@@ -100,6 +100,8 @@ Execution of an `Assign` expression triggers Assignment Stage. See the next sect
 
 A `Member` expression
 
+    X.Y
+
 Class, Module and Object
 
 
@@ -132,6 +134,8 @@ A `Root` expression
 ### {{ page.chapter }}.2.14. Evaluation of Indexer
 
 An `Indexer` expression
+
+    X[A, B, C]
 
     x[2]
     
@@ -182,7 +186,7 @@ When the assignment destionation is a `Lister` expression,
 assignment operation is applied to each expression described as its element.
 Elements in the `Lister` must be `Identifier` expressions.
 
-    [a, b, c] = x
+    [A, B, C] = X
 
 If assignment source is a scholar, that value is assigned to each element.
 
@@ -219,6 +223,10 @@ Class, Module and Object
 ### {{ page.chapter }}.3.5. Assignment for Indexer
 
 An `Indexer` expression
+
+    X[A] = Y
+
+    X[A, B, C] = Y
 
     x[n] = y
 

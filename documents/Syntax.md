@@ -250,7 +250,7 @@ See section [Operator](Operator.html) for more detail.
 Multiple expressions can be grouped by surronding them with a pair of brackets.
 There are three types of brackets as listed below.
 
-* __Square bracket__: `[a, b, c]`
+* __Square bracket__: `[A, B, C]`
   
   When it appears right after an expression that has a value as a result of evaluation,
   it works as an indexer that allows indexing access in the preceding value.
@@ -262,7 +262,7 @@ There are three types of brackets as listed below.
 
         [1, 2, 3, 4]
 
-* __Parenthesis__: `(a, b, c)`
+* __Parenthesis__: `(A, B, C)`
 
   When it appears right after an expression that has a value as a result of evaluation,
   it's used as an argument list to evaluate the preceding value as a callable.
@@ -274,7 +274,7 @@ There are three types of brackets as listed below.
 
         (1, 2, 3, 4)
 
-* __Curly bracket__: `{a, b, c}`
+* __Curly bracket__: `{A, B, C}`
   
   It forms a list of expressions called Block.
   In general, a Block is used as a body for function assignment
@@ -282,7 +282,7 @@ There are three types of brackets as listed below.
 
        f() = { println('hello') }
 
-* __Vertical Bar__: `|a, b, c|`
+* __Vertical Bar__: `|A, B, C|`
 
   This only appears right after opening bracket of Block and is called Block Parameter.
   

@@ -35,139 +35,210 @@ while Assignment stage only does when `Assign` expression is executed.
 
 ## {{ page.chapter }}.2. Evaluation Stage
 
+
+### {{ page.chapter }}.2.1. Overview
+
 This section explains how each Expression acts in the Interpreter's evaulation stage.
 
-* Evaluation result of a `Value` expression will be the value it owns in itself.
 
-* An `Identifier` expression will look up a variable whose name matches the expression's symbol
-  in an Environment and return the result value.
-  If no variable is found, it occurs an error.
+### {{ page.chapter }}.2.2. Evaluation of Value
 
-* A `Suffixed` expression will look up an entry in Suffix Manager
-  that matches its suffix symbol and execute the entry with its body string.
-
-* A `UnaryOp` expression evaluates the child expression it owns,
-  and then evaluate the value with its associated unary operator.
-
-* A `Quote` expression
-
-* A `BinaryOp` expression evaluates both of the two child expressions it owns,
-  and then evaluate the value with its associated Binary Operator.
-  
-  Binary Operator `&&` and `||` are exceptional.
-  
-  With operator `&&`, it first evaluates the child expression on the left.
-  If the value is determined as **false**, that value is the result.
-  Otherwise, it then evaluates the child expression on the right and returns the result.
-
-  With operator `||`, it first evaluates the child expression on the left.
-  If the value is determined as **true**, that value is the result.
-  Otherwise, it then evaluates the child expression on the right and returns the result.
-
-* Execution of an `Assign` expression triggers Assignment Stage. See the next section.
-
-* A `Member` expression
-
-  Class, Module and Object
-
-* A `Lister` expression
-
-        [1, 2, 3]
-
-* An `Iterer` expression
-
-        (1, 2, 3)
-
-* A `Block` expression
+Evaluation result of a `Value` expression will be the value it owns in itself.
 
 
+### {{ page.chapter }}.2.3. Evaluation of Identifier
 
-* A `Root` expression
+An `Identifier` expression will look up a variable whose name matches the expression's symbol
+in an Environment and return the result value.
+If no variable is found, it occurs an error.
 
-* An `Indexer` expression
 
-        x[2]
-        
-        x[1, 2, 3]
-        
-        x['foo']
+### {{ page.chapter }}.2.4. Evaluation of Suffixed
 
-* A `Caller` expression evaluates expressions listed as its arguments.
+A `Suffixed` expression will look up an entry in Suffix Manager
+that matches its suffix symbol and execute the entry with its body string.
 
-        f(x)
 
-        f(a, b, c, d)
+### {{ page.chapter }}.2.5. Evaluation of UnaryOp
 
-        f(a, b):foo:bar
+A `UnaryOp` expression evaluates the child expression it owns,
+and then evaluate the value with its associated unary operator.
 
-        f {}
 
-  If the argument is declared as Quoted, it doesn't evaluates its argument.
+### {{ page.chapter }}.2.6. Evaluation of Quote
+
+A `Quote` expression
+
+    `X
+
+### {{ page.chapter }}.2.7. Evaluation of BinaryOp
+
+A `BinaryOp` expression evaluates both of the two child expressions it owns,
+and then evaluate the value with its associated Binary Operator.
+
+    X + Y
+
+Binary Operator `&&` and `||` are exceptional.
+
+With operator `&&`, it first evaluates the child expression on the left.
+If the value is determined as **false**, that value is the result.
+Otherwise, it then evaluates the child expression on the right and returns the result.
+
+With operator `||`, it first evaluates the child expression on the left.
+If the value is determined as **true**, that value is the result.
+Otherwise, it then evaluates the child expression on the right and returns the result.
+
+
+### {{ page.chapter }}.2.8. Evaluation of Assign
+
+Execution of an `Assign` expression triggers Assignment Stage. See the next section.
+
+    X = Y
+
+
+### {{ page.chapter }}.2.9. Evaluation of Member
+
+A `Member` expression
+
+Class, Module and Object
+
+
+### {{ page.chapter }}.2.10. Evaluation of Lister
+
+A `Lister` expression
+
+    [A, B, C]
+
+
+### {{ page.chapter }}.2.11. Evaluation of Iterer
+
+An `Iterer` expression
+
+    (A, B, C)
+
+
+### {{ page.chapter }}.2.12. Evaluation of Block
+
+A `Block` expression
+
+    {A, B, C}
+
+
+### {{ page.chapter }}.2.13. Evaluation of Root
+
+A `Root` expression
+
+
+### {{ page.chapter }}.2.14. Evaluation of Indexer
+
+An `Indexer` expression
+
+    x[2]
+    
+    x[1, 2, 3]
+    
+    x['foo']
+
+
+### {{ page.chapter }}.2.15. Evaluation of Caller
+
+A `Caller` expression evaluates expressions listed as its arguments.
+
+    X(A, B, C)
+
+    f(a, b, c, d)
+
+    f(a, b):foo:bar
+
+    f {}
+
+If the argument is declared as Quoted, it doesn't evaluates its argument.
+
 
 ## {{ page.chapter }}.3. Assignment Stage
+
+### {{ page.chapter }}.3.1. Overview
 
 Operation `x = y` assigns the value of `y` to `x`.
 
 The expression of `x` may be one of `Identifer`, `Lister`, `Member`, `Indexer` and `Caller`.
 
-* An assignment for an `Identifier` expression
 
-        a = 3
+### {{ page.chapter }}.3.2. Assignment for Identifier
 
-  If a type name is specified as the `Identifier`'s  attribute,
-  the source value will be casted to the type before assignment.
+An assignment for an `Identifier` expression
 
-        a:number = '3'
+    X = Y
 
-* When the assignment destionation is a `Lister` expression,
-  assignment operation is applied to each expression described as its element.
-  Elements in the `Lister` must be `Identifier` expressions.
-  
-  If assignment source is a scholar, that value is assigned to each element.
+If a type name is specified as the `Identifier`'s  attribute,
+the source value will be casted to the type before assignment.
 
-        [a, b, c] = 3          // a = 3, b = 3, c = 3
+    a:number = '3'
 
-  If assignment source is a list, each value in the list is assigned to each element.
 
-        [a, b, c] = [1, 2, 3]  // a = 1, b = 2, c = 3
+### {{ page.chapter }}.3.3. Assignment for Lister
 
-  It would be the same with an iterator.
+When the assignment destionation is a `Lister` expression,
+assignment operation is applied to each expression described as its element.
+Elements in the `Lister` must be `Identifier` expressions.
 
-        [a, b, c] = (1, 2, 3)  // a = 1, b = 2, c = 3
+    [a, b, c] = x
 
-  If the assignment source has more elements than the destination requires,
-  remaining elements are simply ignored.
-  If the source has insufficient number of elements, it would occur an error.
+If assignment source is a scholar, that value is assigned to each element.
 
-        [a, b, c] = [1, 2, 3, 4, 5]  // a = 1, b = 2, c = 3
-        [a, b, c] = [1, 2]           // error!
+    [a, b, c] = 3          // a = 3, b = 3, c = 3
 
-* A `Member` expression
+If assignment source is a list, each value in the list is assigned to each element.
 
-  Class, Module and Object
+    [a, b, c] = [1, 2, 3]  // a = 1, b = 2, c = 3
 
-        obj.var1 = 3
-        obj.f(x) = { }
+It would be the same with an iterator.
 
-* An `Indexer` expression
+    [a, b, c] = (1, 2, 3)  // a = 1, b = 2, c = 3
 
-        x[n] = 3
-        
-        x[0, 2, 5] = 3
+If the assignment source has more elements than the destination requires,
+remaining elements are simply ignored.
+If the source has insufficient number of elements, it would occur an error.
 
-        x[0, 2, 5] = [1, 2, 3]
-        
+    [a, b, c] = [1, 2, 3, 4, 5]  // a = 1, b = 2, c = 3
+    [a, b, c] = [1, 2]           // error!
 
-* A `Caller` expression
 
-        f(x) = x
-        
-        f(x) = { }
+### {{ page.chapter }}.3.4. Assignment for Member
+
+A `Member` expression
+
+    X.Y = Z
+
+Class, Module and Object
+
+    obj.var1 = 3
+    obj.f(x) = { }
+
+
+### {{ page.chapter }}.3.5. Assignment for Indexer
+
+An `Indexer` expression
+
+    x[n] = y
+
+    x[n] = 3
+    
+    x[0, 2, 5] = 3
+
+    x[0, 2, 5] = [1, 2, 3]
+
+
+### {{ page.chapter }}.3.6. Assignment for Caller
+
+A `Caller` expression
+
+    X(A, B, C) = Y
 
 Assignments for other expressions than what are described above are invalid and occurs an error.
 
 
-### {{ page.chapter }}.3.6. Operator before Assignment
+### {{ page.chapter }}.3.7. Operator before Assignment
 
 An Assignment operator can be combined with one of several other operators.
 

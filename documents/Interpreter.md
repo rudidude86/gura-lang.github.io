@@ -43,7 +43,21 @@ This section explains how each Expression acts in the Interpreter's evaulation s
 
 ### {{ page.chapter }}.2.2. Evaluation of Value
 
-Evaluation result of a `Value` expression will be the value it owns in itself.
+Evaluation result of a `Value` expression will be the value that it owns in itself.
+
+Consider the following expressions:
+
+* `3.141`
+
+  Returns an instance of `number` type.
+
+* `'hello'`
+
+  Returns an instance of `string` type
+
+* `b'\x00\x01\x02\x03'`
+
+  Returns an instance of `binary` type.
 
 
 ### {{ page.chapter }}.2.3. Evaluation of Identifier
@@ -52,17 +66,45 @@ An `Identifier` expression will look up a variable whose name matches the expres
 in an Environment and return the result value.
 If no variable is found, it occurs an error.
 
+Consider the following expression:
+
+* `foo`
+
+  Looks up a symbol `foo` in the current Environment and returns the associated value if found.
+  If the symbol does not exist, occurs an error.
 
 ### {{ page.chapter }}.2.4. Evaluation of Suffixed
 
 A `Suffixed` expression will look up an entry in Suffix Manager
 that matches its suffix symbol and execute the entry with its body string.
 
+Consider the following expressions:
+
+* `123.45foo`
+
+  1. Looks up a handler associated with a symbol `foo` in the Suffix Manager.
+  2. If found, it evaluates the handler by passing it a string `'123.45'` and returns the result.
+     If no handler is found, occurs an error.
+
+* `'hello world'bar`
+
+  1. Looks up a handler associated with a symbol `bar` in the Suffix Manager.
+  2. If found, evaluates the handler by passing it a string `'hello world'` and returns the result.
+     If no handler is found, occurs an error.
+
 
 ### {{ page.chapter }}.2.5. Evaluation of UnaryOp
 
 A `UnaryOp` expression evaluates the child expression it owns,
 and then evaluate the value with its associated unary operator.
+
+Consider the following expressions:
+
+* `-123.45`
+
+  1. Evaluates the child expression and gets a value `123.45` of `number` type.
+  2. Looks up a unary operator function of `-` that can calculate `number` type.
+  3. Evaluates the function by passing it a number `123.45` and returns the result.
 
 
 ### {{ page.chapter }}.2.6. Evaluation of Quote
@@ -143,6 +185,23 @@ An `Indexer` expression
     
     x['foo']
 
+How an `Indexer` expression behaves in Interpreter's evaluation and assignment stage
+depends on what instance the car element returns.
+
+If car's instance is of `list` type:
+
+* **Evaluation:** the expression seeks the list's content at specified positions by indices.
+* **Assignment:** modifies or adds the list's content at specified positions by indices.
+
+In these cases, indices values are expected to be of `number` type.
+
+If car's instance is of `dict` type:
+
+* **Evaluation:** the expression seeks the dictionary's content using indices as the keys.
+* **Assignment:** modifies or adds the dictionary's values associated with specified keys by indices.
+
+In these cases, indices values are expected to be of `number`, `string` or `symbol` type.
+
 
 ### {{ page.chapter }}.2.15. Evaluation of Caller
 
@@ -157,6 +216,15 @@ A `Caller` expression evaluates expressions listed as its arguments.
     f {}
 
 If the argument is declared as Quoted, it doesn't evaluates its argument.
+
+How a `Caller` expression behaves in Interpreter's evaluation stage
+depends on what instance the car element returns.
+
+If car's instance is of `function` type
+the expression calls the function with specified arguments.
+
+If the `Caller` expression is specified as a target in Interpreter's assignment stage,
+it always creates `function` instance and assigns it in a specific Environment.
 
 
 ## {{ page.chapter }}.3. Assignment Stage

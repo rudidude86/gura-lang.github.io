@@ -460,9 +460,9 @@ Consider the following expressions:
 
   It has a string `'123.45'` as its body and a symbol `foo` as its suffix.
 
-* `'hello world'foo`
+* `'hello world'bar`
 
-  It has a string `'hello world'` as its body and a symbol `foo` as its suffix.
+  It has a string `'hello world'` as its body and a symbol `bar` as its suffix.
 
 
 ### {{ page.chapter }}.3.5. UnaryOp
@@ -730,23 +730,6 @@ Consider the following expression:
   It owns an Identifier expression `a` as its car element
   and three Identifier expressions `x`, `y` and `z` as its indices.
 
-How an `Indexer` expression behaves in Interpreter's evaluation and assignment stage
-depends on what instance the car element returns.
-
-If car's instance is of `list` type:
-
-* **Evaluation:** the expression seeks the list's content at specified positions by indices.
-* **Assignment:** modifies or adds the list's content at specified positions by indices.
-
-In these cases, indices values are expected to be of `number` type.
-
-If car's instance is of `dict` type:
-
-* **Evaluation:** the expression seeks the dictionary's content using indices as the keys.
-* **Assignment:** modifies or adds the dictionary's values associated with specified keys by indices.
-
-In these cases, indices values are expected to be of `number`, `string` or `symbol` type.
-
 
 ### {{ page.chapter }}.3.15. Caller
 
@@ -829,12 +812,3 @@ as top of the following one like below.
     a() {
     } b(
     )
-
-How a `Caller` expression behaves in Interpreter's evaluation stage
-depends on what instance the car element returns.
-
-If car's instance is of `function` type
-the expression calls the function with specified arguments.
-
-If the `Caller` expression is specified as a target in Interpreter's assignment stage,
-it always creates `function` instance and assigns it in a specific Environment.

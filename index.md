@@ -42,9 +42,12 @@ after it's given with iterators, `1..` and `readlines('foo.txt')`, as its argume
 <div><a href="features/Member-Mapping.html">Member Mapping</a></div>
 </p>
 
-<h1>Extensions</h1>
+<h1>Enjoy Programming</h1>
 
 <p>
+<!--
+<div><a href="extensions/Reading-Text-File.html">Reading Text File</a></div>
+-->
 <div><a href="extensions/Graphic-Image-Handling.html">Graphic Image Handling</a></div>
 <div><a href="extensions/GUI-Programming-with-wxWidgets.html">GUI Programming with wxWidgets</a></div>
 <div><a href="extensions/GUI-Programming-with-Tk.html">GUI Programming with Tk</a></div>

@@ -122,7 +122,7 @@ Then you can run it as following:
 
     $ gura foo.gurc
 
-A Composite File must a suffix `.gurc` or `.gurcw`
+A Composite File must have a suffix `.gurc` or `.gurcw`
 where `.gurc` is for command-line scripts and `.gurcw` for ones with GUI.
 These suffixes are also associated with `gura.exe` and `guraw.exe` respectively
 in Windows environment.

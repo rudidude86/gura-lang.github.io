@@ -28,7 +28,7 @@ The figure below shows an example of function definition with each part's design
 It composes of a declaration and a body with an assignment operator,
 and the declaration is made up with an identifier and an argument list.
 
-The body must a single expression.
+The body must be a single expression.
 If you want to describe more than one expression,
 you have to use a Block expression embracing them like following.
 

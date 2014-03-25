@@ -2,7 +2,7 @@
 layout: page
 lang: en
 title: Implicit Mapping
-chapter: 9
+chapter: 10
 ---
 
 # Chapter {{ page.chapter }}. {{ page.title }}

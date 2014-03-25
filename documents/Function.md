@@ -7,12 +7,7 @@ chapter: 7
 
 # Chapter {{ page.chapter }}. {{ page.title }}
 
-## {{ page.chapter }}.1. Overview
-
-A function is an instance of `function` class.
-
-
-## {{ page.chapter }}.2. Function Definition
+## {{ page.chapter }}.1. Function Definition
 
 The figure below shows an example of function definition with each part's designation.
 
@@ -50,6 +45,12 @@ If no argument is necessary, specify an empty list.
 
     f() = { /* body */ }
 
+
+## {{ page.chapter }}.2. Arguments
+
+
+## {{ page.chapter }}.2.1. Type Name  Declaration
+
 You can specify a type name by describing it as an attribute
 after an Identifier's symbol.
 
@@ -60,6 +61,9 @@ the Interpreter first check the type of the given value and try to cast it
 into specified type if possible.
 If the type doesn't match and also fails to be casted correctly,
 it would occur an error.
+
+
+## {{ page.chapter }}.2.2. Optional Argument
 
 You can declare an optional argument by putting `?` right after an Identifier's symbol.
 
@@ -93,6 +97,9 @@ Note that it's inhibited to declare any non-optional arguments following after o
     f(x, y?, z?)  = { /* body */ }  // OK
     f(x?, y?, z)  = { /* body */ }  // error
 
+
+## {{ page.chapter }}.2.3. Argument with Default Value
+
 An argument with a default value can be declared with an operator `=>`.
 
     f(x => -1) = { /* body */ }
@@ -122,17 +129,28 @@ follow the same positioning rule each other in an argument list.
 
     f(x => 1, y => 2, z?) = { /* body */ }  // OK
 
-You can also declare a variable-length argument by putting `+` or `*`
+
+## {{ page.chapter }}.2.4. Variable-length Argument
+
+You can declare a variable-length argument by putting `+` or `*`
 right after an Identifier's symbol.
 
     f(x+) = { /* body */ }
-    f(x*) = { /* body */ }
+    g(x*) = { /* body */ }
 
 For the first one, the Caller can call it with **one** or more values.
 If it doesn't specify any value for the argument, it would occur an error.
 
+    f(1)           // OK
+    f(1, 2, 3, 4)  // OK
+    f()            // error
+
 For the second one, the Caller can call it with **zero** or more values.
 It can even call it without any argument.
+
+    g(1)           // OK
+    g(1, 2, 3, 4)  // OK
+    g()            // OK
 
 If you want to declare a type name for a variable-length argument, specify it like following.
 
@@ -144,17 +162,33 @@ The variable-length argument can only be declared once and must be placed at the
     f(x, y+, z+) = { /* body */ }  // error
     f(x, y+, z)  = { /* body */ }  // error
 
+In the function body, a variable of variable-length argument takes a list of values.
 
+    f(x+) = {
+        println('number of arguments: ', x.len())
+        for (item in x) {
+            sum += item
+        }
+    }
+
+
+## {{ page.chapter }}.2.5. Quoted Value
 
 quoted value
 
     f(`x) = { /* body */ }
+
+
+## {{ page.chapter }}.3. Block
 
 block declaration
 
     f(x) {block} = { /* body */ }
 
     f(x) {block?} = { /* body */ }
+
+
+## {{ page.chapter }}.4. Attribute
 
 attributes
 
@@ -163,43 +197,6 @@ attributes
     }
 
 
-## {{ page.chapter }}.3. Function Call
-
-When the interpreter evaluated a `Caller` expression
-and its car element is of `function` type,
-it will evaluate the function with specified arguments.
+## {{ page.chapter }}.5. Lexical Scope
 
 
-## {{ page.chapter }}.4. Flow Control
-
-## {{ page.chapter }}.4.1. Branch
-
-    
-
-    if - elsif - else
-
-    
-
-    if (`cond):leader {block}
-    elsif (`cond):leader:trailer {block}
-    else():trailer {block}
-
-## {{ page.chapter }}.4.2. Repeat
-
-    repeat (n?:number) {block}
-    
-    while (`cond) {block}
-    
-    for
-    
-    cross
-    
-    break
-    
-    continue
-    
-## {{ page.chapter }}.4.3. Exception
-
-    try - catch
-    
-    raise

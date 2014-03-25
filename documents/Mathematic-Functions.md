@@ -2,7 +2,7 @@
 layout: page
 lang: en
 title: Mathematic Functions
-chapter: 12
+chapter: 13
 ---
 
 # Chapter {{ page.chapter }}. {{ page.title }}

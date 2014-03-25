@@ -2,7 +2,7 @@
 layout: page
 lang: en
 title: Image
-chapter: 15
+chapter: 16
 ---
 
 # Chapter {{ page.chapter }}. {{ page.title }}

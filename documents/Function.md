@@ -7,7 +7,7 @@ chapter: 7
 
 # Chapter {{ page.chapter }}. {{ page.title }}
 
-## {{ page.chapter }}.1. Function Definition
+## {{ page.chapter }}.1. Definition and Evaluation
 
 The figure below shows an example of function definition with each part's designation.
 
@@ -43,13 +43,59 @@ You can see a function's declaration by simply printing the instance like follow
 The argument list is a list of Identifier expressions.
 If no argument is necessary, specify an empty list.
 
-    f() = { /* body */ }
+    g() = { /* body */ }
+
+You can evaluate a `function` instance by passing it values as its arguments.
+The number of passed values must be the same as that of declared arguments.
+
+    f(1, 2, 3)    // OK
+    f(1, 2, 3, 4) // Error; too many arguments
+    f(1, 2)       // Error; insufficient arguments
+
+If the Caller doesn't pass any argument for evaluation, specify an empty list.
+
+    g()
 
 
-## {{ page.chapter }}.2. Arguments
+## {{ page.chapter }}.2. Returned Value
+
+An evaluation result of the last expression in a function body becomes its returned value.
+
+The function below returns a string `'hello'` as its result:
+
+    f() = {
+        // any process
+        'hello'
+    }
+
+The function below returns a returned value of `g()` as its result:
+
+    f() = {
+        // any process
+        g()
+    }
+
+You can also use a function `return()` to explicitly specify the returned value
+even though its use is not recommended unless you need to quit a process in the middle.
+
+    f() = {
+        // any process
+        return('hello')
+    }
+
+An attribute `:void` indicates that the function always return `nil`
+no matter what value is resulted at last in the process.
+A call for a function below returns `nil`, not a string `'hello'`.
+
+    f():void = {
+        'hello'
+    }
 
 
-## {{ page.chapter }}.2.1. Type Name  Declaration
+## {{ page.chapter }}.3. Arguments
+
+
+## {{ page.chapter }}.3.1. Type Name Declaration
 
 You can specify a type name by describing it as an attribute
 after an Identifier's symbol.
@@ -63,7 +109,7 @@ If the type doesn't match and also fails to be casted correctly,
 it would occur an error.
 
 
-## {{ page.chapter }}.2.2. Optional Argument
+## {{ page.chapter }}.3.2. Optional Argument
 
 You can declare an optional argument by putting `?` right after an Identifier's symbol.
 
@@ -95,10 +141,10 @@ Note that it's inhibited to declare any non-optional arguments following after o
 
     f(x?, y?, z?) = { /* body */ }  // OK
     f(x, y?, z?)  = { /* body */ }  // OK
-    f(x?, y?, z)  = { /* body */ }  // error
+    f(x?, y?, z)  = { /* body */ }  // Error
 
 
-## {{ page.chapter }}.2.3. Argument with Default Value
+## {{ page.chapter }}.3.3. Argument with Default Value
 
 An argument with a default value can be declared with an operator `=>`.
 
@@ -122,7 +168,7 @@ follow after one with a default value.
 
     f(x => 1, y => 2, z => 3) = { /* body */ }  // OK
     f(x, y => 2, z => 3)      = { /* body */ }  // OK
-    f(x => 1, y => 2, z)      = { /* body */ }  // error
+    f(x => 1, y => 2, z)      = { /* body */ }  // Error
 
 Optional arguments and arguments with default value
 follow the same positioning rule each other in an argument list.
@@ -130,7 +176,7 @@ follow the same positioning rule each other in an argument list.
     f(x => 1, y => 2, z?) = { /* body */ }  // OK
 
 
-## {{ page.chapter }}.2.4. Variable-length Argument
+## {{ page.chapter }}.3.4. Variable-length Argument
 
 You can declare a variable-length argument by putting `+` or `*`
 right after an Identifier's symbol.
@@ -143,7 +189,7 @@ If it doesn't specify any value for the argument, it would occur an error.
 
     f(1)           // OK
     f(1, 2, 3, 4)  // OK
-    f()            // error
+    f()            // Error
 
 For the second one, the Caller can call it with **zero** or more values.
 It can even call it without any argument.
@@ -159,12 +205,12 @@ If you want to declare a type name for a variable-length argument, specify it li
 The variable-length argument can only be declared once and must be placed at the last.
 
     f(x, y, z+)  = { /* body */ }  // OK
-    f(x, y+, z+) = { /* body */ }  // error
-    f(x, y+, z)  = { /* body */ }  // error
+    f(x, y+, z+) = { /* body */ }  // Error
+    f(x, y+, z)  = { /* body */ }  // Error
 
 In the function body, a variable of variable-length argument takes a list of values.
 
-    f(x+) = {
+    f(x*) = {
         println('number of arguments: ', x.len())
         for (item in x) {
             sum += item
@@ -172,14 +218,48 @@ In the function body, a variable of variable-length argument takes a list of val
     }
 
 
-## {{ page.chapter }}.2.5. Quoted Value
-
-quoted value
-
-    f(`x) = { /* body */ }
+## {{ page.chapter }}.3.5. Named Argument
 
 
-## {{ page.chapter }}.3. Block
+
+    f(x%)
+
+## {{ page.chapter }}.3.6. Quoted Argument
+
+Sometime, there's a need to pass a function a procedure, not an evaluated result.
+For such a purpose, you can use a Quote operator that creates `expr` instance from any code,
+
+See an exmple below:
+
+    f(x:expr) = {
+        x.eval()
+    }
+    
+    x = `println('hello')
+    f(x)
+
+The variable `x` that holds an `expr` instance contaning expression of `println('hello')`
+will be passed to function `f` as its argument, which then actually evaluates it.
+
+Of course, you can also specify the quoted value directly in the argument.
+
+    f(`println('hello'))
+
+There's another way to pass an expression in a function call,
+and that is to put a Quoted operator in an argument list
+of a function definition like below.
+
+    g(`x) = {
+        x.eval()
+    }
+
+For such a function, the Caller doesn't have to put a Quote operator
+for the expression that you want to pass.
+
+    g(println('hello'))
+
+
+## {{ page.chapter }}.4. Block
 
 block declaration
 
@@ -187,8 +267,9 @@ block declaration
 
     f(x) {block?} = { /* body */ }
 
+    f(x) {`block} = { /* body */ }
 
-## {{ page.chapter }}.4. Attribute
+## {{ page.chapter }}.5. Attribute
 
 attributes
 
@@ -197,6 +278,6 @@ attributes
     }
 
 
-## {{ page.chapter }}.5. Lexical Scope
+## {{ page.chapter }}.6. Clojure
 
 

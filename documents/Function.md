@@ -217,12 +217,43 @@ In the function body, a variable of variable-length argument takes a list of val
         }
     }
 
+If there are other arguments before a variable-length one,
+variables of those arguments are assigned in order
+before the rests are stored in a variable-length argument.
+For instance, consider the code below:
+
+    f(x, y, z+) = { /* body */ }
+    f(1, 2, 3, 4)
+
+In function `f`, variables `x`, `y` and `z` are set to `1`, `2` and `[3, 4]` respectively.
+
 
 ## {{ page.chapter }}.3.5. Named Argument
 
+Consider the following function:
 
+    f(x, y, z) = { /* body */ }
 
-    f(x%)
+To evaluate it, you can explicitly specify variable names in the argument list like below:
+
+    f(x => 1, y => 2, z => 3)
+
+Such arguments are called named arguments,
+which are useful when you want to specify only relevant one among many optional arguments.
+
+If a function declaration contains an argument suffixed by `%`,
+it can take a all the values of named arguments that are not assigned to other arguments.
+
+Consider the following function:
+
+    f(a, b, x%) = { /* body */ }
+
+When you evaluate it like below:
+
+    f(a => 1, b => 2, c => 3, d => 4)
+
+variables `a`, `b` and `x` are set to `1`, `2` and `%{c => 3, d => 4}`.
+
 
 ## {{ page.chapter }}.3.6. Quoted Argument
 

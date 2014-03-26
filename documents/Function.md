@@ -108,6 +108,18 @@ into specified type if possible.
 If the type doesn't match and also fails to be casted correctly,
 it would occur an error.
 
+If you expect an argument to take a list,
+specify a pair of square brackets that has no content after an Identifer's symbol.
+
+    f(x[]) = { /* body */ }
+
+A type name can be described after the bracket pair.
+
+    f(x[]:number) = { /* body */ }
+
+In this case, the Interpreter checks types of all the items in the list
+and applies casting on them if possible.
+
 
 ## {{ page.chapter }}.3.2. Optional Argument
 
@@ -252,12 +264,12 @@ When you evaluate it like below:
 
     f(a => 1, b => 2, c => 3, d => 4)
 
-variables `a`, `b` and `x` are set to `1`, `2` and `%{c => 3, d => 4}`.
+Then, variables `a`, `b` and `x` are set to `1`, `2` and `%{c => 3, d => 4}`.
 
 
 ## {{ page.chapter }}.3.6. Quoted Argument
 
-Sometime, there's a need to pass a function a procedure, not an evaluated result.
+Sometimes, there's a need to pass a function a procedure, not an evaluated result.
 For such a purpose, you can use a Quote operator that creates `expr` instance from any code,
 
 See an exmple below:
@@ -292,15 +304,113 @@ for the expression that you want to pass.
 
 ## {{ page.chapter }}.4. Block
 
-block declaration
+A block can be seen as a special form of an argument.
+It appears after an argument list and contains a procedure embraced by a pair of curly braces.
 
-    f(x) {block} = { /* body */ }
+A function definition with a block comes like below:
 
-    f(x) {block?} = { /* body */ }
+    f() {block} = { /* body */ }
 
-    f(x) {`block} = { /* body */ }
+And you can call the function like folowing:
+
+    f() { /* block procedure */ }
+
+The function `f` takes a function instance of a block procedure with a variable named `block`,
+and it can call the procedure just like an ordinary function.
+
+Consider the following function:
+
+    three_times() {block} = {
+        block()
+        block()
+        block()
+    }
+
+Then, you can call it like following:
+
+    three_times() {
+        println('hello world')
+    }
+
+This results in three print-outs of `'hello world'`.
+
+The block procedure can have a list of block parameters
+that appears right after the opening curly brace and is embraced by a pair of vertical bars.
+
+    f() {|/* block parameters */| /* block procedure */ }
+
+A declaration of block parameters is almost the same with that of function arguments.
+In fact, a function created from a block procedure has an argument list
+that are specified as block parameters.
+
+Consider the following function:
+
+    three_times() {block} = {
+        block(1)
+        block(2)
+        block(3)
+    }
+
+The function expects that the block procedure provides one block parameter 
+hat accepts a value of `number` type.
+
+So, on the Caller side, it comes like below:
+
+    three_times() {|i|
+        println('hello world ' + i)
+    }
+
+You can specify an optional block  by putting `?` after an Identifier for the block procedure.
+
+    f() {block?} = { /* body */ }
+
+You can either call such a function with or without a block.
+
+    f() {}  // OK
+    f()     // OK
+
+If a block is not specified, the variable `block` takes `nil` value.
+
+    f() {block?} = {
+        if (block) {
+            // block is specified
+        } else {
+            // block is not specified
+        }
+    }
+
+If an Identifer for the block procedure is prefixed by Quote operator,
+the variable takes the procedure as an `expr` instance, not an `function` one.
+
+    f() {`block} = { /* body */ }
+
 
 ## {{ page.chapter }}.5. Attribute
+
+    :map
+    :nomap
+    :flat
+    :noflat
+
+    :list
+    :xlist
+    :iter
+    :xiter
+    :set
+    :xset
+    :void
+    :reduce
+    :xreduce
+    :static
+    :dynamic_scope
+    :symbol_func
+    :leader
+    :trailer
+    :finalizer
+    :end_marker
+    :public
+    :private
+    
 
 attributes
 

@@ -75,6 +75,16 @@ The function below returns a returned value of `g()` as its result:
         g()
     }
 
+A function can return any types of value including `list`.
+This feature enables a function to return more than one value.
+
+    f() = {
+        // any process
+        [3, 4, 5]
+    }
+    
+    [a, b, c] = f()  // a = 3, b = 4, c = 5
+
 You can also use a function `return()` to explicitly specify the returned value
 even though its use is not recommended unless you need to quit a process in the middle.
 
@@ -384,33 +394,55 @@ the variable takes the procedure as an `expr` instance, not an `function` one.
 
     f() {`block} = { /* body */ }
 
+You need to use `expr#eval()` method to evaluate the block.
+
+    f() {`block} = {
+        block.eval()
+    }
+
+This feature is useful when you need to delegate a block to other function.
+If a Caller specifies a block that only has a block parameter containing a value of `expr` type,
+that value would be passed as a block procedure.
+
+See a sample code below:
+
+    repeat_delegate(n) {`block} = {
+        println('begin')
+        repeat(n) {|block|}
+        println('end')
+    }
+
+Function `repeat_delegate()` takes a block procedure in `expr` type,
+which is passed to `repeat()` function in a delegation manner.
+
 
 ## {{ page.chapter }}.5. Attribute
 
-    :map
-    :nomap
-    :flat
-    :noflat
-
-    :list
-    :xlist
-    :iter
-    :xiter
-    :set
-    :xset
-    :void
-    :reduce
-    :xreduce
-    :static
-    :dynamic_scope
-    :symbol_func
-    :leader
-    :trailer
-    :finalizer
-    :end_marker
-    :public
-    :private
-    
+<table>
+<tr><th>Attribute</th><th>Note</th></tr>
+<tr><td><code>:map</code></td><td></td></tr>
+<tr><td><code>:nomap</code></td><td></td></tr>
+<tr><td><code>:flat</code></td><td></td></tr>
+<tr><td><code>:noflat</code></td><td></td></tr>
+<tr><td><code>:list</code></td><td></td></tr>
+<tr><td><code>:xlist</code></td><td></td></tr>
+<tr><td><code>:iter</code></td><td></td></tr>
+<tr><td><code>:xiter</code></td><td></td></tr>
+<tr><td><code>:set</code></td><td></td></tr>
+<tr><td><code>:xset</code></td><td></td></tr>
+<tr><td><code>:void</code></td><td></td></tr>
+<tr><td><code>:reduce</code></td><td></td></tr>
+<tr><td><code>:xreduce</code></td><td></td></tr>
+<tr><td><code>:static</code></td><td></td></tr>
+<tr><td><code>:dynamic_scope</code></td><td></td></tr>
+<tr><td><code>:symbol_func</code></td><td></td></tr>
+<tr><td><code>:leader</code></td><td></td></tr>
+<tr><td><code>:trailer</code></td><td></td></tr>
+<tr><td><code>:finalizer</code></td><td></td></tr>
+<tr><td><code>:end_marker</code></td><td></td></tr>
+<tr><td><code>:public</code></td><td></td></tr>
+<tr><td><code>:private</code></td><td></td></tr>
+</table>
 
 attributes
 

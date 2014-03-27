@@ -245,9 +245,9 @@ before the rests are stored in a variable-length argument.
 For instance, consider the code below:
 
     f(x, y, z+) = { /* body */ }
-    f(1, 2, 3, 4)
+    f(1, 2, 3, 4, 5)
 
-In function `f`, variables `x`, `y` and `z` are set to `1`, `2` and `[3, 4]` respectively.
+In function `f`, variables `x`, `y` and `z` are set to `1`, `2` and `[3, 4, 5]` respectively.
 
 
 ## {{ page.chapter }}.3.5. Named Argument
@@ -344,6 +344,11 @@ Then, you can call it like following:
 
 This results in three print-outs of `'hello world'`.
 
+For a block that is declared to take a block,
+a call without specifying a block procedure would occur an error.
+
+    three_times()  // Error
+
 The block procedure can have a list of block parameters
 that appears right after the opening curly brace and is embraced by a pair of vertical bars.
 
@@ -370,11 +375,11 @@ So, on the Caller side, it comes like below:
         println('hello world ' + i)
     }
 
-You can specify an optional block  by putting `?` after an Identifier for the block procedure.
+You can specify an optional block by putting `?` after an Identifier for the block procedure.
 
     f() {block?} = { /* body */ }
 
-You can either call such a function with or without a block.
+You can call such a function either with or without a block.
 
     f() {}  // OK
     f()     // OK
@@ -415,8 +420,46 @@ See a sample code below:
 Function `repeat_delegate()` takes a block procedure in `expr` type,
 which is passed to `repeat()` function in a delegation manner.
 
+In general, a function call must be accompanied with an argument list even if it's empty.
+Though, if the call doesn't have any argument but has a block procedure,
+you can omit the list like below.
+
+    f { /* body */ }
+
 
 ## {{ page.chapter }}.5. Attribute
+
+
+## {{ page.chapter }}.5.1. User-defined Attribute
+
+An attribute works as another way to pass information to a function.
+In a function definition,
+acceptable attributes are listed within a pair of square brackets
+that follow after an argument list and a colon character.
+
+    f():[attr1,attr2,attr3] = { /* body */ }
+
+You can call such a function like below. You can specify any number of attributes in any order.
+
+    f():attr1
+    f():attr2
+    f():attr1:attr3
+
+In a function body, a variable named `__args__` of `args` type is defined,
+and you can use `args#isset()` method to check if an attribute is set.
+
+    f():[foo,bar] = {
+        if (__args__.isset(`foo)) {
+            // :foo is specified
+        }
+        if (__args__.isset(`bar)) {
+            // :bar is specified
+        }
+    }
+
+
+## {{ page.chapter }}.5.2. Predefined Attributes
+
 
 <table>
 <tr><th>Attribute</th><th>Note</th></tr>
@@ -443,12 +486,6 @@ which is passed to `repeat()` function in a delegation manner.
 <tr><td><code>:public</code></td><td></td></tr>
 <tr><td><code>:private</code></td><td></td></tr>
 </table>
-
-attributes
-
-    f(x):[foo,bar] = {
-        __args__.isset(`foo)
-    }
 
 
 ## {{ page.chapter }}.6. Clojure

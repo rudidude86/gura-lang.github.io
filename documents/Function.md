@@ -488,6 +488,42 @@ and you can use `args#isset()` method to check if an attribute is set.
 </table>
 
 
-## {{ page.chapter }}.6. Clojure
+## {{ page.chapter }}.6. Anonymous Function
+
+A function `function()` creates an anonymous function instance
+from an argument list and a block that contains its function body.
+
+    function(x, y, z) { /* body */ }
+
+When the function instance is assigned to a variable, that symbol is bound to the instance.
+The following two codes are equivalent each other.
+
+    f = function(x, y, z) { /* body */ }
+    f(x, y, z) = { /* body */ }
+
+If you create a function that doesn't have arguments,
+you can call `function()` without an argument list like below.
+
+    function { /* body */ }
+
+Since a special symbol `&` is also bound to the `function()` function,
+you can create a function instance as below.
+
+    &{ /* body */ }
+
+When `function()` creates a function instance,
+it seeks variable symbols in the function body that start with `$` character,
+which are used as argument variables. For instance, see the following code:
+
+    function { printf('x = %s, y = %s, z = %s\n', $x, $y, $z) }
+
+This is equivalent with the function creation shown below:
+
+    function($x, $y, $z) { printf('x = %s, y = %s, z = %s\n', $x, $y, $z) }
+
+The order of arguments is the same with the order in which the variables appear in the body.
+
+
+## {{ page.chapter }}.6. Closure
 
 

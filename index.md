@@ -115,7 +115,7 @@ I hope the publication will inspire me to carry on this tough work :-)</em>
 <div>Chapter 5. <a href="documents/Environment.html">Environment</a></div>
 <div>Chapter 6. <a href="documents/Interpreter.html">Interpreter</a></div>
 <div>Chapter 7. <a href="documents/Function.html">Function</a></div>
-<div>Chapter 8. Flow Control</div>
+<div>Chapter 8. <a href="documents/Flow-Control.html">Flow Control</a></div>
 <div>Chapter 9. Object Oriented Programming</div>
 <div>Chapter 10. Implicit Mapping</div>
 <div>Chapter 11. Member Mapping</div>

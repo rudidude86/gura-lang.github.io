@@ -10,12 +10,12 @@ In this article, we're creating an animation GIF file
 from a scanned image of a handwritten picture.
 
 Here is a JPEG image file that contains animation frames:
-[cat-picture.jpg](../images/cat-picture.jpg).  
-_(Any size of picture would be acceptable
-if only all the frames have the same size and are aligned at regular invervals.)_
+[cat-picture.jpg](../images/cat-picture.jpg).
 
 ![cat-picture](../images/cat-picture.jpg)
 
+_(Any size of picture would be acceptable
+if only all the frames have the same size and are aligned at regular invervals.)_
 
 The program needs to do the following jobs.
 
@@ -29,14 +29,18 @@ And here is the script code:
 
     import(jpeg)
     import(gif)
-    
-    delayTime = 12      // interval time in 1/100 seconds
-    [nx, ny] = [6, 2]   // number to divide a source image
+
+    delayTime = 12             // interval time in 1/100 seconds
+    [nx, ny] = [6, 2]          // number to divide a source image
     img = image('cat-picture.jpg').reducecolor(`win256)
     [w, h] = [img.width / nx, img.height / ny]
-    n = nx * ny
-    x = (range(n) % nx) * w
-    y = int(range(n) / nx) * h
-    gif.content().addimage(img.crop(x, y, w, h), delayTime).write('cat-anim.gif')
+    i = range(nx * ny)
+    xs = (i % nx) * w
+    ys = int(i / nx) * h
+    imgFrames = img.crop(xs, ys, w, h)
+    gif.content().addimage(imgFrames, delayTime).write('cat-anim.gif')
+
+It utilizes Implicit Mapping feature to process frame images.
+If you're interested in what's running in the code, trace the variable `imgFrames`.
 
 ![cat-picture](../images/cat-anim.gif) [cat-anim.gif](../images/cat-anim.gif)

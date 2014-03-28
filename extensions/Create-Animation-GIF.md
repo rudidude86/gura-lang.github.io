@@ -35,7 +35,7 @@ And here is the script code:
     img = image('cat-picture.jpg').reducecolor(`win256)
     [w, h] = [img.width / nx, img.height / ny]
     n = nx * ny
-    x = range(nx).cycle(n) * w
+    x = (range(n) % nx) * w
     y = int(range(n) / nx) * h
     gif.content().addimage(img.crop(x, y, w, h), delayTime).write('cat-anim.gif')
 

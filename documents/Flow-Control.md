@@ -52,6 +52,10 @@ This enables you to write a program in a similar syntax as other languages.
         
     }
 
+Function `if` and `elsif` check the evaluated result of the expression `cond`.
+If it's determined as `true`, the block procedure will be evaluated,
+otherwise, the trailing function will be evaluated.
+
 
 
 

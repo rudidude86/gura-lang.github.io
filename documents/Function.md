@@ -105,7 +105,7 @@ A call for a function below returns `nil`, not a string `'hello'`.
 ## {{ page.chapter }}.3. Arguments
 
 
-## {{ page.chapter }}.3.1. Type Name Declaration
+### {{ page.chapter }}.3.1. Type Name Declaration
 
 You can specify a type name by describing it as an attribute
 after an Identifier's symbol.
@@ -131,7 +131,7 @@ In this case, the Interpreter checks types of all the items in the list
 and applies casting on them if possible.
 
 
-## {{ page.chapter }}.3.2. Optional Argument
+### {{ page.chapter }}.3.2. Optional Argument
 
 You can declare an optional argument by putting `?` right after an Identifier's symbol.
 
@@ -166,7 +166,7 @@ Note that it's inhibited to declare any non-optional arguments following after o
     f(x?, y?, z)  = { /* body */ }  // Error
 
 
-## {{ page.chapter }}.3.3. Argument with Default Value
+### {{ page.chapter }}.3.3. Argument with Default Value
 
 An argument with a default value can be declared with an operator `=>`.
 
@@ -198,7 +198,7 @@ follow the same positioning rule each other in an argument list.
     f(x => 1, y => 2, z?) = { /* body */ }  // OK
 
 
-## {{ page.chapter }}.3.4. Variable-length Argument
+### {{ page.chapter }}.3.4. Variable-length Argument
 
 You can declare a variable-length argument by putting `+` or `*`
 right after an Identifier's symbol.
@@ -250,7 +250,7 @@ For instance, consider the code below:
 In function `f`, variables `x`, `y` and `z` are set to `1`, `2` and `[3, 4, 5]` respectively.
 
 
-## {{ page.chapter }}.3.5. Named Argument
+### {{ page.chapter }}.3.5. Named Argument
 
 Consider the following function:
 
@@ -277,7 +277,7 @@ When you evaluate it like below:
 Then, variables `a`, `b` and `x` are set to `1`, `2` and `%{c => 3, d => 4}`.
 
 
-## {{ page.chapter }}.3.6. Quoted Argument
+### {{ page.chapter }}.3.6. Quoted Argument
 
 Sometimes, there's a need to pass a function a procedure, not an evaluated result.
 For such a purpose, you can use a Quote operator that creates `expr` instance from any code,
@@ -430,7 +430,7 @@ you can omit the list like below.
 ## {{ page.chapter }}.5. Attribute
 
 
-## {{ page.chapter }}.5.1. User-defined Attribute
+### {{ page.chapter }}.5.1. User-defined Attribute
 
 An attribute works as another way to pass information to a function.
 In a function definition,
@@ -458,7 +458,7 @@ and you can use `args#isset()` method to check if an attribute is set.
     }
 
 
-## {{ page.chapter }}.5.2. Predefined Attributes
+### {{ page.chapter }}.5.2. Predefined Attributes
 
 
 <table>
@@ -524,6 +524,29 @@ This is equivalent with the function creation shown below:
 The order of arguments is the same with the order in which the variables appear in the body.
 
 
-## {{ page.chapter }}.6. Closure
+## {{ page.chapter }}.7. Closure
 
+You can define a function inside another function body.
+In that case, the inner function can access variables in the outer function.
 
+    f() = {
+        x = 3
+        g() = {
+            println('x = ', x)
+        }
+        g()  // evaluate the function
+    }
+
+A function can also return a `function` instance that it creates as its result.
+The environment of the outer function will be held in the inner function.
+
+    f() = {
+        x = 3
+        g() = {
+            println('x = ', x)
+        }
+        g
+    }
+    
+    h = f()
+    h()

@@ -55,14 +55,9 @@ This enables you to write a program in a similar syntax as other languages.
 Function `if` and `elsif` check the evaluated result of the expression `cond`.
 If it's determined as `true`, the block procedure will be evaluated,
 otherwise, the trailing function will be evaluated.
+Function `else` always evaluates its block procedure.
 
-
-----
-
-Although appearance is very similar with that of other languages, there's a big difference.
-In Gura, `if` is NOT a statement but a function, which means that `if` has a return value.
-
-Consider the following code:
+Branch sequence has a result value as well. Consider the following code:
 
     str = if (x < 0) {
         'less than zero'
@@ -72,18 +67,20 @@ Consider the following code:
         'equal to zero'
     }
 
-In this case, `if` would have a return
-with a value of last-evaluated result of `if`, `elsif` or `else`.
+In this case, if `x` is less than zero,
+the sequence would have a string `'less than zero'` as its result.
+It would have `'greater than zero'` for `x` with number greater than zero and
+`'equal to zero'` otherwise.
 
-When `if` has no following `else` and its condition is not evaluated as `true`,
-it will return `nil`.
-
-
+If function `if` and `elsif` have no following `else` and their conditions are not evaluated as `true`,
+the result value will be `nil`.
 
 
 ## {{ page.chapter }}.2. Repeat
 
 ## {{ page.chapter }}.2.1. `repeat`
+
+
 
     repeat (n?:number) {block}
     

@@ -35,11 +35,9 @@ after it's given with iterators, `1..` and `readlines('foo.txt')`, as its argume
 <h1>Language Features</h1>
 
 <p>
-<div><a href="features/Flow-Control.html">Flow Control</a></div>
-<div><a href="features/Function-Definition.html">Function Definition</a></div>
-<div><a href="features/Object-Oriented-Programming.html">Object Oriented Programming</a></div>
 <div><a href="features/Implicit-Mapping.html">Implicit Mapping</a></div>
 <div><a href="features/Member-Mapping.html">Member Mapping</a></div>
+<div><a href="features/Object-Oriented-Programming.html">Object Oriented Programming</a></div>
 </p>
 
 <h1>Enjoy Programming</h1>

@@ -550,3 +550,37 @@ The environment of the outer function will be held in the inner function.
     
     h = f()
     h()
+
+
+## {{ page.chapter }}.8. Leader-trailer Relationship
+
+When a Caller expression is described at the same line with the end of a preceding one,
+they have a leader-trailer relationship
+with the preceding one as a leader and the following one as a trailer.
+
+    f() g()
+    --- ---
+     |   |
+     |   +-- trailer
+     +-- leader
+
+In an ordinary case, these functions are evaluated sequentially
+in the same way that they're described in different lines.
+
+The leader function has a right to control whether the trailer one should be evaluated or not.
+A method `args#quit_trailer()` will quit its trailer from being evaluated.
+Take a look at the following simple function to see how a trailer is controlled.
+
+    do_trailer(flag:boolean) = {
+        if (!flag) {
+            __args__.quit_trailer()
+        }
+    }
+
+Then the following code will print `hello` but no `good-bye`.
+
+    do_trailer(true) println('hello')
+    do_trailer(false) println('good-bye')
+
+Some functions that govern sequence flow like `if-elsif-else` and `try-catch` use
+this trailer control mechanism.

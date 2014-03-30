@@ -78,30 +78,47 @@ the result value will be `nil`.
 
 ## {{ page.chapter }}.2. Repeat
 
-## {{ page.chapter }}.2.1. `repeat`
+## {{ page.chapter }}.2.1. Repeating Functions
 
+This subsection explains about some representative functions
+that evaluate a procedure repeatedly while it meets a given condition.
 
+A function `repeat()` repeats a procedure for a specific number of times.
 
     repeat (n?:number) {block}
-    
-## {{ page.chapter }}.2.2. `while`
+
+If argument `n` is omitted, it will repeat the procedure indefinitely.
+
+A function `while()` repeats a procedure while the condition is evaluated as `true`.
 
     while (`cond) {block}
-    
-## {{ page.chapter }}.2.3. `for`
+
+As a variable `cond` is an expression, it will be evaluated each time in the loop.
+In the following example, the function is given with an expression `n < 10`,
+which is to be evaluated during the repeating process.
+
+    n = 0
+    while (n < 10) {
+        println('hello')
+        n += 1
+    }
+
+A function `for()` takes one or more expressions of iterator assignment
+and repeats a procedure until all the iterators end.
 
     for (`expr+) {block}
 
-## {{ page.chapter }}.2.4. `cross`
+A function `cross()` takes one or more expressions of iterator assignment
+and repeats a procedure while advancing each iterator in a nested way.
 
     cross (`expr+) {block}
 
 ## {{ page.chapter }}.2.5. Flow Control in Repeat Sequence
 
-    break
-    
-    continue
-    
+    break(value?):symbol_func:void
+
+    continue(value?):symbol_func:void
+
 
 ## {{ page.chapter }}.2.6. List Generation
 

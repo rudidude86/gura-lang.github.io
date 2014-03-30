@@ -113,8 +113,8 @@ after an Identifier's symbol.
     f(x:number) = { /* body */ }
 
 When calling a function that has arguments with type name,
-the Interpreter first check the type of the given value and try to cast it
-into specified type if possible.
+the Interpreter first check the data type of the given value and try to cast it
+into specified data type if possible.
 If the type doesn't match and also fails to be casted correctly,
 it would occur an error.
 
@@ -131,7 +131,83 @@ In this case, the Interpreter checks types of all the items in the list
 and applies casting on them if possible.
 
 
-### {{ page.chapter }}.3.2. Optional Argument
+### {{ page.chapter }}.3.2. Data Type Casting
+
+If the data type of a value given as an argument
+doesn't match with that that is specified in an argument list,
+the value will be casted to the expected data type if possible.
+
+For instance, a value of `string` type can be casted to `number`
+if the string contains a valid text of number.
+
+    f(n:number) = {
+        // any process
+    }
+    f('100')  // string will be casted to number
+
+Casting feature can also be applied to other data types. Consider the following function:
+
+    f(in:stream) = {
+        // process to read data from in
+    }
+
+Since it expects to take a `stream` instance as its argument,
+you can call it with the instance created by `open()` function like below.
+
+    f(open('foo.txt'))
+
+Now, you can also call it much easily
+using a casting feature that converts from `string` to `stream`.
+
+    f('foo.txt')
+
+If a `string` value is passed to an argument that expects a `stream` value,
+the Interpreter opens a stream with a path name specified by the string
+and creates a `stream` instance for it.
+
+In default, casting opens a stream with reading mode.
+You need to append `:w` attribute in a function declaration
+to get a stream with writing mode.
+
+    g(out:stream:w) = {
+        // process to write data to out
+    }
+
+An attribute `:r` is also prepared
+to explicitly indicate the stream is to be opened for reading.
+
+    f(in:stream:r) = {
+        // process to read data from in
+    }
+
+Let's see another case of casting. Consider a function that takes a value of `image` type,
+which also has a casting ability from `stream` data type.
+
+    f(img:image) = {
+        // process on img
+    }
+
+A function `image()` takes a value of `stream` data type and creates an `image` instance.
+With the most explicit way, the function above can be called as below.
+
+    f(image(open('foo.jpg')))
+
+An `image` data type can be casted from a value of `stream` type.
+
+    f(open('foo.jpg'))
+
+Using a feature to convert `string` to `stream`, it will be rewritten like following.
+
+    f('foo.jpg')
+
+This means that, if a function expects `image` data type,
+you can call it with a value of either `image`, `stream` or `string` data type.
+
+You can find information about what data type can be casted from which data type
+in **Gura Library Reference**.
+
+
+### {{ page.chapter }}.3.3. Optional Argument
 
 You can declare an optional argument by putting `?` right after an Identifier's symbol.
 
@@ -166,7 +242,7 @@ Note that it's inhibited to declare any non-optional arguments following after o
     f(x?, y?, z)  = { /* body */ }  // Error
 
 
-### {{ page.chapter }}.3.3. Argument with Default Value
+### {{ page.chapter }}.3.4. Argument with Default Value
 
 An argument with a default value can be declared with an operator `=>`.
 
@@ -198,7 +274,7 @@ follow the same positioning rule each other in an argument list.
     f(x => 1, y => 2, z?) = { /* body */ }  // OK
 
 
-### {{ page.chapter }}.3.4. Variable-length Argument
+### {{ page.chapter }}.3.5. Variable-length Argument
 
 You can declare a variable-length argument by putting `+` or `*`
 right after an Identifier's symbol.
@@ -250,7 +326,7 @@ For instance, consider the code below:
 In function `f`, variables `x`, `y` and `z` are set to `1`, `2` and `[3, 4, 5]` respectively.
 
 
-### {{ page.chapter }}.3.5. Named Argument
+### {{ page.chapter }}.3.6. Named Argument
 
 Consider the following function:
 
@@ -277,7 +353,7 @@ When you evaluate it like below:
 Then, variables `a`, `b` and `x` are set to `1`, `2` and `%{c => 3, d => 4}`.
 
 
-### {{ page.chapter }}.3.6. Quoted Argument
+### {{ page.chapter }}.3.7. Quoted Argument
 
 Sometimes, there's a need to pass a function a procedure, not an evaluated result.
 For such a purpose, you can use a Quote operator that creates `expr` instance from any code,

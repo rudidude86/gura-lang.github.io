@@ -59,7 +59,7 @@ Function `else` always evaluates its block procedure.
 
 Branch sequence has a result value as well. Consider the following code:
 
-    str = if (x < 0) {
+    result = if (x < 0) {
         'less than zero'
     } elsif (x > 0) {
         'greater than zero'

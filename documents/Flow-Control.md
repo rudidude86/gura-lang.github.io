@@ -103,15 +103,62 @@ which is to be evaluated during the repeating process.
         n += 1
     }
 
-A function `for()` takes one or more expressions of iterator assignment
-and repeats a procedure until all the iterators end.
+A function `for()` takes one or more expressions of iterable assignments,
+where an iterable means what can iterate elements including a list and an iterator instance.
 
     for (`expr+) {block}
+
+An iterator assignment is expressed with an operator <code>in</code> like below.
+
+<pre><code><em>symbol</em> in <em>iterable</em>
+[<em>symbol1</em>, <em>symbol2</em> ..] in <em>iterable</em>
+</code></pre>
+
+In the first format, it assigns `symbol` with a value in `iterable` each time in the loop.
+Below is an example.
+
+    for (name in ['apple', 'grape', 'banana']) {
+        // any process
+    }
+
+In the second format, if each element in the iterable is a list,
+corresponding values in the list are assigned to `symbol1`, `symbol2`, and so on.
+An example is shown below.
+
+    for ([name, yen] in [['apple', 100], ['grape', 200], ['banana', 90]]) {
+        // any process
+    }
+
+When a function `for()` takes more than one iterable assignment,
+it advances all the iterables one by one at each loop
+and repeats a procedure until one of the iterables reaches to the end.
+This means that the loop count is limited up to the smallest length of the iterables.
+The example below repeats the process three times.
+
+    for (x in [1, 2, 3, 4], y in [1, 2, 3], z in [1, 2, 3, 4, 5]) {
+        // any process
+    }
 
 A function `cross()` takes one or more expressions of iterator assignment
 and repeats a procedure while advancing each iterator in a nested way.
 
     cross (`expr+) {block}
+
+In `cross()` function, an iterable on the right advances at each loop
+and, when it reaches to its end, it will be rounded up to its first
+and causes an iterable on its left advance.
+
+See the example below:
+
+    cross (x in ['A', 'B', 'C'], y in [1, 2, 3, 4]) {
+        print(x, '-', y, ' ')
+    }
+    println()
+
+The result is:
+
+    A-1 A-2 A-3 A-4 B-1 B-2 B-3 B-4 C-1 C-2 C-3 C-4
+
 
 ## {{ page.chapter }}.2.5. Flow Control in Repeat Sequence
 

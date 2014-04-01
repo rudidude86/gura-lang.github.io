@@ -234,7 +234,7 @@ by rejecting a value that already exists in the list.
 
 If you want to quit a repeat sequence, you can use `break()` function.
 Aiming for a similar appearance with C and Java,
-you can call `break()` without any arguments.
+you can call `break()` without a pair of parenthesis for an argument list.
 
     repeat (10) {|i|
         // any process
@@ -267,9 +267,9 @@ If you call `break()` with a valid argument, that will be included in the repeat
     }
     // x is [0, 1, 2, 3, 4, 99]
 
-If you need to go to the next loop after skipping remaining procedure,
+If you need to go to the next turn of the loop after skipping remaining procedure,
 you can use `continue()` function.
-As with the function `break`, you can call it without arguments.
+As with the function `break`, you can omit a pair of parentheses for an argument list when calling it.
 
     repeat (10) {|i|
         // any process
@@ -290,7 +290,8 @@ the repeat's result doesn't contain a value of that loop.
     }
     // x is [1, 3, 5, 7, 9]
 
-If you call `continue()` with a valid argument, that will be included in the repeat's result.
+If you call `continue()` with a valid argument,
+that value will be included in the repeat's result.
 
     x = repeat (10):list {|i|
         if (i % 2 == 0) {
@@ -305,21 +306,23 @@ If you call `continue()` with a valid argument, that will be included in the rep
 
 As you've already seen in the above,
 appending an attribute `:list` causes the repeating process to create a list
-that contains evaluated result of each loop as its elements.
-In the following example, `x` will be a list of `[0, 10, 20, 30, 40]`.
+that contains evaluated result of each loop as its element.
+In the following example, `x` will be a list of `[0, 10, 20, 30, 40, 50, 60, 70, 80, 90]`.
 
-    x = repeat (5):list {|i|
+    x = repeat (10):list {|i|
+        // any process
          i * 10
     }
 
 An attribute `:iter` would have a more interesting result. Take a look at the code below:
 
     x = repeat (10):iter {|i|
+        // any process
          i * 10
     }
 
 In this case, repeating process is not executed when the `repeat` function is evaluated.
-`x` is an *iterator* that generates values of 0, 10, 20, 30 and 40,
+`x` is an *iterator* that generates values of 0, 10, 20, 30, 40, 50, 60, 70, 80 and 90,
 and these values are available only when the iterator is actually evaluated.
 
 The following code shows how to get values from the iterator using Implicit Mapping:
@@ -333,6 +336,19 @@ Following code evaluates `x` step by step to confirm that it actually works as a
     println(x.next())
     println(x.next())
     println(x.next())
+
+An attribute `:xiter` works as `:iter` except that it will eliminate `nil` value from its element.
+
+    x = repeat (10):xiter {|i|
+        // any process
+        if (i % 2 == 0) { i * 10 }
+    }
+
+In the above case, `x` is an *iterator* that generates values of 0, 20, 40, 60 and 80.
+
+You can also use `break()` and `continue()` in an iterator created by a repeating function.
+Such an iterator yields elements in the same way as a repeating process that creates a list.
+See subsection {{ page.chapter }}.2.4 for detail.
 
 An iterator created by a repeat function and a closure generated within a function
 are similar in that they postpone their actual jobs.

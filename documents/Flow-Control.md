@@ -376,19 +376,50 @@ In the above example, the variable `n` is owned by the returned iterator.
 
 You'll see more practical usage of this feature in [this](../articles/Script-to-Generate-Prime-Numbers.html).
 
+You can also implement a nested loop in an iterator created by a repeat function.
 
-topic about nesting:
+    x = for (a in ['A', 'B', 'C']):iter {
+        
+        // any process
+        
+        for (b in [0, 1, 2]):iter {
+            a + b
+        }
+    }
+    // x will generate 'A0', 'A1', 'A2', 'B0', 'B1', 'B2', 'C0', 'C1' and 'C2'
 
-    iterator#repeater()
+A nested loop with an iterator generation
+must be placed at the last in the repeat procedure.
+
+
+---- nested loop explanation ----
+
+Using a method `iterator#repeater()`, the program shown above can be written like following.
+
+    x = for (a in ['A', 'B', 'C']):iter {
+        
+        // any process
+        
+        (a + (0, 1, 2)).repeater()
+    }
 
 
 ## {{ page.chapter }}.3. Exception
 
-    try - catch
-    
-    try():leader {block}
-    catch(errors*:error):leader:trailer {block}
-    
+You can use `try-catch` sequence to capture errors.
+
+    try {
+        
+    } catcn (err1) {|e|
+        
+    } catch (err2) {|e|
+        
+    } catcn {|e|
+        
+    }
+
+cause exception
+
     raise(error:error, msg:string => 'error', value?)
 
 

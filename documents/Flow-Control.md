@@ -78,7 +78,8 @@ the result value will be `nil`.
 
 ## {{ page.chapter }}.2. Repeat
 
-## {{ page.chapter }}.2.1. Repeating Functions
+
+### {{ page.chapter }}.2.1. Repeating Functions
 
 This subsection explains about some representative functions
 that evaluate a procedure repeatedly while it meets a given condition.
@@ -139,8 +140,8 @@ The example below repeats the process three times.
         // any process
     }
 
-A function `cross()` takes one or more expressions of iterator assignment
-and repeats a procedure while advancing each iterator in a nested way.
+A function `cross()` takes one or more expressions of iterable assignment
+and repeats a procedure with all the conceivable combination of elements from the iterables.
 
     cross (`expr+) {block}
 
@@ -159,18 +160,148 @@ The result is:
 
     A-1 A-2 A-3 A-4 B-1 B-2 B-3 B-4 C-1 C-2 C-3 C-4
 
+You can specify any number of iterable assignments.
 
-## {{ page.chapter }}.2.5. Flow Control in Repeat Sequence
-
-    break(value?):symbol_func:void
-
-    continue(value?):symbol_func:void
-
-
-## {{ page.chapter }}.2.6. List Generation
+    cross (x in ['A', 'B', 'C'], y in [1, 2, 3, 4], z in ['a', 'b', 'c']) {
+        print(x, '-', y, '-', z, ' ')
+    }
 
 
-## {{ page.chapter }}.2.7. Iterator Generation
+### {{ page.chapter }}.2.2. Block Parameter
+
+When calling `for()`, `while()` and `for()`,
+you can specify a block parameter in a format of `|i:number|`
+that takes an index number of loop starting from zero.
+In the following example,
+the parameter `i` takes `0`, `1`, `2`, `3` and `4` at each loop.
+
+    repeat (5) {|i|
+        // any process
+    }
+
+A block parameter for `cross()` function has a format of
+`|i:number, i1:number, i2:number, ..|` where `i` indicates an index number of loop,
+and each of `i1`, `i2` and so on takes an index number of corresponding iterable.
+
+    cross (x in ['A', 'B', 'C'], y in [1, 2, 3, 4], z in ['a', 'b', 'c']) {|i, ix, iy, iz|
+        // any process
+    }
+
+If you don't need indices information, you can omit whole the block parameter
+or part of its parameters.
+
+
+### {{ page.chapter }}.2.3. Result Value of Repeat
+
+Like a branch sequence, a repeat sequence also has a result value
+that comes from an evaluation of the last expression in the block procedure.
+
+In default, among result values that have been generated from each loop,
+only the last one becomes the final result.
+
+    x = repat (10) {|i|
+        // any process
+        i * 10
+    }
+    // x is 90
+
+When you call a repeat function with `:list` attribute,
+it will return a list that contains result values in the loop.
+
+    x = repat (10):list {|i|
+        // any process
+        i * 10
+    }
+    // x is [0, 10, 20, 30, 40, 50, 60, 70, 80, 90]
+
+With an attribute `:xlist`, you can remove `nil` value from the created list.
+
+    x = repeat (10):xlist {|i|
+        // any process
+        if (i % 2 == 0) { i * 10 }
+    }
+    // x is [0, 20, 40, 60, 80]
+
+Using this feature, you can create a list that only contains elements
+that suit some conditions.
+
+Attributes `:set` and `:xset` work in a similar way with `:list` and `:xlist` respectively,
+but they would create a list that contains unique values
+by rejecting a value that already exists in the list.
+
+
+### {{ page.chapter }}.2.4. Flow Control in Repeat Sequence
+
+If you want to quit a repeat sequence, you can use `break()` function.
+Aiming for a similar appearance with C and Java,
+you can call `break()` without any arguments.
+
+    repeat (10) {|i|
+        // any process
+        if (i == 5) {
+            break
+        }
+        // not evaluated when break() is called
+    }
+
+The function `break()` takes an argument of any type
+that affects a result value of the repeat.
+When `break()` is called without an argument,
+the repeat's result doesn't contain a value of the last loop.
+
+    x = repeat (10):list {|i|
+        if (i == 5) {
+            break
+        }
+        i
+    }
+    // x is [0, 1, 2, 3, 4]
+
+If you call `break()` with a valid argument, that will be included in the repeat's result.
+
+    x = repeat (10):list {|i|
+        if (i == 5) {
+            break(99)
+        }
+        i
+    }
+    // x is [0, 1, 2, 3, 4, 99]
+
+If you need to go to the next loop after skipping remaining procedure,
+you can use `continue()` function.
+As with the function `break`, you can call it without arguments.
+
+    repeat (10) {|i|
+        // any process
+        if (i % 2 == 0) {
+            continue
+        }
+        // not evaluated when continue() is called
+    }
+
+When you call `continue()` with no argument,
+the repeat's result doesn't contain a value of that loop.
+
+    x = repeat (10):list {|i|
+        if (i % 2 == 0) {
+            continue
+        }
+        i
+    }
+    // x is [1, 3, 5, 7, 9]
+
+If you call `continue()` with a valid argument, that will be included in the repeat's result.
+
+    x = repeat (10):list {|i|
+        if (i % 2 == 0) {
+            continue(99)
+        }
+        i
+    }
+    // x is [99, 1, 99, 3, 99, 5, 99, 7, 99, 9]
+
+
+### {{ page.chapter }}.2.5. Generate Iterator
 
 Appending an attribute `:list` causes the repeating process to generate a list
 that contains evaluated result of each loop as its elements.

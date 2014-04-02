@@ -437,10 +437,10 @@ where `err` takes a value of `error` type that contains error information
 such as an error message and a file name and a line position at which the error occurs.
 
 <table>
-<tr><th>Property</th><th>Note</th></tr>
-<tr><td><code>error#lineno</code></td><td>Line number</td></tr>
-<tr><td><code>error#source</code></td><td>Source of the code that occurs an error</td></tr>
-<tr><td><code>error#text</code></td><td>Error message</td></tr>
+<tr><th>Property</th><th>Data Type</th><th>Note</th></tr>
+<tr><td><code>error#lineno</code></td><td><code>number</code></td><td>Line number</td></tr>
+<tr><td><code>error#source</code></td><td><code>string</code></td><td>Source of the code that occurs an error</td></tr>
+<tr><td><code>error#text</code></td><td><code>string</code></td><td>Error message</td></tr>
 </table>
 
 cause exception

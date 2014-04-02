@@ -404,19 +404,44 @@ Using a method `iterator#repeater()`, the program shown above can be written lik
     }
 
 
-## {{ page.chapter }}.3. Exception
+## {{ page.chapter }}.3. Error Handling
 
 You can use `try-catch` sequence to capture errors.
+Any process that may occur errors is written in a block of `try()` function
+and error handling processes are written in blocks of `catch()` function trailing after that.
 
     try {
-        
-    } catcn (err1) {|e|
-        
+        // any process
+    } catch (err1) {|e|
+        // handling of err1
     } catch (err2) {|e|
-        
-    } catcn {|e|
-        
+        // handling of err2
+    } catch {|e|
+        // handling of other errors
     }
+
+A function `catch()` takes one or more arguments that specify `error` instances that are to be handled.
+If no argument is specified, all types of errors are handled in the function.
+
+Here are some of the `error` instances that can be specified for `catch()` argument.
+
+<table>
+<tr><th>Error Instance</th><th>Note</th></tr>
+<tr><td><code>error.ValueError</code></td><td>Invalid argument is specified.</td></tr>
+<tr><td><code>error.IndexError</code></td><td>Invalid value for indexing.</td></tr>
+<tr><td><code>error.IOError</code></td><td>Error occurs while accessing I/O devices.</td></tr>
+</table>
+
+A block in the `catch()` function has a block parameter in a format of `|err:error|`
+where `err` takes a value of `error` type that contains error information
+such as an error message and a file name and a line position at which the error occurs.
+
+<table>
+<tr><th>Property</th><th>Note</th></tr>
+<tr><td><code>error#lineno</code></td><td>Line number</td></tr>
+<tr><td><code>error#source</code></td><td>Source of the code that occurs an error</td></tr>
+<tr><td><code>error#text</code></td><td>Error message</td></tr>
+</table>
 
 cause exception
 

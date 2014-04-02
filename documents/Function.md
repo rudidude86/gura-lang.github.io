@@ -423,7 +423,7 @@ This results in three print-outs of `'hello world'`.
 For a block that is declared to take a block,
 a call without specifying a block procedure would occur an error.
 
-    three_times()  // Error
+    three_times()  // Error because of lacking block
 
 The block procedure can have a list of block parameters
 that appears right after the opening curly brace and is embraced by a pair of vertical bars.
@@ -658,5 +658,5 @@ Then the following code will print `hello` but no `good-bye`.
     do_trailer(true) println('hello')
     do_trailer(false) println('good-bye')
 
-Some functions that govern sequence flow like `if-elsif-else` and `try-catch` use
+Some functions that govern sequence flow like `if-elsif-else` and `try-catch` utilizes
 this trailer control mechanism.

@@ -412,16 +412,16 @@ and error handling processes are written in blocks of `catch()` function trailin
 
     try {
         // any process
-    } catch (err1) {|e|
-        // handling of err1
-    } catch (err2) {|e|
-        // handling of err2
-    } catch {|e|
+    } catch (error.ValueError) {
+        // handling ValueError
+    } catch (error.IndexError, error.IOError) {
+        // handling IndexError and IOError
+    } catch {
         // handling of other errors
     }
 
 A function `catch()` takes one or more arguments that specify `error` instances that are to be handled.
-If no argument is specified, all types of errors are handled in the function.
+If no argument is specified, any type of errors are handled in the function.
 
 Here are some of the `error` instances that can be specified for `catch()` argument.
 
@@ -443,8 +443,10 @@ such as an error message and a file name and a line position at which the error 
 <tr><td><code>error#text</code></td><td><code>string</code></td><td>Error message</td></tr>
 </table>
 
-cause exception
+An example code is shown below:
 
-    raise(error:error, msg:string => 'error', value?)
-
-
+    try {
+        // any process
+    } catch {|err|
+        printf('%s at %s:%d\n', err.text, err.source, err.lineno)
+    }

@@ -353,7 +353,19 @@ When you evaluate it like below:
 Then, variables `a`, `b` and `x` are set to `1`, `2` and `%{c => 3, d => 4}`.
 
 
-### {{ page.chapter }}.3.7. Quoted Argument
+### {{ page.chapter }}.3.7. Argument Expansion
+
+
+
+    f(x*)
+
+    f(1, 2, 3, 4)
+
+
+    f(x%)
+
+
+### {{ page.chapter }}.3.8. Quoted Argument
 
 Sometimes, there's a need to pass a function a procedure, not an evaluated result.
 For such a purpose, you can use a Quote operator that creates `expr` instance from any code,

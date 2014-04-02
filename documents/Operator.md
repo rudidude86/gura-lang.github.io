@@ -322,17 +322,21 @@ and return a list of `boolean` indicating the result of each containing check.
 <tr><td><code>iterator in any</code></td><td><code>list</code></td></tr>
 </table>
 
+When Operator `in` is used in an argument of `for()` and `cross()` function,
+it would work as an iterable assignment.
+See [Chapter.8. Flow Control](Flow-Control.html) for detail.
+
 
 **Operation `x & y`** returns an AND calculation result of `x` and `y`.
 
 * If `x` and `y` are of `number` type, it calculates bitwise AND between them.
 * If `x` and `y` are of `boolean` type, it calculates logical AND between them.
-* If either `x` or `y` is `nil, it returns `nil.
+* If either `x` or `y` is `nil, it returns `nil`.
 
 <table>
 <tr><th>Operation</th><th>Result Data Type</th></tr>
 <tr><td><code>number & number</code></td><td><code>number</code></td></tr>
-<tr><td><code>boolean & boolean</code></td><td><code>number</code></td></tr>
+<tr><td><code>boolean & boolean</code></td><td><code>boolean</code></td></tr>
 <tr><td><code>nil & any</code></td><td><code>nil</code></td></tr>
 <tr><td><code>any & nil</code></td><td><code>nil</code></td></tr>
 </table>
@@ -342,26 +346,26 @@ and return a list of `boolean` indicating the result of each containing check.
 
 * If `x` and `y` are of `number` type, it calculates bitwise OR between them.
 * If `x` and `y` are of `boolean` type, it calculates logical OR between them.
-* If either `x` or `y` is `nil, it returns one of their values that is not `nil.
+* If either `x` or `y` is `nil, it returns one of their values that is not `nil`.
 
 <table>
 <tr><th>Operation</th><th>Result Data Type</th></tr>
-<tr><td><code>number & number</code></td><td><code>number</code></td></tr>
-<tr><td><code>boolean & boolean</code></td><td><code>number</code></td></tr>
-<tr><td><code>nil & any</code></td><td><code>nil</code></td></tr>
-<tr><td><code>any & nil</code></td><td><code>nil</code></td></tr>
+<tr><td><code>number | number</code></td><td><code>number</code></td></tr>
+<tr><td><code>boolean | boolean</code></td><td><code>boolean</code></td></tr>
+<tr><td><code>nil | any</code></td><td><code>nil</code></td></tr>
+<tr><td><code>any | nil</code></td><td><code>nil</code></td></tr>
 </table>
 
 
 **Operation `x ^ y`** returns a XOR calculation result of `x` and `y`.
 
-* If `x` and `y` are of `number` type, it calculates bitwise OR between them.
-* If `x` and `y` are of `boolean` type, it calculates logical OR between them.
+* If `x` and `y` are of `number` type, it calculates bitwise XOR between them.
+* If `x` and `y` are of `boolean` type, it calculates logical XOR between them.
 
 <table>
 <tr><th>Operation</th><th>Result Data Type</th></tr>
-<tr><td><code>number & number</code></td><td><code>number</code></td></tr>
-<tr><td><code>boolean & boolean</code></td><td><code>number</code></td></tr>
+<tr><td><code>number ^ number</code></td><td><code>number</code></td></tr>
+<tr><td><code>boolean ^ boolean</code></td><td><code>boolean</code></td></tr>
 </table>
 
 
@@ -381,7 +385,7 @@ and return a list of `boolean` indicating the result of each containing check.
 </table>
 
 
-**Operation `x && y`** returns a conditional AND result of `x` and `y`.
+**Operation `x && y`** returns a conditional AND result of `x` and `y` as described below:
 
 * If `x` is not of `list` nor `iterator` type,
   it would return the value of `x` when `x` is determined as `false`,
@@ -400,7 +404,7 @@ and return a list of `boolean` indicating the result of each containing check.
 </table>
 
 
-**Operation `x || y`** returns a conditional OR result of `x` and `y`.
+**Operation `x || y`** returns a conditional OR result of `x` and `y` as described below:
 
 * If `x` is not of `list` nor `iterator` type,
   it would return the value of `x` when `x` is determined as `true`,
@@ -436,6 +440,12 @@ that starts from `x` and is increased by one until `y`.
 <tr><td><code>string => any</code></td><td><code>list</code></td></tr>
 <tr><td><code>symbol => any</code></td><td><code>list</code></td></tr>
 </table>
+
+When Operator `=>` is used in an argument declaration of any function definition,
+it would work as an assignment for a default value.
+And, when it is used in an argument list of any function call,
+it would work as a named argument.
+See [Chapter.7. Function](Function.html) for their detail.
 
 
 ## {{ page.chapter }}.4. Other Operators

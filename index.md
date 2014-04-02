@@ -75,7 +75,7 @@ after it's given with iterators, `1..` and `readlines('foo.txt')`, as its argume
 
 <h1>Contacts</h1>
 
-<p>Any opinions and suggestions are welcome via <a href-"mailto:ypsitau@nifty.com">E-mail</a>.</p>
+<p>Any opinions and suggestions are welcome via <a href="mailto:ypsitau@nifty.com">E-mail</a>.</p>
 
 </div>
 

@@ -41,6 +41,7 @@ And here is the script code:
     gif.content().addimage(imgFrames, delayTime).write('cat-anim.gif')
 
 It utilizes Implicit Mapping feature to process frame images.
-If you're interested in what's running in the code, trace the variable `imgFrames`.
+If you're interested in what's running in the code, trace the variable `imgFrames`
+about how it's created by `image#crop()` and how it's processed in `gif.content#addimage()`.
 
 ![cat-picture](../images/cat-anim.gif) [cat-anim.gif](../images/cat-anim.gif)

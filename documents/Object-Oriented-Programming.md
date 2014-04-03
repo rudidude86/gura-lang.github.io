@@ -55,21 +55,37 @@ You can use `dir()` function to see what methods and variables are available wit
     [`__call__, `__iter__, `clone, `getprop!, `is, `isinstance, `isnil, `istype, `nomap, `roundoff, `setprop!, `tonumber, `tostring]
 
 
-## {{ page.chapter }}.2. Where Does Class Come From?
+## {{ page.chapter }}.2. User Class
 
-    classref()
-
-## {{ page.chapter }}.3. User Class
-
+You can use `class` function to create a user-defined class.
+The code below creates a class named `A` with empty properties.
 
     A = class {}
 
+It also defines a constructor function `A()` that creates an instance of the class.
+You can call it like below:
+
     a = A()
 
+In a block of the `class` function, methods and class variables are described.
+More practical example is shown below:
 
-## {{ page.chapter }}.4. Inheritance
+    Person = class {
+        __init__(name:string, age:number) = {
+            this.name = name
+            this.age = age
+        }
+        Hello() =  {
+            println('Hello, ' + this.name)
+        }
+    }
+
+`Person(name:string, age:number)`
 
 
-## {{ page.chapter }}.5. Member Access Control
+## {{ page.chapter }}.3. Inheritance
+
+
+## {{ page.chapter }}.4. Member Access Control
 
 

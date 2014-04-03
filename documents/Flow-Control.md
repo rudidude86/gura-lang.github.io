@@ -17,15 +17,15 @@ However, they're realized as functions, not as statements.
 
 These elements are implemented by the following functions.
 
-Function `if`:
+Function `if()`:
 
     if (`cond):leader {block}
 
-Function `elsif`:
+Function `elsif()`:
 
     elsif (`cond):leader:trailer {block}
 
-Function `else`:
+Function `else()`:
 
     else():trailer {block}
 
@@ -35,8 +35,8 @@ must be in the same line as the top of the succceding one.
 
     if (x) { /* branch 1 */ } elsif (y) { /* branch 2 */ } else { /* branch 3 */ }
 
-Of course, contents in the blocks may be written in multiple lines.
-This enables you to write a program in a similar syntax as other languages.
+Of course, content in a block embraced by a pair of curly brackets may contain multiple lines.
+This enables you to write a script in a similar syntax as other languages.
 
     if (x) {
         
@@ -52,10 +52,10 @@ This enables you to write a program in a similar syntax as other languages.
         
     }
 
-Function `if` and `elsif` check the evaluated result of the expression `cond`.
+Function `if()` and `elsif()` check the evaluated result of the expression `cond`.
 If it's determined as `true`, the block procedure will be evaluated,
 otherwise, the trailing function will be evaluated.
-Function `else` always evaluates its block procedure.
+Function `else()` always evaluates its block procedure.
 
 Branch sequence has a result value as well. Consider the following code:
 
@@ -72,8 +72,14 @@ the sequence would have a string `'less than zero'` as its result.
 It would have `'greater than zero'` for `x` with number greater than zero and
 `'equal to zero'` otherwise.
 
-If function `if` and `elsif` have no following `else` and their conditions are not evaluated as `true`,
+If function `if()` and `elsif()` have no following `else()` and their conditions are not evaluated as `true`,
 the result value will be `nil`.
+
+    x = 3
+    result = if (x < 0) {
+        'less than zero'
+    }
+    // result is nil
 
 
 ## {{ page.chapter }}.2. Repeat
@@ -225,7 +231,9 @@ With an attribute `:xlist`, you can remove `nil` value from the created list.
 
     x = repeat (10):xlist {|i|
         // any process
-        if (i % 2 == 0) { i * 10 }
+        if (i % 2 == 0) {
+            i * 10
+        }
     }
     // x is [0, 20, 40, 60, 80]
 
@@ -348,7 +356,9 @@ An attribute `:xiter` works as `:iter` except that it will eliminate `nil` value
 
     x = repeat (10):xiter {|i|
         // any process
-        if (i % 2 == 0) { i * 10 }
+        if (i % 2 == 0) {
+            i * 10
+        }
     }
 
 In the above case, `x` is an *iterator* that generates values of 0, 20, 40, 60 and 80.
@@ -420,7 +430,7 @@ you have to call `iterator#repeater()` method to turn it on as shown below.
     }
 
 
-### {{ page.chapter }}.2.6. Repeat Process with Other Functions
+### {{ page.chapter }}.2.6. Repeat Process with Function that Creates Iterator
 
 Many of functions that creates an iterator as their result may take an optional block procedure.
 For such functions, you can specify a block that is to be evaluated repeatedly
@@ -451,9 +461,32 @@ A second argument in the block parameter takes an index number of the loop.
     }
 
 When you specify a block procedure to an iterator creating function,
-the result will be the same as that of repeating functions such as `for()` and `repeat()`.
+it behaves in the same way as repeating functions such as `for()` and `repeat()`.
+This means that you can use flow control functions `break()` and `continue()` in that loop.
 
-You can also use flow control functions `break()` and `continue()` in that loop.
+    readlines('foo.txt') {|line|
+        // any process
+        if (line.chop() == '') {
+            break
+        }
+        // any process
+    }
+
+You can also specify attributes `:list`, `:xlist`, `:set` and `:xset` to
+indicate it to create a list.
+
+    x = readlines('foo.txt'):list {|line|
+        line.upper()
+    }
+    // x is a list containing each line's string in uppercase.
+
+And attributes `:iter` and `:xiter` that create an iterator are also available.
+
+    x = readlines('foo.txt'):iter {|line|
+        line.upper()
+    }
+    // x is an iterator that generates each line's string in uppercase.
+
 
 ## {{ page.chapter }}.3. Error Handling
 

@@ -254,6 +254,9 @@ the source value will be casted to the type before assignment.
 
     a:number = '3'
 
+This works in the same way as a data type casting in an argument list of function call.
+See [Chapter.7. Function](Function.html) for more detail.
+
 
 ### {{ page.chapter }}.3.3. Assignment for Lister
 

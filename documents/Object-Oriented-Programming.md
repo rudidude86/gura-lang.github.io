@@ -55,7 +55,7 @@ You can use `dir()` function to see what methods and variables are available wit
     [`__call__, `__iter__, `clone, `getprop!, `is, `isinstance, `isnil, `istype, `nomap, `roundoff, `setprop!, `tonumber, `tostring]
 
 
-## {{ page.chapter }}.2. Where A Class Comes From?
+## {{ page.chapter }}.2. Where Does Class Come From?
 
     classref()
 

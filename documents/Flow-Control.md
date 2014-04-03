@@ -154,13 +154,20 @@ See the example below:
     cross (x in ['A', 'B', 'C'], y in [1, 2, 3, 4]) {
         print(x, '-', y, ' ')
     }
-    println()
 
 The result is:
 
     A-1 A-2 A-3 A-4 B-1 B-2 B-3 B-4 C-1 C-2 C-3 C-4
 
-You can specify any number of iterable assignments.
+Using `for()` function, the above code can be writen like below.
+
+    for (x in ['A', 'B', 'C']) {
+        for (y in [1, 2, 3, 4]) {
+            print(x, '-', y, ' ')
+        }
+    }
+
+Of course, you can specify any number of iterable assignments.
 
     cross (x in ['A', 'B', 'C'], y in [1, 2, 3, 4], z in ['a', 'b', 'c']) {
         print(x, '-', y, '-', z, ' ')
@@ -391,18 +398,62 @@ You can also implement a nested loop in an iterator created by a repeat function
 A nested loop with an iterator generation
 must be placed at the last in the repeat procedure.
 
+You can also place any iterators in the repeat function
+that are to be iterated when the outer iterator is evaluated.
+But, there's one point you have to be careful with. See the following code:
 
----- nested loop explanation ----
-
-Using a method `iterator#repeater()`, the program shown above can be written like following.
-
-    x = for (a in ['A', 'B', 'C']):iter {
-        
-        // any process
-        
-        (a + (0, 1, 2)).repeater()
+    x = repeat (2):iter {
+        range(3)
     }
 
+It's expected that the iterator `x` will generate numbers of 0, 1, 2, 0, 1 and 2
+after the outer iterator iterates an iterator created by `range(3)` for twice.
+But, in reality, it will just generate two iterator instances without iterating them.
+
+Iterators created by repeat functions have a "repeater" flag
+that enable them to be iterated in a nested block.
+Since other ordinary interators don't have this flag,
+you have to call `iterator#repeater()` method to turn it on as shown below.
+
+    x = repeat (2):iter {
+        range(3).repeater()
+    }
+
+
+### {{ page.chapter }}.2.6. Repeat Process with Other Functions
+
+Many of functions that creates an iterator as their result may take an optional block procedure.
+For such functions, you can specify a block that is to be evaluated repeatedly
+while iterating values in the created iterator.
+
+For instance, consider a function `readlines()`,
+which creates an iterator that reads content of a stream and returns strings of each line.
+Without a block, it simply returns the created iterator.
+
+    x = readlines('foo.txt')
+
+Specifying a block would evaluate the block procedure repeatedly.
+
+    readlines('foo.txt') {
+        // any process
+    }
+
+You can get each value from the iterator by specifying a block parameter.
+
+    readlines('foo.txt') {|line|
+        print(line)
+    }
+
+A second argument in the block parameter takes an index number of the loop.
+
+    readlines('foo.txt') {|line, i|
+        printf('%d: %s', i + 1, line)
+    }
+
+When you specify a block procedure to an iterator creating function,
+the result will be the same as that of repeating functions such as `for()` and `repeat()`.
+
+You can also use flow control functions `break()` and `continue()` in that loop.
 
 ## {{ page.chapter }}.3. Error Handling
 

@@ -27,13 +27,15 @@ there's no need to explicitly describe repeating syntax any more.
 
 I calls this feature **Implicit Mapping** since it *implicitly* does mapping process.
 
-This may look like a feature called "vectorization"
+This may look similar with a feature called "vectorization"
 that has already been adopted by languages and libraries such as MATLAB and NumPy.
-But I've found out Implicit Mapping would work bettern when it cooperates with
+A different point is that Implicit Mapping is not limited to mathematic operations with number values,
+but it can work with various types of value like string, image and even user-defined one.
+And I've found out Implicit Mapping would be much efficient when it cooperates with
 more sophisticated iterator operations such as **Member Mapping** that can access members
 of objects coming from an iterator or a list,
 and repeat functions capable of generating iterators.
-The idea has motivated me to create a language that has these features as its core.
+These ideas have motivated me to create a brand-new language.
 
 Before the creation of a new language, I made guidelines described below:
 

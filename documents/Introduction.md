@@ -27,16 +27,13 @@ there's no need to explicitly describe repeating syntax any more.
 
 I calls this feature **Implicit Mapping** since it *implicitly* does mapping process.
 
-In order to make this idea come true,
-I considered extending an existing script language to be capable of
-repeating evaluation just with limited number of functions.
-
+This may look like a feature called "vectorization"
+that has already been adopted by languages and libraries such as MATLAB and NumPy.
 But I found out Implicit Mapping would allow much elegant programming
-when it's applied to all the operators as well as many of the functions the language provides.
-The idea of Implicit Mapping is so simple, but it's actually a paradigm shift.
-I've decided to create a new language that has this feature as its core.
+when it's applied to all the operators as well as many of the functions a language provides.
+That motivated me to create a language that has this feature as its core.
 
-Before the creation of a new language, I made guidelines below:
+Before the creation of a brand-new language, I made guidelines described below:
 
 * __Inherit Familiar Syntax__
 

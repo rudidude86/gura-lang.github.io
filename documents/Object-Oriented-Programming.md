@@ -67,20 +67,31 @@ You can call it like below:
 
     a = A()
 
-In a block of the `class` function, methods and class variables are described.
-More practical example is shown below:
+A block of the `class` function contains declarations of method and class variable.
+Here's a sample script to see details about factors in the block.
 
     Person = class {
+        
         __init__(name:string, age:number) = {
             this.name = name
             this.age = age
         }
-        Hello() =  {
-            println('Hello, ' + this.name)
+        
+        fmt = 'name: %s, age: %d\n'
+        
+        Print() =  {
+            printf(fmt, this.name, this.age)
         }
+        
+        Test():static = {
+            println('test of class method')
+        }
+        
     }
 
-`Person(name:string, age:number)`
+`__init__()` 
+
+`Person(name:string, age:number) {block?}`
 
 
 ## {{ page.chapter }}.3. Inheritance

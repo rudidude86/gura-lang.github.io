@@ -68,6 +68,16 @@ You can call it like below:
     a = A()
 
 A block of the `class` function contains declarations of method and class variable.
+
+All the functions assigned in the block are registered as methods that belong to the class.
+If a function is declared with `:static` attribute appended right after the argument list,
+it would become a class method that you can call along with the class name.
+A function without `:static` attribute would become an instance method
+that works with an instance created from the class.
+
+Variables assigned in the block are registered as class variables
+that belong to the class itself, not to an instance.
+
 Here's a sample script to see details about factors in the block.
 
     Person = class {
@@ -89,9 +99,21 @@ Here's a sample script to see details about factors in the block.
         
     }
 
-`__init__()` 
+A method `__init__()` is a special method that works within a constructor function.
+Its arguments are reflected on that of the constructor, and, in the sample above,
+the function `Person` has a declaration shown below.
 
-`Person(name:string, age:number) {block?}`
+    Person(name:string, age:number) {block?}
+
+The constructor has an optional block even though `__init__()` is not declared with that.
+
+
+
+A variable `fmt`
+
+A method `Print()`
+
+A method `Test()`
 
 
 ## {{ page.chapter }}.3. Inheritance

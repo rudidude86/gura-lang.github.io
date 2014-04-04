@@ -32,7 +32,7 @@ that has already been adopted by languages and libraries such as MATLAB and NumP
 But I've found out Implicit Mapping would work bettern when it cooperates with
 more sophisticated iterator operations such as Member Mapping that can access members
 of objects coming from an iterator or a list,
-and repeat functions that's capable of generating iterators.
+and repeat functions capable of generating iterators.
 That has motivated me to create a language that has these features as its core.
 
 Before the creation of a new language, I made guidelines described below:

@@ -55,7 +55,7 @@ You can use `dir()` function to see what methods and variables are available wit
     [`__call__, `__iter__, `clone, `getprop!, `is, `isinstance, `isnil, `istype, `nomap, `roundoff, `setprop!, `tonumber, `tostring]
 
 
-## {{ page.chapter }}.2. User Class
+## {{ page.chapter }}.2. User-defined Class
 
 You can use `class` function to create a user-defined class.
 The code below creates a class named `A` with empty properties.

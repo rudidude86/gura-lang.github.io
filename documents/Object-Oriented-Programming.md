@@ -87,7 +87,7 @@ Here's a sample script to see details about factors in the block.
             this.age = age
         }
         
-        fmt = 'name: %s, age: %d\n'
+        fmt = 'name: %s, age: %d\n'  // class variable
         
         Print() =  {
             printf(fmt, this.name, this.age)
@@ -99,24 +99,42 @@ Here's a sample script to see details about factors in the block.
         
     }
 
-A method `__init__()` is a special method that works within a constructor function.
-Its arguments are reflected on that of the constructor, and, in the sample above,
-the function `Person` has a declaration shown below.
+An instance method `__init__()` is a special one that defines a constructor function.
+Its arguments are reflected on that of the constructor, and,
+the sample above creates a function named `Person` that has a declaration shown below.
 
     Person(name:string, age:number) {block?}
 
-The constructor has an optional block even though `__init__()` is not declared with that.
+You can create an instance by calling it like below:
+
+    p = Person('Taro Yamada', 27)
+
+If you specify an optional block, the block procedure will be evaluated
+with a block parameter that takes the created instance.
+
+    Person('Taro Yamada', 27) {|p|
+        // any process
+    }
+
+In an instance method, a variable named `this` is defined to contain a reference to the instance itself.
+You always need to specify `this` variable to access the instance variables and the instance methods.
 
 
+You can call an instance method `Print()` like below, where `p` is an instance of `Person`:
 
-A variable `fmt`
+    p.Print()
 
-A method `Print()`
+You can call a class method `Test()` like below:
 
-A method `Test()`
+    Person.Test()
 
 
 ## {{ page.chapter }}.3. Inheritance
+
+    Teacher = class(Person) {
+        __init__() = {||
+        }
+    }
 
 
 ## {{ page.chapter }}.4. Member Access Control

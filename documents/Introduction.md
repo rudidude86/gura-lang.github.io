@@ -29,11 +29,13 @@ I calls this feature **Implicit Mapping** since it *implicitly* does mapping pro
 
 This may look like a feature called "vectorization"
 that has already been adopted by languages and libraries such as MATLAB and NumPy.
-But I found out Implicit Mapping would allow much elegant programming
-when it's applied to all the operators as well as many of the functions a language provides.
-That motivated me to create a language that has this feature as its core.
+But I've found out Implicit Mapping would work bettern when it cooperates with
+more sophisticated iterator operations such as Member Mapping that can access members
+of objects coming from an iterator or a list,
+and repeat functions that's capable of generating iterators.
+That has motivated me to create a language that has these features as its core.
 
-Before the creation of a brand-new language, I made guidelines described below:
+Before the creation of a new language, I made guidelines described below:
 
 * __Inherit Familiar Syntax__
 

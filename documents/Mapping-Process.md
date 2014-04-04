@@ -1,7 +1,7 @@
 ---
 layout: page
 lang: en
-title: Implicit Mapping
+title: Mapping Process
 chapter: 10
 ---
 

@@ -2,7 +2,7 @@
 layout: page
 lang: en
 title: Module
-chapter: 12
+chapter: 11
 ---
 
 # Chapter {{ page.chapter }}. {{ page.title }}

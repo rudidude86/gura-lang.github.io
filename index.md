@@ -116,14 +116,13 @@ I hope the publication will inspire me to carry on this tough work :-)</em>
 <div>Chapter 7. <a href="documents/Function.html">Function</a></div>
 <div>Chapter 8. <a href="documents/Flow-Control.html">Flow Control</a></div>
 <div>Chapter 9. <a href="documents/Object-Oriented-Programming.html">Object Oriented Programming</a></div>
-<div>Chapter 10. Implicit Mapping</div>
-<div>Chapter 11. Member Mapping</div>
-<div>Chapter 12. Module</div>
-<div>Chapter 13. Mathematic Functions</div>
-<div>Chapter 14. Path</div>
-<div>Chapter 15. Stream</div>
-<div>Chapter 16. Image</div>
-<div>Chapter 17. Template Engine</div>
+<div>Chapter 10. Mapping Process</div>
+<div>Chapter 11. Module</div>
+<div>Chapter 12. Mathematic Functions</div>
+<div>Chapter 13. Path</div>
+<div>Chapter 14. Stream</div>
+<div>Chapter 15. Image</div>
+<div>Chapter 16. Template Engine</div>
 </p>
 
 </div>

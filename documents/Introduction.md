@@ -30,10 +30,10 @@ I calls this feature **Implicit Mapping** since it *implicitly* does mapping pro
 This may look like a feature called "vectorization"
 that has already been adopted by languages and libraries such as MATLAB and NumPy.
 But I've found out Implicit Mapping would work bettern when it cooperates with
-more sophisticated iterator operations such as Member Mapping that can access members
+more sophisticated iterator operations such as **Member Mapping** that can access members
 of objects coming from an iterator or a list,
 and repeat functions capable of generating iterators.
-That has motivated me to create a language that has these features as its core.
+The idea has motivated me to create a language that has these features as its core.
 
 Before the creation of a new language, I made guidelines described below:
 
@@ -65,7 +65,7 @@ This may be similar to a situation that you try to come up with an idea of a new
 even if you make its rule, you have to actually play it to know tricks and tactics
 so that you get a victory on the rule.
 I also had to create and try a lot of scripts for myself to know how to make programs of Gura.
-Throughout the process, I've learned that Gura's various features like Implicit Mapping
+Throughout the process, I've learned that Gura's various features including Implicit Mapping
 are really practical in actual programming fields.
 
 As one user, I can recommend this script language for you.

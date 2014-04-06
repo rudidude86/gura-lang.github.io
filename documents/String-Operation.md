@@ -1,8 +1,8 @@
 ---
 layout: page
 lang: en
-title: Image
-chapter: 15
+title: String Operation
+chapter: 12
 ---
 
 # Chapter {{ page.chapter }}. {{ page.title }}

@@ -68,16 +68,25 @@ You can call it like below:
 
     a = A()
 
-A block of the `class` function contains declarations of method and class variable.
+A block of the `class` function should contain Assign and Caller expressions.
+Existance of other expressions would cause an error.
+They're evaluated just one time when the class is created.
+Actual jobs in these expressions are summarized below:
 
-All the functions assigned in the block are registered as methods that belong to the class.
-If a function is declared with `:static` attribute appended right after the argument list,
-it would become a class method that you can call along with the class name.
-A function without `:static` attribute would become an instance method
-that works with an instance created from the class.
+* **Assign expression**
 
-Variables assigned in the block are registered as class variables
-that belong to the class itself, not to an instance.
+  A function assigned in the block becomes a method that belong to the class.
+  If the function is declared with `:static` attribute appended right after the argument list,
+  it would become a class method that you can call along with the class name.
+  Otherwise, it would become an instance method that works with an instance
+  created from the class.
+
+  A variable assigned in the block are registered as a class variable
+  that belong to the class itself, not to an instance.
+
+* **Caller expression**
+
+  A function or another callable is evaluated within the class as its environment.
 
 Here's a sample script to see details about factors in the block.
 
@@ -92,6 +101,8 @@ Here's a sample script to see details about factors in the block.
         fmt = 'name: %s, age: %d, role:%s\n'  // class variable
         
         Print() =  {
+            // A class variable doesn't need 'this' or class name when accessing it
+            // while an instance variable does.
             printf(fmt, this.name, this.age, this.role)
         }
         
@@ -100,6 +111,12 @@ Here's a sample script to see details about factors in the block.
         }
         
     }
+
+In an instance method, a variable named `this` is defined,
+which contains a reference to the instance itself.
+You always need to specify `this` variable to access the instance variables and the instance methods.
+
+As for a class variable, a method can refer to it without specifying `this` or the class name.
 
 An instance method `__init__()` is a special one that defines a constructor function.
 Its arguments are reflected on that of the constructor, and,
@@ -118,11 +135,8 @@ with a block parameter that takes the created instance.
         // any process
     }
 
-In an instance method, a variable named `this` is defined to contain a reference to the instance itself.
-You always need to specify `this` variable to access the instance variables and the instance methods.
-
-
-You can call an instance method `Print()` like below, where `p` is an instance of `Person`:
+After an instance is created, you can call an instance method `Print()` like below,
+where `p` is the created instance:
 
     p.Print()
 
@@ -166,11 +180,13 @@ you have to specify block parameters that satisfies the argument declaration of 
     }
 
 
-## {{ page.chapter }}.4. Member Access Control
+## {{ page.chapter }}.4. Encapsulation
 
-In default, instance and class variables are only accessible through `this` variable.
-If you wnat to make them accessible through other variables,
-specify `:public` attribute in their assignment expressions.
+By default, instance and class variables are only accessible through `this` variable.
+Such variables are called **private variable**.
+You can make them accessible through other instance variables
+by specifying `:public` attribute in their assignment expressions.
+Those variables are called **public variable**.
 
     X = class {
         
@@ -184,16 +200,18 @@ specify `:public` attribute in their assignment expressions.
     }
 
     x = X()
-    println(x.a)    // error
-    println(x.b)    // OK
-    println(x.c)    // error
-    println(x.d)    // OK
+    println(x.a)    // private instance variable .. Error
+    println(x.b)    // public instance variable  .. OK
+    println(x.c)    // private class variable    .. Error
+    println(x.d)    // public class variable     .. OK
 
-You can also call `public()` function with a block containing expressions
-that indicate which variables are to be publicized.
-The block accepts two types of expressions: Identifier and Assign.
-Identifer expression only reserves variable symbols for publication.
-Assign expression creates a class variable with the symbol and assign a value to it.
+You can also call `public()` function within a block of `class()` function
+that indicates which variables are to be publicized.
+The `public()` function takes a block that contains two types of expressions: Identifier and Assign.
+An Identifer expression only declares a variable symbol for publication.
+An Assign expression creates a public class variable with the specified value.
+
+The script below is equivalent with the above but uses `public()` function.
 
     X = class {
         
@@ -207,6 +225,13 @@ Assign expression creates a class variable with the symbol and assign a value to
             this.b = 2
         }
     }
+
+Different from variables, methods are accessible through variables other than `this` by default.
+Such methods are called **public method**.
+You can make them only accessible through `this` variable
+by specifying `:private` attribute in their assignment expressions.
+Those methods are called **private method**.
+
 
 ## {{ page.chapter }}.5. Structure
 

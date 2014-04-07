@@ -189,7 +189,11 @@ specify `:public` attribute in their assignment expressions.
     println(x.c)    // error
     println(x.d)    // OK
 
-
+You can also call `public()` function with a block containing expressions
+that indicate which variables are to be publicized.
+The block accepts two types of expressions: Identifier and Assign.
+Identifer expression only reserves variable symbols for publication.
+Assign expression creates a class variable with the symbol and assign a value to it.
 
     X = class {
         

@@ -7,6 +7,7 @@ chapter: 9
 
 # Chapter {{ page.chapter }}. {{ page.title }}
 
+
 ## {{ page.chapter }}.1. Class and Instance
 
 A **class** is a kind of environment that contains properties such as functions and variables,
@@ -82,15 +83,16 @@ Here's a sample script to see details about factors in the block.
 
     Person = class {
         
-        __init__(name:string, age:number) = {
+        __init__(name:string, age:number, role:string) = {
             this.name = name
             this.age = age
+            this.role = role
         }
         
-        fmt = 'name: %s, age: %d\n'  // class variable
+        fmt = 'name: %s, age: %d, role:%s\n'  // class variable
         
         Print() =  {
-            printf(fmt, this.name, this.age)
+            printf(fmt, this.name, this.age, this.role)
         }
         
         Test():static = {
@@ -107,12 +109,12 @@ the sample above creates a function named `Person` that has a declaration shown 
 
 You can create an instance by calling it like below:
 
-    p = Person('Taro Yamada', 27)
+    p = Person('Taro Yamada', 27, 'engineer')
 
 If you specify an optional block, the block procedure will be evaluated
 with a block parameter that takes the created instance.
 
-    Person('Taro Yamada', 27) {|p|
+    Person('Taro Yamada', 27, 'engineer') {|p|
         // any process
     }
 
@@ -128,15 +130,90 @@ You can call a class method `Test()` like below:
 
     Person.Test()
 
+You can also call a class method by specifying an instance.
+
+    p.Test()
+
+
 
 ## {{ page.chapter }}.3. Inheritance
 
+You can create an inherited class by specifying a super class in an argument of `class()`.
+
+    Person2 = class(Person) {
+        // class variable and methods
+    }
+
+If you don't declare `__init__()` method in the derived class, it would inherit a constructor of the super class.
+
+When you declare `__init__()` method in the derived class,
+you have to specify block parameters that satisfies the argument declaration of the super class's constructor.
+
     Teacher = class(Person) {
-        __init__() = {||
+        __init__(name:string, age:number) = {|name, age, 'teacher'|
+        }
+        Work() = {
+            println('give lectures to others')
+        }
+    }
+
+    Student = class(Person) {
+        __init__(name:string, age:number) = {|name, age, 'student'|
+        }
+        Work() = {
+            println('learn about something')
         }
     }
 
 
 ## {{ page.chapter }}.4. Member Access Control
 
+In default, instance and class variables are only accessible through `this` variable.
+If you wnat to make them accessible through other variables,
+specify `:public` attribute in their assignment expressions.
+
+    X = class {
+        
+        c = 3
+        d:public = 4
+        
+        __init__() = {
+            this.a = 1
+            this.b:public = 2
+        }
+    }
+
+    x = X()
+    println(x.a)    // error
+    println(x.b)    // OK
+    println(x.c)    // error
+    println(x.d)    // OK
+
+
+
+    X = class {
+        
+        c = 3
+        public {
+            b
+            d = 4
+        }
+        __init__() = {
+            this.a = 1
+            this.b = 2
+        }
+    }
+
+## {{ page.chapter }}.5. Structure
+
+
+
+    Point = struct(x:number, y:number)
+
+    Point = class {
+        __init__(x:number, y:number) = {
+            this.x:public = x
+            this.y:public = y
+        }
+    }
 

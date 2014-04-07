@@ -235,9 +235,25 @@ Those methods are called **private method**.
 
 ## {{ page.chapter }}.5. Structure
 
-
+A structure is a kind of a class, but offers a simple way to implement a constructor.
+Function `struct` takes variable declarations as its arguments that are reflected on the generated constructor.
+Below is an example:
 
     Point = struct(x:number, y:number)
+
+This generates a constructor shown below:
+
+    Point(x:number, y:number)
+
+You can call it like below:
+
+    pt = Point(3, 4)
+
+A created instance from this class will have members named `x` and `y`.
+
+    printf('%d, %d\n', pt.x, pt.y)
+
+The code above that uses `struct` can be written using `class` like below:
 
     Point = class {
         __init__(x:number, y:number) = {
@@ -246,3 +262,14 @@ Those methods are called **private method**.
         }
     }
 
+A structure can also have methods by describing them in a block of `struct` function.
+
+    Point = struct(x:number, y:number) {
+        Move(xdiff:number, ydiff:number) = {
+            this.x += xdiff
+            this.y += ydiff
+        }
+        Print() = {
+            printf('%d, %d\n', this.x, this.y)
+        }
+    }

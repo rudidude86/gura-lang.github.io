@@ -9,12 +9,51 @@ chapter: 10
 
 ## {{ page.chapter }}.1. Overview
 
-Using Implicit Mapping, you don't have to write repeat procedure
-to evaluate iterables such as iterator and list.
+Implicit Mapping is a feature that evaluates a function or an operator repeatedly
+when it's given with a list or an iterator.
+
+Consider a function `f(n)` that takes a number value and returns a squared number of it.
+You can call it like `f(3)`, which is expected to return a number `9`.
+Here, using Implicit Mapping, you can call it with a list of numbers like below:
+
+    f([2, 3, 4])
+
+This will result in a list `[4, 9, 16]` after evaluating each number in the list.
+
+Implicit Mapping also works with operators.
+Below is an example that applies Implicit Mapping on plus operator:
+
+    [2, 3, 4] + 3
+
+This will result in `[5, 6, 7]`.
+
+This type of operation,
+which applies some operations on a set of numbers at once,
+is known as "vectorization", and has been implemented in languages and libraries
+that compute vectors and matrices.
+
+Implicit Mapping enhances that idea
+to be capable of handling any type of objects other than number.
+
+Consider a case that here's a variable named `x` that contains
+`['hello', 'gura', 'world']` and you need to print each string in the list.
+With an ordinary idea, you can use `for` to process each item in a list.
+
+    for (str in x) {
+        println(str)
+    }
+
+Using Implicit Mapping, you can simply do it like below:
+
+    println(x)
+
+Implicit Mapping can also work with iterators and behaves differently in that case.
+This chapter uses the following terms to explain about mapping processes.
 
 * scholar &mdash; instance of any type except `list` and `iterator`
 * list &mdash; instance of `list`
 * iterator &mdash; instance of `iterator`
+
 
 ## {{ page.chapter }}.2. Implicit Mapping
 

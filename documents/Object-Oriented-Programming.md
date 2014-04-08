@@ -28,15 +28,15 @@ where `Foo` and `func` are names of the class and the instance method respective
 
     Foo#func()
 
-The symbol `#` doesn't exist in an actual script
-and only appears in documentation for instance methods.
-You can call an instance method like below where `x` is an instance of class `Foo`.
+The symbol `#` is not used for an actual instance operation
+and only appears in documentation to describe instance methods.
+You can call an instance method like below, where `foo` is an instance of class `Foo`.
 
-    x.func()
+    foo.func()
 
-A class also contains variables in it.
-A variable that belongs to a class is called **class variable**
-and a variable owned by an instance is called **instance variable**.
+A class also owns variables called  **class variable**,
+which are shared by instances from the class.
+Each instance can contain its own variables that are called **instance variable**.
 
 A class variable is described as below,
 where `Foo` and `value` are names of the class the class variable respectively:
@@ -63,8 +63,9 @@ The code below creates a class named `A` with empty properties.
 
     A = class {}
 
-It also defines a constructor function `A()` that creates an instance of the class.
-You can call it like below:
+This assignment would create a class named `A`
+and also define a constructor function `A()` that generates an instance of the class.
+You can call the constructor function like below:
 
     a = A()
 
@@ -83,6 +84,9 @@ Actual jobs in these expressions are summarized below:
 
   A variable assigned in the block are registered as a class variable
   that belong to the class itself, not to an instance.
+
+  The assigned value is actually evaluated at the timing of assignment,
+  which means you can even call a function to get the value.
 
 * **Caller expression**
 
@@ -114,13 +118,13 @@ Here's a sample script to see details about factors in the block.
 
 In an instance method, a variable named `this` is defined,
 which contains a reference to the instance itself.
-You always need to specify `this` variable to access the instance variables and the instance methods.
+You always need to specify `this` variable to access instance variables and instance methods.
 
 As for a class variable, a method can refer to it without specifying `this` or the class name.
 
 An instance method `__init__()` is a special one that defines a constructor function.
-Its arguments are reflected on that of the constructor, and,
-the sample above creates a function named `Person` that has a declaration shown below.
+Its arguments are reflected on that of the constructor.
+The sample above creates a function named `Person` that has a declaration shown below:
 
     Person(name:string, age:number) {block?}
 
@@ -135,7 +139,8 @@ with a block parameter that takes the created instance.
         // any process
     }
 
-After an instance is created, you can call an instance method `Print()` like below,
+After an instance is created, you can call an instance method with it.
+Below is an example to call an instance method `Print()`,
 where `p` is the created instance:
 
     p.Print()

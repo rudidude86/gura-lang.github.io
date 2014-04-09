@@ -9,7 +9,7 @@ chapter: 10
 
 ## {{ page.chapter }}.1. Overview
 
-Implicit Mapping is a feature that evaluates a function or an operator repeatedly
+**Implicit Mapping** is a feature that evaluates a function or an operator repeatedly
 when it's given with a list or an iterator.
 
 Consider a function `f(n)` that takes a number value and returns a squared number of it.
@@ -25,9 +25,15 @@ Below is an example that applies Implicit Mapping on plus operator:
 
     [2, 3, 4] + 3
 
-This will result in `[5, 6, 7]`.
+This will result in `[5, 6, 7]`. Of course, an operation between two lists is also available.
+See the following example:
 
-This type of operation,
+    [2, 3, 4] + [3, 4, 5]
+
+As you might expect, it returns a list `[5, 7, 9]`.
+
+The above example may just look like a vector calculation.
+Actually, this type of operation,
 which applies some operations on a set of numbers at once,
 is known as "vectorization", and has been implemented in languages and libraries
 that compute vectors and matrices.
@@ -36,21 +42,20 @@ Implicit Mapping enhances that idea so that it has the following capabilities:
 
 1. Implicit Mapping can handle any type of objects other than number.
 
-   Consider a function `g(str)` that takes a string and returns a result after
-   converting alphabet characters in the string to upper case.
+   Consider a function `g(str)` that takes a string and returns a result
+   after converting alphabet characters in the string to upper case.
    When you call it with a single value, it will return one result.
 
         str = 'hello'
         x = g(str)
         // x is 'HELLO'
 
-   If you call it with a list of string,
-   it will return a list of results after Implicit Mapping works.
+   You can call it with a list of string
+   to get a list of results by using Implicit Mapping feature.
 
         strs = ['hello', 'Gura', 'world']
         x = g(strs)
         // x is ['HELLO', 'GURA', 'WORLD']
-
 
 2. Implicit Mapping can operate with an iterator as well.
 
@@ -61,13 +66,14 @@ Implicit Mapping enhances that idea so that it has the following capabilities:
         x = g(strs.each())
         // x is an iterator that will generates 'HELLO', 'GURA' and 'WORLD'.
    
-   This means that the actual evaluation of the function `g()` will be postponed
+   It means that the actual evaluation of the function `g()` will be postponed
    by the time when the created iterator is evaluated.
+   This is important because using an iterator will enable you to
+   avoid unnecessary calculation and memory consumption.
 
+3. You can use Implicit Mapping to repeat a function call without an explicit repeat procedure.
 
-3. You can use Implicit Mapping just to repeat a function call without any result.
-
-   A built-in function `println()` prints a content of the given value with line-feed.
+   A built-in function `println()` prints a content of the given value along with line-feed.
    Consider a case that you need to print each value in the list `strs`
    containing `['hello', 'Gura', 'world']`.
    With an ordinary idea, you may use `for()` to process each item in a list.
@@ -80,8 +86,21 @@ Implicit Mapping enhances that idea so that it has the following capabilities:
 
         println(strs)
 
+4. A function with Implicit Mapping can take any number of lists and iterators as its argument.
+   
+   In the example below the function `f()` takes each item of `a`, `b` and `c`
+   and ends up being evaluated four times.
 
-This chapter explains details about mapping process using the following terms.
+        a = ['first', 'second', 'third', 'fourth']
+        b = [1, 2, 3, 4]
+        c = ['one', 'two', 'three', 'four']
+        f(a, b, c)
+
+**Member Mapping** 
+
+
+This chapter explains details about Gura's mapping process,
+Implicit Mapping and Member Mapping, using the following terms.
 
 * scholar &mdash; instance of any type except `list` and `iterator`
 * list &mdash; instance of `list`

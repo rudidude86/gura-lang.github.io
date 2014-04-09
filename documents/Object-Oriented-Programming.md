@@ -126,7 +126,7 @@ An instance method `__init__()` is a special one that defines a constructor func
 Its arguments are reflected on that of the constructor.
 The sample above creates a function named `Person` that has a declaration shown below:
 
-    Person(name:string, age:number) {block?}
+    Person(name:string, age:number, role:string) {block?}
 
 You can create an instance by calling it like below:
 
@@ -278,3 +278,29 @@ A structure can also have methods by describing them in a block of `struct` func
             printf('%d, %d\n', this.x, this.y)
         }
     }
+
+
+## {{ page.chapter }}.6. Creation of Multiple Instances
+
+How can we create a list of instances from a certain class?
+Below is an example to create a list of `Person` instances.
+
+    people = [
+        Person('Kikuo Ochiai',     24, 'teacher')
+        Person('Seiji Miki',       33, 'engineer')
+        Person('Haruka Nakao',     28, 'sales')
+        Person('Takashi Sugimura', 21, 'student')
+    ]
+
+Obviously, it's cumbersome to describe a function name `Person()` for each item.
+Using a list creation function `@` enables you to write more simple code.
+
+    people = @(Person) {
+        { 'Kikuo Ochiai',     24, 'teacher'  }
+        { 'Seiji Miki',       33, 'engineer' }
+        { 'Haruka Nakao',     28, 'sales'    }
+        { 'Takashi Sugimura', 21, 'student'  }
+    }
+
+Function `@` takes a function such as a constructor,
+and its block contains a set of argument lists fed into that function.

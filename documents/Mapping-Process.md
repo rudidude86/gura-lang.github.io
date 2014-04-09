@@ -96,8 +96,21 @@ Implicit Mapping enhances that idea so that it has the following capabilities:
         c = ['one', 'two', 'three', 'four']
         f(a, b, c)
 
-**Member Mapping** 
+**Member Mapping** is a feature to access members of instances
+that are stored in a list or are generated from an iterator.
 
+For example, there's a method `string#len()` that retrieves a length of the string.
+You can call it like below:
+
+    x = 'first'
+    n = x.len()
+    // n is 5
+
+Using Member Mapping, you can apply the method on instances in a list.
+
+    xs = ['first', 'second', 'third', 'fourth']
+    ns = xs::len()
+    // ns is [5, 6, 5, 6]
 
 This chapter explains details about Gura's mapping process,
 Implicit Mapping and Member Mapping, using the following terms.

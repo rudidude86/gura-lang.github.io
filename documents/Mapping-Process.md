@@ -32,23 +32,56 @@ which applies some operations on a set of numbers at once,
 is known as "vectorization", and has been implemented in languages and libraries
 that compute vectors and matrices.
 
-Implicit Mapping enhances that idea
-to be capable of handling any type of objects other than number.
+Implicit Mapping enhances that idea so that it has the following capabilities:
 
-Consider a case that here's a variable named `x` that contains
-`['hello', 'gura', 'world']` and you need to print each string in the list.
-With an ordinary idea, you can use `for` to process each item in a list.
+1. Implicit Mapping can handle any type of objects other than number.
 
-    for (str in x) {
-        println(str)
-    }
+   Consider a function `g(str)` that takes a string and returns a result after
+   converting alphabet characters in the string to upper case.
+   When you call it with a single value, it will return one result.
 
-Using Implicit Mapping, you can simply do it like below:
+        str = 'hello'
+        x = g(str)
+        // x is 'HELLO'
 
-    println(x)
+   If you call it with a list of string,
+   it will return a list of results after Implicit Mapping works.
 
-Implicit Mapping can also work with iterators and behaves differently in that case.
-This chapter uses the following terms to explain about mapping processes.
+        strs = ['hello', 'Gura', 'world']
+        x = g(strs)
+        // x is ['HELLO', 'GURA', 'WORLD']
+
+
+2. Implicit Mapping can operate with an iterator as well.
+
+   Consider the function `g(str)` mentioned above.
+   If you call it with an iterator, it will return an iterator as well.
+   
+        strs = ['hello', 'Gura', 'world']
+        x = g(strs.each())
+        // x is an iterator that will generates 'HELLO', 'GURA' and 'WORLD'.
+   
+   This means that the actual evaluation of the function `g()` will be postponed
+   by the time when the created iterator is evaluated.
+
+
+3. You can use Implicit Mapping just to repeat a function call without any result.
+
+   A built-in function `println()` prints a content of the given value with line-feed.
+   Consider a case that you need to print each value in the list `strs`
+   containing `['hello', 'Gura', 'world']`.
+   With an ordinary idea, you may use `for()` to process each item in a list.
+
+        for (str in strs) {
+            println(str)
+        }
+
+   Using Implicit Mapping, you can simply do it like below:
+
+        println(strs)
+
+
+This chapter explains details about mapping process using the following terms.
 
 * scholar &mdash; instance of any type except `list` and `iterator`
 * list &mdash; instance of `list`

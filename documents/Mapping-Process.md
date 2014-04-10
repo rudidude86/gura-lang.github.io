@@ -78,7 +78,7 @@ Implicit Mapping enhances that idea so that it has the following capabilities:
    
         strs = ['hello', 'Gura', 'world']
         x = g(strs.each())  // list#each() returns an iterator
-        // x is an iterator that will generates 'HELLO', 'GURA' and 'WORLD'.
+        // x is an iterator that will generate 'HELLO', 'GURA' and 'WORLD'.
    
    It means that the actual evaluation of the function `g()` will be postponed
    by the time when the created iterator is evaluated.
@@ -122,7 +122,7 @@ Implicit Mapping enhances that idea so that it has the following capabilities:
 
 ### {{ page.chapter }}.2.2. Mapping Rule with Operator
 
-Implicit Mapping works on most of the operators even though there are a few exceptions.
+Implicit Mapping works on most of the operators even though there are several exceptions.
 In the description below, a symbol `o` is used to represent a certain operator.
 
 With a Prefixed Unary Operator,

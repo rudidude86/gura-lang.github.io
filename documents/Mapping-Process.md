@@ -7,7 +7,19 @@ chapter: 10
 
 # Chapter {{ page.chapter }}. {{ page.title }}
 
-## {{ page.chapter }}.1. Overview
+## {{ page.chapter }}.1. About This Chapter
+
+This chapter explains about Gura's mapping process, Implicit Mapping and Member Mapping.
+In the explanation, following terms are used to describe species of values.
+
+* scholar &mdash; an instance of any type except for `list` and `iterator`
+* list &mdash; an instance of `list`
+* iterator &mdash; an instance of `iterator`
+
+
+## {{ page.chapter }}.2. Implicit Mapping
+
+### {{ page.chapter }}.2.1. Overview
 
 **Implicit Mapping** is a feature that evaluates a function or an operator repeatedly
 when it's given with a list or an iterator.
@@ -107,34 +119,8 @@ Implicit Mapping enhances that idea so that it has the following capabilities:
         f('third', 3, 'three')
         f('fourth', 4, 'four')
 
-**Member Mapping** is a feature to access members of instances
-that are stored in a list or are generated from an iterator.
 
-For example, there's a method `string#len()` that retrieves a length of the string.
-You can call it like below:
-
-    x = 'first'
-    n = x.len()
-    // n is 5
-
-Using Member Mapping, you can apply the method on instances in a list.
-
-    xs = ['first', 'second', 'third', 'fourth']
-    ns = xs::len()
-    // ns is [5, 6, 5, 6]
-
-This chapter explains details about Gura's mapping process,
-Implicit Mapping and Member Mapping, using the following terms as species of values.
-
-* scholar &mdash; an instance of any type except for `list` and `iterator`
-* list &mdash; an instance of `list`
-* iterator &mdash; an instance of `iterator`
-
-
-## {{ page.chapter }}.2. Implicit Mapping
-
-
-### {{ page.chapter }}.2.1. Implicit Mapping with Operator
+### {{ page.chapter }}.2.2. Mapping Rule with Operator
 
 Implicit Mapping works on most of the operators even though there are a few exceptions.
 In the description below, a symbol `o` is used to represent a certain operator.
@@ -190,7 +176,7 @@ There are some exceptions:
 * An operation `x => y`
 
 
-### {{ page.chapter }}.2.2. Implicit Mapping with Function
+### {{ page.chapter }}.2.3. Mapping Rule with Function
 
 A function capable of Implicit Mapping has `:map` attribute in its declaration.
 
@@ -214,7 +200,7 @@ Implicit Mapping would not work with that argument.
 
     f(x:nomap, y:nomap) = {}
 
-### {{ page.chapter }}.2.3. Disable Implicit Mapping
+### {{ page.chapter }}.2.4. Disable Implicit Mapping
 
     f():nomap
     
@@ -222,13 +208,39 @@ Implicit Mapping would not work with that argument.
     println(x)
     println(x):nomap
 
-### {{ page.chapter }}.2.4. Definition of Function Capable of Implicit Mapping
+### {{ page.chapter }}.2.5. Definition of Function Capable of Implicit Mapping
 
     f():map = { /* body */ }
 
+
 ## {{ page.chapter }}.3. Member Mapping
 
-Member Mapping
+### {{ page.chapter }}.3.1. Overview
+
+**Member Mapping** is a feature to access members of instances
+that are stored in a list or are generated from an iterator.
+
+For example, there's a method `string#len()` that retrieves a length of the string.
+You can call it like below:
+
+    x = 'first'
+    n = x.len()
+    // n is 5
+
+Using Member Mapping, you can apply the method on instances in a list.
+
+    xs = ['first', 'second', 'third', 'fourth']
+    ns = xs::len()
+    // ns is [5, 6, 5, 6]
+
+
+### {{ page.chapter }}.3.2. Mapping Rule
+
+Accessor |Name
+---------|------------------
+`::`     |map-to-list
+`:*`     |map-to-iterator
+`:&`     |map-along
 
     iterable::variable
     iterable:*variable

@@ -12,7 +12,8 @@ chapter: 10
 **Implicit Mapping** is a feature that evaluates a function or an operator repeatedly
 when it's given with a list or an iterator.
 
-Consider a function `f(n)` that takes a number value and returns a squared number of it.
+A function that is capable of Implicit Mapping is marked with an attribute `:map`.
+Consider a function `f(n:number):map` that takes a number value and returns a squared number of it.
 You can call it like `f(3)`, which is expected to return a number `9`.
 Here, using Implicit Mapping, you can call it with a list of numbers like below:
 
@@ -25,7 +26,8 @@ Below is an example that applies Implicit Mapping on plus operator:
 
     [2, 3, 4] + 3
 
-This will result in `[5, 6, 7]`. Of course, an operation between two lists is also available.
+This will result in `[5, 6, 7]`. Of course,
+you can also apply it on an operation between two lists.
 See the following example:
 
     [2, 3, 4] + [3, 4, 5]
@@ -42,7 +44,7 @@ Implicit Mapping enhances that idea so that it has the following capabilities:
 
 1. Implicit Mapping can handle any type of objects other than number.
 
-   Consider a function `g(str)` that takes a string and returns a result
+   Consider a function `g(str:string):map` that takes a string and returns a result
    after converting alphabet characters in the string to upper case.
    When you call it with a single value, it will return one result.
 
@@ -59,11 +61,11 @@ Implicit Mapping enhances that idea so that it has the following capabilities:
 
 2. Implicit Mapping can operate with an iterator as well.
 
-   Consider the function `g(str)` mentioned above.
-   If you call it with an iterator, it will return an iterator as well.
+   Consider the function `g(str:string):map` that has been mentioned above.
+   If you call it with an iterator, it will return an iterator as its result.
    
         strs = ['hello', 'Gura', 'world']
-        x = g(strs.each())
+        x = g(strs.each())  // list#each() returns an iterator
         // x is an iterator that will generates 'HELLO', 'GURA' and 'WORLD'.
    
    It means that the actual evaluation of the function `g()` will be postponed
@@ -73,9 +75,10 @@ Implicit Mapping enhances that idea so that it has the following capabilities:
 
 3. You can use Implicit Mapping to repeat a function call without an explicit repeat procedure.
 
-   A built-in function `println()` prints a content of the given value along with line-feed.
+   A built-in function `println():map` prints a content of the given value
+   before putting out a line-feed.
    Consider a case that you need to print each value in the list `strs`
-   containing `['hello', 'Gura', 'world']`.
+   that contains `['hello', 'Gura', 'world']`.
    With an ordinary idea, you may use `for()` to process each item in a list.
 
         for (str in strs) {
@@ -86,15 +89,23 @@ Implicit Mapping enhances that idea so that it has the following capabilities:
 
         println(strs)
 
-4. A function with Implicit Mapping can take any number of lists and iterators as its argument.
+4. Implicit Mapping can work on any number of lists and iterators
+   given in an argument list of a function call.
    
-   In the example below the function `f()` takes each item of `a`, `b` and `c`
-   and ends up being evaluated four times.
+   Consider that there's a function `f(a:string, b:number, c:string):map`,
+   and you give it lists as its arguments like below:
 
-        a = ['first', 'second', 'third', 'fourth']
-        b = [1, 2, 3, 4]
-        c = ['one', 'two', 'three', 'four']
-        f(a, b, c)
+        as = ['first', 'second', 'third', 'fourth']
+        bs = [1, 2, 3, 4]
+        cs = ['one', 'two', 'three', 'four']
+        f(as, bs, cs)
+
+   This has the same effect as below:
+
+        f('first', 1, 'one')
+        f('second', 2, 'two')
+        f('third', 3, 'three')
+        f('fourth', 4, 'four')
 
 **Member Mapping** is a feature to access members of instances
 that are stored in a list or are generated from an iterator.
@@ -113,11 +124,11 @@ Using Member Mapping, you can apply the method on instances in a list.
     // ns is [5, 6, 5, 6]
 
 This chapter explains details about Gura's mapping process,
-Implicit Mapping and Member Mapping, using the following terms.
+Implicit Mapping and Member Mapping, using the following terms as species of values.
 
-* scholar &mdash; instance of any type except `list` and `iterator`
-* list &mdash; instance of `list`
-* iterator &mdash; instance of `iterator`
+* scholar &mdash; an instance of any type except for `list` and `iterator`
+* list &mdash; an instance of `list`
+* iterator &mdash; an instance of `iterator`
 
 
 ## {{ page.chapter }}.2. Implicit Mapping
@@ -125,12 +136,39 @@ Implicit Mapping and Member Mapping, using the following terms.
 
 ### {{ page.chapter }}.2.1. Implicit Mapping with Operator
 
+Implicit Mapping works on most of the operators even though there are a few exceptions.
+In the description below, a symbol `o` is used to represent a certain operator.
+
+With a Prefixed Unary Operator,
+the species of the result is the same as that of the given value.
+Below is a summary table:
 
 Operation    | Result
 -------------|----------------
 `o scholar`  | scholar
 `o list`     | list
 `o iterator` | iterator
+
+With a Suffixed Unary Operator,
+the species of the result is the same as that of the given value.
+Below is a summary table:
+
+Operation    | Result
+-------------|----------------
+`scholar o`  | scholar
+`list o`     | list
+`iterator o` | iterator
+
+There are some exceptions:
+
+* An operation `x?` checks if `x` can be determined as `true` or not.
+* An operation `x*` generates an iterator from `x`.
+
+With a Binary Operator, the folloiwing rules are applied.
+
+* If both of left or right value are of scholar species, the result becomes a scholar.
+* If either of left or right value is of iterator species, the result becomes an iterator.
+* Otherwise, the result becomes a list.
 
 Operation             | Result
 ----------------------|----------------
@@ -143,6 +181,13 @@ Operation             | Result
 `iterator o scholar`  | iterator
 `iterator o list`     | iterator
 `iterator o iterator` | iterator
+
+There are some exceptions:
+
+* An operation `x * y` where `x` is of `function` type
+* An operation `x % y` where `x` is of `string` type
+* An operation `x in y`
+* An operation `x => y`
 
 
 ### {{ page.chapter }}.2.2. Implicit Mapping with Function

@@ -184,6 +184,42 @@ you have to specify block parameters that satisfies the argument declaration of 
         }
     }
 
+Take a look at a behavior of instance methods in an inherited class.
+Consider the following script:
+
+    A = class {
+        func() = {
+            println('A.func()')
+        }
+    }
+
+    B = class(A) {
+        func() = {
+            println('B.func()')
+        }
+        test() = {
+            this.func()  // calls B#func()
+        }
+    }
+
+    b = B()
+    b.test()
+
+Both class A and B have a method with the same name `func()`.
+When the method `B#test()` evaluates `this.func()`, it actually calls `B#func()`.
+
+You can use `super()` function to call a method that belongs to a super class.
+Below is a sample code to show how to use it.
+
+    B = class(A) {
+        func() = {
+            println('B.func()')
+        }
+        test() = {
+            super(this).func()  // calls A#func()
+        }
+    }
+
 
 ## {{ page.chapter }}.4. Encapsulation
 

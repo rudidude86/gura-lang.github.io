@@ -15,7 +15,7 @@ In the explanation, following terms are used to describe species of values.
 * scholar &mdash; an instance of any type except for `list` and `iterator`
 * list &mdash; an instance of `list`
 * iterator &mdash; an instance of `iterator`
-
+* iterable &mdash; list or iterator
 
 ## {{ page.chapter }}.2. Implicit Mapping
 
@@ -126,7 +126,7 @@ Implicit Mapping works on most of the operators even though there are several ex
 In the description below, a symbol `o` is used to represent a certain operator.
 
 With a Prefixed Unary Operator,
-the species of the result is the same as that of the given value.
+species of the result is the same as that of the given value.
 Below is a summary table:
 
 Operation    | Result
@@ -136,7 +136,7 @@ Operation    | Result
 `o iterator` | iterator
 
 With a Suffixed Unary Operator,
-the species of the result is the same as that of the given value.
+species of the result is the same as that of the given value.
 Below is a summary table:
 
 Operation    | Result
@@ -145,16 +145,13 @@ Operation    | Result
 `list o`     | list
 `iterator o` | iterator
 
-There are some exceptions:
-
-* An operation `x?` checks if `x` can be determined as `true` or not.
-* An operation `x*` generates an iterator from `x`.
-
 With a Binary Operator, the folloiwing rules are applied.
 
-* If both of left or right value are of scholar species, the result becomes a scholar.
+* If both of left and right values are of scholar species, the result becomes a scholar.
 * If either of left or right value is of iterator species, the result becomes an iterator.
 * Otherwise, the result becomes a list.
+
+Below is a summary table:
 
 Operation             | Result
 ----------------------|----------------
@@ -168,19 +165,29 @@ Operation             | Result
 `iterator o list`     | iterator
 `iterator o iterator` | iterator
 
-There are some exceptions:
+If both of left and right values are iterable and they have different length,
+Implicit Mapping would be applied on a range of a shorter length.
 
-* An operation `x * y` where `x` is of `function` type
-* An operation `x % y` where `x` is of `string` type
-* An operation `x in y`
-* An operation `x => y`
+Some operators expect lists or iterators in their own operations
+and inhibit Implicit Mapping. See the table below:
+
+Operation|Note
+---------|--------------------------------------------------------------
+`x?`     | It deters Implicit Mapping because it needs to check if `x` itself can be determined as `true` or not.
+`x*`     | It expects `x` may take an iterator or a list.
+`x * y` where `x` is `function` | It may take a list as a value of `y`.
+`x % y` where `x` is `string`   | It may take a list as a value of `y`.
+`x in y` | It expects `x` and `y` may take list values.
+`x => y` | It expects `y` may take a list value.
 
 
 ### {{ page.chapter }}.2.3. Mapping Rule with Function
 
-A function capable of Implicit Mapping has `:map` attribute in its declaration.
+A function with `:map` attribute in its declaration is capable of Implicit Mapping.
 
-Consider a function that has a declaration of `f(x):map`.
+As for a function `f(x):map` that takes one argument,
+the mapping rule is the same as that of Unary Operator.
+See the following summary table:
 
 Operation     | Result
 --------------|----------------
@@ -188,25 +195,76 @@ Operation     | Result
 `f(list)`     | list
 `f(iterator)` | iterator
 
-If a function contains an argument that expects `list` or `iterator`,
-Implicit Mapping would not work with that argument.
+A function that takes two arguments behaves in the same manner with Binary Operator.
+Below is a summary table:
 
-`:nomap` attribute
+Operation               | Result
+------------------------|----------------
+`f(scholar, scholar)`   | scholar
+`f(scholar, list)`      | list
+`f(scholar, iterator)`  | iterator
+`f(list, scholar)`      | list
+`f(list, list)`         | list
+`f(list, iterator)`     | iterator
+`f(iterator, scholar)`  | iterator
+`f(iterator, list)`     | iterator
+`f(iterator, iterator)` | iterator
+
+In general, if a function takes more than one argument, following rules are appplied.
+
+* If all of the argument values are of scholar species, the result becomes a scholar.
+* If one of the argument values is of iterator species, the result becomes an iterator.
+* Otherwise, the result becomes a list.
+
+Here are some example cases:
+
+Operation                       | Result
+--------------------------------|----------------
+`f(scholar, scholar, sholar)`   | scholar
+`f(scholar, scholar, list)`     | list
+`f(scholar, scholar, iterator)` | iterator
+`f(scholar, list, iterator)`    | iterator
+
+If an argument list contains iterable that have different length each other,
+Implicit Mapping would be applied on a range of the shortest length.
+For example, the code below repeats the process three times.
+
+    f([1, 2, 3], ['a', 'b', 'c', 'd'], [4, 5, 6])
+
+There are some cases in which Implicit Mapping doesn't work.
+
+* If a function contains an argument that expects `list` or `iterator`,
+  Implicit Mapping would not work with that argument.
+  In the following example, putting a list or an iterator to argument `z`,
+  which expects a list or an iterator as its value, is not considered as
+  a criteria for Implicit Mapping.
+
+        f(x, y, z:list):map     = { /* body */ }
+        f(x, y, z:iterator):map = { /* body */ }
+        f(x, y, z[]):map        = { /* body */ }
+
+* Putting an attribute `:nomap` to an argument declaration
+  would exclude it from Implicit Mapping criteria.
+  In the example below, specifying a list or an iterator to argument `z` is
+  not considered as a criteria for Implicit Mapping.
+
+        f(x, y, z:nomap):map = { /* body */ }
+
+
+### {{ page.chapter }}.2.4. Result Control
 
 `f(list):iter`
     
 `f(iterator):list`
 
 
-    f(x:nomap, y:nomap) = {}
-
-### {{ page.chapter }}.2.4. Disable Implicit Mapping
 
     f():nomap
     
     x = [1, 2, 3, 4]
     println(x)
     println(x):nomap
+
 
 ### {{ page.chapter }}.2.5. Definition of Function Capable of Implicit Mapping
 

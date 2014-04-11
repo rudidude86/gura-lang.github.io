@@ -265,6 +265,16 @@ There are some cases in which Implicit Mapping doesn't work.
     println(x)
     println(x):nomap
 
+iterator evaluation
+
+    x = f([].each())
+    x = nil
+
+attribute `:void` evaluates iterator immediately
+    
+    f([].each()):void
+
+
 
 ### {{ page.chapter }}.2.5. Definition of Function Capable of Implicit Mapping
 

@@ -277,7 +277,7 @@ when a function with `:map` attribute takes a list,
 it will evaluate each value in the list and returns a list containing results.
 Following that rule, it may be expected that the call above returns `[nil, nil, nil]`.
 
-In reality, it returns a single `nil`.
+But, in reality, it returns a single `nil`.
 
 Implicit Mapping is designed to work as a repeating mechanism.
 If a function always returns some meaningless value such as `nil`,

@@ -34,12 +34,12 @@ Here, using Implicit Mapping, you can call it with a list of numbers like below:
 This will result in a list `[4, 9, 16]` after evaluating each number in the list.
 
 Implicit Mapping also works with operators.
-Below is an example that applies Implicit Mapping on plus operator:
+The example below applies an operation that adds three to each value in the list using Implicit Mapping:
 
     [2, 3, 4] + 3
 
-This will result in `[5, 6, 7]`. Of course,
-you can also apply it on an operation between two lists.
+This will result in `[5, 6, 7]`.
+Of course, you can also apply Implicit Mapping on an operation between two lists.
 See the following example:
 
     [2, 3, 4] + [3, 4, 5]
@@ -225,13 +225,13 @@ Operation                       | Result
 `f(scholar, scholar, iterator)` | iterator
 `f(scholar, list, iterator)`    | iterator
 
-If an argument list contains iterable that have different length each other,
+If an argument list contains iterables that have different length each other,
 Implicit Mapping would be applied on a range of the shortest length.
 For example, the code below repeats the process three times.
 
     f([1, 2, 3], ['a', 'b', 'c', 'd'], [4, 5, 6])
 
-There are some cases in which Implicit Mapping doesn't work.
+There are some cases that deter Implicit Mapping.
 
 * If a function contains an argument that expects `list` or `iterator`,
   Implicit Mapping would not work with that argument.
@@ -252,6 +252,40 @@ There are some cases in which Implicit Mapping doesn't work.
 
 
 ### {{ page.chapter }}.2.4. Result Control
+
+Consider a function `f(n:number):map` that is defined as below:
+
+    f(n:number):map = {
+        println(n)
+    }
+
+It takes a number value and just prints it.
+
+    f(3)  // prints 'n = 3'
+
+Here, function `println()` is defined with an attribute `:void`
+and always returns `nil` as its result.
+So, the function `f()` returns `nil` as well.
+
+As the function `f()` is capable of Implicit Mapping,
+you can call it with a list for repeated process.
+
+    f([1, 2, 3])  // prints 'n = 1', 'n = 2' and 'n = 3'
+
+As you've already seen above,
+when a function with `:map` attribute takes a list,
+it will evaluate each value in the list and returns a list containing results.
+Following that rule, it may be expected that the call above returns `[nil, nil, nil]`.
+
+In reality, it returns a single `nil`.
+
+Implicit Mapping is designed to work as a repeating mechanism.
+If a function always returns some meaningless value such as `nil`,
+creating a list that contains such values absolutely makes no sense.
+To avoid that vain process, Implicit Mapping would only create a list
+when a valid value appears as the result.
+
+-------
 
 `f(list):iter`
     

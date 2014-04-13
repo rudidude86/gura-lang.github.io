@@ -81,7 +81,7 @@ Implicit Mapping enhances that idea so that it has the following capabilities:
         // x is an iterator that will generate 'HELLO', 'GURA' and 'WORLD'.
    
    It means that the actual evaluation of the function `g()` will be postponed
-   by the time when the created iterator is evaluated.
+   by the time when the created iterator is evaluated or destroyed.
    This is important because using an iterator will enable you to
    avoid unnecessary calculation and memory consumption.
 
@@ -135,6 +135,14 @@ Operation    | Result
 `o list`     | list
 `o iterator` | iterator
 
+Examples are shown below:
+
+Example                             | Result
+------------------------------------|------------------------------------------
+`!true`                             | `false`
+`![true, true, false, true]`        | `[false, false, true, false]`
+`![true, true, false, true].each()` | (an iterator that generates `false`, `false`, `true` and `false`)
+
 With a Suffixed Unary Operator,
 species of the result is the same as that of the given value.
 Below is a summary table:
@@ -185,6 +193,18 @@ Operation|Note
 
 A function with `:map` attribute in its declaration is capable of Implicit Mapping.
 
+Here are function definitions that return a square value of the given number
+to see the effect of `:map` attribute.
+
+    f_nomap(x:number) = x * x
+    f_map(x:number):map = x * x
+
+The function delcared with `:map` attribute is capable of Implicit Mapping
+and can take a list for an argument that expects a `number` value.
+
+    f_nomap([1, 2, 3]) // Error
+    f_map([1, 2, 3])   // Implicit Mapping works on each item and returns [1, 4, 9]
+
 As for a function `f(x):map` that takes one argument,
 the mapping rule is the same as that of Unary Operator.
 See the following summary table:
@@ -195,7 +215,7 @@ Operation     | Result
 `f(list)`     | list
 `f(iterator)` | iterator
 
-A function that takes two arguments behaves in the same manner with Binary Operator.
+A function `f(x, y):map` that takes two arguments behaves in the same manner with Binary Operator.
 Below is a summary table:
 
 Operation               | Result
@@ -210,13 +230,13 @@ Operation               | Result
 `f(iterator, list)`     | iterator
 `f(iterator, iterator)` | iterator
 
-In general, if a function takes more than one argument, following rules are appplied.
+In general, if a function takes more than one argument, the following rules are appplied.
 
 * If all of the argument values are of scholar species, the result becomes a scholar.
 * If one of the argument values is of iterator species, the result becomes an iterator.
 * Otherwise, the result becomes a list.
 
-Here are some example cases:
+Here are some example cases with a function `f(x, y, z):map`:
 
 Operation                       | Result
 --------------------------------|----------------
@@ -256,7 +276,7 @@ There are some cases that deter Implicit Mapping.
 Consider a function `f(n:number):map` that is defined as below:
 
     f(n:number):map = {
-        println(n)
+        println('n = ', n)
     }
 
 It takes a number value and just prints it.
@@ -264,26 +284,49 @@ It takes a number value and just prints it.
     f(3)  // prints 'n = 3'
 
 Here, function `println()` is defined with an attribute `:void`
-and always returns `nil` as its result.
-So, the function `f()` returns `nil` as well.
+that is meant to return `nil` as its result.
+So, the function `f()` that evaluates `println()` at last would return `nil` as well.
 
 As the function `f()` is capable of Implicit Mapping,
-you can call it with a list for repeated process.
+you can call it with a list for repeating process.
 
     f([1, 2, 3])  // prints 'n = 1', 'n = 2' and 'n = 3'
 
 As you've already seen above,
 when a function with `:map` attribute takes a list,
 it will evaluate each value in the list and returns a list containing results.
-Following that rule, it may be expected that the call above returns `[nil, nil, nil]`.
+Following that rule, you may think the call for it as above could return `[nil, nil, nil]`.
 
 But, in reality, it returns a single `nil`.
 
 Implicit Mapping is designed to work as a repeating mechanism.
-If a function always returns some meaningless value such as `nil`,
+If a function is expected to always return some meaningless value such as `nil`,
 creating a list that contains such values absolutely makes no sense.
 To avoid that vain process, Implicit Mapping would only create a list
 when a valid value appears as the result.
+
+Consider a function below that simply returns the given number as its result.
+
+    g(n:number):map = n
+
+Following table summarizes what result you get from `g()` through Implicit Mapping.
+
+Script                  | Result
+------------------------|----------------------------
+`g([nil])`              | `nil`
+`g([nil, nil])`         | `nil`
+`g([nil, nil, 3])`      | `[nil, nil, 3]`
+`g([nil, nil, 3, nil])` | `[nil, nil, 3, nil]`
+
+You can specify `:list` attribute to always get the result in list type.
+
+Script                       | Result
+-----------------------------|----------------------------
+`g([nil]):list`              | `[nil]`
+`g([nil, nil]):list`         | `[nil, nil]`
+`g([nil, nil, 3]):list`      | `[nil, nil, 3]`
+`g([nil, nil, 3, nil]):list` | `[nil, nil, 3, nil]`
+
 
 -------
 
@@ -307,12 +350,6 @@ iterator evaluation
 attribute `:void` evaluates iterator immediately
     
     f([].each()):void
-
-
-
-### {{ page.chapter }}.2.5. Definition of Function Capable of Implicit Mapping
-
-    f():map = { /* body */ }
 
 
 ## {{ page.chapter }}.3. Member Mapping

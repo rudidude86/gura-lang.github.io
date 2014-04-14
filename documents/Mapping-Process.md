@@ -76,9 +76,9 @@ Implicit Mapping enhances that idea so that it has the following capabilities:
    Consider the function `g(str:string):map` that has been mentioned above.
    If you call it with an iterator, it will return an iterator as its result.
    
-        strs = ['hello', 'Gura', 'world']
-        x = g(strs.each())  // list#each() returns an iterator
-        // x is an iterator that will generate 'HELLO', 'GURA' and 'WORLD'.
+        strs = ('hello', 'Gura', 'world') // creates an iterator
+        x = g(strs)
+        // x is an iterator that equivalent with ('HELLO', 'GURA', 'WORLD')
    
    It means that the actual evaluation of the function `g()` will be postponed
    by the time when the created iterator is evaluated or destroyed.
@@ -137,11 +137,11 @@ Operation    | Result
 
 Examples are shown below:
 
-Example                             | Result
-------------------------------------|------------------------------------------
-`!true`                             | `false`
-`![true, true, false, true]`        | `[false, false, true, false]`
-`![true, true, false, true].each()` | (an iterator that generates `false`, `false`, `true` and `false`)
+Example                      | Result
+-----------------------------|------------------------------------------
+`!true`                      | `false`
+`![true, true, false, true]` | `[false, false, true, false]`
+`!(true, true, false, true)` | `(false, false, true, false)`
 
 With a Suffixed Unary Operator,
 species of the result is the same as that of the given value.
@@ -271,13 +271,11 @@ There are some cases that deter Implicit Mapping.
         f(x, y, z:nomap):map = { /* body */ }
 
 
-### {{ page.chapter }}.2.4. Result Control
+### {{ page.chapter }}.2.4. Result Control on List
 
 Consider a function `f(n:number):map` that is defined as below:
 
-    f(n:number):map = {
-        println('n = ', n)
-    }
+    f(n:number):map = println('n = ', n)
 
 It takes a number value and just prints it.
 
@@ -305,35 +303,175 @@ creating a list that contains such values absolutely makes no sense.
 To avoid that vain process, Implicit Mapping would only create a list
 when a valid value appears as the result.
 
-Consider a function below that simply returns the given number as its result.
+Consider a function below that simply returns the given value as its result.
 
-    g(n:number):map = n
+    g(n):map = n
 
-Following table summarizes what result you get from `g()` through Implicit Mapping.
+The table below summarizes what result you get from `g()`
+when it's given with a list containing valid and `nil` values.
 
-Script                  | Result
-------------------------|----------------------------
-`g([nil])`              | `nil`
-`g([nil, nil])`         | `nil`
-`g([nil, nil, 3])`      | `[nil, nil, 3]`
-`g([nil, nil, 3, nil])` | `[nil, nil, 3, nil]`
+Script                        | Result
+------------------------------|----------------------------
+`g([nil])`                    | `nil`
+`g([nil, nil])`               | `nil`
+`g([nil, nil, 3])`            | `[nil, nil, 3]`
+`g([nil, nil, 3, 5])`         | `[nil, nil, 3, 5]`
+`g([nil, nil, 3, 5, 3])`      | `[nil, nil, 3, 5, 3]`
+`g([nil, nil, 3, 5, 3, nil])` | `[nil, nil, 3, 5, 3, nil]`
 
-You can specify `:list` attribute to always get the result in list type.
+There are some attributes that control how Implicit Mapping generates the result
+even when it's expected to generate a list by default.
 
-Script                       | Result
------------------------------|----------------------------
-`g([nil]):list`              | `[nil]`
-`g([nil, nil]):list`         | `[nil, nil]`
-`g([nil, nil, 3]):list`      | `[nil, nil, 3]`
-`g([nil, nil, 3, nil]):list` | `[nil, nil, 3, nil]`
+* Attribute `:list` always creates a list.
 
+  Script                             | Result
+  -----------------------------------|----------------------------
+  `g([nil]):list`                    | `[nil]`
+  `g([nil, nil]):list`               | `[nil, nil]`
+  `g([nil, nil, 3]):list`            | `[nil, nil, 3]`
+  `g([nil, nil, 3, 5]):list`         | `[nil, nil, 3, 5]`
+  `g([nil, nil, 3, 5, 3]):list`      | `[nil, nil, 3, 5, 3]`
+  `g([nil, nil, 3, 5, 3, nil]):list` | `[nil, nil, 3, 5, 3, nil]`
+
+* Attribute `:xlist` always creates a list after excluding `nil` value from the result.
+
+  Script                              | Result
+  ------------------------------------|----------------------------
+  `g([nil]):xlist`                    | `[]`
+  `g([nil, nil]):xlist`               | `[]`
+  `g([nil, nil, 3]):xlist`            | `[3]`
+  `g([nil, nil, 3, 5]):xlist`         | `[3, 5]`
+  `g([nil, nil, 3, 5, 3]):xlist`      | `[3, 5, 3]`
+  `g([nil, nil, 3, 5, 3, nil]):xlist` | `[3, 5, 3]`
+
+* Attribute `:set` always creates a list after excluding duplicated values.
+
+  Script                            | Result
+  ----------------------------------|----------------------------
+  `g([nil]):set`                    | `[nil]`
+  `g([nil, nil]):set`               | `[nil]`
+  `g([nil, nil, 3]):set`            | `[nil, 3]`
+  `g([nil, nil, 3, 5]):set`         | `[nil, 3, 5]`
+  `g([nil, nil, 3, 5, 3]):set`      | `[nil, 3, 5]`
+  `g([nil, nil, 3, 5, 3, nil]):set` | `[nil, 3, 5]`
+
+* Attribute `:xset` always creates a list after excluding `nil` and duplicated values.
+
+  Script                             | Result
+  -----------------------------------|----------------------------
+  `g([nil]):xset`                    | `[]`
+  `g([nil, nil]):xset`               | `[]`
+  `g([nil, nil, 3]):xset`            | `[3]`
+  `g([nil, nil, 3, 5]):xset`         | `[3, 5]`
+  `g([nil, nil, 3, 5, 3]):xset`      | `[3, 5]`
+  `g([nil, nil, 3, 5, 3, nil]):xset` | `[3, 5]`
+
+* Attribute `:iter` creates an iterator.
+
+  Script                             | Result
+  -----------------------------------|----------------------------
+  `g([nil]):iter`                    | iterator of `(nil)`
+  `g([nil, nil]):iter`               | iterator of `(nil, nil)`
+  `g([nil, nil, 3]):iter`            | iterator of `(nil, nil, 3)`
+  `g([nil, nil, 3, 5]):iter`         | iterator of `(nil, nil, 3, 5)`
+  `g([nil, nil, 3, 5, 3]):iter`      | iterator of `(nil, nil, 3, 5, 3)`
+  `g([nil, nil, 3, 5, 3, nil]):iter` | iterator of `(nil, nil, 3, 5, 3, nil)`
+
+* Attribute `:xiter` creates an iterator that excludes `nil` value from the result.
+
+  Script                              | Result
+  ------------------------------------|----------------------------
+  `g([nil]):xiter`                    | iterator of `()`
+  `g([nil, nil]):xiter`               | iterator of `()`
+  `g([nil, nil, 3]):xiter`            | iterator of `(3)`
+  `g([nil, nil, 3, 5]):xiter`         | iterator of `(3, 5)`
+  `g([nil, nil, 3, 5, 3]):xiter`      | iterator of `(3, 5, 3)`
+  `g([nil, nil, 3, 5, 3, nil]):xiter` | iterator of `(3, 5, 3)`
+
+
+### {{ page.chapter }}.2.5. Result Control on Iterator
+
+Consider a function below that simply returns the given value as its result.
+
+    g(n):map = n
+
+When you give it an iterator,
+it would return an iterator as well following after Implicit Mapping rule.
+
+Script                        | Result
+------------------------------|----------------------------
+`g((nil,))`                   | `(nil,)`
+`g((nil, nil))`               | `(nil, nil)`
+`g((nil, nil, 3))`            | `(nil, nil, 3)`
+`g((nil, nil, 3, 5))`         | `(nil, nil, 3, 5)`
+`g((nil, nil, 3, 5, 3))`      | `(nil, nil, 3, 5, 3)`
+`g((nil, nil, 3, 5, 3, nil))` | `(nil, nil, 3, 5, 3, nil)`
+
+There are some attributes that control how Implicit Mapping generates the result
+even when it's expected to generate an iterator by default.
+
+* Attribute `:list` creates a list.
+
+  Script                             | Result
+  -----------------------------------|----------------------------
+  `g((nil,)):list`                   | `[nil]`
+  `g((nil, nil)):list`               | `[nil, nil]`
+  `g((nil, nil, 3)):list`            | `[nil, nil, 3]`
+  `g((nil, nil, 3, 5)):list`         | `[nil, nil, 3, 5]`
+  `g((nil, nil, 3, 5, 3)):list`      | `[nil, nil, 3, 5, 3]`
+  `g((nil, nil, 3, 5, 3, nil)):list` | `[nil, nil, 3, 5, 3, nil]`
+
+* Attribute `:xlist` creates a list after excluding `nil` value from the result.
+
+  Script                              | Result
+  ------------------------------------|----------------------------
+  `g((nil,)):xlist`                   | `[]`
+  `g((nil, nil)):xlist`               | `[]`
+  `g((nil, nil, 3)):xlist`            | `[3]`
+  `g((nil, nil, 3, 5)):xlist`         | `[3, 5]`
+  `g((nil, nil, 3, 5, 3)):xlist`      | `[3, 5, 3]`
+  `g((nil, nil, 3, 5, 3, nil)):xlist` | `[3, 5, 3]`
+
+* Attribute `:set` creates a list after excluding duplicated values.
+
+  Script                            | Result
+  ----------------------------------|----------------------------
+  `g((nil,)):set`                   | `[nil]`
+  `g((nil, nil)):set`               | `[nil]`
+  `g((nil, nil, 3)):set`            | `[nil, 3]`
+  `g((nil, nil, 3, 5)):set`         | `[nil, 3, 5]`
+  `g((nil, nil, 3, 5, 3)):set`      | `[nil, 3, 5]`
+  `g((nil, nil, 3, 5, 3, nil)):set` | `[nil, 3, 5]`
+
+* Attribute `:xset` creates a list after excluding `nil` and duplicated values.
+
+  Script                             | Result
+  -----------------------------------|----------------------------
+  `g((nil,)):xset`                   | `[]`
+  `g((nil, nil)):xset`               | `[]`
+  `g((nil, nil, 3)):xset`            | `[3]`
+  `g((nil, nil, 3, 5)):xset`         | `[3, 5]`
+  `g((nil, nil, 3, 5, 3)):xset`      | `[3, 5]`
+  `g((nil, nil, 3, 5, 3, nil)):xset` | `[3, 5]`
+
+* Attribute `:iter` creates an iterator. This is a default behavior.
+
+* Attribute `:xiter` creates an iterator that excludes `nil` value from the result.
+
+  Script                              | Result
+  ------------------------------------|----------------------------
+  `g((nil,)):xiter`                   | iterator of `()`
+  `g((nil, nil)):xiter`               | iterator of `()`
+  `g((nil, nil, 3)):xiter`            | iterator of `(3)`
+  `g((nil, nil, 3, 5)):xiter`         | iterator of `(3, 5)`
+  `g((nil, nil, 3, 5, 3)):xiter`      | iterator of `(3, 5, 3)`
+  `g((nil, nil, 3, 5, 3, nil)):xiter` | iterator of `(3, 5, 3)`
+
+Attribute `:void`
+
+    f(n:number):map = println('n = ', n)
 
 -------
-
-`f(list):iter`
-    
-`f(iterator):list`
-
 
 
     f():nomap
@@ -341,15 +479,6 @@ Script                       | Result
     x = [1, 2, 3, 4]
     println(x)
     println(x):nomap
-
-iterator evaluation
-
-    x = f([].each())
-    x = nil
-
-attribute `:void` evaluates iterator immediately
-    
-    f([].each()):void
 
 
 ## {{ page.chapter }}.3. Member Mapping

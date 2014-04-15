@@ -10,7 +10,7 @@ chapter: 10
 ## {{ page.chapter }}.1. About This Chapter
 
 This chapter explains about Gura's mapping process, Implicit Mapping and Member Mapping.
-In the explanation, following terms are used to describe species of values.
+In the documentation, following terms are used to describe species of values.
 
 * scholar &mdash; an instance of any type except for `list` and `iterator`
 * list &mdash; an instance of `list`
@@ -251,7 +251,7 @@ For example, the code below repeats the process three times.
 
     f([1, 2, 3], ['a', 'b', 'c', 'd'], [4, 5, 6])
 
-There are some cases that deter Implicit Mapping.
+Implicit Mapping does not work with arguments that match the following case:
 
 * If a function contains an argument that expects `list` or `iterator`,
   Implicit Mapping would not work with that argument.
@@ -282,7 +282,7 @@ It takes a number value and just prints it.
     f(3)  // prints 'n = 3'
 
 Here, function `println()` is defined with an attribute `:void`
-that is meant to return `nil` as its result.
+that is meant to always return `nil` as its result.
 So, the function `f()` that evaluates `println()` at last would return `nil` as well.
 
 As the function `f()` is capable of Implicit Mapping,
@@ -292,16 +292,17 @@ you can call it with a list for repeating process.
 
 As you've already seen above,
 when a function with `:map` attribute takes a list,
-it will evaluate each value in the list and returns a list containing results.
-Following that rule, you may think the call for it as above could return `[nil, nil, nil]`.
+it will evaluate each value in the list immediately and returns a list containing the results.
+Considering that rule, you may think the calling it as above could return `[nil, nil, nil]`.
 
 But, in reality, it returns a single `nil`.
 
-Implicit Mapping is designed to work as a repeating mechanism.
+Implicit Mapping is designed to work as a generic repeating mechanism.
 If a function is expected to always return some meaningless value such as `nil`,
-creating a list that contains such values absolutely makes no sense.
+creating a list that contains such values through a repeating process
+absolutely makes no sense.
 To avoid that vain process, Implicit Mapping would only create a list
-when a valid value appears as the result.
+when a valid value appears in the result.
 
 Consider a function below that simply returns the given value as its result.
 
@@ -312,6 +313,7 @@ when it's given with a list containing valid and `nil` values.
 
 Script                        | Result
 ------------------------------|----------------------------
+`g([])`                       | `[]`
 `g([nil])`                    | `nil`
 `g([nil, nil])`               | `nil`
 `g([nil, nil, 3])`            | `[nil, nil, 3]`
@@ -319,13 +321,17 @@ Script                        | Result
 `g([nil, nil, 3, 5, 3])`      | `[nil, nil, 3, 5, 3]`
 `g([nil, nil, 3, 5, 3, nil])` | `[nil, nil, 3, 5, 3, nil]`
 
+Note that, when you give an empty list to a function with Implicit Mapping,
+it would return an empty list as its result.
+
 There are some attributes that control how Implicit Mapping generates the result
 even when it's expected to generate a list by default.
 
-* Attribute `:list` always creates a list.
+* Attribute `:list` always creates a list even if it only contains `nil` values.
 
   Script                             | Result
   -----------------------------------|----------------------------
+  `g([]):list`                       | `[]`
   `g([nil]):list`                    | `[nil]`
   `g([nil, nil]):list`               | `[nil, nil]`
   `g([nil, nil, 3]):list`            | `[nil, nil, 3]`
@@ -337,6 +343,7 @@ even when it's expected to generate a list by default.
 
   Script                              | Result
   ------------------------------------|----------------------------
+  `g([]):xlist`                       | `[]`
   `g([nil]):xlist`                    | `[]`
   `g([nil, nil]):xlist`               | `[]`
   `g([nil, nil, 3]):xlist`            | `[3]`
@@ -348,6 +355,7 @@ even when it's expected to generate a list by default.
 
   Script                            | Result
   ----------------------------------|----------------------------
+  `g([]):set`                       | `[]`
   `g([nil]):set`                    | `[nil]`
   `g([nil, nil]):set`               | `[nil]`
   `g([nil, nil, 3]):set`            | `[nil, 3]`
@@ -359,6 +367,7 @@ even when it's expected to generate a list by default.
 
   Script                             | Result
   -----------------------------------|----------------------------
+  `g([]):xset`                       | `[]`
   `g([nil]):xset`                    | `[]`
   `g([nil, nil]):xset`               | `[]`
   `g([nil, nil, 3]):xset`            | `[3]`
@@ -370,23 +379,64 @@ even when it's expected to generate a list by default.
 
   Script                             | Result
   -----------------------------------|----------------------------
-  `g([nil]):iter`                    | iterator of `(nil)`
-  `g([nil, nil]):iter`               | iterator of `(nil, nil)`
-  `g([nil, nil, 3]):iter`            | iterator of `(nil, nil, 3)`
-  `g([nil, nil, 3, 5]):iter`         | iterator of `(nil, nil, 3, 5)`
-  `g([nil, nil, 3, 5, 3]):iter`      | iterator of `(nil, nil, 3, 5, 3)`
-  `g([nil, nil, 3, 5, 3, nil]):iter` | iterator of `(nil, nil, 3, 5, 3, nil)`
+  `g([]):iter`                       | equivalent of `[].each()`
+  `g([nil]):iter`                    | equivalent of `(nil,)`
+  `g([nil, nil]):iter`               | equivalent of `(nil, nil)`
+  `g([nil, nil, 3]):iter`            | equivalent of `(nil, nil, 3)`
+  `g([nil, nil, 3, 5]):iter`         | equivalent of `(nil, nil, 3, 5)`
+  `g([nil, nil, 3, 5, 3]):iter`      | equivalent of `(nil, nil, 3, 5, 3)`
+  `g([nil, nil, 3, 5, 3, nil]):iter` | equivalent of `(nil, nil, 3, 5, 3, nil)`
 
 * Attribute `:xiter` creates an iterator that excludes `nil` value from the result.
 
   Script                              | Result
   ------------------------------------|----------------------------
-  `g([nil]):xiter`                    | iterator of `()`
-  `g([nil, nil]):xiter`               | iterator of `()`
-  `g([nil, nil, 3]):xiter`            | iterator of `(3)`
-  `g([nil, nil, 3, 5]):xiter`         | iterator of `(3, 5)`
-  `g([nil, nil, 3, 5, 3]):xiter`      | iterator of `(3, 5, 3)`
-  `g([nil, nil, 3, 5, 3, nil]):xiter` | iterator of `(3, 5, 3)`
+  `g([]):xiter`                       | equivalent of `[].each()`
+  `g([nil]):xiter`                    | equivalent of `[].each()`
+  `g([nil, nil]):xiter`               | equivalent of `[].each()`
+  `g([nil, nil, 3]):xiter`            | equivalent of `(3,)`
+  `g([nil, nil, 3, 5]):xiter`         | equivalent of `(3, 5)`
+  `g([nil, nil, 3, 5, 3]):xiter`      | equivalent of `(3, 5, 3)`
+  `g([nil, nil, 3, 5, 3, nil]):xiter` | equivalent of `(3, 5, 3)`
+
+* Attribute `:void` indicates the function always returns `nil`
+  regardless of its original result.
+
+  Script                             | Result
+  -----------------------------------|----------------------------
+  `g([]):void`                       | `nil`
+  `g([nil]):void`                    | `nil`
+  `g([nil, nil]):void`               | `nil`
+  `g([nil, nil, 3]):void`            | `nil`
+  `g([nil, nil, 3, 5]):void`         | `nil`
+  `g([nil, nil, 3, 5, 3]):void`      | `nil`
+  `g([nil, nil, 3, 5, 3, nil]):void` | `nil`
+
+* Attribute `:reduce` indicates the function returns the last evaluated value
+  and doesn't create a list.
+
+  Script                               | Result
+  -------------------------------------|----------------------------
+  `g([]):reduce`                       | `nil`
+  `g([nil]):reduce`                    | `nil`
+  `g([nil, nil]):reduce`               | `nil`
+  `g([nil, nil, 3]):reduce`            | `3`
+  `g([nil, nil, 3, 5]):reduce`         | `5`
+  `g([nil, nil, 3, 5, 3]):reduce`      | `3`
+  `g([nil, nil, 3, 5, 3, nil]):reduce` | `nil`
+
+* Attribute `:xreduce` indicates the function returns the last evaluated value
+  and doesn't create a list. The returned value is updated only when the result is valid.
+
+  Script                                | Result
+  --------------------------------------|----------------------------
+  `g([]):xreduce`                       | `nil`
+  `g([nil]):xreduce`                    | `nil`
+  `g([nil, nil]):xreduce`               | `nil`
+  `g([nil, nil, 3]):xreduce`            | `3`
+  `g([nil, nil, 3, 5]):xreduce`         | `5`
+  `g([nil, nil, 3, 5, 3]):xreduce`      | `3`
+  `g([nil, nil, 3, 5, 3, nil]):xreduce` | `3`
 
 
 ### {{ page.chapter }}.2.5. Result Control on Iterator
@@ -400,12 +450,13 @@ it would return an iterator as well following after Implicit Mapping rule.
 
 Script                        | Result
 ------------------------------|----------------------------
-`g((nil,))`                   | `(nil,)`
-`g((nil, nil))`               | `(nil, nil)`
-`g((nil, nil, 3))`            | `(nil, nil, 3)`
-`g((nil, nil, 3, 5))`         | `(nil, nil, 3, 5)`
-`g((nil, nil, 3, 5, 3))`      | `(nil, nil, 3, 5, 3)`
-`g((nil, nil, 3, 5, 3, nil))` | `(nil, nil, 3, 5, 3, nil)`
+`g([].each())`                | equivalent of `[].each()`
+`g((nil,))`                   | equivalent of `(nil,)`
+`g((nil, nil))`               | equivalent of `(nil, nil)`
+`g((nil, nil, 3))`            | equivalent of `(nil, nil, 3)`
+`g((nil, nil, 3, 5))`         | equivalent of `(nil, nil, 3, 5)`
+`g((nil, nil, 3, 5, 3))`      | equivalent of `(nil, nil, 3, 5, 3)`
+`g((nil, nil, 3, 5, 3, nil))` | equivalent of `(nil, nil, 3, 5, 3, nil)`
 
 There are some attributes that control how Implicit Mapping generates the result
 even when it's expected to generate an iterator by default.
@@ -414,6 +465,7 @@ even when it's expected to generate an iterator by default.
 
   Script                             | Result
   -----------------------------------|----------------------------
+  `g([].each()):list`                | `[]`
   `g((nil,)):list`                   | `[nil]`
   `g((nil, nil)):list`               | `[nil, nil]`
   `g((nil, nil, 3)):list`            | `[nil, nil, 3]`
@@ -425,6 +477,7 @@ even when it's expected to generate an iterator by default.
 
   Script                              | Result
   ------------------------------------|----------------------------
+  `g([].each()):xlist`                | `[]`
   `g((nil,)):xlist`                   | `[]`
   `g((nil, nil)):xlist`               | `[]`
   `g((nil, nil, 3)):xlist`            | `[3]`
@@ -436,6 +489,7 @@ even when it's expected to generate an iterator by default.
 
   Script                            | Result
   ----------------------------------|----------------------------
+  `g([].each()):set`                | `[]`
   `g((nil,)):set`                   | `[nil]`
   `g((nil, nil)):set`               | `[nil]`
   `g((nil, nil, 3)):set`            | `[nil, 3]`
@@ -447,6 +501,7 @@ even when it's expected to generate an iterator by default.
 
   Script                             | Result
   -----------------------------------|----------------------------
+  `g([].each()):xset`                | `[]`
   `g((nil,)):xset`                   | `[]`
   `g((nil, nil)):xset`               | `[]`
   `g((nil, nil, 3)):xset`            | `[3]`
@@ -454,30 +509,110 @@ even when it's expected to generate an iterator by default.
   `g((nil, nil, 3, 5, 3)):xset`      | `[3, 5]`
   `g((nil, nil, 3, 5, 3, nil)):xset` | `[3, 5]`
 
-* Attribute `:iter` creates an iterator. This is a default behavior.
+* Attribute `:iter` creates an iterator.
+  This is a default behavior of Implicit Mapping for an iterator.
 
 * Attribute `:xiter` creates an iterator that excludes `nil` value from the result.
 
   Script                              | Result
   ------------------------------------|----------------------------
-  `g((nil,)):xiter`                   | iterator of `()`
-  `g((nil, nil)):xiter`               | iterator of `()`
-  `g((nil, nil, 3)):xiter`            | iterator of `(3)`
-  `g((nil, nil, 3, 5)):xiter`         | iterator of `(3, 5)`
-  `g((nil, nil, 3, 5, 3)):xiter`      | iterator of `(3, 5, 3)`
-  `g((nil, nil, 3, 5, 3, nil)):xiter` | iterator of `(3, 5, 3)`
+  `g([].each()):xiter`                | equivalent of `[].each()`
+  `g((nil,)):xiter`                   | equivalent of `[].each()`
+  `g((nil, nil)):xiter`               | equivalent of `[].each()`
+  `g((nil, nil, 3)):xiter`            | equivalent of `(3,)`
+  `g((nil, nil, 3, 5)):xiter`         | equivalent of `(3, 5)`
+  `g((nil, nil, 3, 5, 3)):xiter`      | equivalent of `(3, 5, 3)`
+  `g((nil, nil, 3, 5, 3, nil)):xiter` | equivalent of `(3, 5, 3)`
 
-Attribute `:void`
+* Attribute `:void` indicates the function will always return `nil`
+  regardless of its original result.
+
+  Script                             | Result
+  -----------------------------------|----------------------------
+  `g([].each()):void`                | `nil`
+  `g((nil,)):void`                   | `nil`
+  `g((nil, nil)):void`               | `nil`
+  `g((nil, nil, 3)):void`            | `nil`
+  `g((nil, nil, 3, 5)):void`         | `nil`
+  `g((nil, nil, 3, 5, 3)):void`      | `nil`
+  `g((nil, nil, 3, 5, 3, nil)):void` | `nil`
+
+* Attribute `:reduce` indicates the function returns the last evaluated value
+  and doesn't create an iterator.
+
+  Script                               | Result
+  -------------------------------------|----------------------------
+  `g([].each()):reduce`                | `nil`
+  `g((nil)):reduce`                    | `nil`
+  `g((nil, nil)):reduce`               | `nil`
+  `g((nil, nil, 3)):reduce`            | `3`
+  `g((nil, nil, 3, 5)):reduce`         | `5`
+  `g((nil, nil, 3, 5, 3)):reduce`      | `3`
+  `g((nil, nil, 3, 5, 3, nil)):reduce` | `nil`
+
+* Attribute `:xreduce` indicates the function returns the last evaluated value
+  and doesn't create an iterator. The returned value is updated only when the result is valid.
+
+  Script                                | Result
+  --------------------------------------|----------------------------
+  `g([].each()):xreduce`                | `nil`
+  `g((nil)):xreduce`                    | `nil`
+  `g((nil, nil)):xreduce`               | `nil`
+  `g((nil, nil, 3)):xreduce`            | `3`
+  `g((nil, nil, 3, 5)):xreduce`         | `5`
+  `g((nil, nil, 3, 5, 3)):xreduce`      | `3`
+  `g((nil, nil, 3, 5, 3, nil)):xreduce` | `3`
+
+An iterator created by Implicit Mapping has a special feature;
+it will be evaluated automatically when it's destroyed.
+Consider the following function:
 
     f(n:number):map = println('n = ', n)
 
--------
+And call it as below:
+
+    f((3, 1, 4))
+
+In Implicit Mapping rule, the call above would simply return an iterator
+and is supposed not do any process unless the iterator is actually evaluated.
+But usually, the above case is expected to print values in the iterator
+at the timing of the function call.
+
+Actually, the code above works as expected
+because the returned iterator loses any reference from others
+and is evaluated before destroyed.
+The script below shows what happens in the above.
+
+    x = f((3, 1, 4))
+    x = nil  // iterator is destroyed after printing 'n = 3', 'n = 1' and 'n = 4'.
+
+However, the timing to destroy an instance is sometimes unpredictable.
+It's recommended that you specify `:void` attribute for an instant evaluation.
+
+    f((3, 1, 4)):void
+
+Attributes `:void`, `:reduce` and `:xreduce` don't return an iterator,
+which cause the actual process on given values done immediately.
+
+It may be the best that you specify `:void`, `:reduce` or `:xreduce` attribute in the function definition
+if you know beforehand that the function always returns `nil` or other unchanged value.
+
+    f(n:number):map:void = println('n = ', n)
+
+Then, you can call the function with an iterator through Implicit Mapping
+without any worry.
+
+    f((3, 1, 4))
 
 
-    f():nomap
-    
-    x = [1, 2, 3, 4]
-    println(x)
+### {{ page.chapter }}.2.6. Suspend Implicit Mapping
+
+A function call with an attribute `:nomap` would suspend Implicit Mapping.
+
+Consider a case that you need to print a content of `x` that contains `[1, 2, 3, 4]` as a list instance.
+Simply executing `println(x)` would just print each value in the list through Implicit Mapping.
+To avoid it, put `:nomap` for the call as below.
+
     println(x):nomap
 
 

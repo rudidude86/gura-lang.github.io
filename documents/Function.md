@@ -101,6 +101,8 @@ A call for a function below returns `nil`, not a string `'hello'`.
         'hello'
     }
 
+You should put `:reduce` attribute if the function is supposed to return a unchanged value.
+Attributes `:void` and `:reduce` have a significant effect with Implicit Mapping.
 
 ## {{ page.chapter }}.3. Arguments
 

@@ -623,33 +623,66 @@ To avoid it, put `:nomap` for the call as below.
 **Member Mapping** is a feature to access members of instances
 that are stored in a list or are generated from an iterator.
 
-For example, there's a method `string#len()` that retrieves a length of the string.
-You can call it like below:
+There's an instance method `string#len()` that retrieves a length of a string.
+With a single instance, you can call it like below:
 
     x = 'first'
     n = x.len()
     // n is 5
 
-Using Member Mapping, you can apply the method on instances in a list.
+Using a member accessor `::`, you can apply the method on multiple instances in a list.
 
     xs = ['first', 'second', 'third', 'fourth']
     ns = xs::len()
     // ns is [5, 6, 5, 6]
 
+A member accessor `:*` creates an iterator that gets results of member access.
+
+    xs = ['first', 'second', 'third', 'fourth']
+    ns = xs:*len()
+    // ns is an iterator that generates (5, 6, 5, 6)
+
 
 ### {{ page.chapter }}.3.2. Mapping Rule
 
-Accessor |Name
----------|------------------
-`::`     |map-to-list
-`:*`     |map-to-iterator
-`:&`     |map-along
+There are three member accessors in Member Mapping as shown below:
 
-    iterable::variable
-    iterable:*variable
-    iterable:&variable
-    iterable::func()
-    iterable:*func()
-    iterable:&func()
-    
-    
+Member Accessor |Name
+----------------|------------------
+`::`            |map-to-list
+`:*`            |map-to-iterator
+`:&`            |map-along
+
+A map-to-list accessor `::` applies a member method or looks up a member variable
+on instances in an iterable, a list or an iterator, and creates a list of the results.
+Below shows examples:
+
+    xs::variable
+    xs::func()
+
+A map-to-iterator accessor `:*` creates an iterator that applies a member method or looks up a member variable
+on instances in an iterable, a list or an iterator.
+Below shows examples:
+
+    xs:*variable
+    xs:*func()
+
+A map-along accessor `:&` only has effect with a member method.
+It iterates the iterable on the left along with iterables in its argument list
+following after Iterator Mapping rule.
+See the following example:
+
+    xs = [x1, x2, x3]
+    as = ['first', 'second', 'third']
+    bs = [3, 1, 4]
+    xs:&func(as, bs)
+
+This has the same effect with shown below:
+
+    [x1.func('first', 3), x2.func('second', 1), x3.func('third', 4)]
+
+The mapping rule with map-along accessor is summarized below:
+
+* If the target iterable or one of the argument values is of iterator species,
+  the result becomes an iterator.
+* Otherwise, the result becomes a list.

@@ -26,15 +26,16 @@ The following code prints content of a text file along with line numbers.
     printf('%d %s', 1.., readlines('foo.txt'))
 
 Apparently, there seems to be no special trick with this program.
-But a new feature called [Implicit Mapping](features/ImplicitMapping.html) is working internally,
+But a new feature called **Implicit Mapping** is working internally,
 which automatically repeats evaluation of `printf` function
 after it's given with iterators, `1..` and `readlines('foo.txt')`, as its arguments.
 
-<h1>Language Features</h1>
+<h1>Summary of Features</h1>
 
-* [Implicit Mapping](features/Implicit-Mapping.html)
-* [Member Mapping](features/Member-Mapping.html)
-* [Object Oriented Programming](documents/Object-Oriented-Programming.html)
+* It provides a variety of iterator operations including [Mapping Process](document/Mapping-Process.html)
+  such as **Implicit Mapping** and **Member Mapping**.
+* [Object Oriented Programming](documents/Object-Oriented-Programming.html):
+  provides class and instance mechanism.
 
 <div id="box-left">
 

@@ -30,15 +30,13 @@ But a new feature called [Implicit Mapping](features/ImplicitMapping.html) is wo
 which automatically repeats evaluation of `printf` function
 after it's given with iterators, `1..` and `readlines('foo.txt')`, as its arguments.
 
-<div id="box-left">
-
 <h1>Language Features</h1>
 
-<p>
-<div><a href="features/Implicit-Mapping.html">Implicit Mapping</a></div>
-<div><a href="features/Member-Mapping.html">Member Mapping</a></div>
-<div><a href="features/Object-Oriented-Programming.html">Object Oriented Programming</a></div>
-</p>
+* [Implicit Mapping](features/Implicit-Mapping.html)
+* [Member Mapping](features/Member-Mapping.html)
+* [Object Oriented Programming](documents/Object-Oriented-Programming.html)
+
+<div id="box-left">
 
 <h1>Enjoy Programming</h1>
 

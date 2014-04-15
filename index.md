@@ -32,7 +32,7 @@ after it's given with iterators, `1..` and `readlines('foo.txt')`, as its argume
 
 <h1>Summary of Features</h1>
 
-* It provides a variety of iterator operations including [Mapping Process](document/Mapping-Process.html)
+* It provides a variety of iterator operations including [Mapping Process](documents/Mapping-Process.html)
   such as **Implicit Mapping** and **Member Mapping**.
 * [Object Oriented Programming](documents/Object-Oriented-Programming.html):
   provides class and instance mechanism.

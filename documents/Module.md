@@ -7,17 +7,46 @@ chapter: 11
 
 # Chapter {{ page.chapter }}. {{ page.title }}
 
-## {{ page.chapter }}.1. Module File
+## {{ page.chapter }}.1. Module as Environment
+
+A **module** is a kind of environment and capable of containing variables and functions inside it.
+You can use `module()` function that takes a block procedure containing expressions
+of variable and function assignments. Below is an example:
+
+    foo = module {
+        var:public = 'hello'
+        func() = { /* body */ }
+    }
+
+Then, you can call functions and read/modify variables in the module
+with a member accessing operator `.` specifying the module on its left.
+
+    foo.func()
+    println(foo.var)
+
+By default, functions defined in a module are marked as public and are accessible from outside.
+On the other hand, variables are marked as private
+and would cause an error with an access from outer scope.
+You have to put `:public` attribute in a variable assignment to make it public.
+
+You can use modules to isolate variables and functions from the current scope
+by giving them an independent name space.
+But its main purpose is to provide a mechanism to load external files
+that extend the language's capability.
+
+
+## {{ page.chapter }}.2. Module File
 
 Gura language has a policy that the interpreter itself should provide functions
-that can be realized without external libraries.
+that are less dependent on external libraries, operating systems and hardware specifications.
 So, variety of functions such as handling regular expressions, image processing and GUI are
-provided by dynamically loadable **module files**.
+realized by dynamically loadable files called **module files**.
 
 There are two types of module files: script module file and binary module file.
 
-* Script module file is a usual Gura script file and has a suffix `.gura`.
-* Binary module file is a dynamic library file that has been compiled from C++ source code
+Script module file is a usual Gura script file and has a suffix `.gura`.
+
+Binary module file is a dynamic link library that has been compiled from C++ source code
 and has a suffix `.gurd`.
 
 A process of loading a module file and registering its properties to the current environment is called "import".
@@ -33,7 +62,7 @@ where `GURA_VERSION` and `GURA_DIR` represent
 the interpreter's version and the path name in which the program has been installed respectively.
 
 1. current directory
-2. directories specified by `-I` option
+2. directories specified by `-I` option in the command line
 3. directories specified by environment variable `GURAPATH`
 4. `%LOCALAPPDATA%\Gura\GURA_VERSION\module`
 5. `GURA_DIR\module`
@@ -42,37 +71,147 @@ the interpreter's version and the path name in which the program has been instal
 Under Linux, the interpreter searces module files in the following path.
 
 1. current directory
-2. directories specified by `-I` option
+2. directories specified by `-I` option in the command line
 3. directories specified by environment variable `GURAPATH`
 4. `$HOME/.gura/GURA_VERSION/module`
 5. `/usr/lib/gura/GURA_VERSION/module`
 6. `/usr/lib/gura/GURA_VERSION/module/site`
 
 A variable `sys.path` is assigned with a list that contains path names to search module files.
-You can add path names into the list in the script as well.
+You can add path names into the list while a script is running.
 
+Take a look at how you can create a script module file and use it.
+At first, create a file named `foo.gura` that contains the script below:
 
-    import(`module, `alias?):void:[binary,mixin_type,overwrite] {block?}
+    var:public = 'hello'
+    func() = { /* body */ }
 
-`foo.gura`
-
-    var1 = 'hello'
-    var2:public = 'hello'
-
-    func1() = {}
-    func2():private = {}
-
-`main.gura`
+Then, you can import it to make its properties available.
 
     import(foo)
-    println(foo.var1)  // 
-    println(foo.var2)  // 
-    foo.func1()        // 
-    foo.func2()        // 
+    println(foo.var)
+    foo.func()
 
+import binary module file only:
 
-module as naming space
+    import(bar):binary
 
-    foo = module {
-    
-    }
+## {{ page.chapter }}.3. List of Modules
+
+Image file format:
+
+<table>
+<tr><th>Module</th><th>Note</th></tr>
+<tr><td><code>bmp</code></td><td></td></tr>
+<tr><td><code>gif</code></td><td></td></tr>
+<tr><td><code>jpeg</code></td><td></td></tr>
+<tr><td><code>msico</code></td><td></td></tr>
+<tr><td><code>png</code></td><td></td></tr>
+<tr><td><code>ppm</code></td><td></td></tr>
+<tr><td><code>tiff</code></td><td></td></tr>
+<tr><td><code>xpm</code></td><td></td></tr>
+</table>
+
+Compression/depression/archiving:
+
+<table>
+<tr><th>Module</th><th>Note</th></tr>
+<tr><td><code>bzip2</code></td><td></td></tr>
+<tr><td><code>gzip</code></td><td></td></tr>
+<tr><td><code>tar</code></td><td></td></tr>
+<tr><td><code>zip</code></td><td></td></tr>
+</table>
+
+Image operation:
+
+<table>
+<tr><th>Module</th><th>Note</th></tr>
+<tr><td><code>cairo</code></td><td></td></tr>
+<tr><td><code>freetype</code></td><td></td></tr>
+<tr><td><code>glu</code></td><td></td></tr>
+<tr><td><code>opengl</code></td><td></td></tr>
+</table>
+
+GUI operation:
+
+<table>
+<tr><th>Module</th><th>Note</th></tr>
+<tr><td><code>canvas</code></td><td></td></tr>
+<tr><td><code>sdl</code></td><td></td></tr>
+<tr><td><code>tcl</code></td><td></td></tr>
+<tr><td><code>tk</code></td><td></td></tr>
+<tr><td><code>wx</code></td><td></td></tr>
+<tr><td><code>show</code></td><td></td></tr>
+<tr><td><code>wx.show</code></td><td></td></tr>
+<tr><td><code>tk.show</code></td><td></td></tr>
+</table>
+
+Audio operation:
+
+<table>
+<tr><th>Module</th><th>Note</th></tr>
+<tr><td><code>midi</code></td><td></td></tr>
+<tr><td><code>wav</code></td><td></td></tr>
+</table>
+
+Network operation:
+
+<table>
+<tr><th>Module</th><th>Note</th></tr>
+<tr><td><code>curl</code></td><td></td></tr>
+<tr><td><code>http</code></td><td></td></tr>
+</table>
+
+Windows specific:
+
+<table>
+<tr><th>Module</th><th>Note</th></tr>
+<tr><td><code>mswin</code></td><td></td></tr>
+<tr><td><code>msxls</code></td><td></td></tr>
+</table>
+
+Text file operation:
+
+<table>
+<tr><th>Module</th><th>Note</th></tr>
+<tr><td><code>csv</code></td><td></td></tr>
+<tr><td><code>markdown</code></td><td></td></tr>
+<tr><td><code>re</code></td><td></td></tr>
+<tr><td><code>tokenizer</code></td><td></td></tr>
+<tr><td><code>xhtml</code></td><td></td></tr>
+<tr><td><code>xml</code></td><td></td></tr>
+<tr><td><code>yaml</code></td><td></td></tr>
+<tr><td><code>sed</code></td><td></td></tr>
+</table>
+
+Helper to build modules:
+
+<table>
+<tr><th>Module</th><th>Note</th></tr>
+<tr><td><code>gurcbuild</code></td><td></td></tr>
+<tr><td><code>modbuild</code></td><td></td></tr>
+<tr><td><code>modgen</code></td><td></td></tr>
+</table>
+
+<table>
+<tr><th>Module</th><th>Note</th></tr>
+</table>
+
+<table>
+<tr><th>Module</th><th>Note</th></tr>
+<tr><td><code>conio</code></td><td></td></tr>
+<tr><td><code>gmp</code></td><td></td></tr>
+<tr><td><code>guri</code></td><td></td></tr>
+<tr><td><code>hash</code></td><td></td></tr>
+<tr><td><code>sample</code></td><td></td></tr>
+<tr><td><code>sqlite3</code></td><td></td></tr>
+<tr><td><code>uuid</code></td><td></td></tr>
+
+<tr><td><code>argopt</code></td><td></td></tr>
+<tr><td><code>calendar</code></td><td></td></tr>
+<tr><td><code>graph</code></td><td></td></tr>
+<tr><td><code>testutil</code></td><td></td></tr>
+<tr><td><code>units</code></td><td></td></tr>
+<tr><td><code>utils</code></td><td></td></tr>
+</table>
+

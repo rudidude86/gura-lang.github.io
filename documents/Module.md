@@ -35,7 +35,7 @@ But its main purpose is to provide a mechanism to load external files
 that extend the language's capability.
 
 
-## {{ page.chapter }}.2. Module File
+## {{ page.chapter }}.2. Import of Module File
 
 Gura language has a policy that the interpreter itself should provide functions
 that are less dependent on external libraries, operating systems and hardware specifications.
@@ -44,18 +44,28 @@ realized by dynamically loadable files called **module files**.
 
 There are two types of module files: script module file and binary module file.
 
-Script module file is a usual Gura script file and has a suffix `.gura`.
-
-Binary module file is a dynamic link library that has been compiled from C++ source code
-and has a suffix `.gurd`.
+Module File        | Suffix  | Content
+-------------------|---------|-------------------------------------------------
+script module file | `.gura` | a usual Gura script file
+binary module file | `.gurd` | a dynamic link library that has been compiled from C++ source code
 
 A process of loading a module file and registering its properties to the current environment is called "import".
-You can import a module using `import()` function in a script like below:
+You can use `import()` function in your script to import a module like below:
 
     import(re)
 
 This loads a module file `re.gurd` and creates a module `re` in the current scope.
 After importing, functions like `re.match()` and `re.sub()` that the module provides become available.
+
+You can also import modules at the timing of launching the interpreter
+by specifying a command line option `-i` with module names.
+Below is an example that imports a module `re` before parsing the script file `foo.gura`.
+
+    $ gura -i re foo.gura
+
+You can specify multiple module names by separating them with a comma character.
+
+    $ gura -i re,http,png foo.gura
 
 Under Windows, the interpreter searches module files in the following path,
 where `GURA_VERSION` and `GURA_DIR` represent
@@ -80,6 +90,9 @@ Under Linux, the interpreter searces module files in the following path.
 A variable `sys.path` is assigned with a list that contains path names to search module files.
 You can add path names into the list while a script is running.
 
+
+## {{ page.chapter }}.3. Script Module File
+
 Take a look at how you can create a script module file and use it.
 At first, create a file named `foo.gura` that contains the script below:
 
@@ -92,11 +105,15 @@ Then, you can import it to make its properties available.
     println(foo.var)
     foo.func()
 
+
+## {{ page.chapter }}.4. Binary Module File
+
 import binary module file only:
 
     import(bar):binary
 
-## {{ page.chapter }}.3. List of Modules
+
+## {{ page.chapter }}.5. List of Modules
 
 Image file format:
 

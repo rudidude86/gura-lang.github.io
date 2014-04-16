@@ -57,7 +57,22 @@ You can use `import()` function in your script to import a module like below:
 This loads a module file `re.gurd` and creates a module `re` in the current scope.
 After importing, functions like `re.match()` and `re.sub()` that the module provides become available.
 
-You can also import modules at the timing of launching the interpreter
+You can import module properties into the current scope
+by specifying their symbols in a block of `import()` function.
+
+    import(re) { match, sub }
+
+Then, you can call these functions like `match()` instead of `re.match()`.
+Specifying `*` in the block will import all of the module properties into the current scope.
+
+    import(re) { * }
+
+Usually, this is not a recommended manner
+because there's a risk that symbols in a module conflict with ones that already exist.
+However, it may be a practical way to import some modules like `opengl`,
+which guarantees all the properties have distinguishable symbols.
+
+You can also import modules at the timing launching the interpreter
 by specifying a command line option `-i` with module names.
 Below is an example that imports a module `re` before parsing the script file `foo.gura`.
 
@@ -92,6 +107,7 @@ You can add path names into the list while a script is running.
 
 
 ## {{ page.chapter }}.3. Script Module File
+
 
 Take a look at how you can create a script module file and use it.
 At first, create a file named `foo.gura` that contains the script below:

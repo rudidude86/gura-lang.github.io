@@ -36,6 +36,8 @@ after it's given with iterators, `1..` and `readlines('foo.txt')`, as its argume
   such as **Implicit Mapping** and **Member Mapping**.
 * [Object Oriented Programming](documents/Object-Oriented-Programming.html):
   provides class and instance mechanism.
+* Importing [Modules](documents/Module.html) would enhance the language's feature.
+  A variety of modules such as image handler, network operations and GUI are shipped within the package.
 
 <div id="box-left">
 

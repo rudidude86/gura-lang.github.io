@@ -126,6 +126,10 @@ Then, you can import it to make its properties available.
 
 Modules don't only provide functions but could enhance various capabilities.
 
+* **Expansion of Existing Class**
+
+  Module `re` would add some methods to `string` class like `string#match()`.
+
 * **Operator**
 
   Some modules would enhance operators so that they can handle objects the modules provide.
@@ -185,6 +189,7 @@ Modules don't only provide functions but could enhance various capabilities.
   Modules can provide additional handlers for character codec.
 
 
+
 ## {{ page.chapter }}.5. List of Bundled Modules
 
 Image file format:
@@ -205,34 +210,32 @@ Compression/depression/archiving:
 
 <table>
 <tr><th>Module</th><th>Note</th></tr>
-<tr><td><code>bzip2</code></td><td></td></tr>
-<tr><td><code>gzip</code></td><td></td></tr>
-<tr><td><code>tar</code></td><td></td></tr>
-<tr><td><code>zip</code></td><td></td></tr>
+<tr><td><code>bzip2</code></td><td>Bzip2 compressor/decompressor</td></tr>
+<tr><td><code>gzip</code></td><td>Gzip compressor/decompressor</td></tr>
+<tr><td><code>tar</code></td><td>Tar archiving functions</td></tr>
+<tr><td><code>zip</code></td><td>ZIP archiving functions</td></tr>
 </table>
 
 Image operation:
 
 <table>
 <tr><th>Module</th><th>Note</th></tr>
-<tr><td><code>cairo</code></td><td></td></tr>
-<tr><td><code>freetype</code></td><td></td></tr>
-<tr><td><code>glu</code></td><td></td></tr>
-<tr><td><code>opengl</code></td><td></td></tr>
+<tr><td><code>cairo</code></td><td>Two dimentional graphic drawing functions</td></tr>
+<tr><td><code>freetype</code></td><td>Font drawing functions</td></tr>
+<tr><td><code>opengl</code></td><td>OpenGL</td></tr>
+<tr><td><code>glu</code></td><td>Utility functions for OpenGL</td></tr>
 </table>
 
 GUI operation:
 
 <table>
 <tr><th>Module</th><th>Note</th></tr>
-<tr><td><code>canvas</code></td><td></td></tr>
-<tr><td><code>sdl</code></td><td></td></tr>
-<tr><td><code>tcl</code></td><td></td></tr>
-<tr><td><code>tk</code></td><td></td></tr>
-<tr><td><code>wx</code></td><td></td></tr>
-<tr><td><code>show</code></td><td></td></tr>
-<tr><td><code>wx.show</code></td><td></td></tr>
-<tr><td><code>tk.show</code></td><td></td></tr>
+<tr><td><code>sdl</code></td><td>SDL</td></tr>
+<tr><td><code>tcl</code></td><td>Tcl</td></tr>
+<tr><td><code>tk</code></td><td>Tk</td></tr>
+<tr><td><code>wx</code></td><td>wxWidgets</td></tr>
+<tr><td><code>show</code></td><td><code>image#show()</code></td></tr>
+<tr><td><code>canvas</code></td><td>(obsolete)</td></tr>
 </table>
 
 Audio operation:

@@ -106,7 +106,7 @@ A variable `sys.path` is assigned with a list that contains path names to search
 You can add path names into the list while a script is running.
 
 
-## {{ page.chapter }}.3. Script Module File
+## {{ page.chapter }}.3. Inside Module File
 
 
 Take a look at how you can create a script module file and use it.
@@ -122,27 +122,83 @@ Then, you can import it to make its properties available.
     foo.func()
 
 
-## {{ page.chapter }}.4. Binary Module File
+## {{ page.chapter }}.4. Extensions by Module
 
-import binary module file only:
+Modules don't only provide functions but could enhance various capabilities.
 
-    import(bar):binary
+* **Operator**
+
+  Some modules would enhance operators so that they can handle objects the modules provide.
+
+  For example, a module named `gmp` supports operations of various-length number
+  and provides operators to calculate them.
+
+* **Image Format**
+
+  You can use a function `image()` to read a image file
+  and importing modules that handle image data would expand the function's capability
+  to support additional image format.
+
+  For example, after importing `jpeg` module, the function can read a file in JPEG format like following:
+
+        import(jpeg)
+        img = image('foo.jpg')
+        // .. any jobs
+
+* **Path Name for Stream**
+
+  You can use a stream instance to access a file stored in a certain storage.
+  While a stream is opened by specifying a path name associated with it,
+  some modules make it capable of recognizing path names in specific formats.
+
+  For example, importing a module named `curl` would allow access to a file stored in networks
+  and expand path names to be able to recognize what begin with '`http:`'.
+
+        import(curl)
+        print(readlines('http://example.com/index.html'))
+
+  Module `zip` provides functions to read and write content of ZIP files.
+  and it would make the path name accessible in a ZIP file.
+  The example below prints a content of `doc/readme.txt` that is stored in `foo.zip`.
+
+        import(zip)
+        print(readlines('foo.zip/doc/readme.txt'))
+
+* **Path Name for Directory**
+
+  A function `path.walk()` recursively retrieves entries in a storage with a specified path name.
+  After importing module `zip`, you can seek entries in a ZIP file using that function.
+
+        import(zip)
+        println(path.walk('foo.zip/src'))
+
+* **Suffix Handler**
+
+  Importing module `gmp` would provide suffix `L`
+  that creates a variable-length number instance from a number literal.
+
+        import(gmp)
+        x = 3.1415L * 2 * r
+
+* **Character Codec**
+
+  Modules can provide additional handlers for character codec.
 
 
-## {{ page.chapter }}.5. List of Modules
+## {{ page.chapter }}.5. List of Bundled Modules
 
 Image file format:
 
 <table>
 <tr><th>Module</th><th>Note</th></tr>
-<tr><td><code>bmp</code></td><td></td></tr>
-<tr><td><code>gif</code></td><td></td></tr>
-<tr><td><code>jpeg</code></td><td></td></tr>
-<tr><td><code>msico</code></td><td></td></tr>
-<tr><td><code>png</code></td><td></td></tr>
-<tr><td><code>ppm</code></td><td></td></tr>
-<tr><td><code>tiff</code></td><td></td></tr>
-<tr><td><code>xpm</code></td><td></td></tr>
+<tr><td><code>bmp</code></td><td>Windows bitmap file</td></tr>
+<tr><td><code>gif</code></td><td>GIF</td></tr>
+<tr><td><code>jpeg</code></td><td>JPEG</td></tr>
+<tr><td><code>msico</code></td><td>Microsoft Icon file</td></tr>
+<tr><td><code>png</code></td><td>PNG</td></tr>
+<tr><td><code>ppm</code></td><td>PPM</td></tr>
+<tr><td><code>tiff</code></td><td>TIFF</td></tr>
+<tr><td><code>xpm</code></td><td>XPM</td></tr>
 </table>
 
 Compression/depression/archiving:

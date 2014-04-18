@@ -25,7 +25,7 @@ with a member accessing operator `.` specifying the module on its left.
     println(foo.var)
 
 By default, functions defined in a module are marked as public and are accessible from outside.
-On the other hand, variables are marked as private
+On the other hand, variables in a module are marked as private
 and would cause an error with an access from outer scope.
 You have to put `:public` attribute in a variable assignment to make it public.
 
@@ -106,11 +106,9 @@ A variable `sys.path` is assigned with a list that contains path names to search
 You can add path names into the list while a script is running.
 
 
-## {{ page.chapter }}.3. Inside Module File
+## {{ page.chapter }}.3. Creating Module File
 
-
-Take a look at how you can create a script module file and use it.
-At first, create a file named `foo.gura` that contains the script below:
+Consider the following script file named `foo.gura`:
 
     var:public = 'hello'
     func() = { /* body */ }
@@ -121,12 +119,33 @@ Then, you can import it to make its properties available.
     println(foo.var)
     foo.func()
 
+As with a module created by `module()` function, following rules are applied:
+
+* Functions defined in a module file are marked as public and are accessible from outside.
+  If necessary, you can put `:private` attribute in a function assignment to encapsulate it inside the file.
+* Variables defined in a module file are marked as private and would cause an error with an access from outer scope.
+  You have to put `:public` attribute in a variable assignment to make it public.
+
+As a script module file is a usual script, you can write any script codes
+other than function and variable assignments.
+These codes are evaluated once, when `import()` function is called.
+
+If a script file is imported as a module, a global variable `__name__` holds its own module name,
+and otherwise, it is set to a string `'__main__'`.
+Utilizing this feature, you can write a script in a module file to test its own functions like below:
+
+    func() = { /* body */ }
+
+    if (__name__ == '__main__') {
+        func()  // test func()
+    }
+
 
 ## {{ page.chapter }}.4. Extensions by Module
 
 Modules don't only provide functions but could enhance various capabilities.
 
-* **Expansion of Existing Class**
+* **Extensions of Existing Class**
 
   Module `re` would add some methods to `string` class like `string#match()`.
 
@@ -196,33 +215,33 @@ Image file format:
 
 <table>
 <tr><th>Module</th><th>Note</th></tr>
-<tr><td><code>bmp</code></td><td>Windows bitmap file</td></tr>
-<tr><td><code>gif</code></td><td>GIF</td></tr>
-<tr><td><code>jpeg</code></td><td>JPEG</td></tr>
-<tr><td><code>msico</code></td><td>Microsoft Icon file</td></tr>
-<tr><td><code>png</code></td><td>PNG</td></tr>
-<tr><td><code>ppm</code></td><td>PPM</td></tr>
-<tr><td><code>tiff</code></td><td>TIFF</td></tr>
-<tr><td><code>xpm</code></td><td>XPM</td></tr>
+<tr><td><code>bmp</code></td><td>handles BMP image file</td></tr>
+<tr><td><code>gif</code></td><td>handles GIF image file</td></tr>
+<tr><td><code>jpeg</code></td><td>handles <a href="http://www.ijg.org/">JPEG</a> image file</td></tr>
+<tr><td><code>msico</code></td><td>handles Microsoft Icon file</td></tr>
+<tr><td><code>png</code></td><td>handles <a href="http://www.libpng.org/">PNG</a> image file</td></tr>
+<tr><td><code>ppm</code></td><td>handles PPM image file</td></tr>
+<tr><td><code>tiff</code></td><td>handles <a href="http://www.libtiff.org/">TIFF</a> image file</td></tr>
+<tr><td><code>xpm</code></td><td>handles XPM image file</td></tr>
 </table>
 
 Compression/depression/archiving:
 
 <table>
 <tr><th>Module</th><th>Note</th></tr>
-<tr><td><code>bzip2</code></td><td>Bzip2 compressor/decompressor</td></tr>
-<tr><td><code>gzip</code></td><td>Gzip compressor/decompressor</td></tr>
-<tr><td><code>tar</code></td><td>Tar archiving functions</td></tr>
-<tr><td><code>zip</code></td><td>ZIP archiving functions</td></tr>
+<tr><td><code>bzip2</code></td><td>provides compressor/decompressor functions for <a href="http://www.bzip.org/">bzip2</a> format</td></tr>
+<tr><td><code>gzip</code></td><td>provides compressor/decompressor functions for <a href="http://zlib.net/">gzip</a> format</td></tr>
+<tr><td><code>tar</code></td><td>provides function to read/write tar archive file</td></tr>
+<tr><td><code>zip</code></td><td>provides function to read/write ZIP archive file</td></tr>
 </table>
 
 Image operation:
 
 <table>
 <tr><th>Module</th><th>Note</th></tr>
-<tr><td><code>cairo</code></td><td>Two dimentional graphic drawing functions</td></tr>
-<tr><td><code>freetype</code></td><td>Font drawing functions</td></tr>
-<tr><td><code>opengl</code></td><td>OpenGL</td></tr>
+<tr><td><code>cairo</code></td><td>provides APIs of <a href="http://cairographics.org">Cairo</a>, a 2D graphic library</td></tr>
+<tr><td><code>freetype</code></td><td>provides APIs of <a href="http://www.freetype.org">FreeType</a>, a library to render fonts</td></tr>
+<tr><td><code>opengl</code></td><td>provides APIs of <a href="http://www.opengl.org">OpenGL</a>, a library to render 2D/3D graphics</td></tr>
 <tr><td><code>glu</code></td><td>Utility functions for OpenGL</td></tr>
 </table>
 
@@ -230,11 +249,12 @@ GUI operation:
 
 <table>
 <tr><th>Module</th><th>Note</th></tr>
-<tr><td><code>sdl</code></td><td>SDL</td></tr>
-<tr><td><code>tcl</code></td><td>Tcl</td></tr>
-<tr><td><code>tk</code></td><td>Tk</td></tr>
-<tr><td><code>wx</code></td><td>wxWidgets</td></tr>
-<tr><td><code>show</code></td><td><code>image#show()</code></td></tr>
+<tr><td><code>sdl</code></td><td>provides APIs of <a href="http://www.libsdl.org">SDL</a>,
+a library designed to provide low level access to audio, keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D</td></tr>
+<tr><td><code>tcl</code></td><td>provides APIs of <a href="https://www.tcl.tk">Tcl</a> interpreter</td></tr>
+<tr><td><code>tk</code></td><td>provides APIs of Tk using <code>tcl</code> module</td></tr>
+<tr><td><code>wx</code></td><td>provides APIs of <a href="https://www.wxwidgets.org/">wxWidgets</a>, a cross-platform GUI library</td></tr>
+<tr><td><code>show</code></td><td>provides <code>image#show()</code> method that displays image on a window</td></tr>
 <tr><td><code>canvas</code></td><td>(obsolete)</td></tr>
 </table>
 
@@ -242,24 +262,24 @@ Audio operation:
 
 <table>
 <tr><th>Module</th><th>Note</th></tr>
-<tr><td><code>midi</code></td><td></td></tr>
-<tr><td><code>wav</code></td><td></td></tr>
+<tr><td><code>midi</code></td><td>provides APIs to control MIDI hardware and to create MIDI files</td></tr>
+<!-- <tr><td><code>wav</code></td><td></td></tr> -->
 </table>
 
 Network operation:
 
 <table>
 <tr><th>Module</th><th>Note</th></tr>
-<tr><td><code>curl</code></td><td></td></tr>
-<tr><td><code>http</code></td><td></td></tr>
+<tr><td><code>curl</code></td><td>provides APIs to access to network using <a href="http://curl.haxx.se/">CURL</a> library</td></tr>
+<tr><td><code>http</code></td><td>provides APIs for HTTP server and client functions</td></tr>
 </table>
 
 Windows specific:
 
 <table>
 <tr><th>Module</th><th>Note</th></tr>
-<tr><td><code>mswin</code></td><td></td></tr>
-<tr><td><code>msxls</code></td><td></td></tr>
+<tr><td><code>mswin</code></td><td>provides APIs for OLE interface registry access</td></tr>
+<tr><td><code>msxls</code></td><td>provides simple classes that handle MS Excel documents</td></tr>
 </table>
 
 Text file operation:

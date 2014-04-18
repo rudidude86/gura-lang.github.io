@@ -211,6 +211,8 @@ Modules don't only provide functions but could enhance various capabilities.
 
 ## {{ page.chapter }}.5. List of Bundled Modules
 
+This section describes a list of modules that are bundled with the interpreter.
+
 Image file format:
 
 <table>
@@ -225,7 +227,7 @@ Image file format:
 <tr><td><code>xpm</code></td><td>handles XPM image file</td></tr>
 </table>
 
-Compression/depression/archiving:
+Compression/depression/archiving/hash:
 
 <table>
 <tr><th>Module</th><th>Note</th></tr>
@@ -233,6 +235,7 @@ Compression/depression/archiving:
 <tr><td><code>gzip</code></td><td>provides compressor/decompressor functions for <a href="http://zlib.net/">gzip</a> format</td></tr>
 <tr><td><code>tar</code></td><td>provides function to read/write tar archive file</td></tr>
 <tr><td><code>zip</code></td><td>provides function to read/write ZIP archive file</td></tr>
+<tr><td><code>hash</code></td><td></td></tr>
 </table>
 
 Image operation:
@@ -255,7 +258,7 @@ a library designed to provide low level access to audio, keyboard, mouse, joysti
 <tr><td><code>tk</code></td><td>provides APIs of Tk using <code>tcl</code> module</td></tr>
 <tr><td><code>wx</code></td><td>provides APIs of <a href="https://www.wxwidgets.org/">wxWidgets</a>, a cross-platform GUI library</td></tr>
 <tr><td><code>show</code></td><td>provides <code>image#show()</code> method that displays image on a window</td></tr>
-<tr><td><code>canvas</code></td><td>(obsolete)</td></tr>
+<!-- <tr><td><code>canvas</code></td><td>(obsolete)</td></tr> -->
 </table>
 
 Audio operation:
@@ -272,58 +275,68 @@ Network operation:
 <tr><th>Module</th><th>Note</th></tr>
 <tr><td><code>curl</code></td><td>provides APIs to access to network using <a href="http://curl.haxx.se/">CURL</a> library</td></tr>
 <tr><td><code>http</code></td><td>provides APIs for HTTP server and client functions</td></tr>
+<!-- <tr><td><code>guri</code></td><td></td></tr> -->
 </table>
 
-Windows specific:
+OS specific:
 
 <table>
 <tr><th>Module</th><th>Note</th></tr>
+<tr><td><code>conio</code></td><td>controls console I/O</td></tr>
 <tr><td><code>mswin</code></td><td>provides APIs for OLE interface registry access</td></tr>
 <tr><td><code>msxls</code></td><td>provides simple classes that handle MS Excel documents</td></tr>
+<tr><td><code>uuid</code></td><td>generates UUID</td></tr>
 </table>
 
 Text file operation:
 
 <table>
 <tr><th>Module</th><th>Note</th></tr>
-<tr><td><code>csv</code></td><td></td></tr>
-<tr><td><code>markdown</code></td><td></td></tr>
-<tr><td><code>re</code></td><td></td></tr>
-<tr><td><code>tokenizer</code></td><td></td></tr>
-<tr><td><code>xhtml</code></td><td></td></tr>
-<tr><td><code>xml</code></td><td></td></tr>
-<tr><td><code>yaml</code></td><td></td></tr>
-<tr><td><code>sed</code></td><td></td></tr>
+<tr><td><code>csv</code></td><td>Read/write CSV file</td></tr>
+<tr><td><code>markdown</code></td><td>parser of Markdown syntax</td></tr>
+<tr><td><code>re</code></td><td>Regular expression</td></tr>
+<tr><td><code>tokenizer</code></td><td>provides APIs that tokenize strings</td></tr>
+<tr><td><code>xml</code></td><td>XML parser</td></tr>
+<tr><td><code>xhtml</code></td><td>XHTML composer</td></tr>
+<tr><td><code>yaml</code></td><td>provides APIs to read/write document in <a href="http://pyyaml.org/wiki/LibYAML">YAML</a> format</td></tr>
+</table>
+
+Mathematical:
+
+<table>
+<tr><th>Module</th><th>Note</th></tr>
+<tr><td><code>gmp</code></td><td>provides APIs of <a href="https://gmplib.org/">GMP</a>,
+  a library for arbitrary precision arithmetic, operating on signed integers, rational numbers, and floating-point numbers.</td></tr>
+</table>
+
+Database:
+
+<table>
+<tr><th>Module</th><th>Note</th></tr>
+<tr><td><code>sqlite3</code></td><td>provides APIs to access to database of <a href="http://www.sqlite.org/index.html">sqlite3</a></td></tr>
 </table>
 
 Helper to build modules:
 
 <table>
 <tr><th>Module</th><th>Note</th></tr>
-<tr><td><code>gurcbuild</code></td><td></td></tr>
-<tr><td><code>modbuild</code></td><td></td></tr>
-<tr><td><code>modgen</code></td><td></td></tr>
+<tr><td><code>gurcbuild</code></td><td>provides APIs to create a composite file</td></tr>
+<tr><td><code>modbuild</code></td><td>used in a script to build a binary module</td></tr>
+<tr><td><code>modgen</code></td><td>generates template files to build a binary module</td></tr>
 </table>
+
+Utilities:
 
 <table>
 <tr><th>Module</th><th>Note</th></tr>
+<tr><td><code>argopt</code></td><td>provides APIs to handle argument options</td></tr>
+<tr><td><code>calendar</code></td><td>generates a specified year's calendar</td></tr>
+<tr><td><code>sed</code></td><td>replaces strings using regular expression across multiple files</td></tr>
+<tr><td><code>testutil</code></td><td>utilities for tester script</td></tr>
+<tr><td><code>units</code></td><td>units definitions</td></tr>
+<tr><td><code>utils</code></td><td>utilities</td></tr>
+<!-- <tr><td><code>sample</code></td><td></td></tr> -->
+<!-- <tr><td><code>graph</code></td><td></td></tr> -->
 </table>
 
-<table>
-<tr><th>Module</th><th>Note</th></tr>
-<tr><td><code>conio</code></td><td></td></tr>
-<tr><td><code>gmp</code></td><td></td></tr>
-<tr><td><code>guri</code></td><td></td></tr>
-<tr><td><code>hash</code></td><td></td></tr>
-<tr><td><code>sample</code></td><td></td></tr>
-<tr><td><code>sqlite3</code></td><td></td></tr>
-<tr><td><code>uuid</code></td><td></td></tr>
-
-<tr><td><code>argopt</code></td><td></td></tr>
-<tr><td><code>calendar</code></td><td></td></tr>
-<tr><td><code>graph</code></td><td></td></tr>
-<tr><td><code>testutil</code></td><td></td></tr>
-<tr><td><code>units</code></td><td></td></tr>
-<tr><td><code>utils</code></td><td></td></tr>
-</table>
 

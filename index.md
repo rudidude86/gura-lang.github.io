@@ -120,12 +120,13 @@ I hope the publication will inspire me to carry on this tough work :-)</em>
 <div>Chapter 10. <a href="documents/Mapping-Process.html">Mapping Process</a></div>
 <div>Chapter 11. <a href="documents/Module.html">Module</a></div>
 <div>Chapter 12. <a href="documents/String-Operation.html">String Operation</a></div>
-<div>Chapter 13. File Operation</div>
-<div>Chapter 14. Network Operation</div>
-<div>Chapter 15. Image Operation</div>
-<div>Chapter 16. Graphical User Interface</div>
-<div>Chapter 17. Mathematic Functions</div>
-<div>Chapter 18. Template Engine</div>
+<div>Chapter 13. Iterator/List Operation</div>
+<div>Chapter 14. File Operation</div>
+<div>Chapter 15. Network Operation</div>
+<div>Chapter 16. Image Operation</div>
+<div>Chapter 17. Graphical User Interface</div>
+<div>Chapter 18. Mathematic Functions</div>
+<div>Chapter 19. Template Engine</div>
 </p>
 
 </div>

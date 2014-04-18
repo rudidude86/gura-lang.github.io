@@ -1,8 +1,8 @@
 ---
 layout: page
 lang: en
-title: Graphical User Interface
-chapter: 17
+title: Network Operation
+chapter: 13
 ---
 
 # Chapter {{ page.chapter }}. {{ page.title }}

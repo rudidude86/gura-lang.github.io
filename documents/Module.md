@@ -108,6 +108,8 @@ You can add path names into the list while a script is running.
 
 ## {{ page.chapter }}.3. Creating Module File
 
+Any script file can be a script module file, which you can import in other scripts.
+But there are several points you need to know concerning access controls.
 Consider the following script file named `foo.gura`:
 
     var:public = 'hello'
@@ -123,15 +125,16 @@ As with a module created by `module()` function, following rules are applied:
 
 * Functions defined in a module file are marked as public and are accessible from outside.
   If necessary, you can put `:private` attribute in a function assignment to encapsulate it inside the file.
-* Variables defined in a module file are marked as private and would cause an error with an access from outer scope.
+* Variables defined in a module file are marked as private and would cause an error for an access from outer scope.
   You have to put `:public` attribute in a variable assignment to make it public.
 
-As a script module file is a usual script, you can write any script codes
-other than function and variable assignments.
-These codes are evaluated once, when `import()` function is called.
+As a script module file is not different to a usual script file,
+it can contain any expressions as well other than assignment expressions of function and variable.
+These expressions are evaluated once, when `import()` function is called.
 
-If a script file is imported as a module, a global variable `__name__` holds its own module name,
-and otherwise, it is set to a string `'__main__'`.
+If a script file is imported as a module, a global variable `__name__` holds its own module name.
+For instance, a script in `foo.gura` sees the variable with a value `'foo'` when imported.
+If a script file is parsed by the interpreter firsthand, the variable is set to `'__main__'`.
 Utilizing this feature, you can write a script in a module file to test its own functions like below:
 
     func() = { /* body */ }
@@ -147,21 +150,19 @@ Modules don't only provide functions but could enhance various capabilities.
 
 * **Extensions of Existing Class**
 
-  Module `re` would add some methods to `string` class like `string#match()`.
+  Some modules would provide additional methods to classes that already exists.
+  For example, module `re` would add some methods to `string` class like `string#match()`.
 
 * **Operator**
 
   Some modules would enhance operators so that they can handle objects the modules provide.
-
-  For example, a module named `gmp` supports operations of various-length number
-  and provides operators to calculate them.
+  For example, a module named `gmp` provides operators on arbitrary precision numbers.
 
 * **Image Format**
 
-  You can use a function `image()` to read a image file
-  and importing modules that handle image data would expand the function's capability
-  to support additional image format.
-
+  You can use a function `image()` to read a image file.
+  Importing modules that handle image data would expand the function's capability
+  to support additional image formats.
   For example, after importing `jpeg` module, the function can read a file in JPEG format like following:
 
         import(jpeg)
@@ -172,15 +173,14 @@ Modules don't only provide functions but could enhance various capabilities.
 
   You can use a stream instance to access a file stored in a certain storage.
   While a stream is opened by specifying a path name associated with it,
-  some modules make it capable of recognizing path names in specific formats.
-
+  some modules would expand the path name handler so that it can recognize its specific name format.
   For example, importing a module named `curl` would allow access to a file stored in networks
-  and expand path names to be able to recognize what begin with '`http:`'.
+  and enhance the path name handler to be able to recognize names that begin with '`http:`'.
 
         import(curl)
         print(readlines('http://example.com/index.html'))
 
-  Module `zip` provides functions to read and write content of ZIP files.
+  For another example, module `zip` provides functions to read and write content of ZIP files.
   and it would make the path name accessible in a ZIP file.
   The example below prints a content of `doc/readme.txt` that is stored in `foo.zip`.
 
@@ -188,6 +188,8 @@ Modules don't only provide functions but could enhance various capabilities.
         print(readlines('foo.zip/doc/readme.txt'))
 
 * **Path Name for Directory**
+
+  Path names in functions that handle directories could also be enhanced by modules.
 
   A function `path.walk()` recursively retrieves entries in a storage with a specified path name.
   After importing module `zip`, you can seek entries in a ZIP file using that function.
@@ -197,8 +199,9 @@ Modules don't only provide functions but could enhance various capabilities.
 
 * **Suffix Handler**
 
-  Importing module `gmp` would provide suffix `L`
-  that creates a variable-length number instance from a number literal.
+  There's a case that a module will provide additional suffix handlers.
+  For example, module `gmp` can handle suffix `L`
+  that creates an instance of arbitrary precision number from a number literal.
 
         import(gmp)
         x = 3.1415L * 2 * r
@@ -333,7 +336,7 @@ Utilities:
 <tr><td><code>calendar</code></td><td>generates a specified year's calendar</td></tr>
 <tr><td><code>sed</code></td><td>replaces strings using regular expression across multiple files</td></tr>
 <tr><td><code>testutil</code></td><td>utilities for tester script</td></tr>
-<tr><td><code>units</code></td><td>units definitions</td></tr>
+<tr><td><code>units</code></td><td>definition of units</td></tr>
 <tr><td><code>utils</code></td><td>utilities</td></tr>
 <!-- <tr><td><code>sample</code></td><td></td></tr> -->
 <!-- <tr><td><code>graph</code></td><td></td></tr> -->

@@ -143,6 +143,9 @@ Utilizing this feature, you can write a script in a module file to test its own 
         func()  // test func()
     }
 
+Since the body of `if()` function would only be evaluated when the script runs as a main one,
+you can write codes inside it that wouldn't be evaluated when imported as a module.
+
 
 ## {{ page.chapter }}.4. Extensions by Module
 

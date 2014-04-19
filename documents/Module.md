@@ -26,7 +26,7 @@ with a member accessing operator `.` specifying the module on its left.
 
 By default, functions defined in a module are marked as public and are accessible from outside.
 On the other hand, variables in a module are marked as private
-and would cause an error with an access from outer scope.
+and would cause an error for an access from outer scope.
 You have to put `:public` attribute in a variable assignment to make it public.
 
 You can use modules to isolate variables and functions from the current scope
@@ -35,7 +35,7 @@ But its main purpose is to provide a mechanism to load external files
 that extend the language's capability.
 
 
-## {{ page.chapter }}.2. Import of Module File
+## {{ page.chapter }}.2. Importing Module File
 
 Gura language has a policy that the interpreter itself should provide functions
 that are less dependent on external libraries, operating systems and hardware specifications.

@@ -7,20 +7,41 @@ chapter: 12
 
 # Chapter {{ page.chapter }}. {{ page.title }}
 
-## {{ page.chapter }}.1. Basic Operation
+## {{ page.chapter }}.1. Overview
 
-string has no operations with side effects
+A string is a sequence of character codes in UTF-8 format
+and is represented by `string` class that has a variety of operations on strings.
+Among them, there's no operation that has side effects on `string` instance,
+which leads to the following rules.
 
-* modification method will return a new instance of string with modified result
-* assignment to each character through index access is not permitted
+* It's not allowed to edit each character in a string content through index access.
+* Modification methods are supposed to return a new `string` instance with modified result.
 
-some operations:
+
+## {{ page.chapter }}.2. Basic Operation
+
+The most common way to create a `string` instance is to specify a string literal.
 
     str = 'The quick brown fox jumps over the lazy dog'
 
-    str[16]  // 'f'
-    str[17]  // 'o'
-    str[18]  // 'x'
+You can specify an index number embraced by a pair of square brackets
+to retrievet sub strings at the specified position.
+
+    str[16]  // returns 'f'
+    str[17]  // returns 'o'
+    str[18]  // returns 'x'
+
+You can also specify multiple index numbers to get a list of sub strings.
+
+    str[16, 17, 18] // returns ['f', 'o', 'x']
+
+
+
+    str[10..14]     // returns ['b', 'r', 'o', 'w', 'n']
+
+    str[35..]       // returns ['l', 'a', 'z', 'y', ' ', 'd', 'o', 'g']
+
+
 
     str.each()
     str.each():utf8
@@ -84,7 +105,11 @@ modification:
 
 
 
-## {{ page.chapter }}.2. Regular Expression
+## {{ page.chapter }}.3. Formatter
+
+C language's "printf"-like formatter is available.
+
+## {{ page.chapter }}.4. Regular Expression
 
 module `re`
 

@@ -76,8 +76,22 @@ and returns strings of each line.
     2nd
     3rd
     '''
+    lines = str.eachline()
+    // lines is an iterator that returns '1st\n', '2nd\n' and '3rd\n'
+
+A method `string#chop()` is useful when you want to remove a newline character
+appended at the bottom.
+
     x = str.eachline()
-    // x is an iterator that returns '1st\n', '2nd\n' and '3rd\n'
+    lines = x:*chop()  // apply string#chop() to each value in x
+    // lines is an iterator that returns '1st', '2nd' and '3rd'
+
+A method `string#eachline()` and others that split a multi-lined text into strings of each line
+like `readlines()` are equipped with an attribute `:chop`
+that applies the same process as `string#chop()`.
+
+    lines = str.eachline():chop
+    // lines is an iterator that returns '1st', '2nd' and '3rd'
 
 A method `string#split()` creates an iterator that splits a string
 by a separator string specified in the argument.
@@ -96,38 +110,23 @@ use `string#fold()` method.
 
 ### {{ page.chapter }}.2.2. Modification and Conversion
 
+Methods `string#capitalize()`, `string#upper()` and `string#lower()`
+are responsible of converting alphabet characters to upper or lower cases.
 
-`string#chop()`
+    str = 'hello, WORLD'
+    str.capitalize()  // returns 'Hello, WORLD'
+    str.upper()       // returns 'HELLO, WORLD'
+    str.lower()       // returns 'hello, world'
 
-
-`string#eachline()`, `readlines()` `:chop`
-
-
-`string#capitalize()`
-
-`string#lower()`
-
-`string#upper()`
-
-
-
-
-`string#binary()` `binary`
-
-`string#encode()` `binary`
+`string#binary()` and `string#encode()` `binary`
 
 `string#reader()` `stream`
 
 
-`string#encodeuri()`
+`string#encodeuri()` and `string#decodeuri()`
 
-`string#decodeuri()`
+`string#escapehtml()` and `string#unescapehtml()`
 
-`string#escapehtml()`
-
-`string#unescapehtml()`
-
-`string#zentohan()`
 
 
 ### {{ page.chapter }}.2.3. Extraction

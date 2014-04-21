@@ -17,8 +17,14 @@ which leads to the following rules.
 * It's not allowed to edit each character in a string content through index access.
 * Modification methods are supposed to return a new `string` instance with modified result.
 
+While the interpreter itself provides fundamental operations for strings,
+importing module named `re` expand the capability so that it can process regular expressions.
+
 
 ## {{ page.chapter }}.2. Basic Operation
+
+
+### {{ page.chapter }}.2.1. Character Access and Splitting
 
 The most common way to create a `string` instance is to specify a string literal.
 
@@ -43,13 +49,18 @@ you would get sub strings within an available range.
 
     str[35..]       // returns ['l', 'a', 'z', 'y', ' ', 'd', 'o', 'g']
 
+To see the length of a string, `string#len()` is available.
+
+    n = str.len()
+    // n is 43
+
 A method `string#each()` creates an iterator that returns each character as a sub string.
 
     x = str.each()
     // x is an iterator that returns 'T', 'h', 'e' ...
 
-A call of `string#each()` with attribute `:utf8` or `:utf32` would return
-character code numbers in UTF-8 or UTF-32 instead of sub strings.
+A call of `string#each()` with attribute `:utf8` or `:utf32` would create an iterator
+that returns character code numbers in UTF-8 or UTF-32 instead of sub strings.
 
     x = str.each():utf8
     // x is an iterator that returns 84, 104, 101, ...
@@ -57,26 +68,60 @@ character code numbers in UTF-8 or UTF-32 instead of sub strings.
     x = str.each():utf32
     // x is an iterator that returns 84, 104, 101, ...
 
-`string#eachline()`
+A method `string#eachline()` creates an iterator that splits a string by a newline character
+and returns strings of each line.
+
+    str = R'''
+    1st
+    2nd
+    3rd
+    '''
+    x = str.eachline()
+    // x is an iterator that returns '1st\n', '2nd\n' and '3rd\n'
+
+A method `string#split()` creates an iterator that splits a string
+by a separator string specified in the argument.
+
+    str = 'The quick brown fox jumps over the lazy dog'
+    x = str.split(' ')
+    // x is an iterator that returns 'The', 'quick', 'brown', 'fox' ...
+
+If you want to split a string into segments with the same length,
+use `string#fold()` method.
+
+    str = 'abcdefghijklmnopqrstuvwxyz'
+    x = str.fold(5)
+    // x is an iterator that returns 'abcde', 'fghij', 'klmno', 'pqrst' ...
 
 
-    str.eachline()
+### {{ page.chapter }}.2.2. Modification and Conversion
 
-    str.fold()
-    
-    str.split()
 
-`string#len()`
+`string#chop()`
 
-converter:
 
-`string#binary()`
+`string#eachline()`, `readlines()` `:chop`
 
-`string#reader()`
 
-`string#encode()`
+`string#capitalize()`
+
+`string#lower()`
+
+`string#upper()`
+
+
+
+
+`string#binary()` `binary`
+
+`string#encode()` `binary`
+
+`string#reader()` `stream`
+
 
 `string#encodeuri()`
+
+`string#decodeuri()`
 
 `string#escapehtml()`
 
@@ -85,7 +130,8 @@ converter:
 `string#zentohan()`
 
 
-extraction:
+### {{ page.chapter }}.2.3. Extraction
+
 
 `string#mid()`
 
@@ -94,33 +140,21 @@ extraction:
 `string#right()`
 
 
-search:
+### {{ page.chapter }}.2.4. Search, Replace and Inspection
 
 `string#find()`
 
-inspection:
+`string#replace()`
 
 `string#startswith()`
 
 `string#endswith()`
 
-modification:
-
-`string#chop()`
-
-`string#capitalize()`
-
-`string#lower()`
-
-`string#upper()`
-
-`string#replace()`
-
-
 
 ## {{ page.chapter }}.3. Formatter
 
 C language's "printf"-like formatter is available.
+
 
 ## {{ page.chapter }}.4. Regular Expression
 

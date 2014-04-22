@@ -68,7 +68,7 @@ A method `string#each()` creates an iterator that returns each character as a su
 A call of `string#each()` with attribute `:utf8` or `:utf32` would create an iterator
 that returns character code numbers in UTF-8 or UTF-32 instead of sub strings.
 
-    str = '日本語'
+    str = 'xxxxxx' // assumes it contains kanji characters "ni-hon-go"
     x = str.each():utf8
     // x is an iterator that returns 0xe697a5, 0xe69cac and 0xe7aa9e
 
@@ -132,12 +132,12 @@ all the alphabet characters to upper and lower case respectively.
 A method `string#binary()` returns a `binary` instance
 that contains a binary sequence of the string in UTF-8 format.
 
-    str = '日本語'
+    str = 'xxxxxx' // assumes it contains kanji characters "ni-hon-go"
     str..binary()  // returns a binary b'\xe6\x97\xa5\xe6\x9c\xac\xe8\xaa\x9e'
 
 You can use `string#encode()` to get a binary sequence in other codec other than UTF-8.
 
-    str = '日本語'
+    str = 'xxxxxx'           // assumes it contains kanji characters "ni-hon-go"
     str.encode('shift_jis')  // returns a b'\x93\xfa\x96\x7b\x8c\xea'
 
 A method `string#reader()` returns a `stream` instance
@@ -160,11 +160,19 @@ while a method `string#unescapehtml()`converts such escaped ones into normal cha
 ### {{ page.chapter }}.2.3. Extraction
 
 
-`string#mid()`
+A method `string#left()` returns a sub string
+that has extracted specified number of characters from the left side,
+while a method `string#right()`extracts from the right side.
 
-`string#left()`
+    str = 'The quick brown fox jumps over the lazy dog'
+    str.left(3)  // returns 'The'
+    str.right(3) // returns 'dog'
 
-`string#right()`
+A method `string#mid()` returns a sub string
+that has extracted specified number of characters from the specified position.
+
+    str = 'The quick brown fox jumps over the lazy dog'
+    str.mid(10, 5)  // returns 'brown'
 
 
 ### {{ page.chapter }}.2.4. Search, Replace and Inspection

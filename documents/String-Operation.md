@@ -260,8 +260,8 @@ You can specify one of the following for `flags`.
 <tr><td><code>-</code></td><td>adjust a string to left</td></tr>
 <tr><td><code>[SPC]</code></td><td>space character precedes for positive numbers</td></tr>
 <tr><td><code>#</code></td><td>converted results of binary, octdecimal and hexadecimal are
-  preceded by '0b', '0' and '0x' respectively</td></tr>
-<tr><td><code>0</code></td><td>fill lacking columns with '0'</td></tr>
+  preceded by <code>'0b'</code>, <code>'0'</code> and <code>'0x'</code> respectively</td></tr>
+<tr><td><code>0</code></td><td>fill lacking columns with <code>'0'</code></td></tr>
 </table>
 
 ## {{ page.chapter }}.4. Regular Expression

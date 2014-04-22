@@ -52,12 +52,23 @@ you would get sub strings within an available range.
     str = 'The quick brown fox jumps over the lazy dog'
     str[35..]       // returns ['l', 'a', 'z', 'y', ' ', 'd', 'o', 'g']
 
+Applying an operator `+` between two `string` instances would concatenate them together.
+
+    str1 = 'abcd'
+    str2 = 'efgh'
+    str1 + str2   // returns 'abcdefgh'
+
+An operator `*` between a `string` and a `number` would concatenate the string the specified number of times.
+
+    str = 'abcd'
+    str * 3      // returns 'abcdabcdabcd'
+
 To see the length of a string, `string#len()` is available.
 Note that `string#len()` returns the number of characters, not the size in byte.
 
-    str = 'The quick brown fox jumps over the lazy dog'
+    str = 'abcdefghijklmnopqrstuvwxyz'
     n = str.len()
-    // n is 43
+    // n is 26
 
 A method `string#each()` creates an iterator that returns each character as a sub string.
 
@@ -156,9 +167,15 @@ with character entities prefixed by an ampersand,
 while a method `string#unescapehtml()`converts such escaped ones into normal characters.
 
 
-
 ### {{ page.chapter }}.2.3. Extraction
 
+A method `string#strip()` removes space characters that exist on both sides of the string.
+Attributes `:left` and `:right` would specify the side to remove spaces.
+
+    str = '    hello  '
+    str.strip()        // returns 'hello'
+    str.strip():left   // returns 'hello  '
+    str.strip():right  // returns '    hello'
 
 A method `string#left()` returns a sub string
 that has extracted specified number of characters from the left side,
@@ -177,19 +194,75 @@ that has extracted specified number of characters from the specified position.
 
 ### {{ page.chapter }}.2.4. Search, Replace and Inspection
 
-`string#find()`
+A method `string#find()` searches the specified sub string in the target string
+and returns the found position starting from zero. If not found, it returns `nil`.
 
-`string#replace()`
+    str = 'The quick brown fox jumps over the lazy dog'
+    str.find('fox')  // returns 16
+    str.find('cat')  // returns nil
 
-`string#startswith()`
+A method `string#replace()` returns a result string
+after replacing the sub string with the specified one.
 
-`string#endswith()`
+    str = 'The quick brown fox jumps over the lazy dog'
+    str.replace('fox', 'cat') // returns 'The quick brown cat jumps over the lazy dog'
+
+A method `string#startswith()` returns `ture` if the string starts with the specified sub string
+and `false` otherwise. A method `string#endswith()` checks is the string ends with the specified sub string.
+
+    str = 'abcdefghijklmnopqrstuvwxyz'
+    str.startswith('abcde') // returns true
+    str.startswith('hoge')  // returns false
+    str.endswith('vwxyz')   // returns true
+    str.endswith('hoge')    // returns false
+
+Specifying an attribute `:rest` indicates that the function returns a string
+excluding the specified sub string when that matches the head or the bottom part.
+If the sub string doesn't match, the function returns `nil`.
+
+    str.startswith('abcde):rest // returns 'fghijklmnopqrstuvwxyz'
+    str.startswith('hoge'):rest // returns nil
+    str.endswith('vwxyz'):rest  // returns 'abcdefghijklmnopqrstu'
+    str.endswith('hoge'):rest // returns nil
 
 
 ## {{ page.chapter }}.3. Formatter
 
 C language's "printf"-like formatter is available.
 
+`%[flags][width][.precision]specifier`
+
+You can spedify one of the following for `specifier`.
+
+<table>
+<tr><th>specifier</th><th>Note</th></tr>
+<tr><td><code>d</code>, <code>i</code></td><td>decimal integer number with a sign mark</td></tr>
+<tr><td><code>u</code></td><td>decimal integer number wihout a sign mark</td></tr>
+<tr><td><code>b</code></td><td>binary integer number without a sign mark</td></tr>
+<tr><td><code>o</code></td><td>octal integer number without a sign mark</td></tr>
+<tr><td><code>x</code></td><td>hexadecimal integer number in lower character without a sign mark</td></tr>
+<tr><td><code>X</code></td><td>hexadecimal integer number in upper character without a sign mark</td></tr>
+<tr><td><code>e</code></td><td>floating number in exponential form</td></tr>
+<tr><td><code>E</code></td><td>floating number in exponential form (in upper character)</td></tr>
+<tr><td><code>f</code></td><td>floating number in decimal form</td></tr>
+<tr><td><code>F</code></td><td>floating number in decimal form (in upper character)</td></tr>
+<tr><td><code>g</code></td><td>better form between e and f</td></tr>
+<tr><td><code>G</code></td><td>better form between E and F</td></tr>
+<tr><td><code>s</code></td><td>string</td></tr>
+<tr><td><code>c</code></td><td>character</td></tr>
+</table>
+
+You can specify one of the following for `flags`.
+
+<table>
+<tr><th>flags</th><th>Note</th></tr>
+<tr><td><code>+</code></td><td><code>+</code> precedes for positive numbers</td></tr>
+<tr><td><code>-</code></td><td>adjust a string to left</td></tr>
+<tr><td><code>[SPC]</code></td><td>space character precedes for positive numbers</td></tr>
+<tr><td><code>#</code></td><td>converted results of binary, octdecimal and hexadecimal are
+  preceded by '0b', '0' and '0x' respectively</td></tr>
+<tr><td><code>0</code></td><td>fill lacking columns with '0'</td></tr>
+</table>
 
 ## {{ page.chapter }}.4. Regular Expression
 

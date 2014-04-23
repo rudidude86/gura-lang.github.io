@@ -17,8 +17,8 @@ which leads to the following rules.
 * It's not allowed to edit each character in a string content through index access.
 * Modification methods are supposed to return a new `string` instance with modified result.
 
-While the interpreter itself provides fundamental operations for strings,
-importing module named `re` expand the capability so that it can process regular expressions.
+The interpreter itself provides fundamental operations for strings.
+Importing module named `re` expand the capability so that it can process regular expressions.
 
 
 ## {{ page.chapter }}.2. Basic Operation
@@ -264,7 +264,8 @@ you can even give the operator the value without a list.
 
 ## {{ page.chapter }}.3.2. Syntax of Format Specifier
 
-A format specifier begins with a percent character and has the syntax below:
+A format specifier begins with a percent character and has the syntax below,
+where optional fields are embraced by square brackets:
 
     %[flags][width][.precision]specifier
 
@@ -281,7 +282,6 @@ You always have to specify one of the following characters for the `specifier` f
 <tr><td><code>e</code></td><td>floating number in exponential form</td></tr>
 <tr><td><code>E</code></td><td>floating number in exponential form (in upper character)</td></tr>
 <tr><td><code>f</code></td><td>floating number in decimal form</td></tr>
-<tr><td><code>F</code></td><td>floating number in decimal form (in upper character)</td></tr>
 <tr><td><code>g</code></td><td>better form between e and f</td></tr>
 <tr><td><code>G</code></td><td>better form between E and F</td></tr>
 <tr><td><code>s</code></td><td>string</td></tr>
@@ -294,7 +294,7 @@ You can specify one of the following characters for the optional `flags` field.
 <tr><th>flags</th><th>Note</th></tr>
 <tr><td><code>+</code></td><td><code>+</code> precedes for positive numbers</td></tr>
 <tr><td><code>-</code></td><td>adjust a string to left</td></tr>
-<tr><td><code>[SPC]</code></td><td>space character precedes for positive numbers</td></tr>
+<tr><td>(space)</td><td>space character precedes for positive numbers</td></tr>
 <tr><td><code>#</code></td><td>converted results of binary, octdecimal and hexadecimal are
   preceded by <code>'0b'</code>, <code>'0'</code> and <code>'0x'</code> respectively</td></tr>
 <tr><td><code>0</code></td><td>fill lacking columns with <code>'0'</code></td></tr>
@@ -304,7 +304,20 @@ The optional field `width` takes a decimal number that specifies a minimum width
 If the value's length is shorter than the specified width, the rest would be filled with space characters.
 If you specify `*` for that field, the formatter would try to get the minimum width from the argument list.
 
-The optional field `precision`
+The optional field `precision` has different meanings depending on the specifier as below:
+
+<table>
+<tr><th>specifier</th><th>Note</th></tr>
+<tr><td><code>d</code>, <code>i</code>, <code>u</code>, <code>b</code>, <code>o</code>, <code>x</code>, <code>X</code></td>
+  <td>It specifies the minimum number of digits. If the value is shorter than this number,
+    lacking digits are filled with zero.</td></tr>
+<tr><td><code>e</code>, <code>E</code>, <code>f</code></td>
+  <td>It specifies the number of digits after a decimal point.</td></tr>
+<tr><td><code>g</code>, <code>G</code></td>
+  <td>It specifies the maximum number of digits for significand part.</td></tr>
+<tr><td><code>s</code></td>
+  <td>It specifies the maximum number of characters to print.</td></tr>
+</table>
 
 
 ## {{ page.chapter }}.4. Regular Expression

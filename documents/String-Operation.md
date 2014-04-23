@@ -52,17 +52,6 @@ you would get sub strings within an available range.
     str = 'The quick brown fox jumps over the lazy dog'
     str[35..]       // returns ['l', 'a', 'z', 'y', ' ', 'd', 'o', 'g']
 
-Applying an operator `+` between two `string` instances would concatenate them together.
-
-    str1 = 'abcd'
-    str2 = 'efgh'
-    str1 + str2   // returns 'abcdefgh'
-
-An operator `*` between a `string` and a `number` would concatenate the string the specified number of times.
-
-    str = 'abcd'
-    str * 3      // returns 'abcdabcdabcd'
-
 To see the length of a string, `string#len()` is available.
 Note that `string#len()` returns the number of characters, not the size in byte.
 
@@ -79,7 +68,7 @@ A method `string#each()` creates an iterator that returns each character as a su
 A call of `string#each()` with attribute `:utf8` or `:utf32` would create an iterator
 that returns character code numbers in UTF-8 or UTF-32 instead of sub strings.
 
-    str = 'xxxxxx' // assumes it contains kanji characters "ni-hon-go"
+    str = 'XXX'  // assumes it contains kanji characters 'ni-hon-go'
     x = str.each():utf8
     // x is an iterator that returns 0xe697a5, 0xe69cac and 0xe7aa9e
 
@@ -101,7 +90,7 @@ A method `string#chop()` is useful when you want to remove a newline character
 appended at the bottom.
 
     x = str.eachline()
-    lines = x:*chop()  // apply string#chop() to each value in x
+    lines = x:*chop()  // an iterator to apply string#chop() to each value in x
     // lines is an iterator that returns '1st', '2nd' and '3rd'
 
 A method `string#eachline()` and others that split a multi-lined text into strings of each line
@@ -123,10 +112,21 @@ use `string#fold()` method.
 
     str = 'abcdefghijklmnopqrstuvwxyz'
     x = str.fold(5)
-    // x is an iterator that returns 'abcde', 'fghij', 'klmno', 'pqrst' ...
+    // x is an iterator that returns 'abcde', 'fghij', 'klmno', 'pqrst', 'uvwxy' and 'z'
 
 
 ### {{ page.chapter }}.2.2. Modification and Conversion
+
+Applying an operator `+` between two `string` instances would concatenate them together.
+
+    str1 = 'abcd'
+    str2 = 'efgh'
+    str1 + str2   // returns 'abcdefgh'
+
+An operator `*` between a `string` and a `number` value would concatenate the string the specified number of times.
+
+    str = 'abcd'
+    str * 3      // returns 'abcdabcdabcd'
 
 A method `string#capitalize()` returns a string with the top alphabet converted to uppper case.
 
@@ -143,12 +143,12 @@ all the alphabet characters to upper and lower case respectively.
 A method `string#binary()` returns a `binary` instance
 that contains a binary sequence of the string in UTF-8 format.
 
-    str = 'xxxxxx' // assumes it contains kanji characters "ni-hon-go"
+    str = 'XXX'    // assumes it contains kanji characters 'ni-hon-go'
     str..binary()  // returns a binary b'\xe6\x97\xa5\xe6\x9c\xac\xe8\xaa\x9e'
 
 You can use `string#encode()` to get a binary sequence in other codec other than UTF-8.
 
-    str = 'xxxxxx'           // assumes it contains kanji characters "ni-hon-go"
+    str = 'XXX'              // assumes it contains kanji characters 'ni-hon-go'
     str.encode('shift_jis')  // returns a b'\x93\xfa\x96\x7b\x8c\xea'
 
 A method `string#reader()` returns a `stream` instance
@@ -201,14 +201,14 @@ and returns the found position starting from zero. If not found, it returns `nil
     str.find('fox')  // returns 16
     str.find('cat')  // returns nil
 
-A method `string#replace()` returns a result string
-after replacing the sub string with the specified one.
+A method `string#replace()` replaces the sub string with the specified one.
 
     str = 'The quick brown fox jumps over the lazy dog'
     str.replace('fox', 'cat') // returns 'The quick brown cat jumps over the lazy dog'
 
-A method `string#startswith()` returns `ture` if the string starts with the specified sub string
-and `false` otherwise. A method `string#endswith()` checks is the string ends with the specified sub string.
+A method `string#startswith()` returns `ture` if the string starts with the specified sub string,
+and returns `false` otherwise.
+A method `string#endswith()` checks if the string ends with the specified sub string.
 
     str = 'abcdefghijklmnopqrstuvwxyz'
     str.startswith('abcde') // returns true
@@ -216,23 +216,41 @@ and `false` otherwise. A method `string#endswith()` checks is the string ends wi
     str.endswith('vwxyz')   // returns true
     str.endswith('hoge')    // returns false
 
-Specifying an attribute `:rest` indicates that the function returns a string
+Specifying an attribute `:rest` indicates that these functions return a string
 excluding the specified sub string when that matches the head or the bottom part.
-If the sub string doesn't match, the function returns `nil`.
+If the sub string doesn't match, they would return `nil`.
 
     str.startswith('abcde):rest // returns 'fghijklmnopqrstuvwxyz'
     str.startswith('hoge'):rest // returns nil
     str.endswith('vwxyz'):rest  // returns 'abcdefghijklmnopqrstu'
-    str.endswith('hoge'):rest // returns nil
+    str.endswith('hoge'):rest   // returns nil
 
 
 ## {{ page.chapter }}.3. Formatter
 
-C language's "printf"-like formatter is available.
+You can use format specifiers in some functions that are similar to what are realized in C language's `printf`
+to convert objects like numbers into readable strings.
 
-`%[flags][width][.precision]specifier`
+A function `printf()` takes a string containing format specifiers
+and values you want to print in its argument list
+and put the result out to a standard output stream.
 
-You can spedify one of the following for `specifier`.
+    printf('x = %d, y = %d', x, y)
+
+A function `format()` takes arguments in the same way as `printf()`
+but it returns the result as a `string` instance.
+
+    str = format('x = %d, y = %d', x, y)
+
+You can also use `%` operator to have the same effect with `format()`.
+
+    str = 'x = %d, y = %d' % [x, y]
+
+A format specifier has the following syntax:
+
+    %[flags][width][.precision]specifier
+
+You always have to specify one of the following characters for *specifier*.
 
 <table>
 <tr><th>specifier</th><th>Note</th></tr>
@@ -252,7 +270,7 @@ You can spedify one of the following for `specifier`.
 <tr><td><code>c</code></td><td>character</td></tr>
 </table>
 
-You can specify one of the following for `flags`.
+You can specify one of the following characters for *flags*.
 
 <table>
 <tr><th>flags</th><th>Note</th></tr>

@@ -228,29 +228,47 @@ If the sub string doesn't match, they would return `nil`.
 
 ## {{ page.chapter }}.3. Formatter
 
+## {{ page.chapter }}.3.1. Functions Equipped with Formatter
+
 You can use format specifiers in some functions that are similar to what are realized in C language's `printf`
 to convert objects like numbers into readable strings.
 
 A function `printf()` takes a string containing format specifiers
 and values you want to print in its argument list
-and put the result out to a standard output stream.
+and put the result out to `sys.stdout` stream.
 
-    printf('x = %d, y = %d', x, y)
+    printf('x = %d, y = %d\n', x, y)
+
+A method `stream#printf()` has the same argument declaration with `printf()`
+and puts the result to the target stream capable of writing
+instead of `sys.stdout` stream.
+
+    open('foo.txt', 'w').printf('x = %d, y = %d\n', x, y)
+
 
 A function `format()` takes arguments in the same way as `printf()`
 but it returns the result as a `string` instance.
 
-    str = format('x = %d, y = %d', x, y)
+    str = format('x = %d, y = %d\n', x, y)
 
-You can also use `%` operator to have the same effect with `format()`.
+You can also use `%` operator to get the same result with `format()`,
+which takes a format string on the left and a list containing values for printing on the right.
 
-    str = 'x = %d, y = %d' % [x, y]
+    str = 'x = %d, y = %d\n' % [x, y]
 
-A format specifier has the following syntax:
+If there's only one value for printing,
+you can even give the operator the value without a list.
+
+    str = 'x = %d\n' % x
+
+
+## {{ page.chapter }}.3.2. Syntax of Format Specifier
+
+A format specifier begins with a percent character and has the syntax below:
 
     %[flags][width][.precision]specifier
 
-You always have to specify one of the following characters for *specifier*.
+You always have to specify one of the following characters for the `specifier` field.
 
 <table>
 <tr><th>specifier</th><th>Note</th></tr>
@@ -270,7 +288,7 @@ You always have to specify one of the following characters for *specifier*.
 <tr><td><code>c</code></td><td>character</td></tr>
 </table>
 
-You can specify one of the following characters for *flags*.
+You can specify one of the following characters for the optional `flags` field.
 
 <table>
 <tr><th>flags</th><th>Note</th></tr>
@@ -281,6 +299,13 @@ You can specify one of the following characters for *flags*.
   preceded by <code>'0b'</code>, <code>'0'</code> and <code>'0x'</code> respectively</td></tr>
 <tr><td><code>0</code></td><td>fill lacking columns with <code>'0'</code></td></tr>
 </table>
+
+The optional field `width` takes a decimal number that specifies a minimum width for the corresponding value.
+If the value's length is shorter than the specified width, the rest would be filled with space characters.
+If you specify `*` for that field, the formatter would try to get the minimum width from the argument list.
+
+The optional field `precision`
+
 
 ## {{ page.chapter }}.4. Regular Expression
 

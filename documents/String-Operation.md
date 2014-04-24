@@ -406,7 +406,14 @@ When you give a string for it, the method replaces the matched part with the str
 You can specify a group reference `\`*n* in a subsitution string where *n* indicates the group index.
 
 If you specify a function for the substitution value,
-which is expected to have a declaration of `f(m:re.match)`,
+which takes a `re.match` value as its argument and to return a substitution string,
 it would be called when the matching succeeds.
 
+    str = '### #### ##### ## #####'
+    f(m:re.match) = format('%d', m[0].len())
+    str.sub('#+', f)                             // returns '3 4 5 2 5'
 
+An anonymous function would make the code more simple.
+
+    str = '### #### ##### ## #####'
+    str.sub('#+', &{format('%d', $m[0].len())})  // returns '3 4 5 2 5'

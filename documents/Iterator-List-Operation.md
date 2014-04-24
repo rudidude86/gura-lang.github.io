@@ -1,7 +1,7 @@
 ---
 layout: page
 lang: en
-title: Network Operation
+title: Iterator/List Operation
 chapter: 13
 ---
 

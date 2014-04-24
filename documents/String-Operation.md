@@ -263,6 +263,10 @@ instead of `sys.stdout` stream.
 
     open('foo.txt', 'w').printf('x = %d, y = %d\n', x, y)
 
+Method `list#printf()` is another form of `printf()`,
+which takes values to print in the list of the target instance, not in the argument list.
+
+    [x, y].printf('x = %d, y = %d\n')
 
 Function `format()` takes arguments in the same way as `printf()`
 but it returns the result as a `string` instance.
@@ -340,6 +344,9 @@ The optional field `precision` has different meanings depending on the specifier
 
 ## {{ page.chapter }}.4. Regular Expression
 
+You can import module `re` to use regular expression for string search and substition,
+which supports a syntax based on POSIX Extended Regular Expression.
+
 Importing module `re` would equip `string` class with methods that can handle regular expressions.
 See the sample code below:
 
@@ -357,31 +364,39 @@ See the sample code below:
 Method `string#match()` that is provided by `re` module takes a regular expression pattern.
 It would return `re.match` instance if the pattern matches, and return `nil` otherwise.
 As regular expressions often contain back slash as a meta character,
-it would be convenient to use an expression `r'...'` for a pattern string
-that avoids recognizing a backslash as an escaping character.
+it would be convenient to use an expression `r'` &hellip; `'` for a pattern string
+to avoid recognizing a backslash as an escaping character.
 
-
-re.pattern
-
-    pat = str.pattern(r'(\d\d):(\d\d):(\d\d)')
-    m = str.match(pat)
-
-
-group name
+An instance of `re.match` contains information about matching result.
+It supports indexing access where `m[0]` has a string that matches the whole pattern
+and `m[1]`, `m[2]` &hellip; returns a string of each group.
+You can specify a string instead of a number to index each group
+when you use `?<name>` specifier for the group in a regular expression pattern.
 
     m = str.match(r'(?<hour>\d\d):(?<min>\d\d):(?<sec>\d\d)')
+    if (m) {
+        printf('hour=%s, min=%s, sec=%s\n', m['hour'], m['min'], m['sec'])
+    } else {
+        println('not match')
+    }
 
+Although you can pass a string containing a pattern to method `string#match()`,
+it actually takes `re.pattern` instance in its argument that is capable of
+accepting a `string` instance through casting feature.
+Above example is equivalent with below:
 
+    pat = re.pattern(r'(\d\d):(\d\d):(\d\d)')
+    m = str.match(pat)
+
+When you give a string to a function or a method that expects `re.pattern`,
+it always compile the string to create `re.pattern` instance,
+which may cause some overhead in a process of huge amount of data.
+In such a case, it may be a good idea to call a function with a `re.pattern` instance
+that has explicitly been created by `re.pattern()` function in advance like shown above.
 
 `string#sub()`
 
-`string#scan()`
-`string#splitreg()`
 
 
-`re.match` class
 
-`m[0]`
-
-`m[1]`
 

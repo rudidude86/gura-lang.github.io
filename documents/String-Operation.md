@@ -24,25 +24,23 @@ Importing module named `re` expand the capability so that it can process regular
 ## {{ page.chapter }}.2. Basic Operation
 
 
-### {{ page.chapter }}.2.1. Character Access and Splitting
+### {{ page.chapter }}.2.1. Character Manipulation
 
-The most common way to create a `string` instance is to specify a string literal.
+You can specify an index number starting from zero embraced by a pair of square brackets
+to retrieve a character as a sub string at the specified position.
+Multiple numbers for indexing can also be specified to get a list of sub strings.
+
+    str = 'abcdefghijklmnopqrstuvwxyz'
+    str[6]            // returns 'g'
+    str[20]           // returns 'u'
+    str[17]           // returns 'r'
+    str[0]            // returns 'a'
+    str[6, 20, 17, 0] // returns ['g', 'u', 'r', 'a']
+
+You can also specify iterators to get a list of sub strings.
+Numbers and iterators can be mixed together as indexing items.
 
     str = 'The quick brown fox jumps over the lazy dog'
-
-You can specify an index number embraced by a pair of square brackets
-to retrieve characters as sub strings at the specified position.
-
-    str = 'The quick brown fox jumps over the lazy dog'
-    str[16]  // returns 'f'
-    str[17]  // returns 'o'
-    str[18]  // returns 'x'
-
-You can also specify a list of indexing items, numbers or iterators,
-to get a list of sub strings. These items can be mixed together.
-
-    str = 'The quick brown fox jumps over the lazy dog'
-    str[16, 17, 18]   // returns ['f', 'o', 'x']
     str[10..14]       // returns ['b', 'r', 'o', 'w', 'n']
     str[4..8, 35..38] // returns ['q', 'u', 'i', 'c', 'k', 'l', 'a', 'z', 'y']
 
@@ -52,12 +50,16 @@ you would get sub strings within an available range.
     str = 'The quick brown fox jumps over the lazy dog'
     str[35..]       // returns ['l', 'a', 'z', 'y', ' ', 'd', 'o', 'g']
 
-To see the length of a string, `string#len()` is available.
-Note that `string#len()` returns the number of characters, not the size in byte.
+A function `chr()` returns a string that contains a character of the given UTF-8 character code.
 
-    str = 'abcdefghijklmnopqrstuvwxyz'
-    n = str.len()
-    // n is 26
+    chr(65)         // returns 'A'
+
+A function 'ord()` takes a string and returns UTF-8 character code of its first character.
+
+    ord('A')        // returns 65
+
+
+### {{ page.chapter }}.2.2. Iteration
 
 A method `string#each()` creates an iterator that returns each character as a sub string.
 
@@ -115,7 +117,7 @@ use `string#fold()` method.
     // x is an iterator that returns 'abcde', 'fghij', 'klmno', 'pqrst', 'uvwxy' and 'z'
 
 
-### {{ page.chapter }}.2.2. Modification and Conversion
+### {{ page.chapter }}.2.3. Modification and Conversion
 
 Applying an operator `+` between two `string` instances would concatenate them together.
 
@@ -127,6 +129,15 @@ An operator `*` between a `string` and a `number` value would concatenate the st
 
     str = 'abcd'
     str * 3      // returns 'abcdabcdabcd'
+
+A method `list#join()` joins all the string in the list and returns the result.
+If it contains elements other than `string`, they're converted to strings before joined.
+
+    ['abcd', 'efgh', 'ijkl'].join()    // returns 'abcdefghijkl'
+
+The method can take a separator string as its argument that is inserted between elements.
+
+    ['abcd', 'efgh', 'ijkl'].join(', ') // returns 'abcd, efgh, ijkl'
 
 A method `string#capitalize()` returns a string with the top alphabet converted to uppper case.
 
@@ -167,7 +178,7 @@ with character entities prefixed by an ampersand,
 while a method `string#unescapehtml()`converts such escaped ones into normal characters.
 
 
-### {{ page.chapter }}.2.3. Extraction
+### {{ page.chapter }}.2.4. Extraction
 
 A method `string#strip()` removes space characters that exist on both sides of the string.
 Attributes `:left` and `:right` would specify the side to remove spaces.
@@ -192,7 +203,14 @@ that has extracted specified number of characters from the specified position.
     str.mid(10, 5)  // returns 'brown'
 
 
-### {{ page.chapter }}.2.4. Search, Replace and Inspection
+### {{ page.chapter }}.2.5. Search, Replace and Inspection
+
+To see the length of a string, `string#len()` is available.
+Note that `string#len()` returns the number of characters, not the size in byte.
+
+    str = 'abcdefghijklmnopqrstuvwxyz'
+    n = str.len()
+    // n is 26
 
 A method `string#find()` searches the specified sub string in the target string
 and returns the found position starting from zero. If not found, it returns `nil`.

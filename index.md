@@ -86,8 +86,6 @@ after it's given with iterators, `1..` and `readlines('foo.txt')`, as its argume
 
 <h2>Japanese</h2>
 
-Sorry! Only Japanese version is available so far.
-
 <p>
 <div><img src="images/pdf.png" alt="pdf-icon" /> Gura Language Manual
 (<a href="https://github.com/gura-lang/gura-doc/blob/master/gura-lang-j.pdf?raw=true"

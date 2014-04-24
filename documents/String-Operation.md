@@ -394,9 +394,19 @@ which may cause some overhead in a process of huge amount of data.
 In such a case, it may be a good idea to call a function with a `re.pattern` instance
 that has explicitly been created by `re.pattern()` function in advance like shown above.
 
-`string#sub()`
+Method `string#sub()` takes a `re.pattern` instance
+and replaces the matched part with the given substitution value.
 
+A subsitution item can be either a string or a function.
+When you give a string for it, the method replaces the matched part with the string.
 
+    str = 'The quick brown fox jumps over the lazy dog'
+    str.sub(r'[Tt]he', 'THE') // returns 'THE quick brown fox jumps over THE lazy dog'
 
+You can specify a group reference `\`*n* in a subsitution string where *n* indicates the group index.
+
+If you specify a function for the substitution value,
+which is expected to have a declaration of `f(m:re.match)`,
+it would be called when the matching succeeds.
 
 

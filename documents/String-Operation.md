@@ -50,18 +50,18 @@ you would get sub strings within an available range.
     str = 'The quick brown fox jumps over the lazy dog'
     str[35..]       // returns ['l', 'a', 'z', 'y', ' ', 'd', 'o', 'g']
 
-A function `chr()` returns a string that contains a character of the given UTF-8 character code.
+Function `chr()` returns a string that contains a character of the given UTF-8 character code.
 
     chr(65)         // returns 'A'
 
-A function 'ord()` takes a string and returns UTF-8 character code of its first character.
+Function 'ord()` takes a string and returns UTF-8 character code of its first character.
 
     ord('A')        // returns 65
 
 
 ### {{ page.chapter }}.2.2. Iteration
 
-A method `string#each()` creates an iterator that returns each character as a sub string.
+Method `string#each()` creates an iterator that returns each character as a sub string.
 
     str = 'The quick brown fox jumps over the lazy dog'
     x = str.each()
@@ -77,7 +77,7 @@ that returns character code numbers in UTF-8 or UTF-32 instead of sub strings.
     x = str.each():utf32
     // x is an iterator that returns 0x65e5, 0x672c and 0x8a9e
 
-A method `string#eachline()` creates an iterator that splits a string by a newline character
+Method `string#eachline()` creates an iterator that splits a string by a newline character
 and returns strings of each line.
 
     str = R'''
@@ -88,21 +88,21 @@ and returns strings of each line.
     lines = str.eachline()
     // lines is an iterator that returns '1st\n', '2nd\n' and '3rd\n'
 
-A method `string#chop()` is useful when you want to remove a newline character
+Method `string#chop()` is useful when you want to remove a newline character
 appended at the bottom.
 
     x = str.eachline()
     lines = x:*chop()  // an iterator to apply string#chop() to each value in x
     // lines is an iterator that returns '1st', '2nd' and '3rd'
 
-A method `string#eachline()` and others that split a multi-lined text into strings of each line
+Method `string#eachline()` and others that split a multi-lined text into strings of each line
 like `readlines()` are equipped with an attribute `:chop`
 that applies the same process as `string#chop()`.
 
     lines = str.eachline():chop
     // lines is an iterator that returns '1st', '2nd' and '3rd'
 
-A method `string#split()` creates an iterator that splits a string
+Method `string#split()` creates an iterator that splits a string
 by a separator string specified in the argument.
 
     str = 'The quick brown fox jumps over the lazy dog'
@@ -130,7 +130,7 @@ An operator `*` between a `string` and a `number` value would concatenate the st
     str = 'abcd'
     str * 3      // returns 'abcdabcdabcd'
 
-A method `list#join()` joins all the string in the list and returns the result.
+Method `list#join()` joins all the string in the list and returns the result.
 If it contains elements other than `string`, they're converted to strings before joined.
 
     ['abcd', 'efgh', 'ijkl'].join()    // returns 'abcdefghijkl'
@@ -139,7 +139,7 @@ The method can take a separator string as its argument that is inserted between 
 
     ['abcd', 'efgh', 'ijkl'].join(', ') // returns 'abcd, efgh, ijkl'
 
-A method `string#capitalize()` returns a string with the top alphabet converted to uppper case.
+Method `string#capitalize()` returns a string with the top alphabet converted to uppper case.
 
     str = 'hello, WORLD'
     str.capitalize()  // returns 'Hello, WORLD'
@@ -151,7 +151,7 @@ all the alphabet characters to upper and lower case respectively.
     str.upper()       // returns 'HELLO, WORLD'
     str.lower()       // returns 'hello, world'
 
-A method `string#binary()` returns a `binary` instance
+Method `string#binary()` returns a `binary` instance
 that contains a binary sequence of the string in UTF-8 format.
 
     str = 'XXX'    // assumes it contains kanji characters 'ni-hon-go'
@@ -162,25 +162,25 @@ You can use `string#encode()` to get a binary sequence in other codec other than
     str = 'XXX'              // assumes it contains kanji characters 'ni-hon-go'
     str.encode('shift_jis')  // returns a b'\x93\xfa\x96\x7b\x8c\xea'
 
-A method `string#reader()` returns a `stream` instance
+Method `string#reader()` returns a `stream` instance
 that reads a binary sequence of the string in UTF-8 format.
 
     str = 'The quick brown fox jumps over the lazy dog'
     x = str.reader()
     // x is a stream instance for reading
 
-A method `string#encodeuri()` converts characters that can not be described in URI
+Method `string#encodeuri()` converts characters that can not be described in URI
 by a percent-encoding rule,
-while a method `string#decodeuri()` converts such encoded string into normal characters.
+while method `string#decodeuri()` converts such encoded string into normal characters.
 
-A method `string#escapehtml()` escapes characters that can not be described in HTML
+Method `string#escapehtml()` escapes characters that can not be described in HTML
 with character entities prefixed by an ampersand,
-while a method `string#unescapehtml()`converts such escaped ones into normal characters.
+while method `string#unescapehtml()`converts such escaped ones into normal characters.
 
 
 ### {{ page.chapter }}.2.4. Extraction
 
-A method `string#strip()` removes space characters that exist on both sides of the string.
+Method `string#strip()` removes space characters that exist on both sides of the string.
 Attributes `:left` and `:right` would specify the side to remove spaces.
 
     str = '    hello  '
@@ -188,15 +188,15 @@ Attributes `:left` and `:right` would specify the side to remove spaces.
     str.strip():left   // returns 'hello  '
     str.strip():right  // returns '    hello'
 
-A method `string#left()` returns a sub string
+Method `string#left()` returns a sub string
 that has extracted specified number of characters from the left side,
-while a method `string#right()`extracts from the right side.
+while method `string#right()`extracts from the right side.
 
     str = 'The quick brown fox jumps over the lazy dog'
     str.left(3)  // returns 'The'
     str.right(3) // returns 'dog'
 
-A method `string#mid()` returns a sub string
+Method `string#mid()` returns a sub string
 that has extracted specified number of characters from the specified position.
 
     str = 'The quick brown fox jumps over the lazy dog'
@@ -212,21 +212,21 @@ Note that `string#len()` returns the number of characters, not the size in byte.
     n = str.len()
     // n is 26
 
-A method `string#find()` searches the specified sub string in the target string
+Method `string#find()` searches the specified sub string in the target string
 and returns the found position starting from zero. If not found, it returns `nil`.
 
     str = 'The quick brown fox jumps over the lazy dog'
     str.find('fox')  // returns 16
     str.find('cat')  // returns nil
 
-A method `string#replace()` replaces the sub string with the specified one.
+Method `string#replace()` replaces the sub string with the specified one.
 
     str = 'The quick brown fox jumps over the lazy dog'
     str.replace('fox', 'cat') // returns 'The quick brown cat jumps over the lazy dog'
 
-A method `string#startswith()` returns `ture` if the string starts with the specified sub string,
+Method `string#startswith()` returns `ture` if the string starts with the specified sub string,
 and returns `false` otherwise.
-A method `string#endswith()` checks if the string ends with the specified sub string.
+Method `string#endswith()` checks if the string ends with the specified sub string.
 
     str = 'abcdefghijklmnopqrstuvwxyz'
     str.startswith('abcde') // returns true
@@ -251,20 +251,20 @@ If the sub string doesn't match, they would return `nil`.
 You can use format specifiers in some functions that are similar to what are realized in C language's `printf`
 to convert objects like numbers into readable strings.
 
-A function `printf()` takes a string containing format specifiers
+Function `printf()` takes a string containing format specifiers
 and values you want to print in its argument list
 and put the result out to `sys.stdout` stream.
 
     printf('x = %d, y = %d\n', x, y)
 
-A method `stream#printf()` has the same argument declaration with `printf()`
+Method `stream#printf()` has the same argument declaration with `printf()`
 and puts the result to the target stream capable of writing
 instead of `sys.stdout` stream.
 
     open('foo.txt', 'w').printf('x = %d, y = %d\n', x, y)
 
 
-A function `format()` takes arguments in the same way as `printf()`
+Function `format()` takes arguments in the same way as `printf()`
 but it returns the result as a `string` instance.
 
     str = format('x = %d, y = %d\n', x, y)
@@ -340,15 +340,44 @@ The optional field `precision` has different meanings depending on the specifier
 
 ## {{ page.chapter }}.4. Regular Expression
 
-module `re`
+Importing module `re` would equip `string` class with methods that can handle regular expressions.
+See the sample code below:
 
-`string#match()`
+    import(re)
+    
+    str = '12:34:56'
+    
+    m = str.match(r'(\d\d):(\d\d):(\d\d)')
+    if (m) {
+        printf('hour=%s, min=%s, sec=%s\n', m[1], m[2], m[3])
+    } else {
+        println('not match')
+    }
 
-`string#scan()`
+Method `string#match()` that is provided by `re` module takes a regular expression pattern.
+It would return `re.match` instance if the pattern matches, and return `nil` otherwise.
+As regular expressions often contain back slash as a meta character,
+it would be convenient to use an expression `r'...'` for a pattern string
+that avoids recognizing a backslash as an escaping character.
 
-`string#splitreg()`
+
+re.pattern
+
+    pat = str.pattern(r'(\d\d):(\d\d):(\d\d)')
+    m = str.match(pat)
+
+
+group name
+
+    m = str.match(r'(?<hour>\d\d):(?<min>\d\d):(?<sec>\d\d)')
+
+
 
 `string#sub()`
+
+`string#scan()`
+`string#splitreg()`
+
 
 `re.match` class
 

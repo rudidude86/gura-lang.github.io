@@ -19,11 +19,13 @@ chapter: 13
 
 `0..`
 
-`rands(10)`
+`iterator.rands(10)`
 
-`rands()`
+`iterator.rands()`
 
 `readlines()`'s infinity depends on the source stream
+
+`iterator#isinfinite()`
 
 
 ## {{ page.chapter }}.3. Conversion between Iterator and List
@@ -45,6 +47,9 @@ iterator to list: `[` &hellip `]`
 `list#last()`
 
 `list#get()`
+
+
+`iterator#next()`
 
 
 ## {{ page.chapter }}.5. Operation Methods
@@ -130,6 +135,15 @@ element manipulation:
 
 
 ## {{ page.chapter }}.6. Iterator Generation
+
+`iterator.range()`
+
+`iterator.interval()`
+
+`iterator.consts()`
+
+`iterator.rands()`
+
 
 `list#combination()`
 

@@ -53,12 +53,11 @@ These have the same effect with index accesses by numbers 0 and -1 respectively.
     tbl.first()     // returns 'zero'
     tbl.last()      // returns 'seven'
 
+You can use method `list#get()` for index access,
+which would be useful when used with Member Mapping.
 
-`list#each()`, `iterator#each()`
-
-
-
-`list#get()`
+    tbl = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    tbl::get(0)     // returns [1, 4, 7]
 
 
 ## {{ page.chapter }}.3. Iterator-specific Manipulation
@@ -86,12 +85,13 @@ Finite Iterator vs. Infinite Iterator
 
 list to iterator: `list#each()`
 
-iterator to list: `[` &hellip `]`
+iterator to list: `[` &hellip; `]`
 
 
 
 ## {{ page.chapter }}.5. Operation Methods
 
+`list#each()`, `iterator#each()`
 
 inspecting and reducing method:
 

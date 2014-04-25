@@ -11,7 +11,7 @@ chapter: 12
 
 A string is a sequence of character codes in UTF-8 format
 and is represented by `string` class that has a variety of operations on strings.
-Among them, there's no operation that has side effects on `string` instance,
+Among them, there's no destructive operation that has side effects on a target `string` instance,
 which leads to the following rules.
 
 * It's not allowed to edit each character in a string content through index access.

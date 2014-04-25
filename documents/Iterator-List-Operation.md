@@ -19,9 +19,11 @@ chapter: 13
 
 `0..`
 
-`rands()`
+`rands(10)`
 
 `rands()`
+
+`readlines()`'s infinity depends on the source stream
 
 
 ## {{ page.chapter }}.3. Conversion between Iterator and List

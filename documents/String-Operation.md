@@ -10,15 +10,18 @@ chapter: 12
 ## {{ page.chapter }}.1. Overview
 
 A string is a sequence of character codes in UTF-8 format
-and is represented by `string` class that has a variety of operations on strings.
-Among them, there's no destructive operation that has side effects on a target `string` instance,
-which leads to the following rules.
+and is represented by `string` class that has a variety of methods on such data.
+
+Class `string` is a primitive one
+that means there's no operation that could modify the content of `string` instances.
+This leads to the following rules.
 
 * It's not allowed to edit each character in a string content through index access.
 * Modification methods are supposed to return a new `string` instance with modified result.
 
 The interpreter itself provides fundamental operations for strings.
-Importing module named `re` expand the capability so that it can process regular expressions.
+Importing module named `re` expand the capability so that it can process string data
+using regular expressions.
 
 
 ## {{ page.chapter }}.2. Basic Operation
@@ -37,7 +40,7 @@ Multiple numbers for indexing can also be specified to get a list of sub strings
     str[0]            // returns 'a'
     str[6, 20, 17, 0] // returns ['g', 'u', 'r', 'a']
 
-You can also specify iterators to get a list of sub strings.
+You can also specify iterators and lists to get a list of sub strings.
 Numbers and iterators can be mixed together as indexing items.
 
     str = 'The quick brown fox jumps over the lazy dog'
@@ -49,6 +52,14 @@ you would get sub strings within an available range.
 
     str = 'The quick brown fox jumps over the lazy dog'
     str[35..]       // returns ['l', 'a', 'z', 'y', ' ', 'd', 'o', 'g']
+
+An index with a negative number points the position from the bottom,
+where `-1` is the last position.
+
+    str = 'The quick brown fox jumps over the lazy dog'
+    str[-3]         // returns 'd'
+    str[-2]         // returns 'o'
+    str[-1]         // returns 'g'
 
 Function `chr()` returns a string that contains a character of the given UTF-8 character code.
 

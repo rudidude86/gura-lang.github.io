@@ -11,9 +11,59 @@ chapter: 13
 
 `list`
 
-`iterator`
+Using `iterator`, you can realize what other languages call "infinite list."
 
-## {{ page.chapter }}.2. Finite Iterator vs. Infinite Iterator
+
+### {{ page.chapter }}.2. List-specific Manipulation
+
+You can specify an index number starting from zero embraced by a pair of square brackets
+to retrieve an element at the specified position.
+Multiple numbers for indexing can also be specified to get a list of elements.
+
+    tbl = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven']
+    tbl[2]        // returns 'two'
+    tbl[4]        // returns 'four'
+    tbl[1, 3, 5]  // returns ['one', 'three', 'five']
+
+You can also specify iterators and lists to get a list of elements.
+Numbers and iterators can be mixed together as indexing items.
+
+    tbl = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven']
+    tbl[2..4]        // returns ['two', 'three', 'four']
+    tbl[1..3, 5..7]  // returns ['one', 'two', 'three', 'five', 'six', 'seven']
+
+If you specify an infinite iterator as an indexing item,
+you would get elements within an available range.
+
+    tbl = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven']
+    tbl[5..]        // returns ['five', 'six', 'seven']
+
+An index with a negative number points the position from the bottom,
+where `-1` is the last position.
+
+    tbl = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven']
+    tbl[-1]         // returns 'seven'
+    tbl[-2]         // returns 'six'
+
+Method `list#first()` returns the first item in the list
+and method `list#last()` the last item.
+These have the same effect with index accesses by numbers 0 and -1 respectively.
+
+    tbl = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven']
+    tbl.first()     // returns 'zero'
+    tbl.last()      // returns 'seven'
+
+
+`list#each()`, `iterator#each()`
+
+
+
+`list#get()`
+
+
+## {{ page.chapter }}.3. Iterator-specific Manipulation
+
+Finite Iterator vs. Infinite Iterator
 
 `0..5`
 
@@ -27,8 +77,10 @@ chapter: 13
 
 `iterator#isinfinite()`
 
+`iterator#next()`
 
-## {{ page.chapter }}.3. Conversion between Iterator and List
+
+## {{ page.chapter }}.4. Conversion between Iterator and List
 
 `:list` attribute
 
@@ -36,20 +88,6 @@ list to iterator: `list#each()`
 
 iterator to list: `[` &hellip `]`
 
-
-## {{ page.chapter }}.4. Element Look-up
-
-
-`list#each()`, `iterator#each()`
-
-`list#first()`
-
-`list#last()`
-
-`list#get()`
-
-
-`iterator#next()`
 
 
 ## {{ page.chapter }}.5. Operation Methods

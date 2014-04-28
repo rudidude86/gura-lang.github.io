@@ -13,14 +13,15 @@ An iterator and a list are quite similar in terms of
 handling multiple values in a flat structure.
 In fact, many of their methods share the same names and functions each other.
 
-The difference is that a list is a container that actually owns its elements
-while an iterator is not. This leads to the following principles:
+The difference is that a list is a container that actually owns its element values
+while an iterator is not. An iterator only provides a method that retrieves a "next" value of a sequence.
+This feature leads to the following principles:
 
 * An iterator can handle a sequence of data that continues indefinitely
-  since it doesn't need to keep all the values in it.
-* An iterator consumes less memory than a list.
+  because it doesn't need to keep all the values in it.
+* An iterator consumes less memory than a list in many cases.
 * A list provides an indexing method that enables random access for its elements.
-* You can append values to or remove values from a list.
+* A list provides methods to append or remove values.
 
 Note that Gura makes it a rule to implement most functions to return an iterator by default
 if they have multiple values as its result.
@@ -28,35 +29,45 @@ Even with such functions, you can easily get a list as their result
 by calling it with `:list` attribute.
 
 
-## {{ page.chapter }}.2. Iterator-specific Manipulation
+## {{ page.chapter }}.2. Implicit Mapping and Member Mapping
 
-### {{ page.chapter }}.2.1. Finite Iterator vs. Infinite Iterator
+As you've already seen before,
+iterators and lists can work with functions, methods and operators through Implicit Mapping.
 
-Iterators that have a specific numer of elements are called Finite Iterator.
-An iterator `0..5` is a representative one as you can know in advance that it would generate 6 elements.
+
+## {{ page.chapter }}.3. Iterator-specific Manipulation
+
+### {{ page.chapter }}.3.1. Finite Iterator vs. Infinite Iterator
+
+Iterators that generates a limited numer of elements are called Finite Iterator.
+An iterator `0..5` is a representative one that you can know in advance would generate 6 elements.
 It's possible that you convert a Finite Iterator into a list.
 
-Iterator that generate elements indefinitely
-or couldn't determine their finish point are called Infinite Iterator.
-Among them, there's an iterator `0..` that generates numbers starting from 0 and increases for ever.
+Iterators that generate elements indefinitely
+or couldn't predict when elements drain out are called Infinite Iterator.
+Among them, there's an iterator `0..` that generates numbers starting from 0 and increasing for ever.
 It would occur an error if you try to convert Infinite Iterator into a list.
 
-You can use method `iterator#isinfinite()` to check if an iterator is Infinite Iterator or not.
+You can use method `iterator#isinfinite()` to check if an iterator is an infinite one or not.
 
 Function `readlines()`'s infinity depends on the source stream.
 
+`iterator#each()`
 
-iterator to list: `[` &hellip; `]`
+### {{ page.chapter }}.3.2. Operation on Elements
 
-
-### {{ page.chapter }}.2.2. 
 
 `iterator#next()`
 
+iterator to list: `[x]`, `x.each():list`
 
-## {{ page.chapter }}.3. List-specific Manipulation
+    x.each {|i|
+        
+    }
 
-### {{ page.chapter }}.3.1. Random Access in List
+## {{ page.chapter }}.4. List-specific Manipulation
+
+### {{ page.chapter }}.4.1. Random Access in List
 
 You can specify an index number starting from zero embraced by a pair of square brackets
 to retrieve an element at the specified position.
@@ -102,7 +113,10 @@ which would be useful when used with Member Mapping.
     tbl::get(0)     // returns [1, 4, 7]
 
 
-### {{ page.chapter }}.3.2. Element Modification
+list to iterator: `list#each()`
+
+
+### {{ page.chapter }}.4.2. Element Modification
 
 `list#add()`
 
@@ -115,18 +129,7 @@ which would be useful when used with Member Mapping.
 `list#shift()`
 
 
-## {{ page.chapter }}.4. Conversion between Iterator and List
-
-`:list` attribute
-
-list to iterator: `list#each()`
-
-
-
-
 ## {{ page.chapter }}.5. Operation Methods
-
-`list#each()`, `iterator#each()`
 
 ### {{ page.chapter }}.5.1. Inspecting and Reducing
 

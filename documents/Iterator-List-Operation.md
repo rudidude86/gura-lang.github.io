@@ -73,9 +73,17 @@ It would occur an error if you try to convert Infinite Iterator into a list.
 
 You can use method `iterator#isinfinite()` to check if an iterator is an infinite one or not.
 
-Function `readlines()`'s infinity depends on the source stream.
+Some functions may possibly create Finite or Infinite Iterator depending on their arguments.
+Function `rands()` specify how many random values it should generate with its second argument,
+and it would generate values without end if the argument is omitted.
 
-`iterator#each()`
+    rands(100)     // Infinite Iterator
+    rands(100, 80) // Finite Iterator expected to generate 80 elements
+
+Infinity of the result of function `readlines()` depends on the status of the source stream:
+it would be an Infinite Iterator if the stream is infinite
+while it would be a Finite Iterator for a finite stream.
+
 
 ### {{ page.chapter }}.3.2. Operation on Elements
 

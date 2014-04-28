@@ -14,7 +14,7 @@ and is represented by `string` class that has a variety of methods on such data.
 
 Class `string` is a primitive one
 that means there's no operation that could modify the content of `string` instances.
-This leads to the following rules.
+This leads to the following principles:
 
 * It's not allowed to edit each character in a string content through index access.
 * Modification methods are supposed to return a new `string` instance with modified result.

@@ -1,7 +1,7 @@
 ---
 layout: page
 lang: en
-title: Iterator/List Operation
+title: List/Iterator Operation
 chapter: 13
 ---
 
@@ -9,12 +9,28 @@ chapter: 13
 
 ## {{ page.chapter }}.1. Overview
 
-`list`
+A list and an iterator are quite similar in terms of
+handling multiple values in a flat structure.
+In fact, many of their methods share the same names and functions each other.
 
-Using `iterator`, you can realize what other languages call "infinite list."
+The difference is that a list is a container that actually owns its elements
+while an iterator is not. This leads to the following principles:
+
+* A list provides an indexing method that enables random access for its elements.
+* You can append values to or remove values from a list.
+* An iterator can handle a sequence of data that continues indefinitely
+  since it doesn't need to keep all the values in it.
+* An iterator consumes less memory than a list.
+
+Note that Gura makes it a rule to implement most functions to return an iterator by default
+if they have multiple values as its result.
+Even with such functions, you can easily get a list as their result
+by calling it with `:list` attribute.
 
 
 ### {{ page.chapter }}.2. List-specific Manipulation
+
+### {{ page.chapter }}.2.1. Random Access in List
 
 You can specify an index number starting from zero embraced by a pair of square brackets
 to retrieve an element at the specified position.
@@ -60,9 +76,12 @@ which would be useful when used with Member Mapping.
     tbl::get(0)     // returns [1, 4, 7]
 
 
+### {{ page.chapter }}.2.2. Element Modification
+
+
 ## {{ page.chapter }}.3. Iterator-specific Manipulation
 
-Finite Iterator vs. Infinite Iterator
+## {{ page.chapter }}.3.1. Finite Iterator vs. Infinite Iterator
 
 `0..5`
 
@@ -77,6 +96,8 @@ Finite Iterator vs. Infinite Iterator
 `iterator#isinfinite()`
 
 `iterator#next()`
+
+## {{ page.chapter }}.3.2. 
 
 
 ## {{ page.chapter }}.4. Conversion between Iterator and List

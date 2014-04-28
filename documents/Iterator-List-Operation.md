@@ -78,7 +78,7 @@ Function `rands()` specify how many random values it should generate with its se
 and it would generate values without end if the argument is omitted.
 
     rands(100)     // Infinite Iterator
-    rands(100, 80) // Finite Iterator expected to generate 80 elements
+    rands(100, 80) // Finite Iterator that is expected to generate 80 elements
 
 Infinity of the result of function `readlines()` depends on the status of the source stream:
 it would be an Infinite Iterator if the stream is infinite

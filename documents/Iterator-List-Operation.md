@@ -30,27 +30,31 @@ by calling it with `:list` attribute.
 
 ## {{ page.chapter }}.2. Iterator-specific Manipulation
 
-## {{ page.chapter }}.2.1. Finite Iterator vs. Infinite Iterator
+### {{ page.chapter }}.2.1. Finite Iterator vs. Infinite Iterator
 
-`0..5`
+Iterators that have a specific numer of elements are called Finite Iterator.
+An iterator `0..5` is a representative one as you can know in advance that it would generate 6 elements.
+It's possible that you convert a Finite Iterator into a list.
 
-`0..`
+Iterator that generate elements indefinitely
+or couldn't determine their finish point are called Infinite Iterator.
+Among them, there's an iterator `0..` that generates numbers starting from 0 and increases for ever.
+It would occur an error if you try to convert Infinite Iterator into a list.
 
-`iterator.rands(10)`
+You can use method `iterator#isinfinite()` to check if an iterator is Infinite Iterator or not.
 
-`iterator.rands()`
+Function `readlines()`'s infinity depends on the source stream.
 
-`readlines()`'s infinity depends on the source stream
 
-`iterator#isinfinite()`
+iterator to list: `[` &hellip; `]`
+
+
+### {{ page.chapter }}.2.2. 
 
 `iterator#next()`
 
-## {{ page.chapter }}.2.2. 
 
-
-
-### {{ page.chapter }}.3. List-specific Manipulation
+## {{ page.chapter }}.3. List-specific Manipulation
 
 ### {{ page.chapter }}.3.1. Random Access in List
 
@@ -100,6 +104,15 @@ which would be useful when used with Member Mapping.
 
 ### {{ page.chapter }}.3.2. Element Modification
 
+`list#add()`
+
+`list#append()`
+
+`list#clear()`
+
+`list#erase()`
+
+`list#shift()`
 
 
 ## {{ page.chapter }}.4. Conversion between Iterator and List
@@ -108,7 +121,6 @@ which would be useful when used with Member Mapping.
 
 list to iterator: `list#each()`
 
-iterator to list: `[` &hellip; `]`
 
 
 
@@ -116,7 +128,7 @@ iterator to list: `[` &hellip; `]`
 
 `list#each()`, `iterator#each()`
 
-inspecting and reducing method:
+### {{ page.chapter }}.5.1. Inspecting and Reducing
 
 `list#isempty()`
 
@@ -148,7 +160,8 @@ inspecting and reducing method:
 
 `list#variance()`, `iterator#variance()`
 
-mapping method:
+
+### {{ page.chapter }}.5.2. Mapping Method
 
 `list#map()`, `iterator#map()`
 
@@ -159,8 +172,7 @@ mapping method:
 `list#replace()`, `iterator#replace()`
 
 
-element manipulation:
-
+### {{ page.chapter }}.5.3. Element Manipulation
 
 `list#align()`, `iterator#align()`
 
@@ -219,17 +231,6 @@ list generation
 
 `list#flat()`
 
-destructive methods:
-
-`list#add()`
-
-`list#append()`
-
-`list#clear()`
-
-`list#erase()`
-
-`list#shift()`
 
 
 

@@ -14,7 +14,8 @@ handling multiple values in a flat structure.
 In fact, many of their methods share the same names and functions each other.
 
 The difference is that a list is a container that actually owns its element values
-while an iterator is not. An iterator only provides a method that retrieves a "next" value of a sequence.
+while an iterator only provides a method that retrieves a "next" value of a sequence
+and doesn't necessarily have to own values.
 This feature leads to the following principles:
 
 * An iterator can handle a sequence of data that continues indefinitely
@@ -29,10 +30,32 @@ Even with such functions, you can easily get a list as their result
 by calling it with `:list` attribute.
 
 
-## {{ page.chapter }}.2. Implicit Mapping and Member Mapping
+## {{ page.chapter }}.2. Iteration on Iterators and Lists
 
-As you've already seen before,
+There are several ways to iterate elements in an iterator or a list.
+
+As you've already seen a previous chapter,
 iterators and lists can work with functions, methods and operators through Implicit Mapping.
+For example, you can call `println()` function with iterators and lists
+that causes a repetitive evaluation of the function.
+
+    x = ['one', 'two', 'three']
+    println(x)
+
+Using `for()` function, you can iterate a list or an iterator
+in a way that you may have been familiar with in other languages.
+
+    x = ['one', 'two', 'three']
+    for (i in x) {
+        println(i)
+    }
+
+Or, you can also use `iterator#each()` or `list#each()` method to iterate elements on them.
+
+    x = ['one', 'two', 'three']
+    x.each {|i|
+        println(i)
+    }
 
 
 ## {{ page.chapter }}.3. Iterator-specific Manipulation

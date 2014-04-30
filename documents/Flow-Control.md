@@ -212,7 +212,7 @@ that comes from an evaluation of the last expression in the block procedure.
 In default, among result values that have been generated from each loop,
 only the last one becomes the final result.
 
-    x = repat (10) {|i|
+    x = repeat (10) {|i|
         // any process
         i * 10
     }
@@ -221,7 +221,7 @@ only the last one becomes the final result.
 When you call a repeat function with `:list` attribute,
 it will return a list that contains result values in the loop.
 
-    x = repat (10):list {|i|
+    x = repeat (10):list {|i|
         // any process
         i * 10
     }

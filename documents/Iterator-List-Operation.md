@@ -33,29 +33,59 @@ by calling it with `:list` attribute.
 ## {{ page.chapter }}.2. Iteration on Iterators and Lists
 
 There are several ways to iterate elements in an iterator or a list.
+In this section, consider a task to print elements in the list shown below:
+
+    words = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']
 
 As you've already seen a previous chapter,
 iterators and lists can work with functions, methods and operators through Implicit Mapping.
-For example, you can call `println()` function with iterators and lists
+You can simply call `println()` function with iterators and lists
 that causes a repetitive evaluation of the function.
 
-    x = ['one', 'two', 'three']
-    println(x)
+    println(words)
 
 Using `for()` function, you can iterate a list or an iterator
 in a way that you may have been familiar with in other languages.
 
-    x = ['one', 'two', 'three']
-    for (i in x) {
-        println(i)
+    for (word in words) {
+        println(word)
     }
 
-Or, you can also use `iterator#each()` or `list#each()` method to iterate elements on them.
+You can get a loop index starting from zero by specifying a block parameter.
 
-    x = ['one', 'two', 'three']
-    x.each {|i|
-        println(i)
+    for (word in words) {|i|
+        printf('%d: %s\n', i, word)
     }
+
+Other than `for()` function,
+you can also use `iterator#each()` or `list#each()` method to iterate elements on them.
+
+    words.each {|word|
+        println(word)
+    }
+
+In this case, the block parameter contains an iterated element as its first value.
+It provides a loop index as the second value as below.
+
+    words.each {|word, i|
+        printf('%d: %s\n', i, word)
+    }
+
+Most of functions and methods that return an iterator as their result
+are designed to iterate elements when it takes a block.
+Consider methods `iterator#filter()` and `list#filter()` that picks up elements
+that match a criteria specified in the argument.
+Following is a code that prints words beginning with 't'.
+
+    words.filter(&{$word.startswith('t')}) {|word, i|
+        printf('%d: %s\n', i, word)
+    }
+
+The result is:
+
+    0: two
+    1: three
+    2: ten
 
 
 ## {{ page.chapter }}.3. Iterator-specific Manipulation
@@ -83,6 +113,11 @@ and it would generate values without end if the argument is omitted.
 Infinity of the result of function `readlines()` depends on the status of the source stream:
 it would be an Infinite Iterator if the stream is infinite
 while it would be a Finite Iterator for a finite stream.
+
+
+
+inheritance of infinity
+
 
 
 ### {{ page.chapter }}.3.2. Operation on Elements

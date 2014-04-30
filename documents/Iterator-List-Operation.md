@@ -39,16 +39,22 @@ In this section, consider a task to print elements in the list shown below:
 
 As you've already seen a previous chapter,
 iterators and lists can work with functions, methods and operators through Implicit Mapping.
-You can simply call `println()` function with iterators and lists
+You can simply call `printf()` function with iterators or lists
 that causes a repetitive evaluation of the function.
 
-    println(words)
+    printf('%s\n', words)
+
+Since Implicit Mapping would iterate each element if a function takes more than one iterables,
+you can specify an iterator that generates numbers starting from zero
+to print indexing numbers along with the words.
+
+    printf('%d: %s\n', 0.., words)
 
 Using `for()` function, you can iterate a list or an iterator
 in a way that you may have been familiar with in other languages.
 
     for (word in words) {
-        println(word)
+        printf('%s\n', word)
     }
 
 You can get a loop index starting from zero by specifying a block parameter.
@@ -61,7 +67,7 @@ Other than `for()` function,
 you can also use `iterator#each()` or `list#each()` method to iterate elements on them.
 
     words.each {|word|
-        println(word)
+        printf('%s\n', word)
     }
 
 In this case, the block parameter contains an iterated element as its first value.
@@ -71,17 +77,17 @@ It provides a loop index as the second value as below.
         printf('%d: %s\n', i, word)
     }
 
-Most of functions and methods that return an iterator as their result
-are designed to iterate elements when it takes a block.
-Consider methods `iterator#filter()` and `list#filter()` that picks up elements
-that match a criteria specified in the argument.
+Most functions and methods that return an iterator as their result
+are designed to iterate elements when they take a block.
+Consider methods `iterator#filter()` and `list#filter()`,
+which returns an iterator that pick up elements satisfying a criteria specified in the argument.
 Following is a code that prints words beginning with 't'.
 
     words.filter(&{$word.startswith('t')}) {|word, i|
         printf('%d: %s\n', i, word)
     }
 
-The result is:
+The result comes as below:
 
     0: two
     1: three
@@ -92,7 +98,7 @@ The result is:
 
 ### {{ page.chapter }}.3.1. Finite Iterator vs. Infinite Iterator
 
-Iterators that generates a limited numer of elements are called Finite Iterator.
+Iterators that generate a limited numer of elements are called Finite Iterator.
 An iterator `0..5` is a representative one that you can know in advance would generate 6 elements.
 It's possible that you convert a Finite Iterator into a list.
 
@@ -103,21 +109,35 @@ It would occur an error if you try to convert Infinite Iterator into a list.
 
 You can use method `iterator#isinfinite()` to check if an iterator is an infinite one or not.
 
+    (0..5).isinfinite()  // returns false
+    (0..).isinfinite()   // returns true
+
 Some functions may possibly create Finite or Infinite Iterator depending on their arguments.
 Function `rands()` specify how many random values it should generate with its second argument,
 and it would generate values without end if the argument is omitted.
 
-    rands(100)     // Infinite Iterator
-    rands(100, 80) // Finite Iterator that is expected to generate 80 elements
+    rands(100)     // returns an Infinite Iterator
+    rands(100, 80) // returns a Finite Iterator that is expected to generate 80 elements
 
 Infinity of the result of function `readlines()` depends on the status of the source stream:
 it would be an Infinite Iterator if the stream is infinite
 while it would be a Finite Iterator for a finite stream.
 
+An iterator's infinity may be derived from one to another.
+This happens with iterators that are designed to manipulate values
+after retrieving them from other source iterator.
+For example, method `iterator#filter()` returns an iterator that picks up elements
+from values in the target iterator. In the following code, `y` is a Finite Iterator
+that generates numbers 0, 2, 4, 6, 8 and 10.
 
+    x = 0..10
+    y = x.filter(&{$n % 2 == 0})
 
-inheritance of infinity
+If the source iterator is infinite, the result iterator will be infinite too.
+In the code below, `y` is an Infinite Iterator that generates even numbers indefinitely.
 
+    x = 0..
+    y = x.filter(&{$n % 2 == 0})
 
 
 ### {{ page.chapter }}.3.2. Operation on Elements

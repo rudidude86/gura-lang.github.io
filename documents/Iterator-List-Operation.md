@@ -229,36 +229,41 @@ which would be useful when used with Member Mapping.
 
 An assignment to elements in a list through indexing access is also available.
 
+If an indexing item is a single number, the element at the specified position will be modified.
+
     tbl = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven']
     tbl[2] = '2'
     tbl[4] = '4'
     // tbl is ['zero', 'one', '2', 'three', '4', 'five', 'six', 'seven']
 
-assigned value is list
+Multiple numbers can also be specified for indexing.
+In this case, if the assigned value is an iterable,
+each element in the iterable will be stored at the specified positions in the target list.
 
     tbl = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven']
     tbl[1, 3, 5] = ['1', '3', '5']
     // tbl is ['zero', '1', 'two', '3', 'four', '5', 'six', 'seven']
 
-assigned value is scholar
+If the assigned value is a scholar, the same value is stored at the positions.
 
     tbl = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven']
     tbl[1, 3, 5] = '1'
     // tbl is ['zero', '1', 'two', '1', 'four', '1', 'six', 'seven']
 
-iterator
+You can also specify an iterator as indexing item.
 
     tbl = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven']
     tbl[1..3, 5..7] = ['1', '2', '3', '5', '6', '7']
     // tbl is ['zero', '1', '2', '3', 'four', '5', '6', '7']
 
-infinite iterator
+When you specify an Infinite Iterator for an indexing item,
+all the elements in the assigned iterable are stored at the specified position.
 
     tbl = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven']
     tbl[5..] = ['5', '6']
     // tbl is ['zero', 'one', 'two', 'three', 'four', '5', '6', 'seven']
 
-An index with a negative number
+Negative number can also be specified for indexing.
 
     tbl = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven']
     tbl[-1] = '7'

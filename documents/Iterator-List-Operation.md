@@ -32,56 +32,62 @@ by calling it with `:list` attribute.
 
 ## {{ page.chapter }}.2. Iteration on Iterators and Lists
 
-There are several ways to iterate elements in an iterator or a list.
 In this section, consider a task to print elements in the list shown below:
 
     words = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']
 
-As you've already seen a previous chapter,
-iterators and lists can work with functions, methods and operators through Implicit Mapping.
-You can simply call `printf()` function with iterators or lists
-that causes a repetitive evaluation of the function.
+There are several ways to iterate elements in an iterator or a list.
 
-    printf('%s\n', words)
+* As you've already seen a previous chapter,
+  iterators and lists can work with functions, methods and operators through Implicit Mapping.
+  You can simply call `printf()` function with iterators or lists
+  that causes a repetitive evaluation of the function.
 
-Since Implicit Mapping would iterate each element if a function takes more than one iterables,
-you can specify an iterator that generates numbers starting from zero
-to print indexing numbers along with the words.
+        printf('%s\n', words)
 
-    printf('%d: %s\n', 0.., words)
+  Since a function with Implicit Mapping is capable of iterating multiple iterables when they are provided as its arguments,
+  you can specify an iterator that generates numbers starting from zero
+  to print indexing numbers along with the list of words.
 
-Using `for()` function, you can iterate a list or an iterator
-in a way that you may have been familiar with in other languages.
+        printf('%d: %s\n', 0.., words)
 
-    for (word in words) {
-        printf('%s\n', word)
-    }
+* Using `for()` function, you can iterate a list or an iterator
+  in a way that you may have been familiar with in other languages.
 
-You can get a loop index starting from zero by specifying a block parameter.
+        for (word in words) {
+            printf('%s\n', word)
+        }
 
-    for (word in words) {|i|
-        printf('%d: %s\n', i, word)
-    }
+  You can get a loop index starting from zero by specifying a block parameter.
 
-Other than `for()` function,
-you can also use `iterator#each()` or `list#each()` method to iterate elements on them.
+        for (word in words) {|i|
+            printf('%d: %s\n', i, word)
+        }
 
-    words.each {|word|
-        printf('%s\n', word)
-    }
+* You can also use `iterator#each()` or `list#each()` method to iterate elements on them.
 
-In this case, the block parameter contains an iterated element as its first value.
-It provides a loop index as the second value as below.
+        words.each {|word|
+            printf('%s\n', word)
+        }
 
-    words.each {|word, i|
-        printf('%d: %s\n', i, word)
-    }
+  In this case, the block parameter contains an iterated element as its first value.
+  It provides a loop index as the second value as below.
+
+        words.each {|word, i|
+            printf('%d: %s\n', i, word)
+        }
 
 Most functions and methods that return an iterator as their result
 are designed to iterate elements when they take a block.
+
 Consider methods `iterator#filter()` and `list#filter()`,
 which returns an iterator that pick up elements satisfying a criteria specified in the argument.
-Following is a code that prints words beginning with 't'.
+
+    x = words.filter(&{$word.startswith('t')})
+    // x is an iterator that generates 'two', 'three' and 'ten'
+
+Specifying a block with the method would repetitively evaluate it
+while iterating elements of the result.
 
     words.filter(&{$word.startswith('t')}) {|word, i|
         printf('%d: %s\n', i, word)
@@ -96,10 +102,11 @@ The result comes as below:
 
 ## {{ page.chapter }}.3. Iterator-specific Manipulation
 
+
 ### {{ page.chapter }}.3.1. Finite Iterator vs. Infinite Iterator
 
 Iterators that generate a limited numer of elements are called Finite Iterator.
-An iterator `0..5` is a representative one that you can know in advance would generate 6 elements.
+An iterator `0..5` is a representative one that is definitely expected to generate 6 elements.
 It's possible that you convert a Finite Iterator into a list.
 
 Iterators that generate elements indefinitely
@@ -112,14 +119,14 @@ You can use method `iterator#isinfinite()` to check if an iterator is an infinit
     (0..5).isinfinite()  // returns false
     (0..).isinfinite()   // returns true
 
-Some functions may possibly create Finite or Infinite Iterator depending on their arguments.
-Function `rands()` specify how many random values it should generate with its second argument,
-and it would generate values without end if the argument is omitted.
+Some functions may possibly create either Finite or Infinite Iterator depending on their arguments.
+The second argument in function `rands()` specify how many random values it should generate,
+and, if omitted, the function would generate values without end.
 
     rands(100)     // returns an Infinite Iterator
     rands(100, 80) // returns a Finite Iterator that is expected to generate 80 elements
 
-Infinity of the result of function `readlines()` depends on the status of the source stream:
+Infinity of the result of function `readlines()` depends on the attribute of the source stream:
 it would be an Infinite Iterator if the stream is infinite
 while it would be a Finite Iterator for a finite stream.
 
@@ -140,16 +147,35 @@ In the code below, `y` is an Infinite Iterator that generates even numbers indef
     y = x.filter(&{$n % 2 == 0})
 
 
-### {{ page.chapter }}.3.2. Operation on Elements
+### {{ page.chapter }}.3.2. Conversion into List
+
+Embracing iterators with a pair of square brackets would make a list from them.
+
+    [0..5]               // creates [0, 1, 2, 3, 4, 5]
+
+You can specify any numbers of iterators in it as below.
+
+    [0..2, 5..7, 8..10]  // creates [0, 1, 2, 5, 6, 7, 8, 9, 10]
+
+It would occur an error if you try to create a list from Infinite Iterators.
+
+    [0..]                // error!
+
+Another way to create a list from an iterator is to use `iterator#each()` method with `:list` attribute.
+
+    x = 0..5
+    x.each():list        // returns [0, 1, 2, 3, 4, 5]
 
 
-`iterator#next()`
+### {{ page.chapter }}.3.3. Operation on Elements
 
-iterator to list: `[x]`, `x.each():list`
+You can retrieve elements from an iterator by using method `iterator#next()`.
 
-    x.each {|i|
-        
-    }
+    x = 0..5
+    x.next()   // returns 0
+    x.next()   // returns 1
+    x.next()   // returns 2
+
 
 ## {{ page.chapter }}.4. List-specific Manipulation
 
@@ -199,27 +225,64 @@ which would be useful when used with Member Mapping.
     tbl::get(0)     // returns [1, 4, 7]
 
 
-list to iterator: `list#each()`
+### {{ page.chapter }}.4.2. Conversion into Iterator
+
+Method `list#each()` returns an iterator that generates values based on the list's elements.
+
+    tbl = ['one', 'two', 'three', 'four']
+    x = tbl.each()
+    // x is an iterator that generates 'one', 'two', 'three' and 'four'.
 
 
-### {{ page.chapter }}.4.2. Element Modification
+### {{ page.chapter }}.4.3. Operation on Elements
 
-`list#add()`
+Method `list#isempty()` will check if a list is empty or not.
 
-`list#append()`
+    tbl = []
+    tbl.isempty()    // returns true
 
-`list#clear()`
+Both of methods `list#add()` and `list#append()` will add values to the target list.
+They have the same behavior when they try to add a scholar value.
+Below is a sample of `list#add()`:
 
-`list#erase()`
+    tbl = ['one', 'two', 'three']
+    tbl.add('four')
+    // tbl is ['one', 'two', 'three', 'four']
 
-`list#shift()`
+And a sample of `list#append()` is shown below:
+
+    tbl = ['one', 'two', 'three']
+    tbl.append('four')
+    // tbl is ['one', 'two', 'three', 'four']
+
+They have different results when they're given with a list as an element to add.
+Method `list#add()` adds the list itself to the target list as one of its elements.
+
+    tbl = ['one', 'two', 'three']
+    tbl.add(['four', 'five', 'six'])
+    // tbl is ['one', 'two', 'three', ['four', 'five', 'six']]
+
+Method `list#append()` adds each of the list's element to the target list.
+
+    tbl = ['one', 'two', 'three']
+    tbl.append(['four', 'five', 'six'])
+    // tbl is ['one', 'two', 'three', 'four', 'five', 'six']
+
+Method `list#clear()` will create all the contet of the target list.
+
+Method `list#erase()` will erase elements at positions specified by its arguments.
+
+Method `list#shift()` erase the first element before it returns the value.
+
+    tbl = ['one', 'two', 'three']
+    x = tbl.shift()  // returns 'one'
+    // tbl is ['two', 'three']
 
 
-## {{ page.chapter }}.5. Operation Methods
+## {{ page.chapter }}.5. Common Manipulation for Iterator and List
 
 ### {{ page.chapter }}.5.1. Inspecting and Reducing
 
-`list#isempty()`
 
 `list#len()`, `iterator#len()`
 

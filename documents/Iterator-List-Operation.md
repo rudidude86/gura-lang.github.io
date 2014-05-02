@@ -179,7 +179,7 @@ You can retrieve elements from an iterator by using method `iterator#next()`.
 
 ## {{ page.chapter }}.4. List-specific Manipulation
 
-### {{ page.chapter }}.4.1. Random Access in List
+### {{ page.chapter }}.4.1. Indexing Read from List
 
 You can specify an index number starting from zero embraced by a pair of square brackets
 to retrieve an element at the specified position.
@@ -225,7 +225,48 @@ which would be useful when used with Member Mapping.
     tbl::get(0)     // returns [1, 4, 7]
 
 
-### {{ page.chapter }}.4.2. Conversion into Iterator
+### {{ page.chapter }}.4.2. Indexing Write to List
+
+An assignment to elements in a list through indexing access is also available.
+
+    tbl = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven']
+    tbl[2] = '2'
+    tbl[4] = '4'
+    // tbl is ['zero', 'one', '2', 'three', '4', 'five', 'six', 'seven']
+
+assigned value is list
+
+    tbl = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven']
+    tbl[1, 3, 5] = ['1', '3', '5']
+    // tbl is ['zero', '1', 'two', '3', 'four', '5', 'six', 'seven']
+
+assigned value is scholar
+
+    tbl = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven']
+    tbl[1, 3, 5] = '1'
+    // tbl is ['zero', '1', 'two', '1', 'four', '1', 'six', 'seven']
+
+iterator
+
+    tbl = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven']
+    tbl[1..3, 5..7] = ['1', '2', '3', '5', '6', '7']
+    // tbl is ['zero', '1', '2', '3', 'four', '5', '6', '7']
+
+infinite iterator
+
+    tbl = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven']
+    tbl[5..] = ['5', '6']
+    // tbl is ['zero', 'one', 'two', 'three', 'four', '5', '6', 'seven']
+
+An index with a negative number
+
+    tbl = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven']
+    tbl[-1] = '7'
+    tbl[-2] = '6'
+    // tbl is ['zero', 'one', 'two', 'three', 'four', 'five', '6', '7']
+
+
+### {{ page.chapter }}.4.3. Conversion into Iterator
 
 Method `list#each()` returns an iterator that generates values based on the list's elements.
 
@@ -234,7 +275,7 @@ Method `list#each()` returns an iterator that generates values based on the list
     // x is an iterator that generates 'one', 'two', 'three' and 'four'.
 
 
-### {{ page.chapter }}.4.3. Operation on Elements
+### {{ page.chapter }}.4.4. Operation on Elements
 
 Method `list#isempty()` will check if a list is empty or not.
 
@@ -280,6 +321,7 @@ Method `list#shift()` erase the first element before it returns the value.
 
 
 ## {{ page.chapter }}.5. Common Manipulation for Iterator and List
+
 
 ### {{ page.chapter }}.5.1. Inspecting and Reducing
 

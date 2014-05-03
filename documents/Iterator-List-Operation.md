@@ -32,7 +32,7 @@ by calling it with `:list` attribute.
 
 ## {{ page.chapter }}.2. Iteration on Iterators and Lists
 
-Consider a task to print elements in the list shown below:
+Consider a task that prints elements in the list shown below:
 
     words = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']
 
@@ -108,8 +108,12 @@ The result comes as below:
 
 ## {{ page.chapter }}.3. Iterator-specific Manipulation
 
+### {{ page.chapter }}.3.1. About This Section
 
-### {{ page.chapter }}.3.1. Finite Iterator vs. Infinite Iterator
+This section explains about methods and ohter manipulation that are specific to iterators.
+
+
+### {{ page.chapter }}.3.2. Finite Iterator vs. Infinite Iterator
 
 Iterators that generate a limited numer of elements are called Finite Iterator.
 An iterator `0..5` is a representative one that is definitely expected to generate 6 elements.
@@ -155,7 +159,7 @@ In the code below, `y` is an Infinite Iterator that generates even numbers indef
     // y is infinite
 
 
-### {{ page.chapter }}.3.2. Conversion into List
+### {{ page.chapter }}.3.3. Conversion into List
 
 Embracing iterators with a pair of square brackets would make a list from them.
 
@@ -175,7 +179,7 @@ Another way to create a list from an iterator is to use `iterator#each()` method
     x.each():list        // returns [0, 1, 2, 3, 4, 5]
 
 
-### {{ page.chapter }}.3.3. Operation on Elements
+### {{ page.chapter }}.3.4. Operation on Elements
 
 You can retrieve elements from an iterator by using method `iterator#next()`.
 
@@ -187,7 +191,12 @@ You can retrieve elements from an iterator by using method `iterator#next()`.
 
 ## {{ page.chapter }}.4. List-specific Manipulation
 
-### {{ page.chapter }}.4.1. Indexing Read from List
+### {{ page.chapter }}.4.1. About This Section
+
+This section explains about methods and ohter manipulation that are specific to lists.
+
+
+### {{ page.chapter }}.4.2. Indexing Read from List
 
 You can specify an index number starting from zero embraced by a pair of square brackets
 to retrieve an element at the specified position.
@@ -233,7 +242,7 @@ which would be useful when used with Member Mapping.
     tbl::get(0)     // returns [1, 4, 7]
 
 
-### {{ page.chapter }}.4.2. Indexing Modification on List
+### {{ page.chapter }}.4.3. Indexing Modification on List
 
 An assignment to elements in a list through indexing access is also available.
 
@@ -279,7 +288,7 @@ Negative number can also be specified for indexing.
     // tbl is ['zero', 'one', 'two', 'three', 'four', 'five', '6', '7']
 
 
-### {{ page.chapter }}.4.3. Conversion into Iterator
+### {{ page.chapter }}.4.4. Conversion into Iterator
 
 Method `list#each()` returns an iterator that generates values based on the list's elements.
 
@@ -288,7 +297,7 @@ Method `list#each()` returns an iterator that generates values based on the list
     // x is an iterator that generates 'one', 'two', 'three' and 'four'.
 
 
-### {{ page.chapter }}.4.4. Operation on Elements
+### {{ page.chapter }}.4.5. Operation on Elements
 
 Method `list#isempty()` will check if a list is empty or not.
 
@@ -344,83 +353,80 @@ Method `list#shift()` erase the first element before it returns the value.
 
 ## {{ page.chapter }}.5. Common Manipulation for Iterator and List
 
+### {{ page.chapter }}.5.1. About This Section
 
-### {{ page.chapter }}.5.1. Inspecting and Reducing
-
-Methods `list#len()`, `iterator#len()` return the number of elements in the iterable.
-
-
-`list#count()`, `iterator#count()`
-
-`list#and()`, `iterator#and()`
-
-`list#or()`, `iterator#or()`
-
-`list#average()`, `iterator#average()`
-
-`list#contains()`, `iterator#contains()`
-
-`list#join()`, `iterator#join()`
-
-`list#joinb()`, `iterator#joinb()`
-
-`list#max()`, `iterator#max()`
-
-`list#min()`, `iterator#min()`
-
-`list#reduce()`, `iterator#reduce()`
-
-`list#stddev()`, `iterator#stddev()`
-
-`list#sum()`, `iterator#sum()`
-
-`list#variance()`, `iterator#variance()`
+This section explains about methods and ohter manipulation that can commonly be applied to iterators and lists.
+Here, for simple descriptions, a pseudo class name `iterable` is used to represent `list` or `iterator` class.
 
 
-### {{ page.chapter }}.5.2. Mapping Method
+### {{ page.chapter }}.5.2. Inspecting and Reducing
 
-`list#map()`, `iterator#map()`
+Methods `iterable#len()` return the number of elements in the iterable.
 
-`list#nilto()`, `iterator#nilto()`
+`iterable#count()`
+`iterable#contains()`
 
-`list#rank()`, `iterator#rank()`
+`iterable#and()`
+`iterable#or()`
 
-`list#replace()`, `iterator#replace()`
+`iterable#average()`
+`iterable#max()`
+`iterable#min()`
+`iterable#stddev()`
+`iterable#sum()`
+`iterable#variance()`
 
 
-### {{ page.chapter }}.5.3. Element Manipulation
+`iterable#join()`
+`iterable#joinb()`
 
-`list#align()`, `iterator#align()`
+`iterable#reduce()`
 
-`list#cycle()`, `iterator#cycle()`
 
-`list#filter()`, `iteraotr#filter()`
+### {{ page.chapter }}.5.3. Mapping Method
 
-`list#find()`, `iterator#find()`
+`iterable#map()`
 
-`list#fold()`, `iterator#fold()`
+`iterable#nilto()`
 
-`list#head()`, `iterator#head()`
+`iterable#rank()`
 
-`list#offset()`, `iterator#offset()`
+`iterable#replace()`
 
-`list#pingpong()`, `iterator#pingpong()`
 
-`list#reverse()`, `iterator#reverse()`
+### {{ page.chapter }}.5.4. Element Manipulation
 
-`list#runlength()`, `iterator#runlength()`
+`iterable#align()`
 
-`list#since()`, `iterator#since()`
+`iterable#cycle()`
 
-`list#skip()`, `iterator#skip()`
+`iterable#filter()`
 
-`list#skipnil()`, `iterator#skipnil()`
+`iterable#find()`
 
-`list#sort()`, `iterator#sort()`
+`iterable#fold()`
 
-`list#tail()`, `iterator#tail()`
+`iterable#head()`
 
-`list#while()`, `iterator#while()`
+`iterable#offset()`
+
+`iterable#pingpong()`
+
+`iterable#reverse()`
+
+`iterable#runlength()`
+
+`iterable#since()`
+
+`iterable#skip()`
+
+`iterable#skipnil()`
+
+`iterable#sort()`
+
+`iterable#tail()`
+
+`iterable#while()`
 
 
 ## {{ page.chapter }}.6. Iterator Generation

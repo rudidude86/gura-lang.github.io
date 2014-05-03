@@ -347,8 +347,8 @@ Method `list#shift()` erase the first element before it returns the value.
 
 ### {{ page.chapter }}.5.1. Inspecting and Reducing
 
+Methods `list#len()`, `iterator#len()` return the number of elements in the iterable.
 
-`list#len()`, `iterator#len()`
 
 `list#count()`, `iterator#count()`
 

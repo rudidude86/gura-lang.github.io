@@ -32,7 +32,7 @@ by calling it with `:list` attribute.
 
 ## {{ page.chapter }}.2. Iteration on Iterators and Lists
 
-In this section, consider a task to print elements in the list shown below:
+Consider a task to print elements in the list shown below:
 
     words = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']
 
@@ -45,9 +45,9 @@ There are several ways to iterate elements in an iterator or a list.
 
         printf('%s\n', words)
 
-  Since a function with Implicit Mapping is capable of iterating multiple iterables when they are provided as its arguments,
-  you can specify an iterator that generates numbers starting from zero
-  to print indexing numbers along with the list of words.
+  A function with Implicit Mapping is capable of iterating multiple iterables provided as its arguments.
+  In addition to the list of words, you can specify an iterator
+  that generates numbers starting from zero to print indexing numbers as shown below.
 
         printf('%d: %s\n', 0.., words)
 
@@ -64,14 +64,14 @@ There are several ways to iterate elements in an iterator or a list.
             printf('%d: %s\n', i, word)
         }
 
-* You can also use `iterator#each()` or `list#each()` method to iterate elements on them.
+* You can also use method `iterator#each()` or `list#each()` to iterate elements on them.
+  In this case, the block parameter contains an iterated element as its first value.
 
         words.each {|word|
             printf('%s\n', word)
         }
-
-  In this case, the block parameter contains an iterated element as its first value.
-  It provides a loop index as the second value as below.
+  
+  It provides a loop index as the second value in the block parameters as below.
 
         words.each {|word, i|
             printf('%d: %s\n', i, word)
@@ -79,8 +79,14 @@ There are several ways to iterate elements in an iterator or a list.
 
 Most functions and methods that return an iterator as their result
 are designed to iterate elements when they take a block.
+Actually, methods `iterator#each()` and `list#each()`, which are mentioned above,
+simply return an iterator when they're called without a block.
 
-Consider methods `iterator#filter()` and `list#filter()`,
+    x = words.each()
+    // x is an iterator that iterates each element in words
+
+To see other examples that have the same feature,
+consider methods `iterator#filter()` and `list#filter()`,
 which returns an iterator that pick up elements satisfying a criteria specified in the argument.
 
     x = words.filter(&{$word.startswith('t')})
@@ -139,12 +145,14 @@ that generates numbers 0, 2, 4, 6, 8 and 10.
 
     x = 0..10
     y = x.filter(&{$n % 2 == 0})
+    // y is finite
 
 If the source iterator is infinite, the result iterator will be infinite too.
 In the code below, `y` is an Infinite Iterator that generates even numbers indefinitely.
 
     x = 0..
     y = x.filter(&{$n % 2 == 0})
+    // y is infinite
 
 
 ### {{ page.chapter }}.3.2. Conversion into List
@@ -225,7 +233,7 @@ which would be useful when used with Member Mapping.
     tbl::get(0)     // returns [1, 4, 7]
 
 
-### {{ page.chapter }}.4.2. Indexing Write to List
+### {{ page.chapter }}.4.2. Indexing Modification on List
 
 An assignment to elements in a list through indexing access is also available.
 
@@ -316,7 +324,16 @@ Method `list#append()` adds each of the list's element to the target list.
 
 Method `list#clear()` will create all the contet of the target list.
 
+    tbl = ['one', 'two', 'three']
+    tbl.clear()
+    // tbl is []
+
 Method `list#erase()` will erase elements at positions specified by its arguments.
+You can specify multiple indices at which elements are erased.
+
+    tbl = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven']
+    tbl.erase(2, 4, 6)
+    // tbl is ['zero', 'one', 'three', 'five', 'seven']
 
 Method `list#shift()` erase the first element before it returns the value.
 

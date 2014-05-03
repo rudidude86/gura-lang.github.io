@@ -359,7 +359,7 @@ This section explains about methods and ohter manipulation that can commonly be 
 Here, for simple descriptions, a pseudo class name `iterable` is used to represent `list` or `iterator` class.
 
 
-### {{ page.chapter }}.5.2. Inspecting and Reducing
+### {{ page.chapter }}.5.2. Inspection and Reduce
 
 Methods `iterable#len()` return the number of elements in the iterable.
 

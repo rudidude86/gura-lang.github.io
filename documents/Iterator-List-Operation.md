@@ -363,7 +363,26 @@ Here, for simple descriptions, a pseudo class name `iterable` is used to represe
 
 Methods `iterable#len()` return the number of elements in the iterable.
 
-`iterable#count()`
+Method `iterable#count()` takes an optional argument `criteria`
+with which elements would be filtered out, and return the number of elements matching it.
+The method behaves differently depends on a value given to `criteria`.
+
+* If no value is specified for `criteria`, it would return the number of elements
+  that can be determined as `true`.
+
+        [true, false, true, true}.count()          // returns 3
+
+* If it takes a `function`, which takes one argument and returns a boolean value,
+  it would call the given function with each element's value
+  and count the number of `true` returned from it.
+
+        [3, 1, 4, 1, 5, 9, 2, 6].count(&{$x < 4}) // returns 4
+
+* If it takes a value other than `function`, it would return the number of elements
+  that equals to the given value.
+
+        [3, 1, 4, 1, 5, 9, 2, 6].count(1)         // returns 2
+
 `iterable#contains()`
 
 `iterable#and()`

@@ -391,18 +391,29 @@ The method behaves differently depends on a value given to `criteria`.
 
         [3, 1, 4, 1, 5, 9, 2, 6].count(1)         // returns 2
 
-`iterable#contains()`
+Method `iterable#contains()` checks if the iterable contains the specified value in it.
 
-`iterable#and()`
-`iterable#or()`
+    x = [3, 1, 4, 1, 5, 9, 2, 6]
+    x.contains(1)  // return true
+    x.contains(7)  // return false
 
-`iterable#average()`
-`iterable#max()`
-`iterable#min()`
-`iterable#stddev()`
-`iterable#sum()`
-`iterable#variance()`
+Methods `iterable#and()` and `iterable#or()` calculate logical AND and OR
+on the iterable's elements repectively.
+It regards `false` and `nil` as a false state, and other values as a true.
 
+    [true, true, true].and()   // returns true
+    [true, false, true].and()  // returns false
+    [3, 1, 4, 1, 5].and()      // returns true
+    [true, false, true].or()   // returns true
+    [nil, false, nil].or()     // returns false
+
+Classes `list` and `iterator` are equipped with some statistical operations described below:
+
+* `iterable#sum()` calculates summation of elements in the iterable.
+* `iterable#average()` calculates an average of elements in the iterable.
+* `iterable#stddev()` calculates a standard deviation value of elements in the iterable.
+* `iterable#variance()` calculates a variance value of elements in the iterable.
+* `iterable#max()` and `iterable#min()` returns maximum and minimum value in the iterable.
 
 `iterable#join()`
 `iterable#joinb()`

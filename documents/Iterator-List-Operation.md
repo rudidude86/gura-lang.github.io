@@ -415,10 +415,15 @@ Classes `list` and `iterator` are equipped with some statistical operations desc
 * `iterable#variance()` calculates a variance value of elements in the iterable.
 * `iterable#max()` and `iterable#min()` returns maximum and minimum value in the iterable.
 
-`iterable#join()`
-`iterable#joinb()`
+Method `iterable#join()` joins 
 
-`iterable#reduce()`
+Method `iterable#reduce()` is a generic one to summarize information from elements.
+It takes a block procedure that is evaluated for each element with block parameters `|x, accum|`,
+where `x` takes each element value and `accum` the result of the previous evaluation of the block.
+The initial value of `accum` is specified by the method's argument.
+For example, you can use `iterable#reduce()` to implement a function that works similar with `iterable#sum()` as below.
+
+    my_sum(iter) = iter.reduce(0) {|x, accum| x + accum }
 
 
 ### {{ page.chapter }}.5.3. Mapping Method

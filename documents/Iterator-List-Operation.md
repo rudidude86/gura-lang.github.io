@@ -288,6 +288,14 @@ Negative number can also be specified for indexing.
     // tbl is ['zero', 'one', 'two', 'three', 'four', 'five', '6', '7']
 
 
+You can use method `list#put()` for index modification,
+which would be useful when used with Member Mapping.
+
+    tbl = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    tbl::put(2, 99)
+    // tbl is [[1, 2, 99], [4, 5, 99], [7, 8, 99]]
+
+
 ### {{ page.chapter }}.4.4. Conversion into Iterator
 
 Method `list#each()` returns an iterator that generates values based on the list's elements.

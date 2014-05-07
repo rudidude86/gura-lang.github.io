@@ -469,7 +469,12 @@ In general, you can use Implicit Mapping to get the same result with this method
 This subsection explains about methods that changes the order of elements
 and extracts elements by a certain condition.
 
-Method `iterable#align()`
+Method `iterable#align()` creates an iterator that picks up the specified number of elements from the iterable.
+
+    x = [3, 1. 4, 1, 5, 9].align(3)
+    // x is an iterator that generates 3, 1, 4.
+
+If the specified number is more than the length of the source iterable, the rests are filled with `nil` value.
 
     x = [3, 1. 4, 1, 5, 9].align(10)
     // x is an iterator that generates 3, 1, 4, 1, 5, 9, nil, nil, nil, nil.
@@ -524,7 +529,15 @@ Method `iterable#reverse()`
     x = [1, 2, 3, 4, 5].reverse()
     // x is an iterator that generates 5, 4, 3, 2, 1.
 
-Method `iterable#sort()`
+Method `iterable#sort()` sorts iterable's elements in an ascending order.
+
+    x = [3, 1, 4, 1, 5, 9, 2, 6].sort()
+    // x is an iterator that generates 1, 1, 2, 3, 4, 5, 6, 9.
+
+Specifying a symbol ``descend` as an argument for the method will sort elements in a descending order.
+
+    x = [3, 1, 4, 1, 5, 9, 2, 6].sort(`descend)
+    // x is an iterator that generates 9, 6, 5, 4, 3, 2, 1, 1.
 
 `iterable#after()` and `iterable#since()`
 

@@ -363,13 +363,13 @@ Method `list#shift()` erase the first element before it returns the value.
 
 ### {{ page.chapter }}.5.1. About This Section
 
-This section explains about methods and ohter manipulation that can commonly be applied to iterators and lists.
-Here, for simple descriptions, a pseudo class name `iterable` is used to represent `list` or `iterator` class.
-
+This section explains about methods that are prepared for both iterators and lists.
+To make descriptions simple, a pseudo class name `iterable` is used to represent `list` or `iterator` class.
+For example, `iterable#len()` is an inclusive term for `list#len()` and `iterator#len()`.
 
 ### {{ page.chapter }}.5.2. Inspection and Reduce
 
-Methods `iterable#len()` return the number of elements in the iterable.
+Method `iterable#len()` return the number of elements in the iterable.
 
 Method `iterable#count()` takes an optional argument `criteria`
 with which elements would be filtered out, and return the number of elements matching it.
@@ -415,7 +415,12 @@ Classes `list` and `iterator` are equipped with some statistical operations desc
 * `iterable#variance()` calculates a variance value of elements in the iterable.
 * `iterable#max()` and `iterable#min()` returns maximum and minimum value in the iterable.
 
-Method `iterable#join()` joins 
+Method `iterable#join()` would join all the strings in the iterable and returns the result.
+If an element is not a `string` instance, it would be converted to a string before joined.
+It takes an optional argument that specifies a string inserted between adjacent elements.
+
+    ['abc', 'def', 'ghi'].join()      // returns 'abcdefhij'
+    ['abc', 'def', 'ghi'].join('#')   // returns 'abc#def#hij'
 
 Method `iterable#reduce()` is a generic one to summarize information from elements.
 It takes a block procedure that is evaluated for each element with block parameters `|x, accum|`,
@@ -426,49 +431,61 @@ For example, you can use `iterable#reduce()` to implement a function that works 
     my_sum(iter) = iter.reduce(0) {|x, accum| x + accum }
 
 
+`iterable#find()`
+
 ### {{ page.chapter }}.5.3. Mapping Method
 
-`iterable#map()`
+Method `iterable#nilto()` returns an iterator
+that replaces `nil` existing in the iterable into a specified value.
+Note that this method doesn't modify the target list.
 
-`iterable#nilto()`
+    x = [nil, 1, 2, nil, 3, 4].nilto(99)
+    // x is an iterator that generates 99, 1, 2, 99, 3, 4.
 
-`iterable#rank()`
+Method `iterable#replace()` returns an iterator
+that replaces elements matching to its first argument with the value of its second argument.
+Note that this method doesn't modify the target list.
 
-`iterable#replace()`
+    x = [3, 1, 4, 1, 5, 9, 2, 6].replace(1, 99)
+    // x is an iterator that generates 3, 99, 4, 99, 5, 9, 2, 6.
 
+Method `iterable#rank()` returns an iterator
+that generates ranked number for each element after sorted.
+The argument `directive` specifies sorting rule,
+which is described in a document of `iterable#sort()`.
+
+    x = ['apple', 'grape', 'orange', 'banana'].rank()
+    // x is an iterator that generates 0, 2, 3, 1
+
+Method `iterable#map()` returns an iterator that applies a function on each element.
+In general, you can use Implicit Mapping to get the same result with this method.
+
+`iterable#roundoff()`
 
 ### {{ page.chapter }}.5.4. Element Manipulation
 
 `iterable#align()`
-
-`iterable#cycle()`
-
-`iterable#filter()`
-
-`iterable#find()`
-
 `iterable#fold()`
 
-`iterable#head()`
+`iterable#filter()`
+`iterable#skipnil()`
 
+`iterable#skip()`
+`iterable#head()`
+`iterable#tail()`
 `iterable#offset()`
 
 `iterable#pingpong()`
-
-`iterable#reverse()`
-
+`iterable#cycle()`
 `iterable#runlength()`
 
-`iterable#since()`
-
-`iterable#skip()`
-
-`iterable#skipnil()`
-
+`iterable#reverse()`
 `iterable#sort()`
 
-`iterable#tail()`
-
+`iterable#after()`
+`iterable#before()`
+`iterable#since()`
+`iterable#until()`
 `iterable#while()`
 
 

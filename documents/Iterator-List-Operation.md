@@ -521,12 +521,15 @@ Method `iterable#runlength()`
 
 Method `iterable#reverse()`
 
+    x = [1, 2, 3, 4, 5].reverse()
+    // x is an iterator that generates 5, 4, 3, 2, 1.
+
 Method `iterable#sort()`
 
-`iterable#after()`
-`iterable#before()`
-`iterable#since()`
-`iterable#until()`
+`iterable#after()` and `iterable#since()`
+
+`iterable#before()` and `iterable#until()`
+
 `iterable#while()`
 
 `list#combination()`

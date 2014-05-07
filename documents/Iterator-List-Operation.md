@@ -352,12 +352,16 @@ You can specify multiple indices at which elements are erased.
     tbl.erase(2, 4, 6)
     // tbl is ['zero', 'one', 'three', 'five', 'seven']
 
-Method `list#shift()` erase the first element before it returns the value.
+Method `list#shift()` erase the first element before it returns that value.
 
     tbl = ['one', 'two', 'three']
     x = tbl.shift()  // returns 'one'
     // tbl is ['two', 'three']
 
+
+`list#flat()`
+
+`list.zip()`
 
 ## {{ page.chapter }}.5. Common Manipulation for Iterator and List
 
@@ -460,8 +464,6 @@ which is described in a document of `iterable#sort()`.
 Method `iterable#map()` returns an iterator that applies a function on each element.
 In general, you can use Implicit Mapping to get the same result with this method.
 
-`iterable#roundoff()`
-
 ### {{ page.chapter }}.5.4. Element Manipulation
 
 `iterable#align()`
@@ -477,6 +479,7 @@ In general, you can use Implicit Mapping to get the same result with this method
 
 `iterable#pingpong()`
 `iterable#cycle()`
+
 `iterable#runlength()`
 
 `iterable#reverse()`
@@ -488,6 +491,9 @@ In general, you can use Implicit Mapping to get the same result with this method
 `iterable#until()`
 `iterable#while()`
 
+`list#combination()`
+`list#permutation()`
+`list#shuffle()`
 
 ## {{ page.chapter }}.6. Iterator Generation
 
@@ -498,21 +504,4 @@ In general, you can use Implicit Mapping to get the same result with this method
 `iterator.consts()`
 
 `iterator.rands()`
-
-
-`list#combination()`
-
-`list#permutation()`
-
-`list#shuffle()`
-
-
-list generation
-
-`list.zip()`
-
-`list#flat()`
-
-
-
 

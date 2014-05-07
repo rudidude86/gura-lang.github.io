@@ -144,7 +144,7 @@ An iterator's infinity may be derived from one to another.
 This happens with iterators that are designed to manipulate values
 after retrieving them from other source iterator.
 For example, method `iterator#filter()` returns an iterator that picks up elements
-from values in the target iterator. In the following code, `y` is a Finite Iterator
+based on the given criteria. In the following code, `y` is a Finite Iterator
 that generates numbers 0, 2, 4, 6, 8 and 10.
 
     x = 0..10
@@ -479,12 +479,24 @@ If the specified number is more than the length of the source iterable, the rest
     x = [3, 1. 4, 1, 5, 9].align(10)
     // x is an iterator that generates 3, 1, 4, 1, 5, 9, nil, nil, nil, nil.
 
-Method `iterable#fold()`
+Method `iterable#fold()` creates an iterator that segments the iterable into group of lists
+containing the specified number of elements.
 
     x = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3].fold(3)
     // x is an iterator that generates [3, 1, 4], [1, 5, 9], [2, 6, 5], [3].
 
-Method `iterable#filter()`
+Method `iterable#filter()` returns an iterator that picks up elements based on the given criteria, a function or an iterable.
+A function as a criteria should have a declaration `f(x)`
+where `x` takes each element value and should return a `boolean` result.
+
+    f(x) = { x < 4 }
+    x = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3].filter(f)
+    // x is an iterator that generates 3, 1, 1, 2, 3.
+
+You can also use an anonymous function for the criteria.
+
+    x = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3].filter(&{$x < 4})
+    // x is an iterator that generates 3, 1, 1, 2, 3.
 
 
 Method `iterable#skipnil()`

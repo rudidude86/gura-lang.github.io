@@ -466,24 +466,62 @@ In general, you can use Implicit Mapping to get the same result with this method
 
 ### {{ page.chapter }}.5.4. Element Manipulation
 
-`iterable#align()`
-`iterable#fold()`
+This subsection explains about methods that changes the order of elements
+and extracts elements by a certain condition.
 
-`iterable#filter()`
-`iterable#skipnil()`
+Method `iterable#align()`
 
-`iterable#skip()`
-`iterable#head()`
-`iterable#tail()`
-`iterable#offset()`
+    x = [3, 1. 4, 1, 5, 9].align(10)
+    // x is an iterator that generates 3, 1, 4, 1, 5, 9, nil, nil, nil, nil.
 
-`iterable#pingpong()`
-`iterable#cycle()`
+Method `iterable#fold()`
 
-`iterable#runlength()`
+    x = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3].fold(3)
+    // x is an iterator that generates [3, 1, 4], [1, 5, 9], [2, 6, 5], [3].
 
-`iterable#reverse()`
-`iterable#sort()`
+Method `iterable#filter()`
+
+
+Method `iterable#skipnil()`
+
+    x = [3, 1, nil, 4, 1, nil, nil, 5].skipnil()
+    // x is an iterator that generates 3, 1, 4, 1, 5.
+
+Method `iterable#skip()`
+
+    x = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3].skip(2)
+    // x is an iterator that generates 3, 1, 2, 3.
+
+Method `iterable#head()`
+
+    x = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3].head(4)
+    // x is an iterator that generates 3, 1, 4, 1.
+
+Method `iterable#tail()`
+
+    x = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3].tail(4)
+    // x is an iterator that generates 2, 6, 5, 3.
+
+Method `iterable#offset()`
+
+    x = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3].offset(5)
+    // x is an iterator that generates 9, 2, 6, 5, 3.
+
+Method `iterable#pingpong()`
+
+    x = [1, 2, 3, 4, 5].pingpong()
+    // x is an iterator that generates 1, 2, 3, 4, 5, 4, 3, 2, 1, 2, 3, ...
+
+Method `iterable#cycle()`
+
+    x = [1, 2, 3, 4, 5].cycle()
+    // x is an iterator that generates 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, ...
+
+Method `iterable#runlength()`
+
+Method `iterable#reverse()`
+
+Method `iterable#sort()`
 
 `iterable#after()`
 `iterable#before()`

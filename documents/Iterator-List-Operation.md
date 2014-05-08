@@ -485,9 +485,11 @@ containing the specified number of elements.
     rtn = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3].fold(3)
     // rtn is an iterator that generates [3, 1, 4], [1, 5, 9], [2, 6, 5], [3].
 
-Method `iterable#filter()` returns an iterator that picks up elements based on the given argument `criteria`, a function or an iterable.
-A function for `criteria` should have a declaration `f(x)`
-where `x` takes each element value and should return a `boolean` result.
+Method `iterable#filter()` returns an iterator that picks up elements
+where the given argument `criteria`, a function or an iterable, is evaluated as `true`.
+
+A function for `criteria` has a single argument that takes each element value
+and returns `true` when it wants the value picked up.
 
     f(x) = x < 4
     tbl = [3, 1, 4, 1, 5, 9, 2]
@@ -570,59 +572,84 @@ Specifying a symbol ``descend` in an argument of the method will sort elements i
 
 Methods `iterable#after()`, `iterable#since()`, `iterable#before()`, `iterable#until()`
 and `iterable#while()` create an iterator that picks up elements within a certain range.
-They take an argument `criteria` that indicates where the range begins or ends.
+They take an argument `criteria` that prompts where the range begins and ends.
 The `criteria` is the same as that of `iterable#filter()` and may take a function or an iterable.
 
-* `iterable#after()` and `iterable#since()`
+* An iterator by `iterable#after()` starts extraction of elements
+  right after the `criteria` is evaluated as `true`.
 
         tbl = [3, 1, 4, 1, 5, 9, 2, 6, 5]
-        
         rtn = tbl.after(&{$x >= 5})
         // rtn is an iterator that generates 9, 2, 6, 5.
-        
+
+* An iterator by `iterable#since()` starts extraction of elements
+  at the point where the `criteria` is evaluated as `true`.
+
+        tbl = [3, 1, 4, 1, 5, 9, 2, 6, 5]
         rtn = tbl.since(&{$x >= 5})
         // rtn is an iterator that generates 5, 9, 2, 6, 5.
 
-* `iterable#before()` and `iterable#until()`
-    
-        tbl = [3, 1, 4, 1, 5, 9, 2, 6, 5]
+* An iterator by `iterable#before()` carrys on extraction of elements
+  until right before the `criteria` is evaluated as `true`.
 
+        tbl = [3, 1, 4, 1, 5, 9, 2, 6, 5]
         rtn = tbl.before(&{$x >= 5})
         // rtn is an iterator that generates 3, 1, 4, 1.
         
+* An iterator by `iterable#until()` carrys on extraction of elements
+  until the point where the `criteria` is evaluated as `true`.
+
+        tbl = [3, 1, 4, 1, 5, 9, 2, 6, 5]
         rtn = tbl.until(&{$x >= 5})
         // rtn is an iterator that generates 3, 1, 4, 1, 5.
     
-* `iterable#while()`
+* An iterator by `iterable#while()` carrys on extraction of elements
+  while the `criteria` is evaluated as `true`.
 
         tbl = [3, 1, 4, 1, 5, 9, 2, 6, 5]
 
         rtn = tbl.while(&{$x < 5})
         // rtn is an iterator that generates 3, 1, 4, 1.
 
-Method `list#combination()`
+Method `list#combination()` creates an iterator
+that returns a group of all combinations of elements extracted from the target list.
+It takes an argument that specifies the number of elements to extarct.
 
     rtn = [1, 2, 3, 4].combination(3)
     // rtn is an iterator that generates [1, 2, 3], [1, 2, 4], [1, 3, 4], [2, 3, 4]
 
-Method `list#permutation()`
+Method `list#permutation()` creates an iterator 
+that returns a group of all permutations of elements extracted from the target list.
+It takes an argument that specifies the number of elements to extarct.
 
     rtn = [1, 2, 3].permutation(2)
     // rtn is an iterator that generates [1, 2], [1, 3], [2, 1], [2, 3], [3, 1], [3, 2]
 
+If it omits the argument, all the elements would be extracted.
+
     rtn = [1, 2, 3].permutation()
     // rtn is an iterator that generates [1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]
 
-Method `list#shuffle()`
+Method `list#shuffle()` returns a list in which elements are shuffled in a random order.
 
 
 ## {{ page.chapter }}.6. Iterator Generation
 
-`iterator.range()`
+Function `range()` returns an iterator that generates numbers within the specified range.
 
-`iterator.interval()`
+    range(10)          // 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+    range(4, 10)       // 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
+    range(0, 10, 2)    // 0, 2, 4, 6, 8
 
-`iterator.consts()`
+Function `interval()` returns an iterator that generates the specified number of `number` values
+between the prescribed range.
 
-`iterator.rands()`
+    interval(1, 3, 5)  // 1, 1.5, 2, 2.5, 3
 
+Function `consts()` returns an iterator that generates the specified number of a constant value of any type.
+
+    consts('foo', 3)   // 'foo', 'foo', 'foo'
+
+Function `rands()` returns an iterator that generates random number values.
+
+    rands(100)         // random numbers between 0 and 99

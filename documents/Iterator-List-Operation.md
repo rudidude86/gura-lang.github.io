@@ -82,15 +82,15 @@ are designed to iterate elements when they take a block.
 Actually, methods `iterator#each()` and `list#each()`, which are mentioned above,
 simply return an iterator when they're called without a block.
 
-    x = words.each()
-    // x is an iterator that iterates each element in words
+    rtn = words.each()
+    // rtn is an iterator that iterates each element in words
 
 To see other examples that have the same feature,
 consider methods `iterator#filter()` and `list#filter()`,
 which returns an iterator that pick up elements satisfying a criteria specified in the argument.
 
-    x = words.filter(&{$word.startswith('t')})
-    // x is an iterator that generates 'two', 'three' and 'ten'
+    rtn = words.filter(&{$word.startswith('t')})
+    // rtn is an iterator that generates 'two', 'three' and 'ten'
 
 Specifying a block with the method would repetitively evaluate it
 while iterating elements of the result.
@@ -147,16 +147,16 @@ For example, method `iterator#filter()` returns an iterator that picks up elemen
 based on the given criteria. In the following code, `y` is a Finite Iterator
 that generates numbers 0, 2, 4, 6, 8 and 10.
 
-    x = 0..10
-    y = x.filter(&{$n % 2 == 0})
-    // y is finite
+    tbl = 0..10
+    rtn = tbl.filter(&{$x % 2 == 0})
+    // rtn is finite
 
 If the source iterator is infinite, the result iterator will be infinite too.
 In the code below, `y` is an Infinite Iterator that generates even numbers indefinitely.
 
-    x = 0..
-    y = x.filter(&{$n % 2 == 0})
-    // y is infinite
+    tbl = 0..
+    rtn = tbl.filter(&{$x % 2 == 0})
+    // rtn is infinite
 
 
 ### {{ page.chapter }}.3.3. Conversion into List
@@ -175,18 +175,18 @@ It would occur an error if you try to create a list from Infinite Iterators.
 
 Another way to create a list from an iterator is to use `iterator#each()` method with `:list` attribute.
 
-    x = 0..5
-    x.each():list        // returns [0, 1, 2, 3, 4, 5]
+    tbl = 0..5
+    tbl.each():list      // returns [0, 1, 2, 3, 4, 5]
 
 
 ### {{ page.chapter }}.3.4. Operation on Elements
 
 You can retrieve elements from an iterator by using method `iterator#next()`.
 
-    x = 0..5
-    x.next()   // returns 0
-    x.next()   // returns 1
-    x.next()   // returns 2
+    tbl = 0..5
+    tbl.next()   // returns 0
+    tbl.next()   // returns 1
+    tbl.next()   // returns 2
 
 
 ## {{ page.chapter }}.4. List-specific Manipulation
@@ -301,8 +301,8 @@ which would be useful when used with Member Mapping.
 Method `list#each()` returns an iterator that generates values based on the list's elements.
 
     tbl = ['one', 'two', 'three', 'four']
-    x = tbl.each()
-    // x is an iterator that generates 'one', 'two', 'three' and 'four'.
+    rtn = tbl.each()
+    // rtn is an iterator that generates 'one', 'two', 'three' and 'four'.
 
 
 ### {{ page.chapter }}.4.5. Operation on Elements
@@ -355,7 +355,7 @@ You can specify multiple indices at which elements are erased.
 Method `list#shift()` erase the first element before it returns that value.
 
     tbl = ['one', 'two', 'three']
-    x = tbl.shift()  // returns 'one'
+    rtn = tbl.shift()  // returns 'one'
     // tbl is ['two', 'three']
 
 
@@ -397,9 +397,9 @@ The method behaves differently depends on a value given to `criteria`.
 
 Method `iterable#contains()` checks if the iterable contains the specified value in it.
 
-    x = [3, 1, 4, 1, 5, 9, 2, 6]
-    x.contains(1)  // return true
-    x.contains(7)  // return false
+    tbl = [3, 1, 4, 1, 5, 9, 2, 6]
+    tbl.contains(1)  // return true
+    tbl.contains(7)  // return false
 
 Methods `iterable#and()` and `iterable#or()` calculate logical AND and OR
 on the iterable's elements repectively.
@@ -443,23 +443,23 @@ Method `iterable#nilto()` returns an iterator
 that replaces `nil` existing in the iterable into a specified value.
 Note that this method doesn't modify the target list.
 
-    x = [nil, 1, 2, nil, 3, 4].nilto(99)
-    // x is an iterator that generates 99, 1, 2, 99, 3, 4.
+    rtn = [nil, 1, 2, nil, 3, 4].nilto(99)
+    // rtn is an iterator that generates 99, 1, 2, 99, 3, 4.
 
 Method `iterable#replace()` returns an iterator
 that replaces elements matching to its first argument with the value of its second argument.
 Note that this method doesn't modify the target list.
 
-    x = [3, 1, 4, 1, 5, 9, 2, 6].replace(1, 99)
-    // x is an iterator that generates 3, 99, 4, 99, 5, 9, 2, 6.
+    rtn = [3, 1, 4, 1, 5, 9, 2, 6].replace(1, 99)
+    // rtn is an iterator that generates 3, 99, 4, 99, 5, 9, 2, 6.
 
 Method `iterable#rank()` returns an iterator
 that generates ranked number for each element after sorted.
 The argument `directive` specifies sorting rule,
 which is described in a document of `iterable#sort()`.
 
-    x = ['apple', 'grape', 'orange', 'banana'].rank()
-    // x is an iterator that generates 0, 2, 3, 1
+    rtn = ['apple', 'grape', 'orange', 'banana'].rank()
+    // rtn is an iterator that generates 0, 2, 3, 1
 
 Method `iterable#map()` returns an iterator that applies a function on each element.
 In general, you can use Implicit Mapping to get the same result with this method.
@@ -471,95 +471,150 @@ and extracts elements by a certain condition.
 
 Method `iterable#align()` creates an iterator that picks up the specified number of elements from the iterable.
 
-    x = [3, 1. 4, 1, 5, 9].align(3)
-    // x is an iterator that generates 3, 1, 4.
+    rtn = [3, 1. 4, 1, 5, 9].align(3)
+    // rtn is an iterator that generates 3, 1, 4.
 
 If the specified number is more than the length of the source iterable, the rests are filled with `nil` value.
 
-    x = [3, 1. 4, 1, 5, 9].align(10)
-    // x is an iterator that generates 3, 1, 4, 1, 5, 9, nil, nil, nil, nil.
+    rtn = [3, 1. 4, 1, 5, 9].align(10)
+    // rtn is an iterator that generates 3, 1, 4, 1, 5, 9, nil, nil, nil, nil.
 
 Method `iterable#fold()` creates an iterator that segments the iterable into group of lists
 containing the specified number of elements.
 
-    x = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3].fold(3)
-    // x is an iterator that generates [3, 1, 4], [1, 5, 9], [2, 6, 5], [3].
+    rtn = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3].fold(3)
+    // rtn is an iterator that generates [3, 1, 4], [1, 5, 9], [2, 6, 5], [3].
 
-Method `iterable#filter()` returns an iterator that picks up elements based on the given criteria, a function or an iterable.
-A function as a criteria should have a declaration `f(x)`
+Method `iterable#filter()` returns an iterator that picks up elements based on the given argument `criteria`, a function or an iterable.
+A function for `criteria` should have a declaration `f(x)`
 where `x` takes each element value and should return a `boolean` result.
 
-    f(x) = { x < 4 }
-    x = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3].filter(f)
-    // x is an iterator that generates 3, 1, 1, 2, 3.
+    f(x) = x < 4
+    tbl = [3, 1, 4, 1, 5, 9, 2]
+    rtn = tbl.filter(f)
+    // rtn is an iterator that generates 3, 1, 1, 2.
 
-You can also use an anonymous function for the criteria.
+Using an anonymous function would make the code more simple.
 
-    x = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3].filter(&{$x < 4})
-    // x is an iterator that generates 3, 1, 1, 2, 3.
+    tbl = [3, 1, 4, 1, 5, 9, 2]
+    rtn = tbl.filter(&{$x < 4})
+    // rtn is an iterator that generates 3, 1, 1, 2.
 
+Method `iterable#filter()` can also take an iterator or a list of `boolean` elements as the `criteria`.
+Using this feature, you can call the function as below:
 
-Method `iterable#skipnil()`
+    tbl = [3, 1, 4, 1, 5, 9, 2]
+    rtn = tbl.filter(tbl < 4)
+    // rtn is an iterator that generates 3, 1, 1, 2.
 
-    x = [3, 1, nil, 4, 1, nil, nil, 5].skipnil()
-    // x is an iterator that generates 3, 1, 4, 1, 5.
+Implicit Mapping works on the expression `tbl < 4` that creates a list `[true, true, false, true, false, false, true]`.
+Then, the method picks up elements of which corresponding boolean value is `true`.
 
-Method `iterable#skip()`
+Method `iterable#skipnil()` creates an iterator that skips `nil` value.
 
-    x = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3].skip(2)
-    // x is an iterator that generates 3, 1, 2, 3.
+    rtn = [3, 1, nil, 4, 1, nil, nil, 5].skipnil()
+    // rtn is an iterator that generates 3, 1, 4, 1, 5.
 
-Method `iterable#head()`
+Method `iterable#skip()` creates an iterator that skip the specified number between elements.
 
-    x = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3].head(4)
-    // x is an iterator that generates 3, 1, 4, 1.
+    rtn = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3].skip(2)
+    // rtn is an iterator that generates 3, 1, 2, 3.
 
-Method `iterable#tail()`
+Method `iterable#head()` creates an iterator that picks up the specified number of elements from the top.
 
-    x = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3].tail(4)
-    // x is an iterator that generates 2, 6, 5, 3.
+    rtn = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3].head(4)
+    // rtn is an iterator that generates 3, 1, 4, 1.
 
-Method `iterable#offset()`
+Method `iterable#tail()` creates an iterator that picks up the specified number of elements from the bottom.
 
-    x = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3].offset(5)
-    // x is an iterator that generates 9, 2, 6, 5, 3.
+    rtn = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3].tail(4)
+    // rtn is an iterator that generates 2, 6, 5, 3.
 
-Method `iterable#pingpong()`
+Method `iterable#offset()` creates an iterator that skip the specified number of elements from the top.
 
-    x = [1, 2, 3, 4, 5].pingpong()
-    // x is an iterator that generates 1, 2, 3, 4, 5, 4, 3, 2, 1, 2, 3, ...
+    rtn = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3].offset(5)
+    // rtn is an iterator that generates 9, 2, 6, 5, 3.
 
-Method `iterable#cycle()`
+Method `iterable#pingpong()` creates an iterator that seeks elements from the top to the bottom,
+then from the bottom to the top, and repeats.
 
-    x = [1, 2, 3, 4, 5].cycle()
-    // x is an iterator that generates 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, ...
+    rtn = [1, 2, 3, 4, 5].pingpong()
+    // rtn is an iterator that generates 1, 2, 3, 4, 5, 4, 3, 2, 1, 2, 3, ...
 
-Method `iterable#runlength()`
+Method `iterable#cycle()` creates an iterator that repeatedly seeks elements from the top to the bottom.
 
-Method `iterable#reverse()`
+    rtn = [1, 2, 3, 4, 5].cycle()
+    // rtn is an iterator that generates 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, ...
 
-    x = [1, 2, 3, 4, 5].reverse()
-    // x is an iterator that generates 5, 4, 3, 2, 1.
+Method `iterable#reverse()` creates an iterator that seeks elements from the bottom to the top.
+
+    rtn = [1, 2, 3, 4, 5].reverse()
+    // rtn is an iterator that generates 5, 4, 3, 2, 1.
+
+Method `iterable#runlength()` examines how many times the same values continue.
+It creates an iterator that generates a pair containing
+the number of how many times a value appears and the value itself.
+
+    rtn = ['A', 'A', 'B', 'B', 'B', 'C', 'D', 'D'].runlength()
+    // rtn is an iterator that generates [2, 'A'], [3, 'B'], [1, 'C'], [2, 'D']
 
 Method `iterable#sort()` sorts iterable's elements in an ascending order.
 
-    x = [3, 1, 4, 1, 5, 9, 2, 6].sort()
-    // x is an iterator that generates 1, 1, 2, 3, 4, 5, 6, 9.
+    rtn = [3, 1, 4, 1, 5, 9, 2, 6].sort()
+    // rtn is an iterator that generates 1, 1, 2, 3, 4, 5, 6, 9.
 
-Specifying a symbol ``descend` as an argument for the method will sort elements in a descending order.
+Specifying a symbol ``descend` in an argument of the method will sort elements in a descending order.
 
-    x = [3, 1, 4, 1, 5, 9, 2, 6].sort(`descend)
-    // x is an iterator that generates 9, 6, 5, 4, 3, 2, 1, 1.
+    rtn = [3, 1, 4, 1, 5, 9, 2, 6].sort(`descend)
+    // rtn is an iterator that generates 9, 6, 5, 4, 3, 2, 1, 1.
 
-`iterable#after()` and `iterable#since()`
+Methods `iterable#after()`, `iterable#since()`, `iterable#before()`, `iterable#until()`
+and `iterable#while()` create an iterator that picks up elements within a certain range.
+They take an argument `criteria` that indicates where the range begins or ends.
+The `criteria` is the same as that of `iterable#filter()` and may take a function or an iterable.
 
-`iterable#before()` and `iterable#until()`
+* `iterable#after()` and `iterable#since()`
 
-`iterable#while()`
+        tbl = [3, 1, 4, 1, 5, 9, 2, 6, 5]
+        
+        rtn = tbl.after(&{$x >= 5})
+        // rtn is an iterator that generates 9, 2, 6, 5.
+        
+        rtn = tbl.since(&{$x >= 5})
+        // rtn is an iterator that generates 5, 9, 2, 6, 5.
 
-`list#combination()`
-`list#permutation()`
-`list#shuffle()`
+* `iterable#before()` and `iterable#until()`
+    
+        tbl = [3, 1, 4, 1, 5, 9, 2, 6, 5]
+
+        rtn = tbl.before(&{$x >= 5})
+        // rtn is an iterator that generates 3, 1, 4, 1.
+        
+        rtn = tbl.until(&{$x >= 5})
+        // rtn is an iterator that generates 3, 1, 4, 1, 5.
+    
+* `iterable#while()`
+
+        tbl = [3, 1, 4, 1, 5, 9, 2, 6, 5]
+
+        rtn = tbl.while(&{$x < 5})
+        // rtn is an iterator that generates 3, 1, 4, 1.
+
+Method `list#combination()`
+
+    rtn = [1, 2, 3, 4].combination(3)
+    // rtn is an iterator that generates [1, 2, 3], [1, 2, 4], [1, 3, 4], [2, 3, 4]
+
+Method `list#permutation()`
+
+    rtn = [1, 2, 3].permutation(2)
+    // rtn is an iterator that generates [1, 2], [1, 3], [2, 1], [2, 3], [3, 1], [3, 2]
+
+    rtn = [1, 2, 3].permutation()
+    // rtn is an iterator that generates [1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]
+
+Method `list#shuffle()`
+
 
 ## {{ page.chapter }}.6. Iterator Generation
 

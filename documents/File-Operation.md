@@ -43,11 +43,16 @@ which will automatically be converted to a `stream` instance by a casting mechan
 
     f(fd:stream) = {
         // fd is a stream instance for reading
-    
+        // (any jobs)
     }
     f('foo.txt')
 
+`:w` attribute
 
+    f(fd:stream:w) = {
+        // fd is a stream instance for writing
+        // (any jobs)
+    }
 
 
 ## {{ page.chapter }}.3. Directory

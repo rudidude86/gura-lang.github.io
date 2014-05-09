@@ -26,9 +26,58 @@ and dispatches jobs to an appropriate process
 that has been registered by the interpreter and imported Modules.
 
 
-## {{ page.chapter }}.2. Stream
+## {{ page.chapter }}.2. Pathname
 
-### {{ page.chapter }}.2.1. Creation of Instance
+## {{ page.chapter }}.2.1. Format of Pathname
+
+Pathname is a string that identifies Stream and Directory.
+Below is an example of a Pathname that represents a file in a file system.
+
+                            +-- suffix part
+                            |
+                          ----
+    /home/foo/work/example.txt
+    -------------- -----------
+          |             |
+          |             +-- file part
+          +-- directory part
+
+A separator character should be a slash for Linux system and a back slash for Windows.
+You can see variable `path.sep_file` to check which character is used in the current system.
+
+
+    C:\Users\foo\source\main.cpp
+
+Importing `curl`
+
+    http://www.example.com/doc/index.html
+
+Importing `zip`
+
+    /home/foo/work/example.zip/
+
+
+## {{ page.chapter }}.2.2. Parsing Pathname
+
+Function `path.absname()`
+
+Function `path.dirname()`
+
+Function `path.filename()`
+
+Function `path.split()`
+
+Function `path.splitext()`
+
+Function `path.bottom()`
+
+Function `path.cutbottom()`
+
+
+
+## {{ page.chapter }}.3. Stream
+
+### {{ page.chapter }}.3.1. Creation of Stream Instance
 
 A Stream is represented by an instance of `stream` class.
 One way to create a `stream` instance is to call `open()` function
@@ -55,14 +104,23 @@ which will automatically be converted to a `stream` instance by a casting mechan
     }
 
 
-## {{ page.chapter }}.3. Directory
+### {{ page.chapter }}.3.2. Stream Manipulation
+
+### {{ page.chapter }}.3.3. Character Codecs
+
+
+
+
+## {{ page.chapter }}.4. Directory
 
     path.dir
     path.glob
     path.walk
 
 
-## {{ page.chapter }}.4. Archive File
+    path.exists
+
+## {{ page.chapter }}.5. Archive File
 
     tar
     tar.gz
@@ -72,5 +130,5 @@ which will automatically be converted to a `stream` instance by a casting mechan
     gz
     bz2
 
-## {{ page.chapter }}.5. OS-specific Operations
+## {{ page.chapter }}.6. OS-specific Operations
 

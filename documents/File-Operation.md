@@ -13,59 +13,52 @@ Gura provides mechanism of **Stream** and **Directory** to work on files:
 Stream is prepared to read and write content of a file
 and Directory to retrieve lists of files stored in some containers.
 Here, a term "file" is not limited to what is stored in a file system of an OS.
-You can use Stream and Directory to access files through networks
+You can also use Stream and Directory to access files through networks
 and even ones stored in an archive files.
 Gura provides a generic framework to handle these resources
 so that you can expand the capabilities by importing Modules.
 
 Each of Streams and Directories is associated with a uniquely identifiable string called **Pathname**.
-A Pathname may be a filename that can be recognized in a file system,
-a URI on Internet or a structured identifier in an archive file.
-The framework for Stream and Directory recognizes the Pathname
-and dispatches jobs to an appropriate process
-that has been registered by the interpreter and imported Modules.
+A framework called **Path Manager** is responsible of recognizing Pathname for Stream and Directory
+and dispatching jobs to an appropriate process
+that has been registered by embedded and imported Modules.
 
 
 ## {{ page.chapter }}.2. Pathname
 
 ## {{ page.chapter }}.2.1. Format of Pathname
 
-Pathname is a string that identifies Stream and Directory.
-Below is an example of a Pathname that represents a file in a file system.
+Pathname is a string that identifies Stream and Directory, which should be handled by Path Manager.
 
-                            +-- suffix part
-                            |
-                          ----
+In default, Path Manager tries to recognize a Pathname as what is for ones stored in a file system.
+Below are some of such examples:
+
     /home/foo/work/example.txt
-    -------------- -----------
-          |             |
-          |             +-- file part
-          +-- directory part
-
-A separator character should be a slash for Linux system and a back slash for Windows.
-You can see variable `path.sep_file` to check which character is used in the current system.
-
-
     C:\Users\foo\source\main.cpp
 
-Importing `curl`
+You can use both a slash or a backslash as a directory separator for a file in file systems,
+which is to be converted by `fs` module to what the current OS can accept.
+You can see variable `path.sep_file` to check what character is favorable to the OS.
+
+Importing `curl` module, which provides features to access network using [curl](http://curl.haxx.se/) library,
+would make Path Manager able to recognize URIs that begin with protocol names like "http" and "ftp".
 
     http://www.example.com/doc/index.html
 
-Importing `zip`
+After importing `zip` module, you can specify a Pathname that represents entries in a ZIP archive file.
+The example below indicates an entry named `src/main.cpp` in a ZIP file `/home/foo/example.zip`.
 
-    /home/foo/work/example.zip/
+    /home/foo/example.zip/src/main.cpp
 
 
 ## {{ page.chapter }}.2.2. Parsing Pathname
 
-Function `path.absname()`
+Function `path.dirname()` extracts a directory part from a Pathanme.
 
-Function `path.dirname()`
+Function `path.filename()` extracts a file part from a Pathname.
 
-Function `path.filename()`
-
-Function `path.split()`
+Function `path.split()` splits a Pathname by a directory separator
+and returns a list containing its directory part and file part.
 
 Function `path.splitext()`
 
@@ -73,6 +66,8 @@ Function `path.bottom()`
 
 Function `path.cutbottom()`
 
+Function `path.absname()` takes a relative path name in a file system
+and returns an absolute name based on the current directory.
 
 
 ## {{ page.chapter }}.3. Stream

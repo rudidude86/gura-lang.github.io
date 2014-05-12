@@ -18,8 +18,8 @@ and even ones stored in an archive files.
 Gura provides a generic framework to handle these resources
 so that you can expand the capabilities by importing Modules.
 
-Each of Streams and Directories is associated with a uniquely identifiable string called **Pathname**.
-A framework called **Path Manager** is responsible of recognizing Pathname for Stream and Directory
+Each of Streams and Directories is associated with a uniquely identifiable string called **pathname**.
+A framework called **Path Manager** is responsible of recognizing pathname for Stream and Directory
 and dispatching jobs to an appropriate process
 that has been registered by embedded and imported Modules.
 
@@ -28,9 +28,9 @@ that has been registered by embedded and imported Modules.
 
 ## {{ page.chapter }}.2.1. Format of Pathname
 
-Pathname is a string that identifies Stream and Directory, which should be handled by Path Manager.
+A pathname is a string that identifies Stream and Directory, which should be handled by Path Manager.
 
-In default, Path Manager tries to recognize a Pathname as what is for ones stored in a file system.
+In default, Path Manager tries to recognize a pathname as what is for ones stored in a file system.
 Below are some of such examples:
 
     /home/foo/work/example.txt
@@ -45,26 +45,56 @@ would make Path Manager able to recognize URIs that begin with protocol names li
 
     http://www.example.com/doc/index.html
 
-After importing `zip` module, you can specify a Pathname that represents entries in a ZIP archive file.
+After importing `zip` module, you can specify a pathname that represents entries in a ZIP archive file.
 The example below indicates an entry named `src/main.cpp` in a ZIP file `/home/foo/example.zip`.
 
     /home/foo/example.zip/src/main.cpp
 
 
-## {{ page.chapter }}.2.2. Parsing Pathname
+## {{ page.chapter }}.2.2. Utility Functions to Parse Pathname
 
-Function `path.dirname()` extracts a directory part from a Pathanme.
+Function `path.dirname()` extracts a directory part from a pathname.
 
-Function `path.filename()` extracts a file part from a Pathname.
+    rtn = path.dirname('/home/foo/work/example.txt')
+    // rtn is '/home/foo/work/'
 
-Function `path.split()` splits a Pathname by a directory separator
+Function `path.filename()` extracts a file part from a pathname.
+
+    rtn = path.fileame('/home/foo/work/example.txt')
+    // rtn is 'example.txt'
+
+    rtn = path.filename('/home/foo/work/doc/')
+    // rtn is ''
+
+Function `path.split()` splits a pathname by a directory separator
 and returns a list containing its directory part and file part.
 
-Function `path.splitext()`
+    rtn = path.split('/home/foo/work/example.txt')
+    // rtn is ['/home/foo/work/', 'example.txt']
 
-Function `path.bottom()`
+Function `path.splitext()` splits a pathname by a period existing last
+and returns a list containing its preceding part and suffix part.
 
-Function `path.cutbottom()`
+    rtn = path.splitext('/home/foo/work/example.txt')
+    // rtn is ['/home/foo/work/example', 'txt']
+
+Function `path.bottom()` splits a pathname and returns the last element.
+This works the same as `path.filename()` when the pathname ends with a file part,
+but has a different result if it ends with a directory separator.
+
+    rtn = path.bottom('/home/foo/work/example.txt')
+    // rtn is 'example.txt'
+   
+    rtn = path.bottom('/home/foo/work/doc/')
+    // rtn is 'doc'
+
+Function `path.cutbottom()` returns the preceding part of the result from `path.bottom()`.
+
+    rtn = path.cutbottom('/home/foo/work/example.txt')
+    // rtn is '/home/foo/work/'
+   
+    rtn = path.cutbottom('/home/foo/work/doc/')
+    // rtn is '/home/foo/work/'
 
 Function `path.absname()` takes a relative path name in a file system
 and returns an absolute name based on the current directory.
@@ -76,27 +106,35 @@ and returns an absolute name based on the current directory.
 
 A Stream is represented by an instance of `stream` class.
 One way to create a `stream` instance is to call `open()` function
-with an argument specifying a Pathname to open.
+with an argument specifying a pathname to open.
 
     fd = open('foo.txt')
     // fd is a stream instance to read data from "foo.txt"
 
+When the function is called with the second argument `mode` set to `'w'`,
+it would create a new file and returns a `stream` instance to write data into it.
+
+    fd = open('foo.txt', 'w')
+    // fd is a stream instance to write data into "foo.txt"
+
 If a function has an argument that expects a `stream` instance,
-you can pass it a string of a Pathname,
+you can pass it a string of a pathname,
 which will automatically be converted to a `stream` instance by a casting mechanism.
 
     f(fd:stream) = {
         // fd is a stream instance for reading
         // (any jobs)
     }
-    f('foo.txt')
+    f('foo.txt')   // same as f(open('foo.txt'))
 
-`:w` attribute
+If the argument is declared with `:w` attribute,
+the `stream` instance would be created for writing.
 
     f(fd:stream:w) = {
         // fd is a stream instance for writing
         // (any jobs)
     }
+    f('foo.txt')   // same as f(open('foo.txt', 'w'))
 
 
 ### {{ page.chapter }}.3.2. Stream Manipulation

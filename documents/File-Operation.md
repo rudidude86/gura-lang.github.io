@@ -26,7 +26,7 @@ that have been registered by embedded and imported Modules.
 
 ## {{ page.chapter }}.2. Pathname
 
-## {{ page.chapter }}.2.1. Format of Pathname
+## {{ page.chapter }}.2.1. Acceptable Format of Pathname
 
 A pathname is a string that identifies Stream and Directory, which should be handled by Path Manager.
 
@@ -171,9 +171,24 @@ Attribute `:r` is also prepared
 to explicitly declara that the stream is to be opened for reading.
 
 
-### {{ page.chapter }}.3.3. Pre-created Stream Instance
+### {{ page.chapter }}.3.3. Stream Instance for Standard Input/Output
 
-`sys.stdin`, `sys.stdout`, `sys.stderr`
+There are some `stream` instances that are available without explicit creation.
+
+* `sys.stdin` &hellip; Standard input that retrieves data from key board.
+* `sys.stdout` &hellip; Standard output that outputs texts to display.
+* `sys.stderr` &hellip; Standard error output that outputs texts to display without interference of pipe redirection.
+
+Functions `print()`, `printf()` and `println()` output texts to the stream `sys.stdout`.
+This means that the following two codes would cause the same result.
+
+    println('Hello world')
+    sys.stdout.println('Hello world')
+
+You can also assign a `stream` instance you create to these variables.
+
+    sys.stdout = open('foo.txt', 'w')
+    println('Hello world')   // result will be written into 'foo.txt'.
 
 
 ### {{ page.chapter }}.3.4. Stream Manipulation

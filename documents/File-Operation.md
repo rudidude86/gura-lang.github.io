@@ -193,18 +193,23 @@ You can also assign a `stream` instance you create to these variables.
 
 ### {{ page.chapter }}.3.4. Stream with Text Data
 
-Method `stream#print()`
+Methods `stream#print()`, `stream#println()` and `stream#printf()`
 
-`stream#println()`
+Method `stream#readtext()`
 
-`stream#printf()`
+Methods `stream#readline()` and `stream#readlines()`
 
-`stream#readtext()`
 
-`stream#readline()`
+`codec` class
 
-`stream#readlines()`
-
+<table>
+<tr><th>Module</th><th>Available Codec Names</th></tr>
+<tr><td><code>codecs.basic</code></td><td><code>base64</code>, <code>us-ascii</code>, <code>utf-8</code>, <code>utf-16</code></td></tr>
+<tr><td><code>codecs.chinese</code></td><td><code>big5</code>, <code>cp936</code>, <code>cp950</code>, <code>gb2312</code></td></tr>
+<tr><td><code>codecs.iso8859</code></td><td><code>iso8859-1</code>, .. <code>iso8859-16</code></td></tr>
+<tr><td><code>codecs.japanese</code></td><td><code>cp932</code>, <code>euc-jp</code>, <code>iso-2022-jp</code>, <code>jis</code>, <code>ms_kanji</code>, <code>shift_jis</code></td></tr>
+<tr><td><code>codecs.korean</code></td><td><code>cp949</code>, <code>euc-kr</code></td></tr>
+</table>
 
 ### {{ page.chapter }}.3.5. Stream with Binary Data
 
@@ -225,16 +230,28 @@ Method `stream#print()`
 `stream#compare()`
 
 
-### {{ page.chapter }}.3.6. Character Codecs
+### {{ page.chapter }}.3.6. Compressor and Decompressor
 
-<table>
-<tr><th>Module</th><th>Codec</th></tr>
-<tr><td><code>codecs.basic</code></td><td>base64, us-ascii, utf-8, utf-16</td></tr>
-<tr><td><code>codecs.chinese</code></td><td>big5, cp936, cp950, gb2312</td></tr>
-<tr><td><code>codecs.iso8859</code></td><td>iso8859-1, .. iso8859-16</td></tr>
-<tr><td><code>codecs.japanese</code></td><td>cp932, euc-jp, iso-2022-jp, jis, ms_kanji, shift_jis</td></tr>
-<tr><td><code>codecs.korean</code></td><td>cp949, euc-kr</td></tr>
-</table>
+`gzip` module
+
+`gzipreader`
+
+`gzipwriter`
+
+`bzip2` module
+
+`bzip2reader`
+
+`bzip2writer`
+
+
+
+### {{ page.chapter }}.3.7. Base-64 Encoder/Decoder
+
+`base64reader`
+
+`base64writer`
+
 
 
 ## {{ page.chapter }}.4. Directory

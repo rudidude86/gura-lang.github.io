@@ -118,22 +118,41 @@ and returns an absolute name based on the current directory.
 
 ### {{ page.chapter }}.3.1. Creation of Stream Instance
 
-A Stream is represented by an instance of `stream` class.
-One way to create a `stream` instance is to call `open()` function
-with an argument specifying a pathname to open.
+A Stream is represented by an instance of `stream` class,
+which has a constructor function named `stream()`.
+Below shows a declaration of the constructor function:
+
+    stream(pathname:string, mode?:string, codec?:codec):map {block?}
+
+In many platforms and languages, people are accustom to using a term `open`
+as a function name for opening a file, or a stream.
+So, Gura provides function `open()` as a complete synonym for `stream()`,
+which has the same declaration with it.
+
+    open(pathname:string, mode?:string, codec?:codec):map {block?}
+
+In most cases, this document uses `open()` instead of `stream()` to create a `stream` instance.
+
+Function `open()` takes a pathname string as its argument and creates a `stream` instance.
 
     fd = open('foo.txt')
-    // fd is a stream instance to read data from "foo.txt"
+    // fd is a stream to read data from "foo.txt"
 
-When the function is called with the second argument `mode` set to `'w'`,
-it would create a new file and returns a `stream` instance to write data into it.
+When it is called with its second argument `mode` set to `'w'`,
+the function would create a new file and returns a `stream` instance to write data into it.
 
     fd = open('foo.txt', 'w')
-    // fd is a stream instance to write data into "foo.txt"
+    // fd is a stream to write data into "foo.txt"
 
-If a function has an argument that expects a `stream` instance,
+
+`sys.stdin`, `sys.stdout`, `sys.stderr`
+
+### {{ page.chapter }}.3.2. Cast to Stream Instance
+
+If a certain function has an argument that expects a `stream` instance,
 you can pass it a string of a pathname,
 which will automatically be converted to a `stream` instance by a casting mechanism.
+The `stream` instance would be created as one for reading.
 
     f(fd:stream) = {
         // fd is a stream instance for reading
@@ -150,12 +169,54 @@ the `stream` instance would be created for writing.
     }
     f('foo.txt')   // same as f(open('foo.txt', 'w'))
 
+Attribute `:r` is also prepared
+to explicitly declara that the stream is to be opened for reading.
 
-### {{ page.chapter }}.3.2. Stream Manipulation
+### {{ page.chapter }}.3.3. Stream Manipulation
 
-### {{ page.chapter }}.3.3. Character Codecs
+binary data 
+
+`stream#read()`
+
+`stream#write()`
+
+`stream#seek()`
+
+`stream#tell()`
+
+`stream.copy()`
+
+`stream#copyto()`
+
+`stream#copyfrom()`
+
+`stream#compare()`
+
+text data
+
+`stream#print()`
+
+`stream#println()`
+
+`stream#printf()`
+
+`stream#readtext()`
+
+`stream#readline()`
+
+`stream#readlines()`
 
 
+### {{ page.chapter }}.3.4. Character Codecs
+
+<table>
+<tr><th>Module</th><th>Codec</th></tr>
+<tr><td><code>codecs.basic</code></td><td>base64, us-ascii, utf-8, utf-16</td></tr>
+<tr><td><code>codecs.chinese</code></td><td>big5, cp936, cp950, gb2312</td></tr>
+<tr><td><code>codecs.iso8859</code></td><td>iso8859-1, .. iso8859-16</td></tr>
+<tr><td><code>codecs.japanese</code></td><td>cp932, euc-jp, iso-2022-jp, jis, ms_kanji, shift_jis</td></tr>
+<tr><td><code>codecs.korean</code></td><td>cp949, euc-kr</td></tr>
+</table>
 
 
 ## {{ page.chapter }}.4. Directory
@@ -178,4 +239,9 @@ the `stream` instance would be created for writing.
     bz2
 
 ## {{ page.chapter }}.6. OS-specific Operations
+
+`os.stdin`, `os.stdout`, `os.stderr`
+
+`os.exec()`
+
 

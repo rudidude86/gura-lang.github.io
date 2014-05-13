@@ -145,8 +145,6 @@ the function would create a new file and returns a `stream` instance to write da
     // fd is a stream to write data into "foo.txt"
 
 
-`sys.stdin`, `sys.stdout`, `sys.stderr`
-
 ### {{ page.chapter }}.3.2. Cast to Stream Instance
 
 If a certain function has an argument that expects a `stream` instance,
@@ -172,7 +170,13 @@ the `stream` instance would be created for writing.
 Attribute `:r` is also prepared
 to explicitly declara that the stream is to be opened for reading.
 
-### {{ page.chapter }}.3.3. Stream Manipulation
+
+### {{ page.chapter }}.3.3. Pre-created Stream Instance
+
+`sys.stdin`, `sys.stdout`, `sys.stderr`
+
+
+### {{ page.chapter }}.3.4. Stream Manipulation
 
 binary data 
 
@@ -207,7 +211,7 @@ text data
 `stream#readlines()`
 
 
-### {{ page.chapter }}.3.4. Character Codecs
+### {{ page.chapter }}.3.5. Character Codecs
 
 <table>
 <tr><th>Module</th><th>Codec</th></tr>

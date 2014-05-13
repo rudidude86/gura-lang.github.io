@@ -20,8 +20,8 @@ so that you can expand the capabilities by importing Modules.
 
 Each of Streams and Directories is associated with a uniquely identifiable string called **pathname**.
 A framework called **Path Manager** is responsible of recognizing pathname for Stream and Directory
-and dispatching jobs to an appropriate process
-that has been registered by embedded and imported Modules.
+and dispatching jobs related to file operation to appropriate processes
+that have been registered by embedded and imported Modules.
 
 
 ## {{ page.chapter }}.2. Pathname
@@ -30,7 +30,7 @@ that has been registered by embedded and imported Modules.
 
 A pathname is a string that identifies Stream and Directory, which should be handled by Path Manager.
 
-In default, Path Manager tries to recognize a pathname as what is for ones stored in a file system.
+By default, Path Manager tries to recognize a pathname as what is for ones stored in a file system.
 Below are some of such examples:
 
     /home/foo/work/example.txt
@@ -41,7 +41,7 @@ which is to be converted by `fs` module to what the current OS can accept.
 You can see variable `path.sep_file` to check what character is favorable to the OS.
 
 Importing `curl` module, which provides features to access network using [curl](http://curl.haxx.se/) library,
-would make Path Manager able to recognize URIs that begin with protocol names like "http" and "ftp".
+or `http` module would make Path Manager able to recognize URIs that begin with protocol names like "http" and "ftp".
 
     http://www.example.com/doc/index.html
 
@@ -53,9 +53,15 @@ The example below indicates an entry named `src/main.cpp` in a ZIP file `/home/f
 
 ## {{ page.chapter }}.2.2. Utility Functions to Parse Pathname
 
-Function `path.dirname()` extracts a directory part from a pathname.
+Function `path.dirname()` extracts a directory part by eliminating a file part from a pathname.
 
     rtn = path.dirname('/home/foo/work/example.txt')
+    // rtn is '/home/foo/work/'
+
+If the pathname ends with a directory separator,
+the function determines it doesn't contain a file part and returns the whole string.
+
+    rtn = path.dirname('/home/foo/work/')
     // rtn is '/home/foo/work/'
 
 Function `path.filename()` extracts a file part from a pathname.
@@ -63,38 +69,46 @@ Function `path.filename()` extracts a file part from a pathname.
     rtn = path.fileame('/home/foo/work/example.txt')
     // rtn is 'example.txt'
 
-    rtn = path.filename('/home/foo/work/doc/')
+When given with a pathname that ends with a directory separator,
+the function determines it doesn't contain a file part and returns a null string.
+
+    rtn = path.filename('/home/foo/work/')
     // rtn is ''
 
 Function `path.split()` splits a pathname by a directory separator
 and returns a list containing its directory part and file part.
+This works the same as a combination of `path.dirname()` and `path.filename()`.
 
     rtn = path.split('/home/foo/work/example.txt')
     // rtn is ['/home/foo/work/', 'example.txt']
+
+Function `path.cutbottom()` eliminates the last element in the directory hierarchy.
+This works the same as `path.dirname()` when the pathname ends with a file part.
+
+    rtn = path.cutbottom('/home/foo/work/example.txt')
+    // rtn is '/home/foo/work/'
+
+Note that it would have a different result if the pathname ends with a directory separator.
+
+    rtn = path.cutbottom('/home/foo/work/')
+    // rtn is '/home/foo/'
+
+Function `path.bottom()` splits a pathname and returns the last element.
+This works the same as `path.filename()` when the pathname ends with a file part.
+
+    rtn = path.bottom('/home/foo/work/example.txt')
+    // rtn is 'example.txt'
+
+Note that it would have a different result if the pathname ends with a directory separator.
+
+    rtn = path.bottom('/home/foo/work/')
+    // rtn is 'work'
 
 Function `path.splitext()` splits a pathname by a period existing last
 and returns a list containing its preceding part and suffix part.
 
     rtn = path.splitext('/home/foo/work/example.txt')
     // rtn is ['/home/foo/work/example', 'txt']
-
-Function `path.bottom()` splits a pathname and returns the last element.
-This works the same as `path.filename()` when the pathname ends with a file part,
-but has a different result if it ends with a directory separator.
-
-    rtn = path.bottom('/home/foo/work/example.txt')
-    // rtn is 'example.txt'
-   
-    rtn = path.bottom('/home/foo/work/doc/')
-    // rtn is 'doc'
-
-Function `path.cutbottom()` returns the preceding part of the result from `path.bottom()`.
-
-    rtn = path.cutbottom('/home/foo/work/example.txt')
-    // rtn is '/home/foo/work/'
-   
-    rtn = path.cutbottom('/home/foo/work/doc/')
-    // rtn is '/home/foo/work/'
 
 Function `path.absname()` takes a relative path name in a file system
 and returns an absolute name based on the current directory.

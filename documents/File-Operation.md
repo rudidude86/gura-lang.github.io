@@ -173,7 +173,7 @@ to explicitly declara that the stream is to be opened for reading.
 
 ### {{ page.chapter }}.3.3. Stream Instance for Standard Input/Output
 
-There are some `stream` instances that are available without explicit creation.
+There are three `stream` instances that are assigned to variables in `sys` module.
 
 * `sys.stdin` &hellip; Standard input that retrieves data from key board.
 * `sys.stdout` &hellip; Standard output that outputs texts to display.
@@ -191,9 +191,22 @@ You can also assign a `stream` instance you create to these variables.
     println('Hello world')   // result will be written into 'foo.txt'.
 
 
-### {{ page.chapter }}.3.4. Stream Manipulation
+### {{ page.chapter }}.3.4. Stream with Text Data
 
-binary data 
+Method `stream#print()`
+
+`stream#println()`
+
+`stream#printf()`
+
+`stream#readtext()`
+
+`stream#readline()`
+
+`stream#readlines()`
+
+
+### {{ page.chapter }}.3.5. Stream with Binary Data
 
 `stream#read()`
 
@@ -211,22 +224,8 @@ binary data
 
 `stream#compare()`
 
-text data
 
-`stream#print()`
-
-`stream#println()`
-
-`stream#printf()`
-
-`stream#readtext()`
-
-`stream#readline()`
-
-`stream#readlines()`
-
-
-### {{ page.chapter }}.3.5. Character Codecs
+### {{ page.chapter }}.3.6. Character Codecs
 
 <table>
 <tr><th>Module</th><th>Codec</th></tr>

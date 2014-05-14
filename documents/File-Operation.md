@@ -284,6 +284,11 @@ Below is a table that shows what codecs are available and what module provides t
 <tr><td><code>codecs.korean</code></td><td><code>cp949</code>, <code>euc-kr</code></td></tr>
 </table>
 
+Codecs only have effect on methods to read/write text data that are summarized below:
+
+    stream#print(), stream#println(), stream#printf()
+    stream#readline(), stream#readlines(), stream#readtext()
+
 ### {{ page.chapter }}.3.6. Stream with Binary Data
 
 `stream#read()`

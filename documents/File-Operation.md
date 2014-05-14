@@ -156,6 +156,16 @@ At times, it may be ambiguous about when the instance is destroyed,
 so it may be better to use `stream#close()` explicitly
 when you want to control the closing timing.
 
+Another way to create and utilize a `stream` instance is to call `open()` function with a block procedure
+that will take a `stream` instance through its block parameter.
+
+    open('foo.txt') {|fd|
+        // (any jobs)
+    }
+
+Using this description, you can access the created instance only within the block,
+which will be automatically destroyed at the end of the procedure.
+
 
 ### {{ page.chapter }}.3.2. Cast to Stream Instance
 

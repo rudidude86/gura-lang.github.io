@@ -116,7 +116,7 @@ and returns an absolute name based on the current directory.
 
 ## {{ page.chapter }}.3. Stream
 
-### {{ page.chapter }}.3.1. Creation of Stream Instance
+### {{ page.chapter }}.3.1. Stream Instance
 
 A Stream is represented by an instance of `stream` class,
 which has a constructor function named `stream()`.
@@ -143,6 +143,18 @@ the function would create a new file and returns a `stream` instance to write da
 
     fd = open('foo.txt', 'w')
     // fd is a stream to write data into "foo.txt"
+
+A `stream` instance will be closed when method `stream#close()` is called on it.
+
+    fd.close()
+
+When a stream for writing is closed, all the data stored in some buffer would be flushed out.
+
+The method would also automatically be called when the instance is destroyed
+after its reference count decreases to zero.
+At times, it may be ambiguous about when the instance is destroyed,
+so it may be better to use `stream#close()` explicitly
+when you want to control the closing timing.
 
 
 ### {{ page.chapter }}.3.2. Cast to Stream Instance
@@ -186,6 +198,7 @@ This means that the following two codes would cause the same result.
     sys.stdout.println('Hello world')
 
 You can also assign a `stream` instance you create to these variables.
+Assignment to `sys.stdout` would affect the behavior of printing functions such as `println()`.
 
     sys.stdout = open('foo.txt', 'w')
     println('Hello world')   // result will be written into 'foo.txt'.
@@ -193,14 +206,30 @@ You can also assign a `stream` instance you create to these variables.
 
 ### {{ page.chapter }}.3.4. Stream with Text Data
 
-Methods `stream#print()`, `stream#println()` and `stream#printf()`
+* Method `stream#print()`
+* Method `stream#println()`
+* Method `stream#printf()`
+
+
 
 Method `stream#readtext()`
 
 Methods `stream#readline()` and `stream#readlines()`
 
+While a `string` instance holds string data in UTF-8 format,
+there are various character code sets to describe texts in files.
+A `stream` instance may contain an instance of `codec` class
+that is responsible of converting characters between UTF-8 and those codes.
+You can specify a `codec` instance to a `stream` by passing it as a third argument of `open()` function.
 
-`codec` class
+    fd = open('foo.txt', 'r', codec('cp932'))
+
+Since there's a casting feature from `string` to `codec` instance,
+you can simply specify a codec name to the argument as well.
+
+    fd = open('foo.txt', 'r', 'cp932')
+
+Below is a table that shows what codecs are available and what module provides them.
 
 <table>
 <tr><th>Module</th><th>Available Codec Names</th></tr>

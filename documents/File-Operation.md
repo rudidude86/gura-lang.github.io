@@ -20,8 +20,8 @@ so that you can expand the capabilities by importing Modules.
 
 Each of Streams and Directories is associated with a uniquely identifiable string called **pathname**.
 A framework called **Path Manager** is responsible of recognizing pathname for Stream and Directory
-and dispatching jobs related to file operation to appropriate processes
-that have been registered by embedded and imported Modules.
+and dispatching file operations to appropriate processes
+that have been registered by built-in and imported Modules.
 
 
 ## {{ page.chapter }}.2. Pathname
@@ -30,7 +30,8 @@ that have been registered by embedded and imported Modules.
 
 A pathname is a string that identifies Stream and Directory, which should be handled by Path Manager.
 
-By default, Path Manager tries to recognize a pathname as what is for ones stored in a file system.
+By default, built-in module `fs` has been registered to Path Manager,
+which tries to recognize a pathname as what is for ones stored in a file system.
 Below are some of such examples:
 
     /home/foo/work/example.txt
@@ -41,7 +42,7 @@ which is to be converted by `fs` module to what the current OS can accept.
 You can see variable `path.sep_file` to check what character is favorable to the OS.
 
 Importing `curl` module, which provides features to access network using [curl](http://curl.haxx.se/) library,
-or `http` module would make Path Manager able to recognize URIs that begin with protocol names like "http" and "ftp".
+or importing `http` module would make Path Manager able to recognize URIs that begin with protocol names like "http" and "ftp".
 
     http://www.example.com/doc/index.html
 
@@ -195,11 +196,12 @@ to explicitly declara that the stream is to be opened for reading.
 
 ### {{ page.chapter }}.3.3. Stream Instance for Standard Input/Output
 
-There are three `stream` instances that are assigned to variables in `sys` module.
+There are three `stream` instances that access standard input and output,
+which are assigned to variables in `sys` module.
 
 * `sys.stdin` &hellip; Standard input that retrieves data from key board.
-* `sys.stdout` &hellip; Standard output that outputs texts to display.
-* `sys.stderr` &hellip; Standard error output that outputs texts to display without interference of pipe redirection.
+* `sys.stdout` &hellip; Standard output that outputs texts to console screen.
+* `sys.stderr` &hellip; Standard error output that outputs texts to console screen without interference of pipe redirection.
 
 Functions `print()`, `printf()` and `println()` output texts to the stream `sys.stdout`.
 This means that the following two codes would cause the same result.
@@ -218,13 +220,13 @@ Assignment to `sys.stdout` would affect the behavior of printing functions such 
 
 There are fundamental functions that print texts out to standard output stream.
 
-* Function `print()` takes multiple arguments that are to be printed out to `sys.stdout`.
+* Function `print()` takes multiple values that are to be printed out in a proper format to `sys.stdout`.
 * Function `println()` works the same as `print()` but also puts a line feed at the end.
 * Function `printf()` works similar with C language's `printf()` function
   and prints values to `sys.stdout` based on format specifiers.
   See chapter [String Operation](String-Operation.html) for more details about formatter.
 
-Below is a sample code using above functions to get the same result.
+Below is a sample code using above functions to get the same result each other.
 
     n = 3, name = 'Tanaka'
     print('No.', n, ': ', name, '\n')
@@ -243,19 +245,40 @@ The code below outputs string to a file `foo.txt`.
         fd.printf('No.%d: %s\n', n, name)
     }
 
-Method `stream#readline()`
+Method `stream#readline()` returns a string containing one line of text from the stream.
+It will return `nil` when it reaches to end of the stream,
+so you can write a program that prints content of a file as below:
 
+    fd = open('foo.txt')
     while (line = fd.readline()) {
-        
+        print(line)
     }
 
-Method `stream#readlines()`
+Regarding that there are more cases you need to read multiple lines from a stream,
+method `stream#readlines()` may be more useful.
+It creates an iterator that returns each line's string as its element.
+A program to prints contet of a file comes as below:
 
-    lines = fd.readline()
+    fd = open('foo.txt')
+    lines = fd.readlines()
+    print(lines)
 
-Method `stream#readtext()`
+Using function `readlines()` that takes `stream` instance as its argument,
+you don't need to explicitly open a stream because of casting mechanism from `string` to `stream`.
+This is the simplest way to read text files.
 
-    text = fd.readtext()
+    lines = readlines('foo.txt')
+    print(lines)
+
+If you want to eliminate a line feed character that exists at each line,
+specify `:chop` attribute.
+
+    lines = readlines('foo.txt'):chop
+    println(lines)
+
+Method `stream#readtext()` returns a string containing the whole content of the stream.
+
+    txt = fd.readtext()
 
 
 ### {{ page.chapter }}.3.5. Character Codecs

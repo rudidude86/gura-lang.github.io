@@ -216,15 +216,49 @@ Assignment to `sys.stdout` would affect the behavior of printing functions such 
 
 ### {{ page.chapter }}.3.4. Stream with Text Data
 
-* Method `stream#print()`
-* Method `stream#println()`
-* Method `stream#printf()`
+There are fundamental functions that print texts out to standard output stream.
 
+* Function `print()` takes multiple arguments that are to be printed out to `sys.stdout`.
+* Function `println()` works the same as `print()` but also puts a line feed at the end.
+* Function `printf()` works similar with C language's `printf()` function
+  and prints values to `sys.stdout` based on format specifiers.
+  See chapter [String Operation](String-Operation.html) for more details about formatter.
 
+Below is a sample code using above functions to get the same result.
+
+    n = 3, name = 'Tanaka'
+    print('No.', n, ': ', name, '\n')
+    println('No.', n, ': ', name)
+    printf('No.%d: %s\n', n, name)
+
+Class `stream` is equipped with methods `stream#print()`, `stream#println()` and `stream#printf()`
+that correspond to functions `print()`, `println()` and `printf()` respectively
+but output result to the target `stream` instread of `sys.stdout`.
+The code below outputs string to a file `foo.txt`.
+
+    n = 3, name = 'Tanaka'
+    open('foo.txt', 'w') {|fd|
+        fd.print('No.', n, ': ', name, '\n')
+        fd.println('No.', n, ': ', name)
+        fd.printf('No.%d: %s\n', n, name)
+    }
+
+Method `stream#readline()`
+
+    while (line = fd.readline()) {
+        
+    }
+
+Method `stream#readlines()`
+
+    lines = fd.readline()
 
 Method `stream#readtext()`
 
-Methods `stream#readline()` and `stream#readlines()`
+    text = fd.readtext()
+
+
+### {{ page.chapter }}.3.5. Character Codecs
 
 While a `string` instance holds string data in UTF-8 format,
 there are various character code sets to describe texts in files.
@@ -250,7 +284,7 @@ Below is a table that shows what codecs are available and what module provides t
 <tr><td><code>codecs.korean</code></td><td><code>cp949</code>, <code>euc-kr</code></td></tr>
 </table>
 
-### {{ page.chapter }}.3.5. Stream with Binary Data
+### {{ page.chapter }}.3.6. Stream with Binary Data
 
 `stream#read()`
 
@@ -269,7 +303,7 @@ Below is a table that shows what codecs are available and what module provides t
 `stream#compare()`
 
 
-### {{ page.chapter }}.3.6. Compressor and Decompressor
+### {{ page.chapter }}.3.7. Compressor and Decompressor
 
 `gzip` module
 
@@ -285,7 +319,7 @@ Below is a table that shows what codecs are available and what module provides t
 
 
 
-### {{ page.chapter }}.3.7. Base-64 Encoder/Decoder
+### {{ page.chapter }}.3.8. Base-64 Encoder/Decoder
 
 `base64reader`
 

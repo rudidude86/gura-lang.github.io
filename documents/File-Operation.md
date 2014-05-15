@@ -377,15 +377,15 @@ class `stream` has methods to read/write binary data as well.
 
 `gzip` module
 
-`gzipreader`
+`stream#gzipreader`
 
-`gzipwriter`
+`stream#gzipwriter`
 
 `bzip2` module
 
-`bzip2reader`
+`stream#bzip2reader`
 
-`bzip2writer`
+`stream#bzip2writer`
 
 
 

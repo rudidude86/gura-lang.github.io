@@ -119,8 +119,8 @@ and returns an absolute name based on the current directory.
 
 ### {{ page.chapter }}.3.1. Stream Instance
 
-A Stream is represented by an instance of `stream` class,
-which has a constructor function named `stream()`.
+A Stream is a data object to read and write content of a file
+and represented by a `stream` instance created by a constructor function named `stream()`.
 Below shows a declaration of the constructor function:
 
     stream(pathname:string, mode?:string, codec?:codec):map {block?}
@@ -301,6 +301,23 @@ Method `stream#readtext()` returns a string containing the whole content of the 
 
     txt = fd.readtext()
 
+As for the character sequence existing at each end of line in a file,
+Gura can handle two types of sequence: LF (0x0a) and CR(0x0d) - LF(0x0a).
+By default, the following policies are applied
+so that the `string` instance only contains LF code.
+
+* When reading, all the CR codes are removed.
+* When writing, there's no modification about the sequence of end of line.
+
+To change this behavior, methods `stream#delcr()` and `stream#addcr()` are prepared.
+If you want to keep CR code from read text, call `stream#delcr()` method with an argument set to `false`.
+
+    fd.delcr(false)
+
+If you want to append CR code at each end of line, call `stream#addcr()` method with an argument set to `true`.
+
+    fd.addcr(true)
+
 
 ### {{ page.chapter }}.3.5. Character Codecs
 
@@ -333,7 +350,11 @@ Codecs only have effect on methods to read/write text data that are summarized b
     stream#print(), stream#println(), stream#printf()
     stream#readline(), stream#readlines(), stream#readtext()
 
+
 ### {{ page.chapter }}.3.6. Stream with Binary Data
+
+In addition to methods to handle text data,
+class `stream` has methods to read/write binary data as well.
 
 `stream#read()`
 

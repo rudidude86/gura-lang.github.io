@@ -132,9 +132,9 @@ which has the same declaration with it.
 
     open(pathname:string, mode?:string, codec?:codec):map {block?}
 
-In most cases, this document uses `open()` instead of `stream()` to create a `stream` instance.
+In many cases, this document uses function `open()` instead of `stream()` to create a `stream` instance.
 
-Function `open()` takes a pathname string as its argument and creates a `stream` instance.
+Function `open()` takes a pathname string as its argument and returns a `stream` instance.
 
     fd = open('foo.txt')
     // fd is a stream to read data from "foo.txt"
@@ -149,9 +149,10 @@ A `stream` instance will be closed when method `stream#close()` is called on it.
 
     fd.close()
 
-When a stream for writing is closed, all the data stored in some buffer would be flushed out.
+When a stream for writing is closed, all the data stored in some buffer would be flushed out
+before the instance is invalidated.
 
-The method would also automatically be called when the instance is destroyed
+Method `stream#close()` would also be called automatically when the instance is destroyed
 after its reference count decreases to zero.
 At times, it may be ambiguous about when the instance is destroyed,
 so it may be better to use `stream#close()` explicitly
@@ -196,7 +197,7 @@ to explicitly declara that the stream is to be opened for reading.
 
 ### {{ page.chapter }}.3.3. Stream Instance for Standard Input/Output
 
-There are three `stream` instances that access standard input and output,
+There are three `stream` instances for the access to standard input and output,
 which are assigned to variables in `sys` module.
 
 * `sys.stdin` &hellip; Standard input that retrieves data from key board.
@@ -210,7 +211,7 @@ This means that the following two codes would cause the same result.
     sys.stdout.println('Hello world')
 
 You can also assign a `stream` instance you create to these variables.
-Assignment to `sys.stdout` would affect the behavior of printing functions such as `println()`.
+Assignment to `sys.stdout` would affect the behavior of functions such as `println()`.
 
     sys.stdout = open('foo.txt', 'w')
     println('Hello world')   // result will be written into 'foo.txt'.
@@ -220,7 +221,7 @@ Assignment to `sys.stdout` would affect the behavior of printing functions such 
 
 There are fundamental functions that print texts out to standard output stream.
 
-* Function `print()` takes multiple values that are to be printed out in a proper format to `sys.stdout`.
+* Function `print()` takes multiple values that are to be printed out to `sys.stdout` in a proper format.
 * Function `println()` works the same as `print()` but also puts a line feed at the end.
 * Function `printf()` works similar with C language's `printf()` function
   and prints values to `sys.stdout` based on format specifiers.
@@ -234,7 +235,7 @@ Below is a sample code using above functions to get the same result each other.
     printf('No.%d: %s\n', n, name)
 
 Class `stream` is equipped with methods `stream#print()`, `stream#println()` and `stream#printf()`
-that correspond to functions `print()`, `println()` and `printf()` respectively
+that correspond to functions `print()`, `println()` and `printf()` respectively,
 but output result to the target `stream` instread of `sys.stdout`.
 The code below outputs string to a file `foo.txt`.
 
@@ -254,7 +255,7 @@ so you can write a program that prints content of a file as below:
         print(line)
     }
 
-Regarding that there are more cases you need to read multiple lines from a stream,
+Regarding that you often need to read multiple lines from a stream,
 method `stream#readlines()` may be more useful.
 It creates an iterator that returns each line's string as its element.
 A program to prints contet of a file comes as below:
@@ -275,6 +276,26 @@ specify `:chop` attribute.
 
     lines = readlines('foo.txt'):chop
     println(lines)
+
+An iterator created by method `stream#readlines()` and function `readlines()` owns a reference to the `stream` instance
+because they're designed to read data from it while iteration.
+This means that the stream instance won't be released while such iterator is running.
+
+Consider the following code that is expected to read text from `foo.txt` and
+write text back to the same file after converting alphabet characters to upper case.
+
+    lines = readlines('foo.txt')
+    open('foo.txt', 'w').print(lines:*upper())
+
+Unfortunately, this program doesn't work correctly.
+The iterator `lines` owns a stream to read content from the file `foo.txt`,
+which conflicts with the attempt to open `foo.txt` for writing.
+To avoid this, you need to call `readlines()` function with `:list` attribute
+that reads whole the lines from the stream before storing them to memory.
+The stream is released before the function returns the result.
+
+    lines = readlines('foo.txt'):list
+    open('foo.txt', 'w').print(lines:*upper())
 
 Method `stream#readtext()` returns a string containing the whole content of the stream.
 

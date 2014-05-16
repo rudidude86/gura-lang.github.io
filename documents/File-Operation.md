@@ -368,10 +368,21 @@ In addition to methods to handle text data,
 class `stream` is equipped with methods to read/write binary data as well.
 
 Method `stream#read()` reads specified size of data into a `binary` instance and returns it.
+When the stream reaches its end, the method returns `nil`.
+
+    open('foo.bin') {|fd|
+        while (buff = fd.read(512)) {
+            // some jobs with buff
+        }
+    }
 
 Method `stream#write()` writes content of a `binary` instance to the stream.
 
-Method `stream#seek()` moves offset at which read/write operations are applied.
+    open('foo.bin', 'w') {|fd|
+        fd.write(buff)
+    }
+
+Method `stream#seek()` moves the current offset at which read/write operations are applied.
 
 Method `stream#tell()` returns the current offset.
 
@@ -388,28 +399,42 @@ Method `stream#compare()` compares contents between two streams
 and returns `true` if there's no difference and `false` otherwise.
 
 
-### {{ page.chapter }}.3.7. Compressor and Decompressor
+### {{ page.chapter }}.3.7. Filter Stream
 
+A Filter Stream is what is attached to other `stream` instance
+and applies data modification while reading or writing operation.
 
-`gzip` module
+There are two types of Filter Stream: reader and writer.
+
+A Filter Stream of reader type provides method for reading operation.
+
+    +--------+    +---------------+
+    | stream |--->| reader stream |----> (reading operation)
+    +--------+    +---------------+
+
+A Filter Stream of writer type provides method for writing operation.
+
+    +--------+    +---------------+
+    | stream |<---| writer stream |<---- (writing operation)
+    +--------+    +---------------+
+
+Module `gzip` 
 
 `stream#gzipreader()`
 
 `stream#gzipwriter()`
 
-`bzip2` module
+Module `bzip2`
 
 `stream#bzip2reader()`
 
 `stream#bzip2writer()`
 
+Module `base64`
 
+`stream#base64reader()`
 
-### {{ page.chapter }}.3.8. Base-64 Encoder/Decoder
-
-`base64reader`
-
-`base64writer`
+`stream#base64writer()`
 
 
 

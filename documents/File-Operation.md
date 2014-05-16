@@ -365,38 +365,43 @@ In such a case, you can use `stream#setcodec()` like below:
 ### {{ page.chapter }}.3.6. Stream with Binary Data
 
 In addition to methods to handle text data,
-class `stream` has methods to read/write binary data as well.
+class `stream` is equipped with methods to read/write binary data as well.
 
-`stream#read()`
+Method `stream#read()` reads specified size of data into a `binary` instance and returns it.
 
-`stream#write()`
+Method `stream#write()` writes content of a `binary` instance to the stream.
 
-`stream#seek()`
+Method `stream#seek()` moves offset at which read/write operations are applied.
 
-`stream#tell()`
+Method `stream#tell()` returns the current offset.
 
-`stream.copy()`
+Function `stream.copy()` and methods `stream#copyto()` and `stream#copyfrom()`
+are responsible of copying data from a stream to another stream.
+They have the same result each other but take `stream` instances in different ways.
+Below shows how they are called where `src` means a source stream and `dst` a destination.
 
-`stream#copyto()`
+    stream.copy(src, dst)
+    src.copyto(dst)
+    dst.copyfrom(src)
 
-`stream#copyfrom()`
-
-`stream#compare()`
+Method `stream#compare()` compares contents between two streams
+and returns `true` if there's no difference and `false` otherwise.
 
 
 ### {{ page.chapter }}.3.7. Compressor and Decompressor
 
+
 `gzip` module
 
-`stream#gzipreader`
+`stream#gzipreader()`
 
-`stream#gzipwriter`
+`stream#gzipwriter()`
 
 `bzip2` module
 
-`stream#bzip2reader`
+`stream#bzip2reader()`
 
-`stream#bzip2writer`
+`stream#bzip2writer()`
 
 
 

@@ -418,23 +418,20 @@ A Filter Stream of writer type provides method for writing operation.
     | stream |<---| writer stream |<---- (writing operation)
     +--------+    +---------------+
 
-Module `gzip` 
+Importing `gzip` module would add following methods to `stream` class.
 
-`stream#gzipreader()`
+* `stream#gzipreader()` returns a stream that decompresses data in gzip format from the attached stream.
+* `stream#gzipwriter()` returns a stream that writes compressed data in gzip format to the attached stream.
 
-`stream#gzipwriter()`
+Importing `bzip2` module would add following methods to `stream` class.
 
-Module `bzip2`
+* `stream#bzip2reader()`
+* `stream#bzip2writer()`
 
-`stream#bzip2reader()`
+Importing `base64` module would add following methods to `stream` class.
 
-`stream#bzip2writer()`
-
-Module `base64`
-
-`stream#base64reader()`
-
-`stream#base64writer()`
+* `stream#base64reader()`
+* `stream#base64writer()`
 
 
 

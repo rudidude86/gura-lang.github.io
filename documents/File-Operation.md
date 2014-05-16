@@ -127,7 +127,7 @@ Below shows a declaration of the constructor function:
 
 In many platforms and languages, people are accustom to using a term `open`
 as a function name for opening a file, or a stream.
-So, Gura provides function `open()` as a complete synonym for `stream()`,
+So, function `open()` is provided as a complete synonym for `stream()`,
 which has the same declaration with it.
 
     open(pathname:string, mode?:string, codec?:codec):map {block?}
@@ -291,8 +291,8 @@ Unfortunately, this program doesn't work correctly.
 The iterator `lines` owns a stream to read content from the file `foo.txt`,
 which conflicts with the attempt to open `foo.txt` for writing.
 To avoid this, you need to call `readlines()` function with `:list` attribute
-that reads whole the lines from the stream before storing them to memory.
-The stream is released before the function returns the result.
+that reads whole the lines from the stream before storing them to a `list` instance.
+The function would release the stream and then return the `list` instance as its result.
 
     lines = readlines('foo.txt'):list
     open('foo.txt', 'w').print(lines:*upper())
@@ -302,19 +302,22 @@ Method `stream#readtext()` returns a string containing the whole content of the 
     txt = fd.readtext()
 
 As for the character sequence existing at each end of line in a file,
-Gura can handle two types of sequence: LF (0x0a) and CR(0x0d) - LF(0x0a).
+two types of sequence are acceptable: LF (0x0a) and CR(0x0d)-LF(0x0a).
+Some systems like Linux that have inherited from UNIX uses LF code at line end
+while Windows uses CR-LF sequence.
 By default, the following policies are applied
-so that the `string` instance only contains LF code.
+so that the string read from a file would only contain LF code.
 
 * When reading, all the CR codes are removed.
 * When writing, there's no modification about the sequence of end of line.
+  This results in a file containing only LF code.
 
-To change this behavior, methods `stream#delcr()` and `stream#addcr()` are prepared.
-If you want to keep CR code from read text, call `stream#delcr()` method with an argument set to `false`.
+To change this behavior, use methods `stream#delcr()` and `stream#addcr()`.
+If you want to keep CR code from the read text, call `stream#delcr()` method with an argument set to `false`.
 
     fd.delcr(false)
 
-If you want to append CR code at each end of line, call `stream#addcr()` method with an argument set to `true`.
+If you want to append CR code at each end of line in a file to write, call `stream#addcr()` method with an argument set to `true`.
 
     fd.addcr(true)
 
@@ -323,7 +326,7 @@ If you want to append CR code at each end of line, call `stream#addcr()` method 
 
 While a `string` instance holds string data in UTF-8 format,
 there are various character code sets to describe texts in files.
-A `stream` instance may contain an instance of `codec` class
+To be capable of handling them, a `stream` instance may contain an instance of `codec` class
 that is responsible of converting characters between UTF-8 and those codes.
 You can specify a `codec` instance to a `stream` by passing it as a third argument of `open()` function.
 
@@ -349,6 +352,14 @@ Codecs only have effect on methods to read/write text data that are summarized b
 
     stream#print(), stream#println(), stream#printf()
     stream#readline(), stream#readlines(), stream#readtext()
+
+The standard output/input streams, `sys.stdin`, `sys.stdout` and `sys.stderr`,
+must be equipped with a codec of the character code set that the console device expects.
+While the detection of a proper codec is done by a value of environment variable `LANG` or a result of some system API functions,
+it may sometimes happen that you want to change codec in these.
+In such a case, you can use `stream#setcodec()` like below:
+
+    sys.stdout.setcodec('utf-8')
 
 
 ### {{ page.chapter }}.3.6. Stream with Binary Data

@@ -416,19 +416,19 @@ and applies data modification while reading or writing operation.
 
 There are two types of Filter Stream: reader and writer.
 
-A Filter Stream of reader type provides method for reading operation
+A Filter Stream of reader type applies operation on methods for reading data
 including `stream#read()`, `stream#readline()`, `stream#readlines()` and `stream#readtext()`.
 
     +--------+    +---------------+
-    | stream |--->| filter stream |---> (reading operation)
+    | stream |--->| filter stream |---> (reading data)
     |        |    |   (reader)    |
     +--------+    +---------------+
 
-A Filter Stream of writer type provides method for writing operation
+A Filter Stream of writer type applies operation on methods for writing data
 including `stream#write()`, `stream#print()`, `stream#println()` and `stream#printf()`.
 
     +--------+    +---------------+
-    | stream |<---| filter stream |<--- (writing operation)
+    | stream |<---| filter stream |<--- (writing data)
     |        |    |   (writer)    |
     +--------+    +---------------+
 
@@ -510,7 +510,7 @@ Following is a code to decode a sequence in Base64 and then decompress it with g
 Its diagram comes as below:
 
     +--------+    +-----------------+    +---------------+
-    | stream |--->|  filter stream  |--->| filter stream |---> (reading operation)
+    | stream |--->|  filter stream  |--->| filter stream |---> (reading data)
     |        |    | (base64 reader) |    | (gzip reader) |
     +--------+    +-----------------+    +---------------+
 
@@ -526,30 +526,45 @@ You can construct a chain of stream for writing process, too.
 Below is its diagram:
 
     +--------+    +-----------------+    +---------------+
-    | stream |<---|  filter stream  |<---| filter stream |<--- (writing operation)
+    | stream |<---|  filter stream  |<---| filter stream |<--- (writing data)
     |        |    | (base64 writer) |    | (gzip writer) |
     +--------+    +-----------------+    +---------------+
 
 
 ## {{ page.chapter }}.4. Directory
 
-    path.dir
-    path.glob
-    path.walk
+## {{ page.chapter }}.4.1. Functions
+
+Function `path.dir()`
+
+Function `path.glob()`
+
+Function `path.walk()`
 
 
-    path.exists
+## {{ page.chapter }}.4.2. Status Object
+
+`fs.stat`
+
+`tar.stat`
+
+`zip.stat`
+
+`http.stat`
+
 
 
 ## {{ page.chapter }}.5. Archive File
 
+`tar` module
+
     tar
     tar.gz
     tar.bz2
-    zip
 
-    gz
-    bz2
+`zip` module
+
+    zip
 
 
 ## {{ page.chapter }}.6. OS-specific Operations

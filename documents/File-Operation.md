@@ -485,7 +485,7 @@ which enables you to compose a chain of stream.
 Following is a code to decode a sequence in Base64 and then decompress it with gzip algorithm:
 
     open('foo.gz.hex') {|fd_hex|
-        fd_hex.base64reader().gzipreader() {|fd|
+        fd_hex.base64reader().gzipreader {|fd|
             // (reading process fromfd)
         }
     }
@@ -498,7 +498,6 @@ Its diagram comes as below:
     +--------+    +---------------+    +---------------+
 
 
-
 ## {{ page.chapter }}.4. Directory
 
     path.dir
@@ -507,6 +506,7 @@ Its diagram comes as below:
 
 
     path.exists
+
 
 ## {{ page.chapter }}.5. Archive File
 
@@ -517,6 +517,7 @@ Its diagram comes as below:
 
     gz
     bz2
+
 
 ## {{ page.chapter }}.6. OS-specific Operations
 

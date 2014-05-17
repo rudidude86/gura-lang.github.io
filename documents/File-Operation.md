@@ -162,7 +162,7 @@ Another way to create and utilize a `stream` instance is to call `open()` functi
 that will take a `stream` instance through its block parameter.
 
     open('foo.txt') {|fd|
-        // (any jobs)
+        // any jobs here
     }
 
 Using this description, you can access the created instance only within the block,
@@ -178,7 +178,7 @@ The `stream` instance would be created as one for reading.
 
     f(fd:stream) = {
         // fd is a stream instance for reading
-        // (any jobs)
+        // any jobs here
     }
     f('foo.txt')   // same as f(open('foo.txt'))
 
@@ -187,7 +187,7 @@ the `stream` instance would be created for writing.
 
     f(fd:stream:w) = {
         // fd is a stream instance for writing
-        // (any jobs)
+        // any jobs here
     }
     f('foo.txt')   // same as f(open('foo.txt', 'w'))
 
@@ -423,8 +423,8 @@ including `stream#write()`, `stream#print()`, `stream#println()` and `stream#pri
     +--------+    +---------------+
 
 Module `gzip` provides functions to read and write files in gzip format,
-which usually have a suffix `.gz`,
-and adds following methods to `stream` class.
+which usually have a suffix `.gz`.
+Importing the module would add following methods to `stream` class.
 
 * `stream#gzipreader()` returns a stream from which you can read data
   after decompressing a sequence of gzip format from the attached stream.
@@ -432,17 +432,18 @@ and adds following methods to `stream` class.
   that are to be compressed to a sequence of gzip format into the attached stream.
 
 Module `bzip2` provides functions to read and write files in bzip2 format,
-which usually have a suffix `.bz2`,
-and adds following methods to `stream` class.
+which usually have a suffix `.bz2`.
+Importing the module would add following methods to `stream` class.
 
 * `stream#bzip2reader()` returns a stream from which you can read data
   after decompressing a sequence of bzip2 format from the attached stream.
 * `stream#bzip2writer()` returns a stream to which you can write data
   that are to be compressed to a sequence of bzip2 format into the attached stream.
 
-Module `base64` provide functions to encode and decode files in Base64 format,
-which often appear in protocols of network,
-and adds following methods to `stream` class.
+Module `base64` provides functions to encode and decode files in Base64 format,
+which often appear in protocols of network.
+It's a build-in module that you can utilize without importing
+and makes following methods available in `stream` class.
 
 * `stream#base64reader()` returns a stream from which you can read data
   after decoding a sequence of Base64 format from the attached stream.
@@ -451,32 +452,37 @@ and adds following methods to `stream` class.
 
 Following code is an example to read content of a file in gzip format:
 
+    import(gzip)
     open('foo.gz') {|fd_gzip|
         fd = fd_gzip.gzipreader()
-        // (reading process from fd)
+        // reading process from fd
         fd.close()
     }
 
-These methods that generate reader and writer stream can accept a block procedure just like `open()` function,
-in which you can get the instance of Filter Stream as a block paramcter.
+These methods that generate a Filter Stream can accept a block procedure just like `open()` function,
+in which you can take the instance of Filter Stream as a block parameter.
 
+    import(gzip)
     open('foo.gz') {|fd_gzip|
         fd_gzip.gzipreader {|fd|
-            // (reading process from fd)
+            // reading process from fd
         }
     }
 
 Or simply, you can write it as below:
 
+    import(gzip)
     open('foo.gz').gzipreader {|fd|
-        // (reading process from fd)
+        // reading process from fd
     }
 
 The same goes with a writing process.
+In this case, the attached stream must have a writing attribute.
 
+    import(gzip)
     open('foo.gz', 'w') {|fd_gzip|
         fd = fd.gzipwriter()
-        // (writing process to fd)
+        // writing process to fd
         fd.close()
     }
 
@@ -484,18 +490,35 @@ You can also attach a Filter Stream on yet another Filter Stream,
 which enables you to compose a chain of stream.
 Following is a code to decode a sequence in Base64 and then decompress it with gzip algorithm:
 
+    import(gzip)
     open('foo.gz.hex') {|fd_hex|
         fd_hex.base64reader().gzipreader {|fd|
-            // (reading process fromfd)
+            // reading process from fd
         }
     }
 
 Its diagram comes as below:
 
-    +--------+    +---------------+    +---------------+
-    | stream |--->| filter stream |--->| filter stream |---> (reading operation)
-    |        |    | base64-reader |    | gzip-reder    |
-    +--------+    +---------------+    +---------------+
+    +--------+    +-----------------+    +---------------+
+    | stream |--->|  filter stream  |--->| filter stream |---> (reading operation)
+    |        |    | (base64 reader) |    | (gzip reader) |
+    +--------+    +-----------------+    +---------------+
+
+You can construct a chain of stream for writing process, too.
+
+    import(gzip)
+    open('foo.gz.hex', 'w') {|fd_hex|
+        fd_hex.base64writer().gzipwriter {|fd|
+            // writing process to fd
+        }
+    }
+
+Below is its diagram:
+
+    +--------+    +-----------------+    +---------------+
+    | stream |<---|  filter stream  |<---| filter stream |<--- (writing operation)
+    |        |    | (base64 writer) |    | (gzip writer) |
+    +--------+    +-----------------+    +---------------+
 
 
 ## {{ page.chapter }}.4. Directory

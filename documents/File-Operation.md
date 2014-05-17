@@ -406,32 +406,96 @@ and applies data modification while reading or writing operation.
 
 There are two types of Filter Stream: reader and writer.
 
-A Filter Stream of reader type provides method for reading operation.
+A Filter Stream of reader type provides method for reading operation
+including `stream#read()`, `stream#readline()`, `stream#readlines()` and `stream#readtext()`.
 
     +--------+    +---------------+
-    | stream |--->| reader stream |----> (reading operation)
+    | stream |--->| filter stream |---> (reading operation)
+    |        |    |   (reader)    |
     +--------+    +---------------+
 
-A Filter Stream of writer type provides method for writing operation.
+A Filter Stream of writer type provides method for writing operation
+including `stream#write()`, `stream#print()`, `stream#println()` and `stream#printf()`.
 
     +--------+    +---------------+
-    | stream |<---| writer stream |<---- (writing operation)
+    | stream |<---| filter stream |<--- (writing operation)
+    |        |    |   (writer)    |
     +--------+    +---------------+
 
-Importing `gzip` module would add following methods to `stream` class.
+Module `gzip` provides functions to read and write files in gzip format,
+which usually have a suffix `.gz`,
+and adds following methods to `stream` class.
 
-* `stream#gzipreader()` returns a stream that decompresses data in gzip format from the attached stream.
-* `stream#gzipwriter()` returns a stream that writes compressed data in gzip format to the attached stream.
+* `stream#gzipreader()` returns a stream from which you can read data
+  after decompressing a sequence of gzip format from the attached stream.
+* `stream#gzipwriter()` returns a stream to which you can write data
+  that are to be compressed to a sequence of gzip format into the attached stream.
 
-Importing `bzip2` module would add following methods to `stream` class.
+Module `bzip2` provides functions to read and write files in bzip2 format,
+which usually have a suffix `.bz2`,
+and adds following methods to `stream` class.
 
-* `stream#bzip2reader()`
-* `stream#bzip2writer()`
+* `stream#bzip2reader()` returns a stream from which you can read data
+  after decompressing a sequence of bzip2 format from the attached stream.
+* `stream#bzip2writer()` returns a stream to which you can write data
+  that are to be compressed to a sequence of bzip2 format into the attached stream.
 
-Importing `base64` module would add following methods to `stream` class.
+Module `base64` provide functions to encode and decode files in Base64 format,
+which often appear in protocols of network,
+and adds following methods to `stream` class.
 
-* `stream#base64reader()`
-* `stream#base64writer()`
+* `stream#base64reader()` returns a stream from which you can read data
+  after decoding a sequence of Base64 format from the attached stream.
+* `stream#base64writer()` returns a stream to which you can write data
+  that are to be encoded to a sequence of Base64 format into the attached stream.
+
+Following code is an example to read content of a file in gzip format:
+
+    open('foo.gz') {|fd_gzip|
+        fd = fd_gzip.gzipreader()
+        // (reading process from fd)
+        fd.close()
+    }
+
+These methods that generate reader and writer stream can accept a block procedure just like `open()` function,
+in which you can get the instance of Filter Stream as a block paramcter.
+
+    open('foo.gz') {|fd_gzip|
+        fd_gzip.gzipreader {|fd|
+            // (reading process from fd)
+        }
+    }
+
+Or simply, you can write it as below:
+
+    open('foo.gz').gzipreader {|fd|
+        // (reading process from fd)
+    }
+
+The same goes with a writing process.
+
+    open('foo.gz', 'w') {|fd_gzip|
+        fd = fd.gzipwriter()
+        // (writing process to fd)
+        fd.close()
+    }
+
+You can also attach a Filter Stream on yet another Filter Stream,
+which enables you to compose a chain of stream.
+Following is a code to decode a sequence in Base64 and then decompress it with gzip algorithm:
+
+    open('foo.gz.hex') {|fd_hex|
+        fd_hex.base64reader().gzipreader() {|fd|
+            // (reading process fromfd)
+        }
+    }
+
+Its diagram comes as below:
+
+    +--------+    +---------------+    +---------------+
+    | stream |--->| filter stream |--->| filter stream |---> (reading operation)
+    |        |    | base64-reader |    | gzip-reder    |
+    +--------+    +---------------+    +---------------+
 
 
 

@@ -386,7 +386,7 @@ Method `stream#seek()` moves the current offset at which read/write operations a
 
 Method `stream#tell()` returns the current offset.
 
-Function `stream.copy()` and methods `stream#copyto()` and `stream#copyfrom()`
+Methods `stream.copy()`, `stream#copyto()` and `stream#copyfrom()`
 are responsible of copying data from a stream to another stream.
 They have the same result each other but take `stream` instances in different ways.
 Below shows how they are called where `src` means a source stream and `dst` a destination.
@@ -394,6 +394,16 @@ Below shows how they are called where `src` means a source stream and `dst` a de
     stream.copy(src, dst)
     src.copyto(dst)
     dst.copyfrom(src)
+
+These methods can take a block procedure that takes `binary` instance containing
+a data segment during the copy process. The size of a data segment can be specified by an argument named `bytesunit`.
+
+    stream.copy(src, dst) {|buff:binary|
+        // any job during copying process
+    }
+
+You can use the block procedure with the copying method
+to realize a indicator that shows how much process the methods have done.
 
 Method `stream#compare()` compares contents between two streams
 and returns `true` if there's no difference and `false` otherwise.

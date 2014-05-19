@@ -26,7 +26,7 @@ that have been registered by built-in and imported Modules.
 
 ## {{ page.chapter }}.2. Pathname
 
-## {{ page.chapter }}.2.1. Acceptable Format of Pathname
+### {{ page.chapter }}.2.1. Acceptable Format of Pathname
 
 A pathname is a string that identifies Stream and Directory, which should be handled by Path Manager.
 
@@ -52,7 +52,7 @@ The example below indicates an entry named `src/main.cpp` in a ZIP file `/home/f
     /home/foo/example.zip/src/main.cpp
 
 
-## {{ page.chapter }}.2.2. Utility Functions to Parse Pathname
+### {{ page.chapter }}.2.2. Utility Functions to Parse Pathname
 
 Function `path.dirname()` extracts a directory part by eliminating a file part from a pathname.
 
@@ -533,34 +533,34 @@ Below shows a diagram of the process:
 
 ## {{ page.chapter }}.4. Directory
 
-## {{ page.chapter }}.4.1. Operations
+### {{ page.chapter }}.4.1. Operations
 
-A Directory is a data object to seek a list of files and is represented by `directory` class.
+A Directory is a data object to seek a list of files and sub directories and is represented by `directory` class.
 But currently, there's few chance to utilize the `directory` instance explicitly
 since it is usually built in other objects like iterators and hidden from users.
 One thing you have to note about `directory` is that
 you can cast a `string` containing a pathname to `directory` instance,
 so you can pass a pathname to an argument declared with `directory` type.
 
-Consider the following directory structure to see how each function for directory operations work.
+There are three functions that searches files and sub directories:
+`path.dir()`, `path.glob()` and `path.glob()`.
+Consider the following directory structure to see how these functions work.
 
     tb
     |
-    +-dir-A
-    | +-file-4.txt
-    | +-file-5.txt
-    |
-    +-dir-B
-    | +-dir-C
-    | | +-file-6.doc
-    | | +-file-7.doc
-    | +-dir-D
-    |
-    +-file-1.txt
-    +-file-2.doc
-    +-file-3.txt
+    +--dir-A
+    |  +--file-4.txt
+    |  `--file-5.txt
+    +--dir-B
+    |  +--dir-C
+    |  |  +--file-6.doc
+    |  |  `--file-7.doc
+    |  `--dir-D
+    +--file-1.txt
+    +--file-2.doc
+    `--file-3.txt
 
-Function `path.dir()` creates an iterator that returns pathnames of files and sub directories
+Function `path.dir()` creates an iterator that returns pathname of files and sub directories
 that exists in the specified directory.
 For example, a call `path.dir('tb')` create an iterator that returns following strings.
 
@@ -571,13 +571,15 @@ For example, a call `path.dir('tb')` create an iterator that returns following s
     tb/file-3.txt
 
 
-Function `path.glob()`
+Function `path.glob()` creates an iterator that returns pathname of files and sub directories
+matching the given pattern with wild cards.
 For example, a call `path.glob('tb/*.txt')` create an iterator that returns following strings.
 
     tb/file-1.txt
     tb/file-3.txt
 
-Function `path.walk()`
+Function `path.walk()` creates an iterator that seeks directory structure recursively
+and returns pathname of files and sub directories.
 For example, a call `path.walk('tb')` create an iterator that returns following strings.
 
     tb/dir-A/
@@ -592,7 +594,11 @@ For example, a call `path.walk('tb')` create an iterator that returns following 
     tb/dir-B/dir-C/file-6.doc
     tb/dir-B/dir-C/file-7.doc
 
-## {{ page.chapter }}.4.2. Status Object
+### {{ page.chapter }}.4.2. Status Object
+
+While an iterator created by functions `path.dir()`, `path.glob()` and `path.glob()`
+returns a string of pathname,
+specifying `:stat` attribute would make it return an object that contains more detail information.
 
 `fs.stat`
 
@@ -608,19 +614,33 @@ For example, a call `path.walk('tb')` create an iterator that returns following 
 
 `tar` module
 
-    tar
-    tar.gz
-    tar.bz2
+    .tar
+    .tar.gz
+    .tar.bz2
 
 `zip` module
 
-    zip
+    .zip
 
 
 ## {{ page.chapter }}.6. OS-specific Operations
 
+### {{ page.chapter }}.6.1. Operation on File System
+
+`fs.mkdir()`
+
+`fs.rmdir()`
+
+`fs.remove()`
+
+`fs.rename()`
+
+`fs.chmod()`
+
+`fs.cpdir()`
+
+### {{ page.chapter }}.6.2. Execute Other Process
+
 `os.stdin`, `os.stdout`, `os.stderr`
 
 `os.exec()`
-
-

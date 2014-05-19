@@ -507,7 +507,7 @@ Following is a code to decode a sequence in Base64 and then decompress it with g
         }
     }
 
-Its diagram comes as below:
+Below shows a diagram of the process:
 
     +--------+    +-----------------+    +---------------+
     | stream |--->|  filter stream  |--->| filter stream |---> (reading data)
@@ -523,7 +523,7 @@ You can construct a chain of stream for writing process, too.
         }
     }
 
-Below is its diagram:
+Below shows a diagram of the process:
 
     +--------+    +-----------------+    +---------------+
     | stream |<---|  filter stream  |<---| filter stream |<--- (writing data)
@@ -533,9 +533,49 @@ Below is its diagram:
 
 ## {{ page.chapter }}.4. Directory
 
-## {{ page.chapter }}.4.1. Functions
+## {{ page.chapter }}.4.1. Operations
 
-Function `path.dir()`
+A Directory is a data object to seek a list of files and is represented by `directory` class.
+But currently, there's few chance to utilize the `directory` instance explicitly
+since it is usually built in other objects like iterators and hidden from users.
+One thing you have to note about `directory` is that
+you can cast a `string` containing a pathname to `directory` instance,
+so you can pass a pathname to an argument declared with `directory` type.
+
+Consider the following directory structure to see how each function for directory operations work.
+
+    tb
+    |
+    +-dir-A
+    | +-file-4
+    | +-file-5
+    |
+    +-dir-B
+    | +-dir-C
+    | | +-file-6
+    | | +-file-7
+    | +-dir-D
+    |
+    +-dir-E
+    | +-file-8
+    | +-file-9
+    |
+    +-file-1
+    +-file-2
+    +-file-3
+
+Function `path.dir()` creates an iterator that returns pathnames of files and sub directories
+that exists in the specified directory.
+
+    rtn = path.dir('tb')
+    // rtn is an iterator returns the following strings.
+    //   tb/dir-A/
+    //   tb/dir-B/
+    //   tb/dir-E/
+    //   tb/file-1
+    //   tb/file-2
+    //   tb/file-3
+
 
 Function `path.glob()`
 

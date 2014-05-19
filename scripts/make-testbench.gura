@@ -1,0 +1,11 @@
+fs.mkdir('tb')
+fs.mkdir(['tb/dir-A', 'tb/dir-B/dir-C', 'tb/dir-B/dir-D', 'tb/dir-E']):tree
+open('tb/file-1', 'w').close()
+open('tb/file-2', 'w').close()
+open('tb/file-3', 'w').close()
+open('tb/dir-A/file-4', 'w').close()
+open('tb/dir-A/file-5', 'w').close()
+open('tb/dir-B/dir-C/file-6', 'w').close()
+open('tb/dir-B/dir-C/file-7', 'w').close()
+open('tb/dir-E/file-8', 'w').close()
+open('tb/dir-E/file-9', 'w').close()

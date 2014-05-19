@@ -547,22 +547,18 @@ Consider the following directory structure to see how each function for director
     tb
     |
     +-dir-A
-    | +-file-4
-    | +-file-5
+    | +-file-4.txt
+    | +-file-5.txt
     |
     +-dir-B
     | +-dir-C
-    | | +-file-6
-    | | +-file-7
+    | | +-file-6.doc
+    | | +-file-7.doc
     | +-dir-D
     |
-    +-dir-E
-    | +-file-8
-    | +-file-9
-    |
-    +-file-1
-    +-file-2
-    +-file-3
+    +-file-1.txt
+    +-file-2.doc
+    +-file-3.txt
 
 Function `path.dir()` creates an iterator that returns pathnames of files and sub directories
 that exists in the specified directory.
@@ -571,16 +567,33 @@ that exists in the specified directory.
     // rtn is an iterator returns the following strings.
     //   tb/dir-A/
     //   tb/dir-B/
-    //   tb/dir-E/
-    //   tb/file-1
-    //   tb/file-2
-    //   tb/file-3
+    //   tb/file-1.txt
+    //   tb/file-2.doc
+    //   tb/file-3.txt
 
 
 Function `path.glob()`
 
+    rtn = path.glob('tb/*.txt')
+    // rtn is an iterator returns the following strings.
+    //   tb/file-1.txt
+    //   tb/file-3.txt
+
 Function `path.walk()`
 
+    rtn = path.walk('tb')
+    // rtn is an iterator returns the following strings.
+    //   tb/dir-A/
+    //   tb/dir-B/
+    //   tb/file-1.txt
+    //   tb/file-2.doc
+    //   tb/file-3.txt
+    //   tb/dir-A/file-4.txt
+    //   tb/dir-A/file-5.txt
+    //   tb/dir-B/dir-C/
+    //   tb/dir-B/dir-D/
+    //   tb/dir-B/dir-C/file-6.doc
+    //   tb/dir-B/dir-C/file-7.doc
 
 ## {{ page.chapter }}.4.2. Status Object
 

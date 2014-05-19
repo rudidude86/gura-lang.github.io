@@ -562,38 +562,35 @@ Consider the following directory structure to see how each function for director
 
 Function `path.dir()` creates an iterator that returns pathnames of files and sub directories
 that exists in the specified directory.
+For example, a call `path.dir('tb')` create an iterator that returns following strings.
 
-    rtn = path.dir('tb')
-    // rtn is an iterator returns the following strings.
-    //   tb/dir-A/
-    //   tb/dir-B/
-    //   tb/file-1.txt
-    //   tb/file-2.doc
-    //   tb/file-3.txt
+    tb/dir-A/
+    tb/dir-B/
+    tb/file-1.txt
+    tb/file-2.doc
+    tb/file-3.txt
 
 
 Function `path.glob()`
+For example, a call `path.glob('tb/*.txt')` create an iterator that returns following strings.
 
-    rtn = path.glob('tb/*.txt')
-    // rtn is an iterator returns the following strings.
-    //   tb/file-1.txt
-    //   tb/file-3.txt
+    tb/file-1.txt
+    tb/file-3.txt
 
 Function `path.walk()`
+For example, a call `path.walk('tb')` create an iterator that returns following strings.
 
-    rtn = path.walk('tb')
-    // rtn is an iterator returns the following strings.
-    //   tb/dir-A/
-    //   tb/dir-B/
-    //   tb/file-1.txt
-    //   tb/file-2.doc
-    //   tb/file-3.txt
-    //   tb/dir-A/file-4.txt
-    //   tb/dir-A/file-5.txt
-    //   tb/dir-B/dir-C/
-    //   tb/dir-B/dir-D/
-    //   tb/dir-B/dir-C/file-6.doc
-    //   tb/dir-B/dir-C/file-7.doc
+    tb/dir-A/
+    tb/dir-B/
+    tb/file-1.txt
+    tb/file-2.doc
+    tb/file-3.txt
+    tb/dir-A/file-4.txt
+    tb/dir-A/file-5.txt
+    tb/dir-B/dir-C/
+    tb/dir-B/dir-D/
+    tb/dir-B/dir-C/file-6.doc
+    tb/dir-B/dir-C/file-7.doc
 
 ## {{ page.chapter }}.4.2. Status Object
 

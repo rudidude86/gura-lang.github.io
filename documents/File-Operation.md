@@ -44,11 +44,6 @@ You can see variable `path.sep_file` to check what character is favorable to the
 
 ## {{ page.chapter }}.2.2. Modules Expanding Acceptable Pathname
 
-Importing `curl` module, which provides features to access network using [curl](http://curl.haxx.se/) library,
-or importing `http` module would make Path Manager able to recognize URIs that begin with protocol names like "http" and "ftp".
-
-    http://www.example.com/doc/index.html
-
 After importing `tar` module, you can specify a pathname that represents items in a TAR archive file.
 When Path Manager detects a file that has a name suffixed with `.tar`, `.tgz`, `.tar.gz` or `tar.bz2`,
 it would decompress the content in accordance with TAR format.
@@ -62,6 +57,11 @@ it would decompress the content in accordance with ZIP format.
 The example below indicates an item named `src/main.cpp` in a ZIP file `/home/foo/example.zip`.
 
     /home/foo/example.zip/src/main.cpp
+
+Importing `curl` module, which provides features to access network using [curl](http://curl.haxx.se/) library,
+or importing `http` module would make Path Manager able to recognize URIs that begin with protocol names like "http" and "ftp".
+
+    http://www.example.com/doc/index.html
 
 
 ### {{ page.chapter }}.2.3. Utility Functions to Parse Pathname
@@ -681,20 +681,27 @@ The code below shows an example that prints each filename and size of items unde
 
 ### {{ page.chapter }}.5.1. Operation on File System
 
-`fs.mkdir()`
+Function `fs.mkdir()` creates a directory.
+If there are non-existing directories in the specified pathname, it would occur an error.
+Specifying attribute `:tree` would create intermediate directories in the pathname if they don't exist.
 
-`fs.rmdir()`
+Function `fs.rmdir()` removes a directory.
+If the specified directory contains files or sub directories, it would occur an error.
+Specifying attribute `:tree` would remove all such items before deleting the specified directory.
 
-`fs.remove()`
+Function `fs.remove()` removes a file.
 
-`fs.rename()`
+Function `fs.rename()` rename a file or a directory.
 
-`fs.chmod()`
+Function `fs.chmod()` modifies attribute of a file or a directory.
 
-`fs.cpdir()`
+Function `fs.cpdir()` copies content of a directory to another directory.
 
 ### {{ page.chapter }}.5.2. Execute Other Process
 
+Function `os.exec()` executes a process and waits until it finishes.
+
+attribute `:fork`
+
 `os.stdin`, `os.stdout`, `os.stderr`
 
-`os.exec()`

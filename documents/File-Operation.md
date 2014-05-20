@@ -662,7 +662,7 @@ An item in ZIP archive file returns `zip.stat` instance that has following prope
 The code below shows an example that prints each filename and size of items under a directory `tb`.
 
     stats = path.dir('tb'):stat
-    printf('%s %d\n', stats:*filename, stats:*size)
+    printf('%-16s %d\n', stats:*filename, stats:*size)
 
 
 ## {{ page.chapter }}.5. Archive File

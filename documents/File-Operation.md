@@ -542,7 +542,7 @@ One thing you have to note about `directory` is that
 you can cast a `string` containing a pathname to `directory` instance,
 so you can pass a pathname to an argument declared with `directory` type.
 
-There are three functions that searches files and sub directories:
+There are three functions that searches items like files and sub directories:
 `path.dir()`, `path.glob()` and `path.glob()`.
 Consider the following directory structure to see how these functions work.
 
@@ -560,7 +560,7 @@ Consider the following directory structure to see how these functions work.
     +--file-2.doc
     `--file-3.txt
 
-Function `path.dir()` creates an iterator that returns pathname of files and sub directories
+Function `path.dir()` creates an iterator that returns pathname of items
 that exists in the specified directory.
 For example, a call `path.dir('tb')` create an iterator that returns following strings.
 
@@ -571,15 +571,14 @@ For example, a call `path.dir('tb')` create an iterator that returns following s
     tb/file-3.txt
 
 
-Function `path.glob()` creates an iterator that returns pathname of files and sub directories
+Function `path.glob()` creates an iterator that returns pathname of items
 matching the given pattern with wild cards.
 For example, a call `path.glob('tb/*.txt')` create an iterator that returns following strings.
 
     tb/file-1.txt
     tb/file-3.txt
 
-Function `path.walk()` creates an iterator that seeks directory structure recursively
-and returns pathname of files and sub directories.
+Function `path.walk()` creates an iterator that seeks directory structure recursively and returns pathname of items.
 For example, a call `path.walk('tb')` create an iterator that returns following strings.
 
     tb/dir-A/
@@ -596,18 +595,74 @@ For example, a call `path.walk('tb')` create an iterator that returns following 
 
 ### {{ page.chapter }}.4.2. Status Object
 
-While an iterator created by functions `path.dir()`, `path.glob()` and `path.glob()`
-returns a string of pathname,
-specifying `:stat` attribute would make it return an object that contains more detail information.
+By default, functions `path.dir()`, `path.glob()` and `path.glob()` create an iterator that returns a string of pathname.
+Specifying `:stat` attribute would create an iterator generating an object called `stat` that contains more detail information about items.
 
-`fs.stat`
+There are several different `stat` instances depending on the container in which an item exists,
+which provide various properties for additional information as well as the item's name.
 
-`tar.stat`
+An item in file system returns `fs.stat` instance that has following properties.
 
-`zip.stat`
+<table>
+<tr><th>Property Name</th><th>Content</th></tr>
+<tr><td><code>pathname</code></td><td></td></tr>
+<tr><td><code>dirname</code></td><td></td></tr>
+<tr><td><code>filename</code></td><td></td></tr>
+<tr><td><code>size</code></td><td></td></tr>
+<tr><td><code>uid</code></td><td></td></tr>
+<tr><td><code>gid</code></td><td></td></tr>
+<tr><td><code>atime</code></td><td></td></tr>
+<tr><td><code>mtime</code></td><td></td></tr>
+<tr><td><code>ctime</code></td><td></td></tr>
+<tr><td><code>isdir</code></td><td></td></tr>
+<tr><td><code>ischr</code></td><td></td></tr>
+<tr><td><code>isblk</code></td><td></td></tr>
+<tr><td><code>isreg</code></td><td></td></tr>
+<tr><td><code>isfifo</code></td><td></td></tr>
+<tr><td><code>islnk</code></td><td></td></tr>
+<tr><td><code>issock</code></td><td></td></tr>
+</table>
 
-`http.stat`
+An item in TAR archive file returns `tar.stat` instance that has following properties.
 
+<table>
+<tr><th>Property Name</th><th>Content</th></tr>
+<tr><td><code>name</code></td><td></td></tr>
+<tr><td><code>filename</code></td><td></td></tr>
+<tr><td><code>linkname</code></td><td></td></tr>
+<tr><td><code>uname</code></td><td></td></tr>
+<tr><td><code>gname</code></td><td></td></tr>
+<tr><td><code>mode</code></td><td></td></tr>
+<tr><td><code>uid</code></td><td></td></tr>
+<tr><td><code>gid</code></td><td></td></tr>
+<tr><td><code>size</code></td><td></td></tr>
+<tr><td><code>mtime</code></td><td></td></tr>
+<tr><td><code>atime</code></td><td></td></tr>
+<tr><td><code>ctime</code></td><td></td></tr>
+<tr><td><code>chksum</code></td><td></td></tr>
+<tr><td><code>typeflag</code></td><td></td></tr>
+<tr><td><code>devmajor</code></td><td></td></tr>
+<tr><td><code>devminor</code></td><td></td></tr>
+</table>
+
+An item in ZIP archive file returns `zip.stat` instance that has following properties.
+
+<table>
+<tr><th>Property Name</th><th>Content</th></tr>
+<tr><td><code>filename</code></td><td></td></tr>
+<tr><td><code>comment</code></td><td></td></tr>
+<tr><td><code>mtime</code></td><td></td></tr>
+<tr><td><code>crc32</code></td><td></td></tr>
+<tr><td><code>compression_method</code></td><td></td></tr>
+<tr><td><code>size</code></td><td></td></tr>
+<tr><td><code>compressed_size</code></td><td></td></tr>
+<tr><td><code>attributes</code></td><td></td></tr>
+</table>
+
+The code below shows an example that prints each filename and size of items under a directory `tb`.
+
+    stats = path.dir('tb'):stat
+    printf('%s %d\n', stats:*filename, stats:*size)
 
 
 ## {{ page.chapter }}.5. Archive File

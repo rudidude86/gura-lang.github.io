@@ -41,18 +41,30 @@ You can use both a slash or a backslash as a directory separator for a file in f
 which is to be converted by `fs` module to what the current OS can accept.
 You can see variable `path.sep_file` to check what character is favorable to the OS.
 
+
+## {{ page.chapter }}.2.2. Modules Expanding Acceptable Pathname
+
 Importing `curl` module, which provides features to access network using [curl](http://curl.haxx.se/) library,
 or importing `http` module would make Path Manager able to recognize URIs that begin with protocol names like "http" and "ftp".
 
     http://www.example.com/doc/index.html
 
-After importing `zip` module, you can specify a pathname that represents entries in a ZIP archive file.
-The example below indicates an entry named `src/main.cpp` in a ZIP file `/home/foo/example.zip`.
+After importing `tar` module, you can specify a pathname that represents items in a TAR archive file.
+When Path Manager detects a file that has a name suffixed with `.tar`, `.tgz`, `.tar.gz` or `tar.bz2`,
+it would decompress the content in accordance with TAR format.
+The example below indicates an item named `src/main.cpp` in a TAR file `/home/foo/example.tar.gz`.
+
+    /home/foo/example.tar.gz/src/main.cpp
+
+After importing `zip` module, you can specify a pathname that represents items in a ZIP archive file.
+When Path Manager detects a file that has a name suffixed with `.zip`,
+it would decompress the content in accordance with ZIP format.
+The example below indicates an item named `src/main.cpp` in a ZIP file `/home/foo/example.zip`.
 
     /home/foo/example.zip/src/main.cpp
 
 
-### {{ page.chapter }}.2.2. Utility Functions to Parse Pathname
+### {{ page.chapter }}.2.3. Utility Functions to Parse Pathname
 
 Function `path.dirname()` extracts a directory part by eliminating a file part from a pathname.
 
@@ -665,22 +677,9 @@ The code below shows an example that prints each filename and size of items unde
     printf('%-16s %d\n', stats:*filename, stats:*size)
 
 
-## {{ page.chapter }}.5. Archive File
+## {{ page.chapter }}.5. OS-specific Operations
 
-`tar` module
-
-    .tar
-    .tar.gz
-    .tar.bz2
-
-`zip` module
-
-    .zip
-
-
-## {{ page.chapter }}.6. OS-specific Operations
-
-### {{ page.chapter }}.6.1. Operation on File System
+### {{ page.chapter }}.5.1. Operation on File System
 
 `fs.mkdir()`
 
@@ -694,7 +693,7 @@ The code below shows an example that prints each filename and size of items unde
 
 `fs.cpdir()`
 
-### {{ page.chapter }}.6.2. Execute Other Process
+### {{ page.chapter }}.5.2. Execute Other Process
 
 `os.stdin`, `os.stdout`, `os.stderr`
 

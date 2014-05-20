@@ -523,22 +523,28 @@ Below shows a diagram of the process:
 
 ### {{ page.chapter }}.3.8. Stream in TAR Archive
 
-After importing `tar` module, you can specify a pathname that represents items in a TAR archive file.
-When Path Manager detects a file that has a name suffixed with `.tar`, `.tgz`, `.tar.gz` or `tar.bz2`,
+After importing `tar` module, you can create a stream that reads an item stored in a TAR archive file.
+When a pathname contains a filename suffixed with `.tar`, `.tgz`, `.tar.gz` or `tar.bz2`,
 it would decompress the content in accordance with TAR format.
-The example below indicates an item named `src/main.cpp` in a TAR file `/home/foo/example.tar.gz`.
+The example below opens an item named `src/main.cpp` in a TAR file `foo/example.tar.gz`.
 
-    /home/foo/example.tar.gz/src/main.cpp
+    import(tar)
+    open('foo/example.tar.gz/src/main.cpp') {|fd|
+        // reading process from fd
+    }
 
 
 ### {{ page.chapter }}.3.9. Stream in ZIP Archive
 
-After importing `zip` module, you can specify a pathname that represents items in a ZIP archive file.
-When Path Manager detects a file that has a name suffixed with `.zip`,
+After importing `zip` module, you can create a stream that reads an item stored in a ZIP archive file.
+When a pathname contains a filename suffixed with `.zip`,
 it would decompress the content in accordance with ZIP format.
-The example below indicates an item named `src/main.cpp` in a ZIP file `/home/foo/example.zip`.
+The example below opens an item named `src/main.cpp` in a TAR file `foo/example.zip`.
 
-    /home/foo/example.zip/src/main.cpp
+    import(zip)
+    open('foo/example.zip/src/main.cpp') {|fd|
+        // reading process from fd
+    }
 
 
 ### {{ page.chapter }}.3.10. Stream via HTTP
@@ -546,7 +552,10 @@ The example below indicates an item named `src/main.cpp` in a ZIP file `/home/fo
 Importing `curl` module, which provides features to access network using [curl](http://curl.haxx.se/) library,
 or importing `http` module would make Path Manager able to recognize URIs that begin with protocol names like "http" and "ftp".
 
-    http://www.example.com/doc/index.html
+    import(curl)
+    open('http://www.example.com/doc/index.html') {|fd|
+        // reading process from fd
+    }
 
 
 ## {{ page.chapter }}.4. Directory
@@ -564,7 +573,7 @@ There are three functions that searches items like files and sub directories:
 `path.dir()`, `path.glob()` and `path.glob()`.
 Consider the following directory structure to see how these functions work.
 
-    tb
+    example
     |
     +--dir-A
     |  +--file-4.txt
@@ -580,36 +589,36 @@ Consider the following directory structure to see how these functions work.
 
 Function `path.dir()` creates an iterator that returns pathname of items
 that exists in the specified directory.
-For example, a call `path.dir('tb')` create an iterator that returns following strings.
+For example, a call `path.dir('example')` create an iterator that returns following strings.
 
-    tb/dir-A/
-    tb/dir-B/
-    tb/file-1.txt
-    tb/file-2.doc
-    tb/file-3.txt
+    example/dir-A/
+    example/dir-B/
+    example/file-1.txt
+    example/file-2.doc
+    example/file-3.txt
 
 
 Function `path.glob()` creates an iterator that returns pathname of items
 matching the given pattern with wild cards.
-For example, a call `path.glob('tb/*.txt')` create an iterator that returns following strings.
+For example, a call `path.glob('example/*.txt')` create an iterator that returns following strings.
 
-    tb/file-1.txt
-    tb/file-3.txt
+    example/file-1.txt
+    example/file-3.txt
 
 Function `path.walk()` creates an iterator that seeks directory structure recursively and returns pathname of items.
-For example, a call `path.walk('tb')` create an iterator that returns following strings.
+For example, a call `path.walk('example')` create an iterator that returns following strings.
 
-    tb/dir-A/
-    tb/dir-B/
-    tb/file-1.txt
-    tb/file-2.doc
-    tb/file-3.txt
-    tb/dir-A/file-4.txt
-    tb/dir-A/file-5.txt
-    tb/dir-B/dir-C/
-    tb/dir-B/dir-D/
-    tb/dir-B/dir-C/file-6.doc
-    tb/dir-B/dir-C/file-7.doc
+    example/dir-A/
+    example/dir-B/
+    example/file-1.txt
+    example/file-2.doc
+    example/file-3.txt
+    example/dir-A/file-4.txt
+    example/dir-A/file-5.txt
+    example/dir-B/dir-C/
+    example/dir-B/dir-D/
+    example/dir-B/dir-C/file-6.doc
+    example/dir-B/dir-C/file-7.doc
 
 
 ### {{ page.chapter }}.4.2. Status Object
@@ -642,13 +651,21 @@ An item in file system returns `fs.stat` instance that has following properties.
 <tr><td><code>issock</code></td><td></td></tr>
 </table>
 
-The code below shows an example that prints each filename and size of items under a directory `tb`.
+The code below shows an example that prints each filename and size of items under a directory `example`.
 
-    stats = path.dir('tb'):stat
+    stats = path.dir('example'):stat
     printf('%-16s %d\n', stats:*filename, stats:*size)
 
 
 ### {{ page.chapter }}.3.8. Directory in TAR Archive
+
+After importing `tar` module, you can get a list of items stored in a TAR archive file.
+The code below prints all the items stored in `example.tar.gz` by `path.walk()`.
+
+    println(path.walk('example.tar.gz/'))
+
+Note that you have to append a directory separator after the archive filename
+so that Path Manager recognize it as a container, not an ordinary file.
 
 An item in TAR archive file returns `tar.stat` instance that has following properties.
 

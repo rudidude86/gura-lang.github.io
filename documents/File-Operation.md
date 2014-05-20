@@ -42,28 +42,6 @@ which is to be converted by `fs` module to what the current OS can accept.
 You can see variable `path.sep_file` to check what character is favorable to the OS.
 
 
-## {{ page.chapter }}.2.2. Modules Expanding Acceptable Pathname
-
-After importing `tar` module, you can specify a pathname that represents items in a TAR archive file.
-When Path Manager detects a file that has a name suffixed with `.tar`, `.tgz`, `.tar.gz` or `tar.bz2`,
-it would decompress the content in accordance with TAR format.
-The example below indicates an item named `src/main.cpp` in a TAR file `/home/foo/example.tar.gz`.
-
-    /home/foo/example.tar.gz/src/main.cpp
-
-After importing `zip` module, you can specify a pathname that represents items in a ZIP archive file.
-When Path Manager detects a file that has a name suffixed with `.zip`,
-it would decompress the content in accordance with ZIP format.
-The example below indicates an item named `src/main.cpp` in a ZIP file `/home/foo/example.zip`.
-
-    /home/foo/example.zip/src/main.cpp
-
-Importing `curl` module, which provides features to access network using [curl](http://curl.haxx.se/) library,
-or importing `http` module would make Path Manager able to recognize URIs that begin with protocol names like "http" and "ftp".
-
-    http://www.example.com/doc/index.html
-
-
 ### {{ page.chapter }}.2.3. Utility Functions to Parse Pathname
 
 Function `path.dirname()` extracts a directory part by eliminating a file part from a pathname.
@@ -543,6 +521,34 @@ Below shows a diagram of the process:
     +--------+    +-----------------+    +---------------+
 
 
+### {{ page.chapter }}.3.8. Stream in TAR Archive
+
+After importing `tar` module, you can specify a pathname that represents items in a TAR archive file.
+When Path Manager detects a file that has a name suffixed with `.tar`, `.tgz`, `.tar.gz` or `tar.bz2`,
+it would decompress the content in accordance with TAR format.
+The example below indicates an item named `src/main.cpp` in a TAR file `/home/foo/example.tar.gz`.
+
+    /home/foo/example.tar.gz/src/main.cpp
+
+
+### {{ page.chapter }}.3.9. Stream in ZIP Archive
+
+After importing `zip` module, you can specify a pathname that represents items in a ZIP archive file.
+When Path Manager detects a file that has a name suffixed with `.zip`,
+it would decompress the content in accordance with ZIP format.
+The example below indicates an item named `src/main.cpp` in a ZIP file `/home/foo/example.zip`.
+
+    /home/foo/example.zip/src/main.cpp
+
+
+### {{ page.chapter }}.3.10. Stream via HTTP
+
+Importing `curl` module, which provides features to access network using [curl](http://curl.haxx.se/) library,
+or importing `http` module would make Path Manager able to recognize URIs that begin with protocol names like "http" and "ftp".
+
+    http://www.example.com/doc/index.html
+
+
 ## {{ page.chapter }}.4. Directory
 
 ### {{ page.chapter }}.4.1. Operations
@@ -605,6 +611,7 @@ For example, a call `path.walk('tb')` create an iterator that returns following 
     tb/dir-B/dir-C/file-6.doc
     tb/dir-B/dir-C/file-7.doc
 
+
 ### {{ page.chapter }}.4.2. Status Object
 
 By default, functions `path.dir()`, `path.glob()` and `path.glob()` create an iterator that returns a string of pathname.
@@ -635,6 +642,14 @@ An item in file system returns `fs.stat` instance that has following properties.
 <tr><td><code>issock</code></td><td></td></tr>
 </table>
 
+The code below shows an example that prints each filename and size of items under a directory `tb`.
+
+    stats = path.dir('tb'):stat
+    printf('%-16s %d\n', stats:*filename, stats:*size)
+
+
+### {{ page.chapter }}.3.8. Directory in TAR Archive
+
 An item in TAR archive file returns `tar.stat` instance that has following properties.
 
 <table>
@@ -657,6 +672,9 @@ An item in TAR archive file returns `tar.stat` instance that has following prope
 <tr><td><code>devminor</code></td><td></td></tr>
 </table>
 
+
+### {{ page.chapter }}.3.9. Directory in ZIP Archive
+
 An item in ZIP archive file returns `zip.stat` instance that has following properties.
 
 <table>
@@ -670,11 +688,6 @@ An item in ZIP archive file returns `zip.stat` instance that has following prope
 <tr><td><code>compressed_size</code></td><td></td></tr>
 <tr><td><code>attributes</code></td><td></td></tr>
 </table>
-
-The code below shows an example that prints each filename and size of items under a directory `tb`.
-
-    stats = path.dir('tb'):stat
-    printf('%-16s %d\n', stats:*filename, stats:*size)
 
 
 ## {{ page.chapter }}.5. OS-specific Operations

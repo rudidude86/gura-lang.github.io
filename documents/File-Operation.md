@@ -399,7 +399,12 @@ Method `stream#compare()` compares contents between two streams
 and returns `true` if there's no difference and `false` otherwise.
 
 
-### {{ page.chapter }}.3.7. Filter Stream
+### {{ page.chapter }}.3.7. Stream with Memory
+
+`binary`
+
+
+### {{ page.chapter }}.3.8. Filter Stream
 
 A Filter Stream is what is attached to other `stream` instance
 and applies data modification while reading or writing operation.
@@ -521,7 +526,7 @@ Below shows a diagram of the process:
     +--------+    +-----------------+    +---------------+
 
 
-### {{ page.chapter }}.3.8. Stream in TAR Archive
+### {{ page.chapter }}.3.9. Stream with Archive File and Network
 
 After importing `tar` module, you can create a stream that reads an item stored in a TAR archive file.
 When a pathname contains a filename suffixed with `.tar`, `.tgz`, `.tar.gz` or `tar.bz2`,
@@ -533,8 +538,12 @@ The example below opens an item named `src/main.cpp` in a TAR file `foo/example.
         // reading process from fd
     }
 
+Since all the works necessary to decompress content of archive files are encapsulated in Path Manager framework,
+you can access them just like an ordinary file in file systems.
+Below is an example to print content of `src/main.cpp` in `foo/example.tar.gz`.
 
-### {{ page.chapter }}.3.9. Stream in ZIP Archive
+    import(tar)
+    print(readlines('foo/example.tar.gz/src/main.cpp'))
 
 After importing `zip` module, you can create a stream that reads an item stored in a ZIP archive file.
 When a pathname contains a filename suffixed with `.zip`,
@@ -545,9 +554,6 @@ The example below opens an item named `src/main.cpp` in a TAR file `foo/example.
     open('foo/example.zip/src/main.cpp') {|fd|
         // reading process from fd
     }
-
-
-### {{ page.chapter }}.3.10. Stream via HTTP
 
 Importing `curl` module, which provides features to access network using [curl](http://curl.haxx.se/) library,
 or importing `http` module would make Path Manager able to recognize URIs that begin with protocol names like "http" and "ftp".
@@ -657,7 +663,7 @@ The code below shows an example that prints each filename and size of items unde
     printf('%-16s %d\n', stats:*filename, stats:*size)
 
 
-### {{ page.chapter }}.3.8. Directory in TAR Archive
+### {{ page.chapter }}.3.8. Directory in Archive File
 
 After importing `tar` module, you can get a list of items stored in a TAR archive file.
 The code below prints all the items stored in `example.tar.gz` by `path.walk()`.
@@ -689,8 +695,10 @@ An item in TAR archive file returns `tar.stat` instance that has following prope
 <tr><td><code>devminor</code></td><td></td></tr>
 </table>
 
+After importing `zip` module, you can get a list of items stored in a ZIP archive file.
+The code below prints all the items stored in `example.tar.gz` by `path.walk()`.
 
-### {{ page.chapter }}.3.9. Directory in ZIP Archive
+    println(path.walk('example.zip/'))
 
 An item in ZIP archive file returns `zip.stat` instance that has following properties.
 
@@ -711,6 +719,8 @@ An item in ZIP archive file returns `zip.stat` instance that has following prope
 
 ### {{ page.chapter }}.5.1. Operation on File System
 
+Module `fs` provides functions that work with file systems.
+
 Function `fs.mkdir()` creates a directory.
 If there are non-existing directories in the specified pathname, it would occur an error.
 Specifying attribute `:tree` would create intermediate directories in the pathname if they don't exist.
@@ -730,8 +740,18 @@ Function `fs.cpdir()` copies content of a directory to another directory.
 ### {{ page.chapter }}.5.2. Execute Other Process
 
 Function `os.exec()` executes a process and waits until it finishes.
+While the process runs, its standard output and standard error are redirected to streams defined by variables `os.stdout` and `os.stderr`,
+and its standard input is redirected from `os.stdin`.
+By default, variables `os.stdin`, `os.stdout` and `os.stderr` are assigned with `sys.stdin`, `sys.stdout` and `sys.stderr` respectively.
+You can modify those variables to retrieve console output from the process
+and feed text data to it through standard input.
+Below is an example to run an executable `foo` after redirecting the standard output to a memory buffer.
 
-attribute `:fork`
+    buff = binary()
+    saved = os.stdout
+    os.stdout = buff.writer()
+    os.exec('foo')
+    os.stdout = saved
+    print(os.fromnative(buff))
 
-`os.stdin`, `os.stdout`, `os.stderr`
-
+Function `os.fromnative()` converts `binary` instance that contains a raw data from the process to a string in UTF-8 format.

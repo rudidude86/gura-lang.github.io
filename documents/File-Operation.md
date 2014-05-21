@@ -401,7 +401,12 @@ and returns `true` if there's no difference and `false` otherwise.
 
 ### {{ page.chapter }}.3.7. Stream with Memory
 
-`binary`
+An instance of class `binary` owns memory buffer inside it
+and provides method to manipulate content of that data.
+
+`binary#writer()`
+
+`binary#reader()`
 
 
 ### {{ page.chapter }}.3.8. Filter Stream

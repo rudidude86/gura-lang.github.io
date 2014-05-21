@@ -638,23 +638,23 @@ which provide various properties for additional information as well as the item'
 An item in file system returns `fs.stat` instance that has following properties.
 
 <table>
-<tr><th>Property Name</th><th>Content</th></tr>
-<tr><td><code>pathname</code></td><td></td></tr>
-<tr><td><code>dirname</code></td><td></td></tr>
-<tr><td><code>filename</code></td><td></td></tr>
-<tr><td><code>size</code></td><td></td></tr>
-<tr><td><code>uid</code></td><td></td></tr>
-<tr><td><code>gid</code></td><td></td></tr>
-<tr><td><code>atime</code></td><td></td></tr>
-<tr><td><code>mtime</code></td><td></td></tr>
-<tr><td><code>ctime</code></td><td></td></tr>
-<tr><td><code>isdir</code></td><td></td></tr>
-<tr><td><code>ischr</code></td><td></td></tr>
-<tr><td><code>isblk</code></td><td></td></tr>
-<tr><td><code>isreg</code></td><td></td></tr>
-<tr><td><code>isfifo</code></td><td></td></tr>
-<tr><td><code>islnk</code></td><td></td></tr>
-<tr><td><code>issock</code></td><td></td></tr>
+<tr><th>Property Name</th><th>Data Type</th><th>Content</th></tr>
+<tr><td><code>pathname</code></td><td><code>string</code></td><td></td></tr>
+<tr><td><code>dirname</code></td><td><code>string</code></td><td></td></tr>
+<tr><td><code>filename</code></td><td><code>string</code></td><td></td></tr>
+<tr><td><code>size</code></td><td><code>number</code></td><td></td></tr>
+<tr><td><code>uid</code></td><td><code>number</code></td><td></td></tr>
+<tr><td><code>gid</code></td><td><code>number</code></td><td></td></tr>
+<tr><td><code>atime</code></td><td><code>datatime</code></td><td></td></tr>
+<tr><td><code>mtime</code></td><td><code>datatime</code></td><td></td></tr>
+<tr><td><code>ctime</code></td><td><code>datatime</code></td><td></td></tr>
+<tr><td><code>isdir</code></td><td><code>boolean</code></td><td></td></tr>
+<tr><td><code>ischr</code></td><td><code>boolean</code></td><td></td></tr>
+<tr><td><code>isblk</code></td><td><code>boolean</code></td><td></td></tr>
+<tr><td><code>isreg</code></td><td><code>boolean</code></td><td></td></tr>
+<tr><td><code>isfifo</code></td><td><code>boolean</code></td><td></td></tr>
+<tr><td><code>islnk</code></td><td><code>boolean</code></td><td></td></tr>
+<tr><td><code>issock</code></td><td><code>boolean</code></td><td></td></tr>
 </table>
 
 The code below shows an example that prints each filename and size of items under a directory `example`.
@@ -676,23 +676,23 @@ so that Path Manager recognize it as a container, not an ordinary file.
 An item in TAR archive file returns `tar.stat` instance that has following properties.
 
 <table>
-<tr><th>Property Name</th><th>Content</th></tr>
-<tr><td><code>name</code></td><td></td></tr>
-<tr><td><code>filename</code></td><td></td></tr>
-<tr><td><code>linkname</code></td><td></td></tr>
-<tr><td><code>uname</code></td><td></td></tr>
-<tr><td><code>gname</code></td><td></td></tr>
-<tr><td><code>mode</code></td><td></td></tr>
-<tr><td><code>uid</code></td><td></td></tr>
-<tr><td><code>gid</code></td><td></td></tr>
-<tr><td><code>size</code></td><td></td></tr>
-<tr><td><code>mtime</code></td><td></td></tr>
-<tr><td><code>atime</code></td><td></td></tr>
-<tr><td><code>ctime</code></td><td></td></tr>
-<tr><td><code>chksum</code></td><td></td></tr>
-<tr><td><code>typeflag</code></td><td></td></tr>
-<tr><td><code>devmajor</code></td><td></td></tr>
-<tr><td><code>devminor</code></td><td></td></tr>
+<tr><th>Property Name</th><th>Data Type</th><th>Content</th></tr>
+<tr><td><code>name</code></td><td><code>string</code></td><td></td></tr>
+<tr><td><code>filename</code></td><td><code>string</code></td><td></td></tr>
+<tr><td><code>linkname</code></td><td><code>string</code></td><td></td></tr>
+<tr><td><code>uname</code></td><td><code>string</code></td><td></td></tr>
+<tr><td><code>gname</code></td><td><code>string</code></td><td></td></tr>
+<tr><td><code>mode</code></td><td><code>number</code></td><td></td></tr>
+<tr><td><code>uid</code></td><td><code>number</code></td><td></td></tr>
+<tr><td><code>gid</code></td><td><code>number</code></td><td></td></tr>
+<tr><td><code>size</code></td><td><code>number</code></td><td></td></tr>
+<tr><td><code>mtime</code></td><td><code>datetime</code></td><td></td></tr>
+<tr><td><code>atime</code></td><td><code>datetime</code></td><td></td></tr>
+<tr><td><code>ctime</code></td><td><code>datetime</code></td><td></td></tr>
+<tr><td><code>chksum</code></td><td><code>number</code></td><td></td></tr>
+<tr><td><code>typeflag</code></td><td><code>number</code></td><td></td></tr>
+<tr><td><code>devmajor</code></td><td><code>number</code></td><td></td></tr>
+<tr><td><code>devminor</code></td><td><code>number</code></td><td></td></tr>
 </table>
 
 After importing `zip` module, you can get a list of items stored in a ZIP archive file.
@@ -703,15 +703,15 @@ The code below prints all the items stored in `example.tar.gz` by `path.walk()`.
 An item in ZIP archive file returns `zip.stat` instance that has following properties.
 
 <table>
-<tr><th>Property Name</th><th>Content</th></tr>
-<tr><td><code>filename</code></td><td></td></tr>
-<tr><td><code>comment</code></td><td></td></tr>
-<tr><td><code>mtime</code></td><td></td></tr>
-<tr><td><code>crc32</code></td><td></td></tr>
-<tr><td><code>compression_method</code></td><td></td></tr>
-<tr><td><code>size</code></td><td></td></tr>
-<tr><td><code>compressed_size</code></td><td></td></tr>
-<tr><td><code>attributes</code></td><td></td></tr>
+<tr><th>Property Name</th><th>Data Type</th><th>Content</th></tr>
+<tr><td><code>filename</code></td><td><code>string</code></td><td></td></tr>
+<tr><td><code>comment</code></td><td><code>string</code></td><td></td></tr>
+<tr><td><code>mtime</code></td><td><code>datetime</code></td><td></td></tr>
+<tr><td><code>crc32</code></td><td><code>number</code></td><td></td></tr>
+<tr><td><code>compression_method</code></td><td><code>number</code></td><td></td></tr>
+<tr><td><code>size</code></td><td><code></code></td><td>number</td></tr>
+<tr><td><code>compressed_size</code></td><td><code>number</code></td><td></td></tr>
+<tr><td><code>attributes</code></td><td><code></code></td><td>number</td></tr>
 </table>
 
 

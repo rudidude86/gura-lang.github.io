@@ -540,3 +540,10 @@ The default is a little endian.
 `pointer#pack()`
 
 
+### {{ page.chapter }}.5.6. Binary as Stream
+
+`binary#writer()`
+
+`binary#reader()`
+
+cast from `binary` to `stream`

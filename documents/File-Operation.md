@@ -399,17 +399,7 @@ Method `stream#compare()` compares contents between two streams
 and returns `true` if there's no difference and `false` otherwise.
 
 
-### {{ page.chapter }}.3.7. Stream with Memory
-
-An instance of class `binary` owns memory buffer inside it
-and provides method to manipulate content of that data.
-
-`binary#writer()`
-
-`binary#reader()`
-
-
-### {{ page.chapter }}.3.8. Filter Stream
+### {{ page.chapter }}.3.7. Filter Stream
 
 A Filter Stream is what is attached to other `stream` instance
 and applies data modification while reading or writing operation.
@@ -531,7 +521,7 @@ Below shows a diagram of the process:
     +--------+    +-----------------+    +---------------+
 
 
-### {{ page.chapter }}.3.9. Stream with Archive File and Network
+### {{ page.chapter }}.3.8. Stream with Archive File and Network
 
 After importing `tar` module, you can create a stream that reads an item stored in a TAR archive file.
 When a pathname contains a filename suffixed with `.tar`, `.tgz`, `.tar.gz` or `tar.bz2`,

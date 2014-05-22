@@ -434,7 +434,7 @@ An anonymous function would make the code more simple.
 
 ## {{ page.chapter }}.5. Operation on Binary
 
-## {{ page.chapter }}.5.1. Creation of Instance
+### {{ page.chapter }}.5.1. Creation of Instance
 
 You can create a `binary` instance by put a prefix `b` to a string literal.
 
@@ -464,7 +464,7 @@ There are several ways to create a `binary` instance that accepts modification.
 You can use method `binary#dump()` to print out a content of a `binary` in a hexadecimal dump format.
 
 
-## {{ page.chapter }}.5.2. Byte Manipulation
+### {{ page.chapter }}.5.2. Byte Manipulation
 
 An index access on a `binary` would return a number value at the specified position.
 
@@ -485,7 +485,11 @@ Modification through an indexer on a writable binary is also possible.
     // buff has a byte sequence: 0x12, 0x34, 0x00, 0x00, 0x01, 0x02, 0x03, 0x04.
 
 
-## {{ page.chapter }}.5.3. Pack and Unpack
+### {{ page.chapter }}.5.3. Iteration
+
+`binary#each()`
+
+### {{ page.chapter }}.5.4. Pack and Unpack
 
 Method `binary#unpack()`
 
@@ -527,7 +531,7 @@ The default is a little endian.
 </table>
 
 
-## {{ page.chapter }}.5.2. Pointer
+### {{ page.chapter }}.5.5. Pointer
 
 `binary#pointer()`
 

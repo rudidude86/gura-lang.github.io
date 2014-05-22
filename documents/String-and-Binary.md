@@ -1,7 +1,7 @@
 ---
 layout: page
 lang: en
-title: String Operation
+title: String and Binary
 chapter: 12
 ---
 
@@ -9,11 +9,9 @@ chapter: 12
 
 ## {{ page.chapter }}.1. Overview
 
-A string is a sequence of character codes in UTF-8 format
-and is represented by `string` class that has a variety of methods on such data.
-
-Class `string` is a primitive one
-that means there's no operation that could modify the content of `string` instances.
+A string is a sequence of character codes in UTF-8 format and is represented by `string` class.
+Class `string` is a primitive type,
+which means there's no operation that could modify the content of `string` instances.
 This leads to the following principles:
 
 * It's not allowed to edit each character in a string content through index access.
@@ -23,8 +21,12 @@ The interpreter itself provides fundamental operations for strings.
 Importing module named `re` expand the capability so that it can process string data
 using regular expressions.
 
+Meanwhile, a binary is a byte sequence of data that has any format and is represented by `binary` class.
+Class `binary` is an object type, so you can modify the content of the instance.
+A `binary` instance can be used as a plain memory image capable of containing any data.
 
-## {{ page.chapter }}.2. Basic Operation
+
+## {{ page.chapter }}.2. Operation on String
 
 
 ### {{ page.chapter }}.2.1. Character Manipulation
@@ -428,3 +430,109 @@ An anonymous function would make the code more simple.
 
     str = '### #### ##### ## #####'
     str.sub('#+', &{format('%d', $m[0].len())})  // returns '3 4 5 2 5'
+
+
+## {{ page.chapter }}.5. Operation on Binary
+
+## {{ page.chapter }}.5.1. Creation of Instance
+
+You can create a `binary` instance by put a prefix `b` to a string literal.
+
+    b'AB\x01\x00\xff'
+
+The example above is a `binary` instance that contains a sequence of byte data:
+0x41, 0x42, 0x01, 0x00 and 0xff.
+As an instance created by a string literal prefixed by `b` can not be modified,
+it would occur an error when you try some modification operations on such an instance.
+
+There are several ways to create a `binary` instance that accepts modification.
+
+* Constructor function `binary()` creates an empty `binary` instance.
+
+        buff = binary()
+
+* Class method `binary.alloc()` creates a `binary` instance of the specified size.
+
+        buff = binary.alloc(1000)
+        // buff has a memory of 1000 bytes
+
+* Class method `binary.pack()` packs values into a binary sequence according to the packing specifier.
+
+        buff = binary.pack('Bl', 0xaa, 0x12345678)
+        // buff has a byte sequence: 0xaa, 0x78, 0x56, 0x34, 0x12.
+
+You can use method `binary#dump()` to print out a content of a `binary` in a hexadecimal dump format.
+
+
+## {{ page.chapter }}.5.2. Byte Manipulation
+
+An index access on a `binary` would return a number value at the specified position.
+
+    buff = b'\xaa\xbb\xcc\xdd\xee'
+    buff[0] // returns 0xaa
+    buff[1] // returns 0xbb
+
+You can also specify an iterator as an indexing item for a binary just like a string.
+
+    buff[1..3] // returns [0xbb, 0xcc, 0xdd]
+
+Modification through an indexer on a writable binary is also possible.
+
+    buff = binary.alloc(8)
+    buff[0] = 0x12
+    buff[1] = 0x34
+    buff[3..] = 0..4
+    // buff has a byte sequence: 0x12, 0x34, 0x00, 0x00, 0x01, 0x02, 0x03, 0x04.
+
+
+## {{ page.chapter }}.5.3. Pack and Unpack
+
+Method `binary#unpack()`
+
+Class method `binary.pack()`
+
+<table>
+<tr><th>Specifier</th><th>Note</th></tr>
+<tr><td><code>x</code></td><td>Advances pointer ahead for specified size without packing or unpacking.</td></tr>
+<tr><td><code>c</code></td><td>Packs a first character code in a string,
+ or unpack a 8-bit number as a chracter code and returns a string containing it.</td></tr>
+<tr><td><code>b</code></td><td>Packs or unpacks a signed 8-bit number.</td></tr>
+<tr><td><code>B</code></td><td>Packs or unpacks an unsigned 8-bit number</td></tr>
+<tr><td><code>h</code></td><td>Packs or unpacks a signed 16-bit number</td></tr>
+<tr><td><code>H</code></td><td>Packs or unpacks an unsigned 16-bit number</td></tr>
+<tr><td><code>i</code></td><td>Packs or unpacks a signed 32-bit number</td></tr>
+<tr><td><code>I</code></td><td>Packs or unpacks an unsigned 32-bit number</td></tr>
+<tr><td><code>l</code></td><td>Packs or unpacks a signed 32-bit number</td></tr>
+<tr><td><code>L</code></td><td>Packs or unpacks an unsigned 32-bit number</td></tr>
+<tr><td><code>q</code></td><td>Packs or unpacks a signed 64-bit number</td></tr>
+<tr><td><code>Q</code></td><td>Packs or unpacks an unsigned 64-bit number</td></tr>
+<tr><td><code>f</code></td><td>Packs or unpacks a single precision floating point number.</td></tr>
+<tr><td><code>d</code></td><td>Packs or unpacks a double precision floating point number.</td></tr>
+<tr><td><code>s</code></td><td>Packs character codes in a string according to the specified codec,
+ or unpack 8-bit numbers as character codes according the specified codec and returns a string containing them.</td></tr>
+</table>
+
+You can specify a codec for `s` specifier by surrounding its name with `{` and `}`.
+
+A byte order of numbers in 16-bit, 32-bit and 64-bit size can be controlled by the following specifiers.
+The default is a little endian.
+
+<table>
+<tr><th>Specifier</th><th>Note</th></tr>
+<tr><td><code>@</code></td><td>Turns to a system-dependent endian.</td></tr>
+<tr><td><code>=</code></td><td>Turns to a system-dependent endian.</td></tr>
+<tr><td><code>&lt;</code></td><td>Turns to a little endian.</td></tr>
+<tr><td><code>&gt;</code></td><td>Turns to a big endian.</td></tr>
+<tr><td><code>!</code></td><td>Turns to a big endian.</td></tr>
+</table>
+
+
+## {{ page.chapter }}.5.2. Pointer
+
+`binary#pointer()`
+
+`pointer#unpack()`
+
+`pointer#pack()`
+
+

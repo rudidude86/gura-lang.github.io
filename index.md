@@ -121,7 +121,7 @@ I hope the publication will inspire me to carry on this tough work :-)</em>
 <div>Chapter 9. <a href="documents/Object-Oriented-Programming.html">Object Oriented Programming</a></div>
 <div>Chapter 10. <a href="documents/Mapping-Process.html">Mapping Process</a></div>
 <div>Chapter 11. <a href="documents/Module.html">Module</a></div>
-<div>Chapter 12. <a href="documents/String-Operation.html">String Operation</a></div>
+<div>Chapter 12. <a href="documents/String-and-Binary.html">String and Binary</a></div>
 <div>Chapter 13. <a href="documents/Iterator-List-Operation.html">Iterator/List Operation</a></div>
 <div>Chapter 14. <a href="documents/File-Operation.html">File Operation</a></div>
 <div>Chapter 15. Network Operation</div>

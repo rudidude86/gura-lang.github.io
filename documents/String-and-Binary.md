@@ -518,18 +518,41 @@ The result contains a binary sequence of 0x34, 0x12, 0xbb, 0xaa, 0x78 and 0x56.
 If there's a sequence of the same specifier like above,
 you can brackets them together by specifying the number ahead of that specifier.
 
-    binary.pack('3H', 0x1234, 0xaabb, 0x5678)
+    rtn = binary.pack('3H', 0x1234, 0xaabb, 0x5678)
 
 This has the same result as the previous example.
 
-`binary#unpack()`
+Meanwhile, method `binary#unpack()` takes a formatter string and returns a list containing unpacked result.
+For example:
 
     buff = b'\x34\x12'
     rtn = buff.unpack('H')
-    // rtn is [0x1234]
 
+The result rtn is a list `[0x1234]`.
 
-Specifiers to pack or unpack number values are summarized below.
+multiple specifiers
+
+    buff = b'\x34\x12\xbb\xaa\x78\x56'
+    rtn = buff.unpack('HHH')
+    // rtn is [0x1234, 0xaabb, 0x5678]
+
+a
+
+    buff = b'\x34\x12\xbb\xaa\x78\x56'
+    rtn = buff.unpack('3H')
+
+b
+
+    buff = b'\x34\x12\xbb\xaa\x78\x56'
+    [x, y, z] = buff.unpack('3H')
+
+struct
+
+    Point = struct(x:number, y:number, z:number)
+    buff = b'\x34\x12\xbb\xaa\x78\x56'
+    rtn = Point(buff.unpack('3H')*)
+
+The table below summarizes specifiers that are used to pack or unpack number values.
 
 <table>
 <tr><th>Specifier</th><th>Unit Size</th><th>Note</th></tr>
@@ -547,17 +570,6 @@ Specifiers to pack or unpack number values are summarized below.
 <tr><td><code>d</code></td><td>8 bytes</td><td>Packs or unpacks a double precision floating point number.</td></tr>
 </table>
 
-<table>
-<tr><th>Specifier</th><th>Note</th></tr>
-<tr><td><code>x</code></td><td>Advances pointer ahead for specified size without packing or unpacking.</td></tr>
-<tr><td><code>c</code></td><td>Packs a first character code in a string,
- or unpack a 8-bit number as a chracter code and returns a string containing it.</td></tr>
-<tr><td><code>s</code></td><td>Packs character codes in a string according to the specified codec,
- or unpack 8-bit numbers as character codes according the specified codec and returns a string containing them.</td></tr>
-</table>
-
-You can specify a codec for `s` specifier by surrounding its name with `{` and `}`.
-
 A byte order of numbers in 16-bit, 32-bit and 64-bit size can be controlled by the following specifiers.
 The default is a little endian.
 
@@ -569,6 +581,19 @@ The default is a little endian.
 <tr><td><code>&gt;</code></td><td>Turns to a big endian.</td></tr>
 <tr><td><code>!</code></td><td>Turns to a big endian.</td></tr>
 </table>
+
+
+<table>
+<tr><th>Specifier</th><th>Note</th></tr>
+<tr><td><code>x</code></td><td>Advances pointer ahead for specified size without packing or unpacking.</td></tr>
+<tr><td><code>c</code></td><td>Packs a first character code in a string,
+ or unpack a 8-bit number as a chracter code and returns a string containing it.</td></tr>
+<tr><td><code>s</code></td><td>Packs character codes in a string according to the specified codec,
+ or unpack 8-bit numbers as character codes according the specified codec and returns a string containing them.</td></tr>
+</table>
+
+You can specify a codec for `s` specifier by surrounding its name with `{` and `}`.
+
 
 
 ### {{ page.chapter }}.5.4. Pointer

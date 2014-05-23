@@ -494,87 +494,58 @@ Method `binary#each()` creates an iterator that returns each 8-bit number value 
 ### {{ page.chapter }}.5.3. Pack and Unpack
 
 Using an indexer and `binary#each()` method, you can retrieve and modify the content of a binary by a unit of 8-bit number.
-To store and extract numbers that consits of multiple octets or strings,
+To store and extract values such as number that consits of multiple octets
+and string that contains a sequence of character codes,
 the following methods are provided.
 
-* Class method `binary.pack()`
+* Class method `binary.pack()` to create a binary sequence that contains numbers and strings.
+* Method `binary#unpack()` to extract numbers and strings from a binary sequence.
 
-* Method `binary#unpack()`
+Class method `binary.pack()` takes a formatter string containing specifiers and values to store as its argument.
+For example:
+
+    rtn = binary.pack('H', 0x1234)
+
+The specifier `H` means an unsigned 16-bit number,
+so the result `rtn` is a `binary` instance that contains a binary sequence of 0x34 and 0x12.
+
+You can write any number of specifiers in the format.
+
+    rtn = binary.pack('HHH', 0x1234, 0xaabb, 0x5678)
+
+The result contains a binary sequence of 0x34, 0x12, 0xbb, 0xaa, 0x78 and 0x56.
+
+If there's a sequence of the same specifier like above,
+you can brackets them together by specifying the number ahead of that specifier.
+
+    binary.pack('3H', 0x1234, 0xaabb, 0x5678)
+
+This has the same result as the previous example.
+
+`binary#unpack()`
+
+    buff = b'\x34\x12'
+    rtn = buff.unpack('H')
+    // rtn is [0x1234]
+
+
+Specifiers to pack or unpack number values are summarized below.
 
 <table>
-<tr><th>Specifier</th><th>Note</th></tr>
-<tr><td><code>b</code></td><td>Packs or unpacks a signed 8-bit number.</td></tr>
-<tr><td><code>B</code></td><td>Packs or unpacks an unsigned 8-bit number</td></tr>
-<tr><td><code>h</code></td><td>Packs or unpacks a signed 16-bit number</td></tr>
-<tr><td><code>H</code></td><td>Packs or unpacks an unsigned 16-bit number</td></tr>
-<tr><td><code>i</code></td><td>Packs or unpacks a signed 32-bit number</td></tr>
-<tr><td><code>I</code></td><td>Packs or unpacks an unsigned 32-bit number</td></tr>
-<tr><td><code>l</code></td><td>Packs or unpacks a signed 32-bit number</td></tr>
-<tr><td><code>L</code></td><td>Packs or unpacks an unsigned 32-bit number</td></tr>
-<tr><td><code>q</code></td><td>Packs or unpacks a signed 64-bit number</td></tr>
-<tr><td><code>Q</code></td><td>Packs or unpacks an unsigned 64-bit number</td></tr>
-<tr><td><code>f</code></td><td>Packs or unpacks a single precision floating point number.</td></tr>
-<tr><td><code>d</code></td><td>Packs or unpacks a double precision floating point number.</td></tr>
+<tr><th>Specifier</th><th>Unit Size</th><th>Note</th></tr>
+<tr><td><code>b</code></td><td>1 byte</td><td>Packs or unpacks a signed 8-bit number (-128 to 127).</td></tr>
+<tr><td><code>B</code></td><td>1 byte</td><td>Packs or unpacks an unsigned 8-bit number (0 to 255)</td></tr>
+<tr><td><code>h</code></td><td>2 bytes</td><td>Packs or unpacks a signed 16-bit number (-32768 to 32767)</td></tr>
+<tr><td><code>H</code></td><td>2 bytes</td><td>Packs or unpacks an unsigned 16-bit number (0 to 65535)</td></tr>
+<tr><td><code>i</code></td><td>4 bytes</td><td>Packs or unpacks a signed 32-bit number (-2147483648 to 2147483648)</td></tr>
+<tr><td><code>I</code></td><td>4 bytes</td><td>Packs or unpacks an unsigned 32-bit number (0 to 4294967295)</td></tr>
+<tr><td><code>l</code></td><td>4 bytes</td><td>Packs or unpacks a signed 32-bit number (-2147483648 to 2147483648)</td></tr>
+<tr><td><code>L</code></td><td>4 bytes</td><td>Packs or unpacks an unsigned 32-bit number (0 to 4294967295)</td></tr>
+<tr><td><code>q</code></td><td>8 bytes</td><td>Packs or unpacks a signed 64-bit number (-9223372036854775808 to 9223372036854775807)</td></tr>
+<tr><td><code>Q</code></td><td>8 bytes</td><td>Packs or unpacks an unsigned 64-bit number (0 to 18446744073709551615)</td></tr>
+<tr><td><code>f</code></td><td>4 bytes</td><td>Packs or unpacks a single precision floating point number.</td></tr>
+<tr><td><code>d</code></td><td>8 bytes</td><td>Packs or unpacks a double precision floating point number.</td></tr>
 </table>
-
-<table>
-<tr><th>Memory Image</th><th>Data Types</th></tr>
-<tr>
-<td>
-<pre><code>+---+
-|   |
-+---+
-</code></pre>
-</td>
-<td>
-<div>signed 8-bit number (-128 to 127)</div>
-<div>unsigned 8-bit number (0 to 255)</div>
-</td>
-</tr>
-
-<tr>
-<td>
-<pre><code>+---+---+
-|       |
-+---+---+
-</code></pre>
-</td>
-<td>
-<div>signed 16-bit number (-32768 to 32767)</div>
-<div>unsigned 16-bit number (0 to 65535)</div>
-</td>
-</tr>
-
-<tr>
-<td>
-<pre><code>+---+---+---+---+
-|               |
-+---+---+---+---+
-</code></pre>
-</td>
-<td>
-<div>signed 32-bit number (-2147483648 to 2147483648)</div>
-<div>unsigned 32-bit number (0 to 4294967295)</div>
-<div>single precision floating point number</div>
-</td>
-</tr>
-
-<tr>
-<td>
-<pre><code>+---+---+---+---+---+---+---+---+
-|                               |
-+---+---+---+---+---+---+---+---+
-</code></pre>
-</td>
-<td>
-<div>signed 64-bit number (-9223372036854775808 to 9223372036854775807)</div>
-<div>unsigned 64-bit number (0 to 18446744073709551615)</div>
-<div>double precision floating point number</div>
-</td>
-</tr>
-
-</table>
-
 
 <table>
 <tr><th>Specifier</th><th>Note</th></tr>

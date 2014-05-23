@@ -484,22 +484,25 @@ Modification through an indexer on a writable binary is also possible.
     buff[3..] = 0..4
     // buff has a byte sequence: 0x12, 0x34, 0x00, 0x00, 0x01, 0x02, 0x03, 0x04.
 
+Method `binary#each()` creates an iterator that returns each 8-bit number value in the binary.
 
-### {{ page.chapter }}.5.3. Iteration
+    buff = b'\xaa\xbb\xcc\xdd\xee'
+    x = buff.each()
+    // x is an iterator that returns 0xaa, 0xbb, 0xcc, 0xdd and 0xee.
 
-`binary#each()`
 
-### {{ page.chapter }}.5.4. Pack and Unpack
+### {{ page.chapter }}.5.3. Pack and Unpack
 
-Method `binary#unpack()`
+Using an indexer and `binary#each()` method, you can retrieve and modify the content of a binary by a unit of 8-bit number.
+To store and extract numbers that consits of multiple octets or strings,
+the following methods are provided.
 
-Class method `binary.pack()`
+* Class method `binary.pack()`
+
+* Method `binary#unpack()`
 
 <table>
 <tr><th>Specifier</th><th>Note</th></tr>
-<tr><td><code>x</code></td><td>Advances pointer ahead for specified size without packing or unpacking.</td></tr>
-<tr><td><code>c</code></td><td>Packs a first character code in a string,
- or unpack a 8-bit number as a chracter code and returns a string containing it.</td></tr>
 <tr><td><code>b</code></td><td>Packs or unpacks a signed 8-bit number.</td></tr>
 <tr><td><code>B</code></td><td>Packs or unpacks an unsigned 8-bit number</td></tr>
 <tr><td><code>h</code></td><td>Packs or unpacks a signed 16-bit number</td></tr>
@@ -512,6 +515,72 @@ Class method `binary.pack()`
 <tr><td><code>Q</code></td><td>Packs or unpacks an unsigned 64-bit number</td></tr>
 <tr><td><code>f</code></td><td>Packs or unpacks a single precision floating point number.</td></tr>
 <tr><td><code>d</code></td><td>Packs or unpacks a double precision floating point number.</td></tr>
+</table>
+
+<table>
+<tr><th>Memory Image</th><th>Data Types</th></tr>
+<tr>
+<td>
+<pre><code>+---+
+|   |
++---+
+</code></pre>
+</td>
+<td>
+<div>signed 8-bit number (-128 to 127)</div>
+<div>unsigned 8-bit number (0 to 255)</div>
+</td>
+</tr>
+
+<tr>
+<td>
+<pre><code>+---+---+
+|       |
++---+---+
+</code></pre>
+</td>
+<td>
+<div>signed 16-bit number (-32768 to 32767)</div>
+<div>unsigned 16-bit number (0 to 65535)</div>
+</td>
+</tr>
+
+<tr>
+<td>
+<pre><code>+---+---+---+---+
+|               |
++---+---+---+---+
+</code></pre>
+</td>
+<td>
+<div>signed 32-bit number (-2147483648 to 2147483648)</div>
+<div>unsigned 32-bit number (0 to 4294967295)</div>
+<div>single precision floating point number</div>
+</td>
+</tr>
+
+<tr>
+<td>
+<pre><code>+---+---+---+---+---+---+---+---+
+|                               |
++---+---+---+---+---+---+---+---+
+</code></pre>
+</td>
+<td>
+<div>signed 64-bit number (-9223372036854775808 to 9223372036854775807)</div>
+<div>unsigned 64-bit number (0 to 18446744073709551615)</div>
+<div>double precision floating point number</div>
+</td>
+</tr>
+
+</table>
+
+
+<table>
+<tr><th>Specifier</th><th>Note</th></tr>
+<tr><td><code>x</code></td><td>Advances pointer ahead for specified size without packing or unpacking.</td></tr>
+<tr><td><code>c</code></td><td>Packs a first character code in a string,
+ or unpack a 8-bit number as a chracter code and returns a string containing it.</td></tr>
 <tr><td><code>s</code></td><td>Packs character codes in a string according to the specified codec,
  or unpack 8-bit numbers as character codes according the specified codec and returns a string containing them.</td></tr>
 </table>
@@ -531,7 +600,7 @@ The default is a little endian.
 </table>
 
 
-### {{ page.chapter }}.5.5. Pointer
+### {{ page.chapter }}.5.4. Pointer
 
 `binary#pointer()`
 
@@ -540,7 +609,7 @@ The default is a little endian.
 `pointer#pack()`
 
 
-### {{ page.chapter }}.5.6. Binary as Stream
+### {{ page.chapter }}.5.5. Binary as Stream
 
 `binary#writer()`
 

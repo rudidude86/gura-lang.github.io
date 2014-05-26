@@ -124,7 +124,7 @@ I hope the publication will inspire me to carry on this tough work :-)</em>
 <div>Chapter 12. <a href="documents/String-and-Binary.html">String and Binary</a></div>
 <div>Chapter 13. <a href="documents/Iterator-List-Operation.html">Iterator/List Operation</a></div>
 <div>Chapter 14. <a href="documents/File-Operation.html">File Operation</a></div>
-<div>Chapter 15. Network Operation</div>
+<div>Chapter 15. <a href="documents/Network-Operation.html">Network Operation</a></div>
 <div>Chapter 16. Image Operation</div>
 <div>Chapter 17. Graphical User Interface</div>
 <div>Chapter 18. Mathematic Functions</div>

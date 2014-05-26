@@ -528,29 +528,25 @@ For example:
     buff = b'\x34\x12'
     rtn = buff.unpack('H')
 
-The result rtn is a list `[0x1234]`.
+The result `rtn` is a list `[0x1234]`.
+Note that you always get a list as the result even when it contains only one value.
 
-multiple specifiers
+Below is an example of a format that contains multiple specifiers:
 
     buff = b'\x34\x12\xbb\xaa\x78\x56'
     rtn = buff.unpack('HHH')
     // rtn is [0x1234, 0xaabb, 0x5678]
 
-a
+Just like the packing rule, you can specify the number of succeeding specifiers.
 
     buff = b'\x34\x12\xbb\xaa\x78\x56'
     rtn = buff.unpack('3H')
 
-b
+Using an assignment to lister expression may often be helpful,
+since you can assign extracted values to independent variables.
 
     buff = b'\x34\x12\xbb\xaa\x78\x56'
     [x, y, z] = buff.unpack('3H')
-
-struct
-
-    Point = struct(x:number, y:number, z:number)
-    buff = b'\x34\x12\xbb\xaa\x78\x56'
-    rtn = Point(buff.unpack('3H')*)
 
 The table below summarizes specifiers that are used to pack or unpack number values.
 
@@ -570,8 +566,8 @@ The table below summarizes specifiers that are used to pack or unpack number val
 <tr><td><code>d</code></td><td>8 bytes</td><td>Packs or unpacks a double precision floating point number.</td></tr>
 </table>
 
-A byte order of numbers in 16-bit, 32-bit and 64-bit size can be controlled by the following specifiers.
-The default is a little endian.
+By default, byte order of numbers in 16-bit, 32-bit and 64-bit size is a little endian.
+You can change the order by using the following specifiers:
 
 <table>
 <tr><th>Specifier</th><th>Note</th></tr>
@@ -582,10 +578,19 @@ The default is a little endian.
 <tr><td><code>!</code></td><td>Turns to a big endian.</td></tr>
 </table>
 
+    rtn = binary.pack('H>H', 0x1234, 0x1234)
+    // rtn contains 0x34, 0x12, 0x12, 0x34.
+
+Specifier `x` only advances pointer ahead for specified size without packing or unpacking of values.
+When packing, the skipped area would be filled with zero.
+
+    rtn = binary.pack('H3xH', 0x1234, 0x1234)
+    // rtn contains 0x34, 0x12, 0x00, 0x00, 0x00, 0x34, 0x12.
+
+Specifiers `c` and `s` are prepared to pack or unpack string data.
 
 <table>
 <tr><th>Specifier</th><th>Note</th></tr>
-<tr><td><code>x</code></td><td>Advances pointer ahead for specified size without packing or unpacking.</td></tr>
 <tr><td><code>c</code></td><td>Packs a first character code in a string,
  or unpack a 8-bit number as a chracter code and returns a string containing it.</td></tr>
 <tr><td><code>s</code></td><td>Packs character codes in a string according to the specified codec,
@@ -593,7 +598,6 @@ The default is a little endian.
 </table>
 
 You can specify a codec for `s` specifier by surrounding its name with `{` and `}`.
-
 
 
 ### {{ page.chapter }}.5.4. Pointer

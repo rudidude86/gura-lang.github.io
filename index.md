@@ -54,8 +54,6 @@ after it's given with iterators, `1..` and `readlines('foo.txt')`, as its argume
 <div><a href="extensions/GUI-Programming-with-SDL.html">GUI Programming with SDL</a></div>
 <div><a href="extensions/Programming-with-OpenGL.html">Programming with OpenGL</a></div>
 <div><a href="extensions/Programming-with-Cairo.html">Programming with Cairo</a></div>
-<div><a href="extensions/Http-Access.html">HTTP Access</a></div>
-<div><a href="extensions/Http-Server.html">HTTP Server</a></div>
 <div><a href="extensions/Database-Access.html">Database Access</a></div>
 <div><a href="extensions/Create-Your-Own-Binary-Module.html">Create Your Own Binary Module</a></div>
 </p>

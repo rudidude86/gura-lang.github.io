@@ -52,9 +52,6 @@ EXIF
 
 ## {{ page.chapter }}.3.2. GIF
 
-In this subsection, we'll create an animation GIF file
-from a scanned image of a handwritten picture.
-
 Here is a JPEG image file that contains animation frames:
 [cat-picture.jpg](../images/cat-picture.jpg).
 
@@ -142,14 +139,7 @@ drawing something on it with Cairo APIs and writing it out as a JPEG file.
 
 ### {{ page.chapter }}.4.3. Output Animation GIF File Combining Multiple Image Files
 
-The following example will output an animation GIF file that combines
-several images from PNG files together.
-
-    import(gif)
-    import(png)
-    gif.content().addimage(['cell1.png', 'cell2.png', 'cell3.png'], 10).write('anim1.gif')
-
-You can also create a GIF file that has a dynamically produced image.
+You can create a GIF file that has a dynamically produced image.
 The example below shows how to output an animation GIF file that contains
 images created by Cairo APIs.
 

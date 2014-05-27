@@ -13,6 +13,9 @@ chapter: 15
 
 `http` module
 
+client-side and server-side
+
+
 ## {{ page.chapter }}.2. Client-side Operation
 
 You can download files via HTTP protocol using a generic stream-copy function copy.
@@ -27,6 +30,7 @@ using http.addproxy like follows.
     import(http)
     http.addproxy('xx.xx.xx.xx', 8080, 'username', 'password')
     copy('http://sourceforge.jp/', 'sf.html')
+
 
 ## {{ page.chapter }}.3. Server-side Operation
 
@@ -54,11 +58,6 @@ Simple Example:
 The following example works as a HTTP server, which generates a graph
 that shows values in SQLite3 database
 [temperature.sqlite3](https://github.com/gura-lang/gura/blob/master/sample/resource/temperature.sqlite3?raw=true).
-
-After the script runs, it waits for HTTP requests.
-Launch a Web browser and access to it as like http://localhost/?site=0,1.
-If you try it on Linux, you have to run the script as a root user or
-replace the port number with one larger than or equal to 1024.
 
     import(re)
     import(cairo)
@@ -108,3 +107,8 @@ replace the port number with one larger than or equal to 1024.
         req.response('200', nil, buff,
             'Server' => 'Gura_HTTP_Server' 'Connection' => 'close')
     }
+
+After the script runs, it waits for HTTP requests.
+Launch a Web browser and access to it as like http://localhost/?site=0,1.
+If you try it on Linux, you have to run the script as a root user or
+replace the port number with one larger than or equal to 1024.

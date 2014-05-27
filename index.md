@@ -41,21 +41,12 @@ after it's given with iterators, `1..` and `readlines('foo.txt')`, as its argume
 
 <div id="box-left">
 
-<h1>Enjoy Programming</h1>
-
-<p>
-<!--
-<div><a href="extensions/Reading-Text-File.html">Reading Text File</a></div>
--->
-<div><a href="extensions/Database-Access.html">Database Access</a></div>
-<div><a href="extensions/Create-Your-Own-Binary-Module.html">Create Your Own Binary Module</a></div>
-</p>
-
 <h1>Articles</h1>
 
 <p>
 <div><a href="articles/Comparison-between-Java8-and-Gura.html">Comparison between Java 8 and Gura</a></div>
 <div><a href="articles/Script-to-Generate-Prime-Numbers.html">Script to Generate Prime Numbers</a></div>
+<div><a href="extensions/Database-Access.html">Database Access</a></div>
 </p>
 
 <h1>Sample Code</h1>

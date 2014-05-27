@@ -46,7 +46,7 @@ after it's given with iterators, `1..` and `readlines('foo.txt')`, as its argume
 <p>
 <div><a href="articles/Comparison-between-Java8-and-Gura.html">Comparison between Java 8 and Gura</a></div>
 <div><a href="articles/Script-to-Generate-Prime-Numbers.html">Script to Generate Prime Numbers</a></div>
-<div><a href="extensions/Database-Access.html">Database Access</a></div>
+<div><a href="articles/Database-Access.html">Database Access</a></div>
 </p>
 
 <h1>Sample Code</h1>

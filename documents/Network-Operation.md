@@ -7,8 +7,9 @@ chapter: 15
 
 # Chapter {{ page.chapter }}. {{ page.title }}
 
+## {{ page.chapter }}.1. Overview
 
-## Downlad Files via HTTP
+## {{ page.chapter }}.2. Client-side Operation
 
 You can download files via HTTP protocol using a generic stream-copy function copy.
 Below is the example.
@@ -23,30 +24,9 @@ using http.addproxy like follows.
     http.addproxy('xx.xx.xx.xx', 8080, 'username', 'password')
     copy('http://sourceforge.jp/', 'sf.html')
 
+## {{ page.chapter }}.3. Server-side Operation
 
-## Read CSV File via HTTP
-
-The following example reads a CSV file in the SVN repository via HTTP protocol
-and prints contents of it.
-
-    import(csv)
-    import(http)
-    uri = 'http://sourceforge.jp/projects/gura/svn/view/trunk/' \
-          'test/50records-en.csv?view=co&root=gura'
-    Person = struct(name:string, email:string, gender:string, age:number, rest*)
-    people = Person * csv.reader(uri):iter
-    println(people)
-
-The method `csv#read()`, which reads contents of a CSV file, doesn't have
-any idea about HTTP by itself. Gura language engine analyzes the path name,
-calls a stream-creating function of an appropriate module depending on it,
-http for the above case, and then passes the stream instance to `csv#read()` method.
-If you implement a function to receive a stream as its argument,
-it's automatically being capable of handling protocols like HTTP and accessing
-various type of data structures.
-
-
-## Simple Example
+Simple Example:
 
     import(http)
     
@@ -66,9 +46,6 @@ various type of data structures.
             'Connection'    => 'Keep-Alive'
             'Content-Type'  => 'text/html')
     }
-
-
-## Server with Database
 
 The following example works as a HTTP server, which generates a graph
 that shows values in SQLite3 database

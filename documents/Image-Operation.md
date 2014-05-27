@@ -7,7 +7,7 @@ chapter: 16
 
 # Chapter {{ page.chapter }}. {{ page.title }}
 
-## Image Instance
+## {{ page.chapter }}.1. Image Instance
 
 An instance of `image` class contains image data and provides functions
 such as reading/writing image files, resizing and rotating.
@@ -39,7 +39,9 @@ The following table shows image types and associated module names.
 Importing those modules also add methods to `image` class
 like `jpeg` module adding `image#jpegread` and `image#jpegwrite`.
 
-## Simple Example
+## {{ page.chapter }}.2. Cairo
+
+### {{ page.chapter }}.2.1. Simple Example
 
 Here is a simple example using Cairo.
 
@@ -60,7 +62,7 @@ Here is a simple example using Cairo.
     img.show()
 
 
-## Render in Exisiting Image
+### {{ page.chapter }}.2.2. Render in Exisiting Image
 
 The following is an example that performs reading a JPEG file,
 drawing something on it with Cairo APIs and writing it out as a JPEG file.
@@ -84,7 +86,7 @@ drawing something on it with Cairo APIs and writing it out as a JPEG file.
     img.write('result.jpg')
 
 
-## Output Animation GIF File Combining Multiple Image Files
+### {{ page.chapter }}.2.3. Output Animation GIF File Combining Multiple Image Files
 
 The following example will output an animation GIF file that combines
 several images from PNG files together.
@@ -117,12 +119,16 @@ images created by Cairo APIs.
     gifobj.write('anim2.gif')
 
 
-## More Sample Scripts
+### {{ page.chapter }}.2.4. More Sample Scripts
 
 You can find sample scripts using Cairo on
 [GitHub repository](https://github.com/gura-lang/gura/tree/master/sample/cairo/).
 
-## Sample Script
+
+## {{ page.chapter }}.3. OpenGL
+
+
+### {{ page.chapter }}.3.1. Sample Script
 
 Gura supports APIs of OpenGL 1.1.
 
@@ -185,7 +191,7 @@ Execution result.
 ![gl-cube](../images/gl-cube.png)
 
 
-## More Sample Scripts
+### {{ page.chapter }}.3.2. More Sample Scripts
 
 You can find sample scripts using OpenGL on
 [GitHub repository](https://github.com/gura-lang/gura/tree/master/sample/opengl/),

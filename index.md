@@ -48,12 +48,9 @@ after it's given with iterators, `1..` and `readlines('foo.txt')`, as its argume
 <!--
 <div><a href="extensions/Reading-Text-File.html">Reading Text File</a></div>
 -->
-<div><a href="extensions/Graphic-Image-Handling.html">Graphic Image Handling</a></div>
 <div><a href="extensions/GUI-Programming-with-wxWidgets.html">GUI Programming with wxWidgets</a></div>
 <div><a href="extensions/GUI-Programming-with-Tk.html">GUI Programming with Tk</a></div>
 <div><a href="extensions/GUI-Programming-with-SDL.html">GUI Programming with SDL</a></div>
-<div><a href="extensions/Programming-with-OpenGL.html">Programming with OpenGL</a></div>
-<div><a href="extensions/Programming-with-Cairo.html">Programming with Cairo</a></div>
 <div><a href="extensions/Database-Access.html">Database Access</a></div>
 <div><a href="extensions/Create-Your-Own-Binary-Module.html">Create Your Own Binary Module</a></div>
 </p>
@@ -123,7 +120,7 @@ I hope the publication will inspire me to carry on this tough work :-)</em>
 <div>Chapter 13. <a href="documents/Iterator-List-Operation.html">Iterator/List Operation</a></div>
 <div>Chapter 14. <a href="documents/File-Operation.html">File Operation</a></div>
 <div>Chapter 15. <a href="documents/Network-Operation.html">Network Operation</a></div>
-<div>Chapter 16. Image Operation</div>
+<div>Chapter 16. <a href="documents/Image-Operation.html">Image Operation</a></div>
 <div>Chapter 17. Graphical User Interface</div>
 <div>Chapter 18. Mathematic Functions</div>
 <div>Chapter 19. Template Engine</div>

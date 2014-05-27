@@ -7,7 +7,9 @@ chapter: 16
 
 # Chapter {{ page.chapter }}. {{ page.title }}
 
-## {{ page.chapter }}.1. Image Instance
+## {{ page.chapter }}.1. Overview
+
+## {{ page.chapter }}.2. Image Instance
 
 An instance of `image` class contains image data and provides functions
 such as reading/writing image files, resizing and rotating.
@@ -39,9 +41,61 @@ The following table shows image types and associated module names.
 Importing those modules also add methods to `image` class
 like `jpeg` module adding `image#jpegread` and `image#jpegwrite`.
 
-## {{ page.chapter }}.2. Cairo
 
-### {{ page.chapter }}.2.1. Simple Example
+## {{ page.chapter }}.3. Format-specific Operations
+
+
+## {{ page.chapter }}.3.1. JPEG
+
+EXIF
+
+
+## {{ page.chapter }}.3.2. GIF
+
+In this subsection, we'll create an animation GIF file
+from a scanned image of a handwritten picture.
+
+Here is a JPEG image file that contains animation frames:
+[cat-picture.jpg](../images/cat-picture.jpg).
+
+![cat-picture](../images/cat-picture.jpg)
+
+_(Any size of picture would be acceptable
+if only all the frames have the same size and are aligned at regular invervals.)_
+
+The program needs to do the following jobs.
+
+* Reads a JPEG file as a source image.
+* Reduces number of colors in the image down to 256 so that it suits GIF specification.
+* Creates a GIF content.
+* Divides the source image into frames and adds them to the GIF content.
+* Writes the GIF content to a file.
+
+And here is the script code:
+
+    import(jpeg)
+    import(gif)
+
+    delayTime = 12             // interval time in 1/100 seconds
+    [nx, ny] = [6, 2]          // number to divide a source image
+    img = image('cat-picture.jpg').reducecolor(`win256)
+    [w, h] = [img.width / nx, img.height / ny]
+    i = range(nx * ny)
+    xs = (i % nx) * w
+    ys = int(i / nx) * h
+    imgFrames = img.crop(xs, ys, w, h)
+    gif.content().addimage(imgFrames, delayTime).write('cat-anim.gif')
+
+It utilizes Implicit Mapping feature to process frame images.
+If you're interested in what's running in the code, trace the variable `imgFrames`
+about how it's created by `image#crop()` and how it's processed in `gif.content#addimage()`.
+
+![cat-picture](../images/cat-anim.gif) [cat-anim.gif](../images/cat-anim.gif)
+
+
+## {{ page.chapter }}.4. Cairo
+
+### {{ page.chapter }}.4.1. Simple Example
 
 Here is a simple example using Cairo.
 
@@ -62,7 +116,7 @@ Here is a simple example using Cairo.
     img.show()
 
 
-### {{ page.chapter }}.2.2. Render in Exisiting Image
+### {{ page.chapter }}.4.2. Render in Exisiting Image
 
 The following is an example that performs reading a JPEG file,
 drawing something on it with Cairo APIs and writing it out as a JPEG file.
@@ -86,7 +140,7 @@ drawing something on it with Cairo APIs and writing it out as a JPEG file.
     img.write('result.jpg')
 
 
-### {{ page.chapter }}.2.3. Output Animation GIF File Combining Multiple Image Files
+### {{ page.chapter }}.4.3. Output Animation GIF File Combining Multiple Image Files
 
 The following example will output an animation GIF file that combines
 several images from PNG files together.
@@ -119,16 +173,16 @@ images created by Cairo APIs.
     gifobj.write('anim2.gif')
 
 
-### {{ page.chapter }}.2.4. More Sample Scripts
+### {{ page.chapter }}.4.4. More Sample Scripts
 
 You can find sample scripts using Cairo on
 [GitHub repository](https://github.com/gura-lang/gura/tree/master/sample/cairo/).
 
 
-## {{ page.chapter }}.3. OpenGL
+## {{ page.chapter }}.5. OpenGL
 
 
-### {{ page.chapter }}.3.1. Sample Script
+### {{ page.chapter }}.5.1. Sample Script
 
 Gura supports APIs of OpenGL 1.1.
 
@@ -191,7 +245,7 @@ Execution result.
 ![gl-cube](../images/gl-cube.png)
 
 
-### {{ page.chapter }}.3.2. More Sample Scripts
+### {{ page.chapter }}.5.2. More Sample Scripts
 
 You can find sample scripts using OpenGL on
 [GitHub repository](https://github.com/gura-lang/gura/tree/master/sample/opengl/),

@@ -44,7 +44,6 @@ after it's given with iterators, `1..` and `readlines('foo.txt')`, as its argume
 <h1>Enjoy Programming</h1>
 
 <p>
-<div><a href="extensions/Create-Animation-GIF.html">Create Animation GIF</a></div>
 <!--
 <div><a href="extensions/Reading-Text-File.html">Reading Text File</a></div>
 -->

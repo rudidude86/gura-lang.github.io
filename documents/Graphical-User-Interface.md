@@ -188,10 +188,10 @@ The following example creates a window that has one Button widget.
     import(tk)
     
     tk.mainwindow() {|mw|
-        mw.Button(text =&gt; 'Push me') {|w|
+        mw.Button(text => 'Push me') {|w|
             w.pack()
             w.bind(`command) {
-                w.tk$MessageBox(title =&gt; 'event', message =&gt; 'hello')
+                w.tk$MessageBox(title => 'event', message => 'hello')
             }
         }
     }

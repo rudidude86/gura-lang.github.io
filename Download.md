@@ -3,8 +3,7 @@ layout: default
 lang: en
 title: Download
 ---
-{% assign gura_version = '0.4.2' %}
-{% assign gura_download_id = '60652' %}
+{% assign gura_version = '0.5.0' %}
 
 # {{ page.title }}
 
@@ -14,18 +13,18 @@ title: Download
 <table>
 <tr>
 <td>Windows Installer</td>
-<td><a href="https://sourceforge.jp/projects/gura/downloads/{{ gura_download_id }}/gura-{{ gura_version }}-win32.msi/" class="link"
+<td><a href="https://github.com/gura-lang/gura/releases/download/v{{ gura_version }}/gura-{{ gura_version }}-win32.msi" class="link"
   onClick="_gaq.push(['_trackEvent','download','click','gura-{{ gura_version }}-win32.msi']);">gura-{{ gura_version }}-win32.msi</a></td>
 </tr>
 <tr>
 <tr>
 <td>Windows Binary</td>
-<td><a href="https://sourceforge.jp/projects/gura/downloads/{{ gura_download_id }}/gura-{{ gura_version }}-win32.zip/" class="link"
+<td><a href="https://github.com/gura-lang/gura/releases/download/v{{ gura_version }}/gura-{{ gura_version }}-win32.zip" class="link"
   onClick="_gaq.push(['_trackEvent','download','click','gura-{{ gura_version }}-win32.zip']);">gura-{{ gura_version }}-win32.zip</a></td>
 </tr>
 <tr>
 <td>Sorce Package</td>
-<td><a href="https://sourceforge.jp/projects/gura/downloads/{{ gura_download_id }}/gura-{{ gura_version }}-src.tar.gz/" class="link"
+<td><a href="https://github.com/gura-lang/gura/releases/download/v{{ gura_version }}/gura-{{ gura_version }}-src.tar.gz" class="link"
   onClick="_gaq.push(['_trackEvent','download','click','gura-{{ gura_version }}-src.tar.gz']);">gura-{{ gura_version }}-src.tar.gz</a></td>
 </tr>
 <!--

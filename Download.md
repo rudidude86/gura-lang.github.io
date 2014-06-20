@@ -3,7 +3,7 @@ layout: default
 lang: en
 title: Download
 ---
-{% assign gura_version = '0.5.0' %}
+{% assign gura_version = '0.5.1' %}
 
 # {{ page.title }}
 

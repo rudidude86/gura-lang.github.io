@@ -32,7 +32,7 @@ But a new feature called **Implicit Mapping** is working internally,
 which automatically repeats evaluation of `printf` function
 after it's given with iterators, `1..` and `readlines('foo.txt')`, as its arguments.
 
-<h1>Summary of Features</h1>
+# Summary of Features
 
 * It provides a variety of iterator operations including [Mapping Process](documents/Mapping-Process.html)
   such as **Implicit Mapping** and **Member Mapping**.
@@ -41,46 +41,9 @@ after it's given with iterators, `1..` and `readlines('foo.txt')`, as its argume
 * Importing [Modules](documents/Module.html) would enhance the language's feature.
   A variety of modules such as image handler, network operations and GUI are shipped within the package.
 
+# Documents
+
 <div id="box-left">
-
-<h1>Articles</h1>
-
-<p>
-<div><a href="articles/Comparison-between-Java8-and-Gura.html">Comparison between Java 8 and Gura</a></div>
-<div><a href="articles/Script-to-Generate-Prime-Numbers.html">Script to Generate Prime Numbers</a></div>
-<div><a href="articles/Database-Access.html">Database Access</a></div>
-</p>
-
-<h1>Sample Code</h1>
-
-<p>Sample codes of Gura are stored in
-<a href="https://github.com/gura-lang/gura/tree/master/sample"
- onClick="_gaq.push(['_trackEvent','repository','click','sample']);">Repository</a>.
-</p>
-
-<h1>Contacts</h1>
-
-<p>Any opinions and suggestions are welcome via <a href="mailto:ypsitau@nifty.com">E-mail</a>.</p>
-
-</div>
-
-<div id="box-right">
-
-<h1>Documents</h1>
-
-<h2>Japanese</h2>
-
-<p>
-<div><img src="images/pdf.png" alt="pdf-icon" /> Gura Language Manual
-(<a href="https://github.com/gura-lang/gura-doc/blob/master/gura-lang-j.pdf?raw=true"
-  onClick="_gaq.push(['_trackEvent','document','click','gura-lang-j.pdf']);">Japanese</a>)</div>
-<div><img src="images/pdf.png" alt="pdf-icon" /> Gura Library Reference
-(<a href="https://github.com/gura-lang/gura-doc/blob/master/gura-lib-j.pdf?raw=true"
-  onClick="_gaq.push(['_trackEvent','document','click','gura-lib-j.pdf']);">Japanese</a>)</div>
-<div><img src="images/pdf.png" alt="pdf-icon" /> Gura Developer's Manual
-(<a href="https://github.com/gura-lang/gura-doc/blob/master/gura-dev-j.pdf?raw=true"
-  onClick="_gaq.push(['_trackEvent','document','click','gura-dev-j.pdf']);">Japanese</a>)</div>
-</p>
 
 <h2>English</h2>
 
@@ -117,6 +80,43 @@ I hope the publication will inspire me to carry on this tough work :-)</em>
 
 </div>
 
+<div id="box-right">
+
+<h2>Japanese</h2>
+
+<p>
+<div><img src="images/pdf.png" alt="pdf-icon" /> Gura Language Manual
+(<a href="https://github.com/gura-lang/gura-doc/blob/master/gura-lang-j.pdf?raw=true"
+  onClick="_gaq.push(['_trackEvent','document','click','gura-lang-j.pdf']);">Japanese</a>)</div>
+<div><img src="images/pdf.png" alt="pdf-icon" /> Gura Library Reference
+(<a href="https://github.com/gura-lang/gura-doc/blob/master/gura-lib-j.pdf?raw=true"
+  onClick="_gaq.push(['_trackEvent','document','click','gura-lib-j.pdf']);">Japanese</a>)</div>
+<div><img src="images/pdf.png" alt="pdf-icon" /> Gura Developer's Manual
+(<a href="https://github.com/gura-lang/gura-doc/blob/master/gura-dev-j.pdf?raw=true"
+  onClick="_gaq.push(['_trackEvent','document','click','gura-dev-j.pdf']);">Japanese</a>)</div>
+</p>
+
+</div>
+
 <div id="box-bottom">
+
+<h1>Articles</h1>
+
+<p>
+<div><a href="articles/Comparison-between-Java8-and-Gura.html">Comparison between Java 8 and Gura</a></div>
+<div><a href="articles/Script-to-Generate-Prime-Numbers.html">Script to Generate Prime Numbers</a></div>
+<div><a href="articles/Database-Access.html">Database Access</a></div>
+</p>
+
+<h1>Sample Code</h1>
+
+<p>Sample codes of Gura are stored in
+<a href="https://github.com/gura-lang/gura/tree/master/sample"
+ onClick="_gaq.push(['_trackEvent','repository','click','sample']);">Repository</a>.
+</p>
+
+<h1>Contacts</h1>
+
+<p>Any opinions and suggestions are welcome via <a href="mailto:ypsitau@nifty.com">E-mail</a>.</p>
 
 </div>

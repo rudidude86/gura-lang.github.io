@@ -50,16 +50,16 @@ in some directory. Then modify PATH environment so that it includes `gura\bin-x8
 
 ## Install into Linux
 
-In default configuration, Ubuntu and Fedora do not include C++ compilers and readline library.
+In default configuration, Ubuntu and RedHat do not include C++ compilers and readline library.
 Install them as follows before building Gura.
 
 For Ubuntu:
 
-    $ sudo apt-get install g++ libreadline5-dev
+    $ sudo apt-get install build-essential cmake libreadline-dev
 
-For Fedora:
+For RedHat:
 
-    # yum install gcc gcc-c++ readline-devel
+    # yum install gcc gcc-c++ make cmake readline-devel
 
 Download a source package
 [gura-{{ gura_version }}.tar.gz](http://sourceforge.jp/projects/gura/downloads/{{ gura_download_id }}/gura-{{ gura_version }}.tar.gz/)

@@ -57,12 +57,14 @@ If you don't want to modify registry, you can just expand ZIP file
 
 ## Install into Linux
 
+<!--
 It has been confirmed that Gura runs on the following distributions of Linux.
 
 * Ubuntu 13.10
 * Ubuntu 14.04
 * Xubuntu 14.04
 * Fedora 20
+-->
 
 In default configuration, Ubuntu and Fedora do not include C++ compilers and readline library.
 Install them as follows before building Gura.

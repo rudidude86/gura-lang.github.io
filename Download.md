@@ -63,7 +63,7 @@ It has been confirmed that Gura runs on the following distributions of Linux.
 * Ubuntu 13.10
 * Ubuntu 14.04
 * Xubuntu 14.04
-* Fedora 20
+* Fedora 20 (`wx` modules doesn't work well)
 -->
 
 In default configuration, Ubuntu and Fedora do not include C++ compilers and readline library.

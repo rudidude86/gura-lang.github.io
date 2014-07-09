@@ -65,8 +65,8 @@ It has been confirmed that Gura runs on the following distributions of Linux.
 * lubuntu 14.04
 * Fedora 20 (`wx` modules doesn't work well)
 
-In default configuration, Ubuntu and Fedora do not include C++ compilers and readline library.
-Install them as follows before building Gura.
+In default configuration, Ubuntu and Fedora do not include C++ compilers, cmake utility and readline library.
+Install them as below before building Gura.
 
 For Ubuntu:
 

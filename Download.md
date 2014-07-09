@@ -3,7 +3,7 @@ layout: default
 lang: en
 title: Download
 ---
-{% assign gura_version = '0.5.1' %}
+{% assign gura_version = '0.5.2' %}
 
 # {{ page.title }}
 
@@ -57,14 +57,13 @@ If you don't want to modify registry, you can just expand ZIP file
 
 ## Install into Linux
 
-<!--
 It has been confirmed that Gura runs on the following distributions of Linux.
 
 * Ubuntu 13.10
 * Ubuntu 14.04
 * Xubuntu 14.04
+* lubuntu 14.04
 * Fedora 20 (`wx` modules doesn't work well)
--->
 
 In default configuration, Ubuntu and Fedora do not include C++ compilers and readline library.
 Install them as follows before building Gura.
@@ -79,8 +78,8 @@ For Fedora:
 
 Download a source package
 <a href="https://github.com/gura-lang/gura/releases/download/v{{ gura_version }}/gura-{{ gura_version }}-src.tar.gz" class="link"
-  onClick="_gaq.push(['_trackEvent','download','click','gura-{{ gura_version }}-src.tar.gz']);">gura-{{ gura_version }}-src.tar.gz</a>
-and follow the steps below to build and install Gura executables.
+  onClick="_gaq.push(['_trackEvent','download','click','gura-{{ gura_version }}-src.tar.gz']);">gura-{{ gura_version }}-src.tar.gz</a>.
+Then, follow the steps below to build Gura executables and modules.
 
     $ tar xvfz gura-{{ gura_version }}.tar.gz
     $ cd gura-{{ gura_version }}
@@ -88,14 +87,11 @@ and follow the steps below to build and install Gura executables.
     $ cd build
     $ ../configure
     $ make
-    $ sudo make install
-    $ sudo ldconfig     # for the first install
-
-After that, follow the steps below to build and install Gura module files.
-
+    $ sudo ./setup-guest
     $ ./build-modules
-    $ sudo ./build-modules install
 
-If you see any error messages, your system may not have been installed
-with packages necessary to build the modules.
-Install them and try building modules again.
+After that, follow the steps below to install them to the system.
+
+    $ sudo make install
+    $ sudo ldconfig     # only necessary for the first install
+    $ sudo ./build-modules install

@@ -88,13 +88,13 @@ I hope the publication will inspire me to carry on this tough work :-)</em>
 <p>
 <div><img src="images/pdf.png" alt="pdf-icon" /> Gura Language Manual
 (<a href="https://github.com/gura-lang/gura-doc/blob/master/gura-lang-j.pdf?raw=true"
-  onClick="ga('send', 'event', 'button', 'click', 'gura-lang-j.pdf');">Japanese</a>)</div>
+  onClick="ga('send', 'event', 'document', 'click', 'gura-lang-j.pdf');">Japanese</a>)</div>
 <div><img src="images/pdf.png" alt="pdf-icon" /> Gura Library Reference
 (<a href="https://github.com/gura-lang/gura-doc/blob/master/gura-lib-j.pdf?raw=true"
-  onClick="ga('send', 'event', 'button', 'click', 'gura-lib-j.pdf');">Japanese</a>)</div>
+  onClick="ga('send', 'event', 'document', 'click', 'gura-lib-j.pdf');">Japanese</a>)</div>
 <div><img src="images/pdf.png" alt="pdf-icon" /> Gura Developer's Manual
 (<a href="https://github.com/gura-lang/gura-doc/blob/master/gura-dev-j.pdf?raw=true"
-  onClick="ga('send', 'event', 'button', 'click', 'gura-dev-j.pdf');">Japanese</a>)</div>
+  onClick="ga('send', 'event', 'document', 'click', 'gura-dev-j.pdf');">Japanese</a>)</div>
 </p>
 
 </div>
@@ -113,7 +113,7 @@ I hope the publication will inspire me to carry on this tough work :-)</em>
 
 <p>Sample codes of Gura are stored in
 <a href="https://github.com/gura-lang/gura/tree/master/sample"
- onClick="ga('send', 'event', 'button', 'click', 'Repository');">Repository</a>.
+ onClick="ga('send', 'event', 'repository', 'click', '/gura-lang/gura/tree/master/sample');">Repository</a>.
 </p>
 
 <h1>Contacts</h1>

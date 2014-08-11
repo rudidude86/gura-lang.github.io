@@ -7,12 +7,14 @@ title: Top
 # Latest News
 
 <table>
-<tr><td>2014-07-10</td><td><a href="Download.html">Gura v0.5.2</a> was released.</td></tr>
-<tr><td>2014-06-20</td><td>Gura v0.5.1 was released.</td></tr>
-<tr><td>2014-06-19</td><td>Gura v0.5.0 was released.</td></tr>
-<tr><td>2014-02-25</td><td>Gura v0.4.2 was released.</td></tr>
-<tr><td>2014-02-14</td><td>Gura v0.4.1 was released.</td></tr>
-<tr><td>2014-02-06</td><td>Gura v0.4.0 was released.</td></tr>
+<tr><td valign="top">2014-08-11</td><td>
+I'll make a presentation about Gura at <a href="http://ll.jus.or.jp/2014/">LL Diver</a>,
+a conference concerning light-weight language, on Aug 23rd in Tokyo.<br />
+8 月 23 日にお台場日本未来科学館で行われる軽量プログラミング言語カンファレンス
+<a href="http://ll.jus.or.jp/2014/">LL Diver</a> にて
+Gura のプレゼンテーションを行います。
+</td></tr>
+<tr><td valign="top">2014-07-10</td><td><a href="Download.html">Gura v0.5.2</a> was released.</td></tr>
 </table>
 
 

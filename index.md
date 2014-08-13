@@ -9,7 +9,9 @@ title: Top
 <table>
 <tr><td valign="top">2014-08-11</td><td>
 I'll make a presentation about Gura at <a href="http://ll.jus.or.jp/2014/">LL Diver</a>,
-a conference concerning light-weight language, on Aug 23rd in Tokyo.<br />
+a conference concerning light-weight language, on Aug 23rd in Tokyo.
+</td></tr>
+<tr><td valign="top">2014-08-11</td><td>
 8 月 23 日にお台場日本未来科学館で行われる軽量プログラミング言語カンファレンス
 <a href="http://ll.jus.or.jp/2014/">LL Diver</a> にて
 Gura のプレゼンテーションを行います。

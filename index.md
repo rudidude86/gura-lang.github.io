@@ -7,17 +7,17 @@ title: Top
 # Latest News
 
 <table>
-<tr><td valign="top">2014-08-11</td><td>
+<tr><td valign="top" style="white-space:nowrap">2014-08-11</td><td>
 I'll make a presentation about Gura at <a href="http://ll.jus.or.jp/2014/">LL Diver</a>,
 a conference concerning light-weight language, on Aug 23rd in Tokyo.
 </td></tr>
-<tr><td valign="top">2014-08-11</td><td>
+<tr><td valign="top" style="white-space:nowrap">2014-08-11</td><td>
 8 月 23 日にお台場日本未来科学館で行われる軽量プログラミング言語カンファレンス
 <a href="http://ll.jus.or.jp/2014/">LL Diver</a> にて
 Gura のプレゼンテーションを行います。発表資料は
 <a href="http://www.slideshare.net/ypsitau/gura-introduction-37974595">こちら</a>。
 </td></tr>
-<tr><td valign="top">2014-07-10</td><td><a href="Download.html">Gura v0.5.2</a> was released.</td></tr>
+<tr><td valign="top" style="white-space:nowrap">2014-07-10</td><td><a href="Download.html">Gura v0.5.2</a> was released.</td></tr>
 </table>
 
 

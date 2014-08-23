@@ -266,7 +266,7 @@ Elements in the `Lister` must be `Identifier` expressions.
 
     [A, B, C] = X
 
-If assignment source is a scholar, that value is assigned to each element.
+If assignment source is a scalar, that value is assigned to each element.
 
     [a, b, c] = 3          // a = 3, b = 3, c = 3
 

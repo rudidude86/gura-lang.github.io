@@ -261,7 +261,7 @@ each element in the iterable will be stored at the specified positions in the ta
     tbl[1, 3, 5] = ['1', '3', '5']
     // tbl is ['zero', '1', 'two', '3', 'four', '5', 'six', 'seven']
 
-If the assigned value is a scholar, the same value is stored at the positions.
+If the assigned value is a scalar, the same value is stored at the positions.
 
     tbl = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven']
     tbl[1, 3, 5] = '1'
@@ -313,7 +313,7 @@ Method `list#isempty()` will check if a list is empty or not.
     tbl.isempty()    // returns true
 
 Both of methods `list#add()` and `list#append()` will add values to the target list.
-They have the same behavior when they try to add a scholar value.
+They have the same behavior when they try to add a scalar value.
 Below is a sample of `list#add()`:
 
     tbl = ['one', 'two', 'three']

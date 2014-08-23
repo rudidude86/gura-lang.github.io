@@ -12,7 +12,7 @@ chapter: 10
 This chapter explains about Gura's mapping process, Implicit Mapping and Member Mapping.
 In the documentation, following terms are used to describe species of values.
 
-* scholar &mdash; an instance of any type except for `list` and `iterator`
+* scalar &mdash; an instance of any type except for `list` and `iterator`
 * list &mdash; an instance of `list`
 * iterator &mdash; an instance of `iterator`
 * iterable &mdash; list or iterator
@@ -131,7 +131,7 @@ Below is a summary table:
 
 Operation    | Result
 -------------|----------------
-`o scholar`  | scholar
+`o scalar`   | scalar
 `o list`     | list
 `o iterator` | iterator
 
@@ -149,13 +149,13 @@ Below is a summary table:
 
 Operation    | Result
 -------------|----------------
-`scholar o`  | scholar
+`scalar o`   | scalar
 `list o`     | list
 `iterator o` | iterator
 
 With a Binary Operator, the folloiwing rules are applied.
 
-* If both of left and right values are of scholar species, the result becomes a scholar.
+* If both of left and right values are of scalar species, the result becomes a scalar.
 * If either of left or right value is of iterator species, the result becomes an iterator.
 * Otherwise, the result becomes a list.
 
@@ -163,13 +163,13 @@ Below is a summary table:
 
 Operation             | Result
 ----------------------|----------------
-`scholar o scholar`   | scholar
-`scholar o list`      | list
-`scholar o iterator`  | iterator
-`list o scholar`      | list
+`scalar o scalar`     | scalar
+`scalar o list`       | list
+`scalar o iterator`   | iterator
+`list o scalar`       | list
 `list o list`         | list
 `list o iterator`     | iterator
-`iterator o scholar`  | iterator
+`iterator o scalar`   | iterator
 `iterator o list`     | iterator
 `iterator o iterator` | iterator
 
@@ -211,7 +211,7 @@ See the following summary table:
 
 Operation     | Result
 --------------|----------------
-`f(scholar)`  | scholar
+`f(scalar)`   | scalar
 `f(list)`     | list
 `f(iterator)` | iterator
 
@@ -220,30 +220,30 @@ Below is a summary table:
 
 Operation               | Result
 ------------------------|----------------
-`f(scholar, scholar)`   | scholar
-`f(scholar, list)`      | list
-`f(scholar, iterator)`  | iterator
-`f(list, scholar)`      | list
+`f(scalar, scalar)`     | scalar
+`f(scalar, list)`       | list
+`f(scalar, iterator)`   | iterator
+`f(list, scalar)`       | list
 `f(list, list)`         | list
 `f(list, iterator)`     | iterator
-`f(iterator, scholar)`  | iterator
+`f(iterator, scalar)`   | iterator
 `f(iterator, list)`     | iterator
 `f(iterator, iterator)` | iterator
 
 In general, if a function takes more than one argument, the following rules are appplied.
 
-* If all of the argument values are of scholar species, the result becomes a scholar.
+* If all of the argument values are of scalar species, the result becomes a scalar.
 * If one of the argument values is of iterator species, the result becomes an iterator.
 * Otherwise, the result becomes a list.
 
 Here are some example cases with a function `f(x, y, z):map`:
 
-Operation                       | Result
---------------------------------|----------------
-`f(scholar, scholar, sholar)`   | scholar
-`f(scholar, scholar, list)`     | list
-`f(scholar, scholar, iterator)` | iterator
-`f(scholar, list, iterator)`    | iterator
+Operation                      | Result
+-------------------------------|----------------
+`f(scalar, scalar, sholar)`    | scalar
+`f(scalar, scalar, list)`      | list
+`f(scalar, scalar, iterator)`  | iterator
+`f(scalar, list, iterator)`    | iterator
 
 If an argument list contains iterables that have different length each other,
 Implicit Mapping would be applied on a range of the shortest length.
